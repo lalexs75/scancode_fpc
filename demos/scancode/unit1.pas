@@ -21,6 +21,7 @@ type
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
     TabSheet6: TTabSheet;
+    TabSheet7: TTabSheet;
     procedure FormCreate(Sender: TObject);
   private
 
@@ -33,7 +34,7 @@ var
 
 implementation
 uses frmUsersAndRightUnit, frmStocksUnit, frmDocumentsUnit,
-  frmCharacteristicUnit;
+  frmCharacteristicUnit, frmTSDOrderUnit;
 {$R *.lfm}
 
 { TForm1 }
@@ -61,6 +62,11 @@ begin
   F.Parent:=TabSheet6;
   F.Align:=alClient;
   TfrmCharacteristicFrame(F).GenerateData;
+
+  F:=TfrmTSDOrderFrame.Create(Self);
+  F.Parent:=TabSheet7;
+  F.Align:=alClient;
+  TfrmTSDOrderFrame(F).GenerateData;
 end;
 
 end.

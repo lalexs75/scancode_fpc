@@ -86,6 +86,13 @@
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmCharacteristicUnit"/>
       </Unit>
+      <Unit>
+        <Filename Value="frames/frmtsdorderunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmTSDOrderFrame"/>
+        <ResourceBaseClass Value="Frame"/>
+        <UnitName Value="frmTSDOrderUnit"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
