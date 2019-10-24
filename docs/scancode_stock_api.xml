@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="scancode_mt"><module name="scancode_stock_api"><element name="TStocks"><short>группа складов (одна на весь файл)</short>
+      </element><element name="TStockList"><short>Коллекция информации о складах</short>
+      </element><element name="TStock.IdStock"><short>guid идентификатор склада</short>
+      </element><element name="TStock.Barcode"><short>ШК склада</short>
+      </element><element name="TStock.Name"><short>наименование склада</short>
+      </element><element name="TStock.Rooms"><short>помещение внутри склада (может быть несколько, а может и не быть вообще)</short>
+      </element><element name="TRoom.IdCell"><short>guid идентификатор ячейки склада</short>
+      </element><element name="TRoom.Barcode"><short>ШК помещения</short>
+      </element><element name="TRoom.Name"><short>наименование помещения</short>
+      </element><element name="TRoom.IdRoom"><short>id_room – guid идентификатор помещения склада</short>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>

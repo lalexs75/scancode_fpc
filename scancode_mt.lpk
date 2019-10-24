@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Package Version="4">
+    <Name Value="scancode_mt"/>
+    <Type Value="RunAndDesignTime"/>
+    <Author Value="Лагунов А.А."/>
+    <CompilerOptions>
+      <Version Value="11"/>
+      <SearchPaths>
+        <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
+      </SearchPaths>
+    </CompilerOptions>
+    <Version Minor="1"/>
+    <Files Count="3">
+      <Item1>
+        <Filename Value="scancode_user_api.pas"/>
+        <UnitName Value="scancode_user_api"/>
+      </Item1>
+      <Item2>
+        <Filename Value="scancode_stock_api.pas"/>
+        <UnitName Value="scancode_stock_api"/>
+      </Item2>
+      <Item3>
+        <Filename Value="scancode_document_api.pas"/>
+        <UnitName Value="scancode_document_api"/>
+      </Item3>
+    </Files>
+    <LazDoc Paths="docs"/>
+    <RequiredPkgs Count="2">
+      <Item1>
+        <PackageName Value="xmlobjects"/>
+      </Item1>
+      <Item2>
+        <PackageName Value="FCL"/>
+      </Item2>
+    </RequiredPkgs>
+    <UsageOptions>
+      <UnitPath Value="$(PkgOutDir)"/>
+    </UsageOptions>
+    <PublishOptions>
+      <Version Value="2"/>
+      <UseFileFilters Value="True"/>
+    </PublishOptions>
+  </Package>
+</CONFIG>

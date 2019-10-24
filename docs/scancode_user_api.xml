@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="scancode_mt"><module name="scancode_user_api"><element name="TUserInformation"><short>Информация о пользователях и их правах</short>
+      </element><element name="TUserInformation.Rights"><short>описание набора доступных прав пользователя</short>
+      </element><element name="TUserRights.Records"><short>Коллекция прав пользователей</short>
+      </element><element name="TUserRights"><short>описание набора доступных прав пользователя</short>
+      </element><element name="TUserRightsList"><short>Коллекция прав пользователей</short>
+      </element><element name="TUserRight"><short>Право пользователя</short>
+      </element><element name="TUserRight.Name"><short>Name – псевдоним типа документа</short>
+      </element><element name="TUserRight.ID"><short>Id – код типа документа внутри группы</short>
+      </element><element name="TUserRight.GroupID"><short>groupId – код группы документов, с которыми пользователь может работать</short>
+      </element><element name="TUserInformation.Logins"/><element name="TUserLogins"><short>Login – учетные данные пользователя</short>
+      </element><element name="TUserLogins.Records"><short>Коллекция учетных данных пользователей</short>
+      </element><element name="TUserLoginList"><short>Коллекция учетных данных пользователей</short>
+      </element><element name="TUserLogin.Login"><short>Login – строковой идентификатор пользователя</short>
+      </element><element name="TUserLogin.Id"><short>Id – уникальные идентификатор пользователя во внешней БД (UID)</short>
+      </element><element name="TUserLogin.Pass"><short>Pass – пароль пользователя в кодировке Base64</short>
+      </element><element name="TUserLogin.Rights"><short>Rights — список кодов групп документов через разделитель</short>
+      </element><element name="TUserLogin.CreateProd"><short>createprod – список кодов групп документов, в которых пользователь может
+создавать товар</short>
+      </element><element name="TUserLogin.AddProd"><short>addprod - список кодов групп документов, в которые пользователь может добавлять товары из локальной или удаленной БД</short>
+      </element><element name="TUserLogin.CreateFreeCollect"><short>create_free_collect - список кодов групп документов, для которых пользователь может создавать документы «Свободный набор»</short>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
