@@ -32,7 +32,8 @@ var
   Form1: TForm1;
 
 implementation
-uses frmUsersAndRightUnit, frmStocksUnit, frmDocumentsUnit;
+uses frmUsersAndRightUnit, frmStocksUnit, frmDocumentsUnit,
+  frmCharacteristicUnit;
 {$R *.lfm}
 
 { TForm1 }
@@ -55,6 +56,11 @@ begin
   F.Parent:=TabSheet5;
   F.Align:=alClient;
   TfrmDocumentsFrame(F).GenerateData;
+
+  F:=TfrmCharacteristicFrame.Create(Self);
+  F.Parent:=TabSheet6;
+  F.Align:=alClient;
+  TfrmCharacteristicFrame(F).GenerateData;
 end;
 
 end.

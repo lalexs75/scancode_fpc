@@ -79,6 +79,13 @@
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmDocumentsUnit"/>
       </Unit>
+      <Unit>
+        <Filename Value="frames/frmcharacteristicunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmCharacteristicFrame"/>
+        <ResourceBaseClass Value="Frame"/>
+        <UnitName Value="frmCharacteristicUnit"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
