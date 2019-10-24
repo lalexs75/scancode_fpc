@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="scancode_mt"><module name="scancode_document_api"><element name="TGood.IdGoods"><short>id_goods — уникальный идентификатор товара</short>
+      </element><element name="TGood.IdChar"><short>id_char — уникальный идентификатор характеристики товара</short>
+      </element><element name="TGood.Quantity"><short>quantity – требуемое количество (общее)</short>
+      </element><element name="TGood.GoodProperty"><short>property – свойства товара</short>
+      </element><element name="TGoodProperty.IdPack"><short>id_pack – guid идентификатор упаковки</short>
+      </element><element name="TGoodProperty.Quantity"><short>quantity – требуемое количество (в разрезе упаковки)</short>
+      </element><element name="TGoodSerial"><short>serial – информация о серии товара</short>
+      </element><element name="TGoodProperty.GoodSerial"><short>serial – информация о серии товара</short>
+      </element><element name="TGoodSerial.Quantity"><short>quantity – требуемое количество (в разрезе серии)</short>
+      </element><element name="TGoodSerial.IdSerial"><short>id_serial – guid идентификатор серии</short>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>

@@ -49,16 +49,96 @@ uses
 
 type
 
-  { TGood }
+  { TGoodCell }
 
-  TGood = class(TXmlSerializationObject)
+  TGoodCell = class(TXmlSerializationObject)
   private
+    FCell: string;
+    FCellAddress: string;
+    procedure SetCell(AValue: string);
+    procedure SetCellAddress(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
+    property Cell:string read FCell write SetCell;
+    property CellAddress:string read FCellAddress write SetCellAddress;
+  end;
+
+  { TGoodCells }
+
+  TGoodCells = class(TXmlSerializationObjectList)
+  private
+    function GetItem(AIndex: Integer): TGoodCell; inline;
+  public
+    constructor Create;
+    function CreateChild:TGoodCell;
+    property Item[AIndex:Integer]:TGoodCell read GetItem; default;
+  end;
+
+  { TGoodSerial }
+
+  TGoodSerial = class(TXmlSerializationObject)
+  private
+    FGoodCells: TGoodCells;
+    FIdSerial: string;
+    FQuantity: string;
+    procedure SetIdSerial(AValue: string);
+    procedure SetQuantity(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property Quantity:string read FQuantity write SetQuantity;
+    property IdSerial:string read FIdSerial write SetIdSerial;
+    property GoodCells:TGoodCells read FGoodCells;
+  end;
+
+  { TGoodProperty }
+
+  TGoodProperty = class(TXmlSerializationObject)
+  private
+    FGoodSerial: TGoodSerial;
+    FIdPack: string;
+    FQuantity: string;
+    procedure SetIdPack(AValue: string);
+    procedure SetQuantity(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property IdPack:string read FIdPack write SetIdPack;
+    property Quantity:string read FQuantity write SetQuantity;
+    property GoodSerial:TGoodSerial read FGoodSerial;
+  end;
+
+  { TGood }
+
+  TGood = class(TXmlSerializationObject)
+  private
+    FGoodProperty: TGoodProperty;
+    FIdChar: string;
+    FIdGoods: string;
+    FQuantity: string;
+    procedure SetIdChar(AValue: string);
+    procedure SetIdGoods(AValue: string);
+    procedure SetQuantity(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property IdGoods:string read FIdGoods write SetIdGoods;
+    property IdChar:string read FIdChar write SetIdChar;
+    property Quantity:string read FQuantity write SetQuantity;
+    property GoodProperty:TGoodProperty read FGoodProperty;
   end;
 
   { TGoods }
@@ -158,20 +238,165 @@ type
 
 implementation
 
+{ TGoodCell }
+
+procedure TGoodCell.SetCell(AValue: string);
+begin
+  if FCell=AValue then Exit;
+  FCell:=AValue;
+  ModifiedProperty('Cell');
+end;
+
+procedure TGoodCell.SetCellAddress(AValue: string);
+begin
+  if FCellAddress=AValue then Exit;
+  FCellAddress:=AValue;
+  ModifiedProperty('CellAddress');
+end;
+
+procedure TGoodCell.InternalRegisterPropertys;
+begin
+  RegisterProperty('Cell', 'cell', 'О', '', 0, 250);
+  RegisterProperty('CellAddress', 'celladdress', 'О', '', 0, 250);
+end;
+
+procedure TGoodCell.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TGoodCell.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TGoodCells }
+
+function TGoodCells.GetItem(AIndex: Integer): TGoodCell;
+begin
+  Result:=TGoodCell(InternalGetItem(AIndex));
+end;
+
+constructor TGoodCells.Create;
+begin
+  inherited Create(TGoodCell)
+end;
+
+function TGoodCells.CreateChild: TGoodCell;
+begin
+  Result:=InternalAddObject as TGoodCell;
+end;
+
+{ TGoodSerial }
+
+procedure TGoodSerial.SetIdSerial(AValue: string);
+begin
+  if FIdSerial=AValue then Exit;
+  FIdSerial:=AValue;
+  ModifiedProperty('IdSerial');
+end;
+
+procedure TGoodSerial.SetQuantity(AValue: string);
+begin
+  if FQuantity=AValue then Exit;
+  FQuantity:=AValue;
+  ModifiedProperty('Quantity');
+end;
+
+procedure TGoodSerial.InternalRegisterPropertys;
+begin
+  RegisterProperty('Quantity', 'quantity', 'О', 'требуемое количество (в разрезе серии)', 0, 250);
+  RegisterProperty('IdSerial', 'id_serial', 'О', 'guid идентификатор серии', 0, 250);
+  RegisterProperty('GoodCells', 'cells', 'О', '', -1, -1);
+end;
+
+procedure TGoodSerial.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FGoodCells:=TGoodCells.Create;
+end;
+
+destructor TGoodSerial.Destroy;
+begin
+  FreeAndNil(FGoodCells);
+  inherited Destroy;
+end;
+
+{ TGoodProperty }
+
+procedure TGoodProperty.SetIdPack(AValue: string);
+begin
+  if FIdPack=AValue then Exit;
+  FIdPack:=AValue;
+  ModifiedProperty('IdPack');
+end;
+
+procedure TGoodProperty.SetQuantity(AValue: string);
+begin
+  if FQuantity=AValue then Exit;
+  FQuantity:=AValue;
+  ModifiedProperty('Quantity');
+end;
+
+procedure TGoodProperty.InternalRegisterPropertys;
+begin
+  RegisterProperty('IdPack', 'id_pack', 'О', 'guid идентификатор упаковки', 0, 250);
+  RegisterProperty('Quantity', 'quantity', 'О', 'требуемое количество (в разрезе упаковки)', 0, 250);
+  RegisterProperty('GoodSerial', 'serial', 'О', 'информация о серии товара', -1, -1);
+end;
+
+procedure TGoodProperty.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FGoodSerial:=TGoodSerial.Create;
+end;
+
+destructor TGoodProperty.Destroy;
+begin
+  FreeAndNil(FGoodSerial);
+  inherited Destroy;
+end;
+
 { TGood }
+
+procedure TGood.SetIdChar(AValue: string);
+begin
+  if FIdChar=AValue then Exit;
+  FIdChar:=AValue;
+  ModifiedProperty('IdChar');
+end;
+
+procedure TGood.SetIdGoods(AValue: string);
+begin
+  if FIdGoods=AValue then Exit;
+  FIdGoods:=AValue;
+  ModifiedProperty('IdGoods');
+end;
+
+procedure TGood.SetQuantity(AValue: string);
+begin
+  if FQuantity=AValue then Exit;
+  FQuantity:=AValue;
+  ModifiedProperty('Quantity');
+end;
 
 procedure TGood.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('IdGoods', 'id_goods', 'О', 'уникальный идентификатор товара', 0, 250);
+  RegisterProperty('IdChar', 'id_char', 'О', 'уникальный идентификатор характеристики товара', 0, 250);
+  RegisterProperty('Quantity', 'quantity', 'О', 'требуемое количество (общее)', 0, 250);
+  RegisterProperty('GoodProperty', 'property', 'О', 'свойства товара', -1, -1);
 end;
 
 procedure TGood.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FGoodProperty:=TGoodProperty.Create;
 end;
 
 destructor TGood.Destroy;
 begin
+  FreeAndNil(FGoodProperty);
   inherited Destroy;
 end;
 
@@ -179,17 +404,17 @@ end;
 
 function TGoods.GetItem(AIndex: Integer): TGood;
 begin
-
+  Result:=TGood(InternalGetItem(AIndex));
 end;
 
 constructor TGoods.Create;
 begin
-
+  inherited Create(TGood)
 end;
 
 function TGoods.CreateChild: TGood;
 begin
-
+  Result:=InternalAddObject as TGood;
 end;
 
 { TTask }
@@ -266,16 +491,28 @@ end;
 
 procedure TTask.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('Nomer', 'nomer', 'О', 'наименование документа', 0, 250);
+  RegisterProperty('IdDoc', 'id_doc', 'О', 'guid идентификатор документа', 0, 250);
+  RegisterProperty('TypeDoc', 'type', 'О', 'код типа группы документов', 0, 150);
+  RegisterProperty('UseAdress', 'as_', 'О', 'признак использования адресного хранения', 0, 150);
+  RegisterProperty('Date', 'date', 'О', 'дата создания документа', 0, 150);
+  RegisterProperty('Control', 'control', 'О', 'признак строгого учета кол-ва товаров', 0, 150);
+  RegisterProperty('Barcode', 'barcode', 'О', 'ШК документа', 0, 150);
+  RegisterProperty('IdZone', 'id_zone', 'О', 'guid идентификатор зоны склада', 0, 150);
+  RegisterProperty('IdSclad', 'id_sclad', 'О', 'guid идентификатор склад', 0, 150);
+  RegisterProperty('IdRoom', 'id_room', 'О', 'guid идентификатор помещения', 0, 150);
+  RegisterProperty('Goods', 'record', 'О', 'товар', -1, -1);
 end;
 
 procedure TTask.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FGoods:=TGoods.Create;
 end;
 
 destructor TTask.Destroy;
 begin
+  FreeAndNil(FGoods);
   inherited Destroy;
 end;
 

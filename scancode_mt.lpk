@@ -10,8 +10,10 @@
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
-    <Version Minor="1"/>
-    <Files Count="3">
+    <Description Value="Интерфейс библиотеки взаимодействия с ПО СКАНКОД.Мобильный Терминал (SCANCODE.MobileTerminal)"/>
+    <License Value="LGPL"/>
+    <Version Minor="1" Release="2"/>
+    <Files Count="4">
       <Item1>
         <Filename Value="scancode_user_api.pas"/>
         <UnitName Value="scancode_user_api"/>
@@ -24,6 +26,10 @@
         <Filename Value="scancode_document_api.pas"/>
         <UnitName Value="scancode_document_api"/>
       </Item3>
+      <Item4>
+        <Filename Value="scancode_characteristics_api.pas"/>
+        <UnitName Value="scancode_characteristics_api"/>
+      </Item4>
     </Files>
     <LazDoc Paths="docs"/>
     <RequiredPkgs Count="2">
