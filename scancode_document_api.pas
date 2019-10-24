@@ -48,7 +48,6 @@ uses
   Classes, SysUtils, xmlobject;
 
 type
-
   { TGoodCell }
 
   TGoodCell = class(TXmlSerializationObject)

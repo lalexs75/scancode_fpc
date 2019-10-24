@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="scancode_mt"><module name="scancode_characteristics_api"><element name="TSprGood.IdGoods"><short>id_goods – идентификатор товара</short>
+      </element><element name="TSprGood.Name"><short>name – наименование товара</short>
+      </element><element name="TSprGood.IdMeasure"><short>id_measure — идентификатор базовой ед. измерения</short>
+      </element><element name="TSprGood.Art"><short>art — артикул</short>
+      </element><element name="TSprGood.Alco"><short>alco – признак алкогольной продукции (значение: 1 или 0)</short>
+      </element><element name="TSprGood.Img"><short>img – наименование файла изображения товара (сам файл не передается)</short>
+      </element><element name="TSprGood.Bitmap"><short>bitmap – бинарный блок данных — изображение товара в кодировке Base64</short>
+      </element><element name="TDictionary.Characteristics"><short>characteristics — справочник характеристик</short>
+      </element><element name="TCharacteristic.Name"><short>name – характеристика товара</short>
+      </element><element name="TCharacteristic.IdChar"><short>id_char – guid идентификатор характеристики</short>
+      </element><element name="TCharacteristic.IdOwner"><short>id_owner — guid идентификатор владельца</short>
+      </element><element name="TCharacteristic.Relation"><short>relation – указывает на объект владельца</short>
+      </element><element name="TPack.IdPack"><short>id_pack – guid идентификатор упаковки</short>
+      </element><element name="TPack.Name"><short>name — наименование упаковки</short>
+      </element><element name="TPack.Koeff"><short>koeff — коэффициент пересчета в базовые единицы измерения</short>
+      </element><element name="TPack.IdOwner"><short>id_owner — guid идентификатор владельца</short>
+      </element><element name="TPack.Relation"><short>relation – указывает на объект владельца</short>
+      </element><element name="TDictionary.Serials"><short>serials — справочник серий</short>
+      </element><element name="TSerial.Name"><short>name — наименование серии</short>
+      </element><element name="TSerial.IdSerial"><short>id_serial — идентификатор серии</short>
+      </element><element name="TSerial.Num"><short>num — номер серии</short>
+      </element><element name="TSerial.Date"><short>date — дата окончания срока годности товара</short>
+      </element><element name="TSerial.IdOwner"><short>id_owner — guid идентификатор владельца</short>
+      </element><element name="TSerial.Relation"><short>relation – указывает на объект владельца</short>
+      </element><element name="TDictionary.Barcodes"><short>barcodes — справочник штрихкодов</short>
+      </element><element name="TBarcode.Barcode"><short>barcode — строковое значение штрихкода</short>
+      </element><element name="TBarcode.IdGoods"><short>id_goods – guid идентификатор товара</short>
+      </element><element name="TBarcode.IdChar"><short>id_char – guid идентификатор характеристики</short>
+      </element><element name="TBarcode.IdPack"><short>id_pack – guid идентификатор упаковки</short>
+      </element><element name="TDictionary.Measures"><short>measures — справочник единиц измерения</short>
+      </element><element name="TMeasure.IdMeasure"><short>id_measure — идентификатор ед. измерения</short>
+      </element><element name="TMeasure.Name"><short>name — наименование ед. измерения</short>
+      </element><element name="TDictionary.Prices"><short>prices — справочник ценн</short>
+      </element><element name="TPrice.Price"><short>price — числовое представление цены</short>
+      </element><element name="TPrice.Currency"><short>currency — валюта</short>
+      </element><element name="TPrice.IdGoods"><short>id_goods – guid идентификатор товара</short>
+      </element><element name="TPrice.IdChar"><short>id_char – guid идентификатор характеристики</short>
+      </element><element name="TPrice.IdPack"><short>id_pack – guid идентификатор упаковки</short>
+      </element><element name="TDictionary.NomenclatureTypes"><short>vidnomencls — виды номенклатуры</short>
+      </element><element name="TNomenclatureType.IdNomenclatureType"><short>id_vidnomencl — guid вида номенклатуры</short>
+      </element><element name="TNomenclatureType.Name"><short>name – наименование вида номенклатуры</short>
+      </element><element name="TNomenclatureType.IsChar"><short>is_char – признак если ли характеристика</short>
+      </element><element name="TNomenclatureType.IsSerial"><short>is_serial – признак есть ли серии</short>
+      </element><element name="TNomenclatureType.IsNomerSerial"><short>is_nomer_serial - серии в виде номера (последовательности символов)</short>
+      </element><element name="TNomenclatureType.IsDateSerial"><short>is_date_serial – серии в виде срока годности</short>
+      </element><element name="TDictionary.Sclads"><short>sclads — склады</short>
+      </element><element name="TSclad.IdSclad"><short>id_sclad – guid склада</short>
+      </element><element name="TSclad.Name"><short>name – наименование склада</short>
+      </element><element name="TSclad.IsAdress"><short>is_adress – признак использования адресного хранения</short>
+      </element><element name="TSclad.IsOrder"><short>is_order – признак использования ордерной схемы</short>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
