@@ -13,7 +13,7 @@
     <Description Value="Интерфейс библиотеки взаимодействия с ПО СКАНКОД.Мобильный Терминал (SCANCODE.MobileTerminal)"/>
     <License Value="LGPL"/>
     <Version Minor="1" Release="2"/>
-    <Files Count="4">
+    <Files Count="5">
       <Item1>
         <Filename Value="scancode_user_api.pas"/>
         <UnitName Value="scancode_user_api"/>
@@ -30,6 +30,10 @@
         <Filename Value="scancode_characteristics_api.pas"/>
         <UnitName Value="scancode_characteristics_api"/>
       </Item4>
+      <Item5>
+        <Filename Value="scancode_tsd_order_api.pas"/>
+        <UnitName Value="scancode_tsd_order_api"/>
+      </Item5>
     </Files>
     <LazDoc Paths="docs"/>
     <RequiredPkgs Count="2">

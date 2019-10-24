@@ -9,7 +9,7 @@ interface
 
 uses
   scancode_user_api, scancode_stock_api, scancode_document_api, 
-  scancode_characteristics_api, LazarusPackageIntf;
+  scancode_characteristics_api, scancode_tsd_order_api, LazarusPackageIntf;
 
 implementation
 

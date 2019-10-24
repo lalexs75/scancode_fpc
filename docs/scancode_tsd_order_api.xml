@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="scancode_mt"><module name="scancode_tsd_order_api"><element name="TTSDOrder.Handbooks"><short>handbooks – справочник товаров и сопутствующих списков для новых</short><descr>созданных пользователем и/или добавленных пользователем
+</descr>
+      </element><element name="TTSDOrder.Orders"><short>Orders – список ордеров</short>
+      </element><element name="TTask.IdDoc"><short>id_doc = уникальный идентификатор документа</short>
+      </element><element name="TTask.Date"><short>date – дата создания документа (во внешней учетной системе)</short>
+      </element><element name="TTask.TaskType"><short>type – тип группы документа</short>
+      </element><element name="TTask.DateOrder"><short>date_order – дата создания ордера</short>
+      </element><element name="TTask.FC"><short>fc – признак «свободный набор» (значение: 1 или 0)</short>
+      </element><element name="TTask.IdSclad"><short>id_sclad – guid идентификатор склада</short>
+      </element><element name="TTaskGood.IdChar"><short>id_char – идентификатор характеристик</short>
+      </element><element name="TTaskGood.IdGoods"><short>id_goods — идентификатор товара</short>
+      </element><element name="TTaskGood.GoodProperty"><short>property – описание свойств</short>
+      </element><element name="TTaskGoodProperty.IdPack"><short>id_pack – идентификатор упаковки</short>
+      </element><element name="TTaskGood.GoodMarking"><short>alco – коды акцизных марок</short>
+      </element><element name="TTaskGoodProperty.Serial"><short>serial – серии товаров</short>
+      </element><element name="TTaskGoodPropertySerial.Quantity"><short>quantity- количество собранного товара в единицах измерения упаковки</short><descr>если упаковки нет, т. е. id_pack – пустое значение, то в базовых ед. измерения товара
+</descr>
+      </element><element name="TTaskGoodPropertySerial.IdSerial"><short>id_serial – идентификатор серии (если выбрана из списка загруженных из ТУП)</short>
+      </element><element name="TTaskGoodPropertySerial.Value"><short>value – серия (произвольное значение) введенное пользователем на ТСД</short>
+      </element><element name="TTaskGoodPropertySerial.Date"><short>date – указанная пользователем дата срока годности (если требуется)</short>
+      </element><element name="TTaskGoodPropertySerial.Cells"><short>cells – информация о ячейках товара</short><descr>может отсутствовать, если не используется адресное хранение
+</descr>
+      </element><element name="TTaskGoodPropertySerialCell.IdCell"><short>id_cell – идентификатор ячейки</short>
+      </element><element name="TTaskGoodPropertySerialCell.CellAddress"><short>celladdress – наименование ячейки</short>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
