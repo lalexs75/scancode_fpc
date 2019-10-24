@@ -40,6 +40,9 @@ object Form1: TForm1
         object TabSheet5: TTabSheet
           Caption = 'Документы'
         end
+        object TabSheet6: TTabSheet
+          Caption = 'Справочники'
+        end
       end
     end
     object TabSheet2: TTabSheet

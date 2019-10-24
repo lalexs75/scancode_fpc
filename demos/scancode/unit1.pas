@@ -20,6 +20,7 @@ type
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
+    TabSheet6: TTabSheet;
     procedure FormCreate(Sender: TObject);
   private
 

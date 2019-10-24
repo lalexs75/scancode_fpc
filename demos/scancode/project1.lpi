@@ -75,6 +75,7 @@
         <Filename Value="frames/frmdocumentsunit.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmDocumentsFrame"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmDocumentsUnit"/>
       </Unit>

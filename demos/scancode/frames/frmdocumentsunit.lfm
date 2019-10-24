@@ -3,7 +3,25 @@ object frmDocumentsFrame: TfrmDocumentsFrame
   Height = 240
   Top = 0
   Width = 320
+  ClientHeight = 240
+  ClientWidth = 320
   TabOrder = 0
   DesignLeft = 354
   DesignTop = 140
+  object Button1: TButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 104
+    Height = 33
+    Top = 201
+    Width = 112
+    Anchors = [akLeft, akBottom]
+    AutoSize = True
+    BorderSpacing.Around = 6
+    Caption = 'Сформировать'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
 end
