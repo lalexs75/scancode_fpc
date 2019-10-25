@@ -90,6 +90,7 @@
         <Filename Value="frames/frmtsdorderunit.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmTSDOrderFrame"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmTSDOrderUnit"/>
       </Unit>

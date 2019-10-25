@@ -24,6 +24,11 @@
       </element><element name="TTaskGoodPropertySerialCell.IdCell"><short>id_cell – идентификатор ячейки</short>
       </element><element name="TTaskGoodPropertySerialCell.CellAddress"><short>celladdress – наименование ячейки</short>
       </element>
+    <element name="THandbooks"><short>handbooks – справочник товаров и сопутствующих списков для новых</short><descr>созданных пользователем и/или добавленных пользователем
+</descr>
+      </element><element name="THandbooks.Characteristics"><short>characteristics – список характеристик</short>
+      </element><element name="THandbooks.Barcodes"><short>barcodes – список штрих кодов</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

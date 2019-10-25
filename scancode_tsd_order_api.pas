@@ -230,11 +230,68 @@ type
     property Tasks:TTasks read FTasks;
   end;
 
+  { TCharacteristic }
 
-  { THandbooks }
-
-  THandbooks = class(TXmlSerializationObject)
+  TCharacteristic = class(TXmlSerializationObject)
   private
+    FIdChar: string;
+    FIdGoods: string;
+    FName: string;
+    procedure SetIdChar(AValue: string);
+    procedure SetIdGoods(AValue: string);
+    procedure SetName(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property IdGoods:string read FIdGoods write SetIdGoods;
+    property IdChar:string read FIdChar write SetIdChar;
+    property Name:string read FName write SetName;
+  end;
+
+  { TCharacteristicList }
+
+  TCharacteristicList = class(TXmlSerializationObjectList)
+  private
+    function GetItem(AIndex: Integer): TCharacteristic; inline;
+  public
+    constructor Create;
+    function CreateChild:TCharacteristic;
+    property Item[AIndex:Integer]:TCharacteristic read GetItem; default;
+  end;
+
+  { TCharacteristics }
+
+  TCharacteristics = class(TXmlSerializationObject)
+  private
+    FCharacteristicList: TCharacteristicList;
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property CharacteristicList:TCharacteristicList read FCharacteristicList;
+  end;
+
+  { TNomenclature }
+
+  TNomenclature = class(TXmlSerializationObject)
+  private
+    FBitmap: string;
+    FIdGoods: string;
+    FIdMeasure: string;
+    FIdVidnomencl: string;
+    FImg: string;
+    FName: string;
+    procedure SetBitmap(AValue: string);
+    procedure SetIdGoods(AValue: string);
+    procedure SetIdMeasure(AValue: string);
+    procedure SetIdVidnomencl(AValue: string);
+    procedure SetImg(AValue: string);
+    procedure SetName(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -242,30 +299,378 @@ type
   public
     destructor Destroy; override;
   published
+    property IdGoods:string read FIdGoods write SetIdGoods;
+    property Name:string read FName write SetName;
+    property IdMeasure:string read FIdMeasure write SetIdMeasure;
+    property IdVidnomencl:string read FIdVidnomencl write SetIdVidnomencl;
+    property Img:string read FImg write SetImg;
+    property Bitmap:string read FBitmap write SetBitmap;
   end;
 
+  { TNomenclatureList }
 
-  { TTSDOrder }
-
-  TTSDOrder = class
+  TNomenclatureList = class(TXmlSerializationObjectList)
   private
-    FHandbooks: THandbooks;
-    FOrders: TOrders;
+    function GetItem(AIndex: Integer): TNomenclature; inline;
   public
     constructor Create;
-    destructor Destroy; override;
-    procedure SaveToFile(AFileName:string);
-    procedure LoadFromFile(AFileName:string);
-  published
-    property Handbooks:THandbooks read FHandbooks;
-    property Orders:TOrders read FOrders;
+    function CreateChild:TNomenclature;
+    property Item[AIndex:Integer]:TNomenclature read GetItem; default;
   end;
+
+  { TNomenclatures }
+
+  TNomenclatures = class(TXmlSerializationObject)
+  private
+    FNomenclatureList: TNomenclatureList;
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property NomenclatureList:TNomenclatureList read FNomenclatureList;
+  end;
+
+  { TBarcode }
+
+  TBarcode = class(TXmlSerializationObject)
+  private
+    FBarcode: string;
+    FIdChar: string;
+    FIdGoods: string;
+    FIdPack: string;
+    procedure SetBarcode(AValue: string);
+    procedure SetIdChar(AValue: string);
+    procedure SetIdGoods(AValue: string);
+    procedure SetIdPack(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property IdGoods:string read FIdGoods write SetIdGoods;
+    property IdChar:string read FIdChar write SetIdChar;
+    property IdPack:string read FIdPack write SetIdPack;
+    property Barcode:string read FBarcode write SetBarcode;
+  end;
+
+  { TBarcodeList }
+
+  TBarcodeList = class(TXmlSerializationObjectList)
+  private
+    function GetItem(AIndex: Integer): TBarcode; inline;
+  public
+    constructor Create;
+    function CreateChild:TBarcode;
+    property Item[AIndex:Integer]:TBarcode read GetItem; default;
+  end;
+
+  { TBarcodes }
+
+  TBarcodes = class(TXmlSerializationObject)
+  private
+    FBarcodeList: TBarcodeList;
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property BarcodeList:TBarcodeList read FBarcodeList;
+  end;
+
+  { THandbooks }
+
+  THandbooks = class(TXmlSerializationObject)
+  private
+    FBarcodes: TBarcodes;
+    FCharacteristics: TCharacteristics;
+    FNomenclatures: TNomenclatures;
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+    function RootNodeName:string; override;
+  public
+    destructor Destroy; override;
+  published
+    property Nomenclatures:TNomenclatures read FNomenclatures;
+    property Characteristics:TCharacteristics read FCharacteristics;
+    property Barcodes:TBarcodes read FBarcodes;
+  end;
+
 
 implementation
 uses DOM, XMLWrite;
 
 type
   THackXmlSerializationObject = class(TXmlSerializationObject);
+
+{ TBarcode }
+
+procedure TBarcode.SetIdChar(AValue: string);
+begin
+  if FIdChar=AValue then Exit;
+  FIdChar:=AValue;
+  ModifiedProperty('IdChar');
+end;
+
+procedure TBarcode.SetBarcode(AValue: string);
+begin
+  if FBarcode=AValue then Exit;
+  FBarcode:=AValue;
+  ModifiedProperty('Barcode');
+end;
+
+procedure TBarcode.SetIdGoods(AValue: string);
+begin
+  if FIdGoods=AValue then Exit;
+  FIdGoods:=AValue;
+  ModifiedProperty('IdGoods');
+end;
+
+procedure TBarcode.SetIdPack(AValue: string);
+begin
+  if FIdPack=AValue then Exit;
+  FIdPack:=AValue;
+  ModifiedProperty('IdPack');
+end;
+
+procedure TBarcode.InternalRegisterPropertys;
+begin
+  RegisterProperty('IdGoods', 'id_goods', 'О', '', 0, 250);
+  RegisterProperty('IdChar', 'id_char', 'О', '', 0, 250);
+  RegisterProperty('IdPack', 'id_pack', 'О', '', 0, 250);
+  RegisterProperty('Barcode', 'barcode', 'О', '', 0, 250);
+end;
+
+procedure TBarcode.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TBarcode.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TBarcodeList }
+
+function TBarcodeList.GetItem(AIndex: Integer): TBarcode;
+begin
+  Result:=TBarcode(InternalGetItem(AIndex));
+end;
+
+constructor TBarcodeList.Create;
+begin
+  inherited Create(TBarcode)
+end;
+
+function TBarcodeList.CreateChild: TBarcode;
+begin
+  Result:=InternalAddObject as TBarcode;
+end;
+
+{ TBarcodes }
+
+procedure TBarcodes.InternalRegisterPropertys;
+begin
+  RegisterProperty('BarcodeList', 'record', 'О', '', -1, -1);
+end;
+
+procedure TBarcodes.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FBarcodeList:=TBarcodeList.Create;
+end;
+
+destructor TBarcodes.Destroy;
+begin
+  FreeAndNil(FBarcodeList);
+  inherited Destroy;
+end;
+
+{ TCharacteristic }
+
+procedure TCharacteristic.SetIdChar(AValue: string);
+begin
+  if FIdChar=AValue then Exit;
+  FIdChar:=AValue;
+  ModifiedProperty('IdChar');
+end;
+
+procedure TCharacteristic.SetIdGoods(AValue: string);
+begin
+  if FIdGoods=AValue then Exit;
+  FIdGoods:=AValue;
+  ModifiedProperty('IdGoods');
+end;
+
+procedure TCharacteristic.SetName(AValue: string);
+begin
+  if FName=AValue then Exit;
+  FName:=AValue;
+  ModifiedProperty('Name');
+end;
+
+procedure TCharacteristic.InternalRegisterPropertys;
+begin
+  RegisterProperty('IdGoods', 'id_goods', 'О', '', 0, 250);
+  RegisterProperty('IdChar', 'id_char', 'О', '', 0, 250);
+  RegisterProperty('Name', 'name', 'О', '', 0, 250);
+end;
+
+procedure TCharacteristic.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TCharacteristic.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TCharacteristicList }
+
+function TCharacteristicList.GetItem(AIndex: Integer): TCharacteristic;
+begin
+  Result:=TCharacteristic(InternalGetItem(AIndex));
+end;
+
+constructor TCharacteristicList.Create;
+begin
+  inherited Create(TCharacteristic)
+end;
+
+function TCharacteristicList.CreateChild: TCharacteristic;
+begin
+  Result:=InternalAddObject as TCharacteristic;
+end;
+
+{ TCharacteristics }
+
+procedure TCharacteristics.InternalRegisterPropertys;
+begin
+   RegisterProperty('CharacteristicList', 'record', 'О', '', -1, -1);
+end;
+
+procedure TCharacteristics.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FCharacteristicList:=TCharacteristicList.Create;
+end;
+
+destructor TCharacteristics.Destroy;
+begin
+  FreeAndNil(FCharacteristicList);
+  inherited Destroy;
+end;
+
+{ TNomenclatures }
+
+procedure TNomenclatures.InternalRegisterPropertys;
+begin
+  RegisterProperty('NomenclatureList', 'record', 'О', '', -1, -1);
+end;
+
+procedure TNomenclatures.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FNomenclatureList:=TNomenclatureList.Create;
+end;
+
+destructor TNomenclatures.Destroy;
+begin
+  FreeAndNil(FNomenclatureList);
+  inherited Destroy;
+end;
+
+{ TNomenclature }
+
+procedure TNomenclature.SetBitmap(AValue: string);
+begin
+  if FBitmap=AValue then Exit;
+  FBitmap:=AValue;
+  ModifiedProperty('Bitmap');
+end;
+
+procedure TNomenclature.SetIdGoods(AValue: string);
+begin
+  if FIdGoods=AValue then Exit;
+  FIdGoods:=AValue;
+  ModifiedProperty('IdGoods');
+end;
+
+procedure TNomenclature.SetIdMeasure(AValue: string);
+begin
+  if FIdMeasure=AValue then Exit;
+  FIdMeasure:=AValue;
+  ModifiedProperty('IdMeasure');
+end;
+
+procedure TNomenclature.SetIdVidnomencl(AValue: string);
+begin
+  if FIdVidnomencl=AValue then Exit;
+  FIdVidnomencl:=AValue;
+  ModifiedProperty('IdVidnomencl');
+end;
+
+procedure TNomenclature.SetImg(AValue: string);
+begin
+  if FImg=AValue then Exit;
+  FImg:=AValue;
+  ModifiedProperty('Img');
+end;
+
+procedure TNomenclature.SetName(AValue: string);
+begin
+  if FName=AValue then Exit;
+  FName:=AValue;
+  ModifiedProperty('Name');
+end;
+
+procedure TNomenclature.InternalRegisterPropertys;
+begin
+  RegisterProperty('IdGoods', 'id_goods', 'О', '', 0, 250);
+  RegisterProperty('Name', 'name', 'О', '', 0, 250);
+  RegisterProperty('IdMeasure', 'id_measure', 'О', '', 0, 250);
+  RegisterProperty('IdVidnomencl', 'id_vidnomencl', 'О', '', 0, 250);
+  RegisterProperty('Img', 'img', 'О', '', 0, 250);
+  RegisterProperty('Bitmap', 'bitmap', 'О', '', 0, -1);
+end;
+
+procedure TNomenclature.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+function TNomenclature.RootNodeName: string;
+begin
+  Result:=inherited RootNodeName;
+end;
+
+destructor TNomenclature.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TNomenclatureList }
+
+function TNomenclatureList.GetItem(AIndex: Integer): TNomenclature;
+begin
+  Result:=TNomenclature(InternalGetItem(AIndex));
+end;
+
+constructor TNomenclatureList.Create;
+begin
+  inherited Create(TNomenclature)
+end;
+
+function TNomenclatureList.CreateChild: TNomenclature;
+begin
+  Result:=InternalAddObject as TNomenclature;
+end;
 
 { TTaskGoodPropertySerialCell }
 
@@ -594,12 +999,17 @@ end;
 
 procedure THandbooks.InternalRegisterPropertys;
 begin
-
+  RegisterProperty('Nomenclatures', 'nomencls', 'О', 'список товаров, созданных пользователем на ТСД', -1, -1);
+  RegisterProperty('Characteristics', 'characteristics', 'О', 'список характеристик', -1, -1);
+  RegisterProperty('Barcodes', 'barcodes', 'О', 'список штрих кодов', -1, -1);
 end;
 
 procedure THandbooks.InternalInitChilds;
 begin
   inherited InternalInitChilds;
+  FNomenclatures:=TNomenclatures.Create;
+  FCharacteristics:=TCharacteristics.Create;
+  FBarcodes:=TBarcodes.Create;
 end;
 
 function THandbooks.RootNodeName: string;
@@ -609,43 +1019,10 @@ end;
 
 destructor THandbooks.Destroy;
 begin
+  FreeAndNil(FNomenclatures);
+  FreeAndNil(FCharacteristics);
+  FreeAndNil(FBarcodes);
   inherited Destroy;
-end;
-
-{ TTSDOrder }
-
-constructor TTSDOrder.Create;
-begin
-  inherited Create;
-  FHandbooks:=THandbooks.Create;
-  FOrders:=TOrders.Create;
-end;
-
-destructor TTSDOrder.Destroy;
-begin
-  FreeAndNil(FOrders);
-  FreeAndNil(FHandbooks);
-  inherited Destroy;
-end;
-
-procedure TTSDOrder.SaveToFile(AFileName: string);
-var
-  FXML: TXMLDocument;
-begin
-  FXML:=TXMLDocument.Create;
-  if not THackXmlSerializationObject(FHandbooks).IsEmpty then
-    FHandbooks.SaveToXML(FXML);
-
-  if not THackXmlSerializationObject(FOrders).IsEmpty then
-    FOrders.SaveToXML(FXML);
-
-  WriteXML(FXML, AFileName);
-  FXML.Free;
-end;
-
-procedure TTSDOrder.LoadFromFile(AFileName: string);
-begin
-
 end;
 
 end.

@@ -29,15 +29,19 @@ uses scancode_tsd_order_api, scGlobal;
 
 procedure TfrmTSDOrderFrame.Button1Click(Sender: TObject);
 var
-  TSDO: TTSDOrder;
   T: TTask;
   TG: TTaskGood;
   CL: TTaskGoodPropertySerialCell;
+  NL: TNomenclature;
+  TSDO: TOrders;
+  Handbooks: THandbooks;
+  CH: TCharacteristic;
+  BR: TBarcode;
 begin
-  TSDO:=TTSDOrder.Create;
+  TSDO:=TOrders.Create;
 
   //Создадим документ обработки
-  T:=TSDO.Orders.Tasks.CreateChild;
+  T:=TSDO.Tasks.CreateChild;
   T.IdDoc:='70b9a737-c224-11e8-ba50-50465d72dd18';
   T.Date:='08.10.2018 0:00:00';
   T.TaskType:='202';
@@ -77,8 +81,31 @@ begin
   TG.GoodProperty.Serial.Date:=' ';
   TG.GoodProperty.Serial.Value:=' ';
 
-  TSDO.SaveToFile(ExportFolder + 'TSDOrder.xml');
+  TSDO.SaveToFile(ExportFolder + 'Order.xml');
   TSDO.Free;
+
+  Handbooks:=THandbooks.Create;
+  NL:=Handbooks.Nomenclatures.NomenclatureList.CreateChild;
+  NL.IdGoods:='1';
+  NL.Name:='1';
+  NL.IdMeasure:='1';
+  NL.IdVidnomencl:='1';
+  NL.Img:='1';
+  NL.Bitmap:='1';
+
+  CH:=Handbooks.Characteristics.CharacteristicList.CreateChild;
+  CH.IdGoods:='1';
+  CH.IdChar:='1';
+  CH.Name:='1';
+
+  BR:=Handbooks.Barcodes.BarcodeList.CreateChild;
+  BR.IdGoods:='1';
+  BR.IdChar:='1';
+  BR.IdPack:='1';
+  BR.Barcode:='1';
+
+  Handbooks.SaveToFile(ExportFolder + 'Handbooks.xml');
+  Handbooks.Free;
 end;
 
 procedure TfrmTSDOrderFrame.GenerateData;
