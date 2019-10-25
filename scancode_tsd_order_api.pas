@@ -758,7 +758,7 @@ begin
   RegisterProperty('IdSerial', 'id_serial', 'О', 'идентификатор серии', 0, 250);
   RegisterProperty('Value', 'value', 'О', 'серия (произвольное значение) введенное пользователем на ТСД', 0, 250);
   RegisterProperty('Date', 'date', 'О', 'указанная пользователем дата срока годности (если требуется)', 0, 250);
-  RegisterProperty('Cells', 'Cells', 'О', 'информация о ячейках товара', -1, -1);
+  RegisterProperty('Cells', 'сells', 'О', 'информация о ячейках товара', -1, -1);
 end;
 
 procedure TTaskGoodPropertySerial.InternalInitChilds;
