@@ -29,6 +29,12 @@
       </element><element name="THandbooks.Characteristics"><short>characteristics – список характеристик</short>
       </element><element name="THandbooks.Barcodes"><short>barcodes – список штрих кодов</short>
       </element>
+    <element name="TOrders.Handbooks"><short>handbooks – справочник товаров и сопутствующих списков для новых</short><descr>(созданных пользователем и/или добавленных пользователем в ордер/документ)
+<ul><li>nomencls — список товаров, созданных пользователем на ТСД или загруженных отдельно (по запросу) из ТУП.</li><li>characteristics – список характеристик</li><li>barcodes – список штрих кодов</li>
+          </ul>
+        </descr>
+      </element><element name="TOrders.Tasks"><short>Task – реквизиты документа, на основании которого создан ордер</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

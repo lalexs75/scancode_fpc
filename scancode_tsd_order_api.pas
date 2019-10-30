@@ -215,21 +215,6 @@ type
     property Item[AIndex:Integer]:TTask read GetItem; default;
   end;
 
-  { TOrders }
-
-  TOrders = class(TXmlSerializationObject)
-  private
-    FTasks: TTasks;
-  protected
-    procedure InternalRegisterPropertys; override;
-    procedure InternalInitChilds; override;
-    function RootNodeName:string; override;
-  public
-    destructor Destroy; override;
-  published
-    property Tasks:TTasks read FTasks;
-  end;
-
   { TCharacteristic }
 
   TCharacteristic = class(TXmlSerializationObject)
@@ -400,6 +385,23 @@ type
     property Barcodes:TBarcodes read FBarcodes;
   end;
 
+
+  { TOrders }
+
+  TOrders = class(TXmlSerializationObject)
+  private
+    FHandbooks: THandbooks;
+    FTasks: TTasks;
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+    function RootNodeName:string; override;
+  public
+    destructor Destroy; override;
+  published
+    property Handbooks:THandbooks read FHandbooks;
+    property Tasks:TTasks read FTasks;
+  end;
 
 implementation
 uses DOM, XMLWrite;
@@ -976,12 +978,14 @@ end;
 procedure TOrders.InternalRegisterPropertys;
 begin
   RegisterProperty('Tasks', 'Task', 'О', '', -1, -1);
+  RegisterProperty('Handbooks', 'handbooks', 'О', 'справочник товаров и сопутствующих списков для новых', -1, -1);
 end;
 
 procedure TOrders.InternalInitChilds;
 begin
   inherited InternalInitChilds;
   FTasks:=TTasks.Create;
+  FHandbooks:=THandbooks.Create;
 end;
 
 function TOrders.RootNodeName: string;
@@ -991,6 +995,7 @@ end;
 
 destructor TOrders.Destroy;
 begin
+  FreeAndNil(FHandbooks);
   FreeAndNil(FTasks);
   inherited Destroy;
 end;

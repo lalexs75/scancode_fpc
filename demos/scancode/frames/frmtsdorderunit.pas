@@ -34,7 +34,7 @@ var
   CL: TTaskGoodPropertySerialCell;
   NL: TNomenclature;
   TSDO: TOrders;
-  Handbooks: THandbooks;
+  //Handbooks: THandbooks;
   CH: TCharacteristic;
   BR: TBarcode;
 begin
@@ -81,11 +81,8 @@ begin
   TG.GoodProperty.Serial.Date:=' ';
   TG.GoodProperty.Serial.Value:=' ';
 
-  TSDO.SaveToFile(ExportFolder + 'Order.xml');
-  TSDO.Free;
-
-  Handbooks:=THandbooks.Create;
-  NL:=Handbooks.Nomenclatures.NomenclatureList.CreateChild;
+//  Handbooks:=THandbooks.Create;
+  NL:=TSDO.Handbooks.Nomenclatures.NomenclatureList.CreateChild;
   NL.IdGoods:='1';
   NL.Name:='1';
   NL.IdMeasure:='1';
@@ -93,19 +90,23 @@ begin
   NL.Img:='1';
   NL.Bitmap:='1';
 
-  CH:=Handbooks.Characteristics.CharacteristicList.CreateChild;
+  CH:=TSDO.Handbooks.Characteristics.CharacteristicList.CreateChild;
   CH.IdGoods:='1';
   CH.IdChar:='1';
   CH.Name:='1';
 
-  BR:=Handbooks.Barcodes.BarcodeList.CreateChild;
+  BR:=TSDO.Handbooks.Barcodes.BarcodeList.CreateChild;
   BR.IdGoods:='1';
   BR.IdChar:='1';
   BR.IdPack:='1';
   BR.Barcode:='1';
 
-  Handbooks.SaveToFile(ExportFolder + 'Handbooks.xml');
-  Handbooks.Free;
+  TSDO.SaveToFile(ExportFolder + 'Order.xml');
+  TSDO.Free;
+
+
+//  Handbooks.SaveToFile(ExportFolder + 'Handbooks.xml');
+//  Handbooks.Free;
 end;
 
 procedure TfrmTSDOrderFrame.GenerateData;
