@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <ProjectSession>
+    <Version Value="12"/>
+    <BuildModes Active="Default"/>
+    <Units>
+      <Unit>
+        <Filename Value="project1.lpr"/>
+        <IsPartOfProject Value="True"/>
+        <EditorIndex Value="-1"/>
+        <WindowIndex Value="-1"/>
+        <TopLine Value="-1"/>
+        <CursorPos X="-1" Y="-1"/>
+        <UsageCount Value="20"/>
+      </Unit>
+      <Unit>
+        <Filename Value="mainunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="Form1"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="MainUnit"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../scancodemt.pas"/>
+        <UnitName Value="ScancodeMT"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="2"/>
+        <CursorPos Y="39"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../scancodemt_icon.lrs"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../scancodemt_api.pas"/>
+        <UnitName Value="ScancodeMT_API"/>
+        <EditorIndex Value="3"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/home/work/demos/Test_Trade/Demo_07_Scancode/MobileTerminalAPI.h"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="57"/>
+        <CursorPos X="19" Y="55"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+        <DefaultSyntaxHighlighter Value="C++"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../scancode_document_api.pas"/>
+        <EditorIndex Value="1"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../scancode_mt.pas"/>
+        <EditorIndex Value="-1"/>
+        <UsageCount Value="10"/>
+      </Unit>
+    </Units>
+    <JumpHistory Count="20" HistoryIndex="19">
+      <Position1>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="26" Column="28"/>
+      </Position1>
+      <Position2>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="25" Column="4"/>
+      </Position2>
+      <Position3>
+        <Filename Value="mainunit.pas"/>
+      </Position3>
+      <Position4>
+        <Filename Value="../../scancode_document_api.pas"/>
+        <Caret Line="40" TopLine="19"/>
+      </Position4>
+      <Position5>
+        <Filename Value="/home/work/demos/Test_Trade/Demo_07_Scancode/MobileTerminalAPI.h"/>
+        <Caret Line="62" TopLine="40"/>
+      </Position5>
+      <Position6>
+        <Filename Value="../../scancodemt_api.pas"/>
+        <Caret Line="49" Column="3" TopLine="19"/>
+      </Position6>
+      <Position7>
+        <Filename Value="../../scancodemt_api.pas"/>
+        <Caret Line="133" Column="3" TopLine="100"/>
+      </Position7>
+      <Position8>
+        <Filename Value="../../scancodemt_api.pas"/>
+        <Caret Line="78" Column="19" TopLine="54"/>
+      </Position8>
+      <Position9>
+        <Filename Value="../../scancodemt_api.pas"/>
+      </Position9>
+      <Position10>
+        <Filename Value="../../scancodemt_api.pas"/>
+        <Caret Line="60" Column="17" TopLine="29"/>
+      </Position10>
+      <Position11>
+        <Filename Value="../../scancodemt_api.pas"/>
+        <Caret Line="68" Column="17" TopLine="37"/>
+      </Position11>
+      <Position12>
+        <Filename Value="/home/work/demos/Test_Trade/Demo_07_Scancode/MobileTerminalAPI.h"/>
+        <Caret Line="162" TopLine="130"/>
+      </Position12>
+      <Position13>
+        <Filename Value="/home/work/demos/Test_Trade/Demo_07_Scancode/MobileTerminalAPI.h"/>
+      </Position13>
+      <Position14>
+        <Filename Value="/home/work/demos/Test_Trade/Demo_07_Scancode/MobileTerminalAPI.h"/>
+        <Caret Line="39" Column="23" TopLine="8"/>
+      </Position14>
+      <Position15>
+        <Filename Value="/home/work/demos/Test_Trade/Demo_07_Scancode/MobileTerminalAPI.h"/>
+        <Caret Line="42" Column="18" TopLine="11"/>
+      </Position15>
+      <Position16>
+        <Filename Value="../../scancodemt_api.pas"/>
+        <Caret Line="79" Column="48" TopLine="47"/>
+      </Position16>
+      <Position17>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="16" Column="24"/>
+      </Position17>
+      <Position18>
+        <Filename Value="../../scancodemt_api.pas"/>
+        <Caret Line="81" Column="20" TopLine="58"/>
+      </Position18>
+      <Position19>
+        <Filename Value="../../scancodemt_api.pas"/>
+        <Caret Line="38" TopLine="13"/>
+      </Position19>
+      <Position20>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="8" Column="36"/>
+      </Position20>
+    </JumpHistory>
+    <RunParams>
+      <FormatVersion Value="2"/>
+      <Modes Count="0" ActiveMode=""/>
+    </RunParams>
+  </ProjectSession>
+</CONFIG>
