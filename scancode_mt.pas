@@ -9,12 +9,14 @@ interface
 
 uses
   scancode_user_api, scancode_stock_api, scancode_document_api, 
-  scancode_characteristics_api, scancode_tsd_order_api, LazarusPackageIntf;
+  scancode_characteristics_api, scancode_tsd_order_api, ScancodeMT, 
+  ScancodeMT_API, LazarusPackageIntf;
 
 implementation
 
 procedure Register;
 begin
+  RegisterUnit('ScancodeMT', @ScancodeMT.Register);
 end;
 
 initialization
