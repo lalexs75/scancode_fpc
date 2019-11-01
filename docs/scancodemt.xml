@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="scancode_mt"><module name="ScancodeMT"><element name="TScancodeMTLibrary"><short>Итнерфейс библиотеки для взаимодействия с libSCANCODE.MobileTerminal</short>
+      </element><element name="TScancodeMTLibrary.GetProtocolVersion"><short>Получить версию протокола </short><descr><p><b>Аргументы</b>
+          </p><b>version</b>- версия протокола между устройством и обработчиком (сообщается устройству)
+<p><b>Возвращает</b>
+          </p>
+версия протокола между обработчиком и библиотекой
+</descr>
+      </element><element name="TScancodeMTLibrary.GetProtocolVersion.Version"><short>version&#x9;- версия протокола между устройством и обработчиком (сообщается устройству) </short>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
