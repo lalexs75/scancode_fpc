@@ -20,6 +20,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
     FLibrary: TScancodeMTLibrary;
     FLastErrorCode:Integer;
@@ -29,6 +30,7 @@ type
     procedure GetProtoVersion;
     procedure StartServer;
     procedure StopServer;
+    procedure SetCallback;
 
     procedure UpdateBtnStates;
   public
@@ -46,8 +48,16 @@ uses rxlogging, ScancodeMT_API;
 function F_RequestCallback(const Param1:PChar; const Param2:PChar):LongInt; cdecl;
 var
   I: Integer;
+  S1, S2: String;
 begin
-  I:=0;
+  Result:=0;
+
+  if Assigned(Form1) then
+  begin
+    S1:=StrPas(Param1);
+    S2:=StrPas(Param2);
+    Form1.Memo1.Lines.Add('S1='+S1 + '  S2='+S2);
+  end;
 end;
 
 { TForm1 }
@@ -65,14 +75,8 @@ begin
 
     StartServer;
 
-(*
-    FLibrary.SetRequestCallback(@F_RequestCallback);
-    FillChar(Ar, SizeOf(Ar), 0);
-    V:=FLibrary.GetLastError(@Ar);
-    Memo1.Lines.Add('GetLastError = '+IntToStr(V));
+    SetCallback;
 
-
-*)
   end
   else
     Label1.Caption:='Error lib loaded';
@@ -104,6 +108,11 @@ begin
   {$ENDIF}
 
   UpdateBtnStates;
+end;
+
+procedure TForm1.FormDestroy(Sender: TObject);
+begin
+  Form1:=nil;
 end;
 
 procedure TForm1.UpdateErrorCode;
@@ -162,6 +171,12 @@ begin
 
     UpdateErrorCode;
   until V <> 0;
+end;
+
+procedure TForm1.SetCallback;
+begin
+  FLibrary.SetRequestCallback(@F_RequestCallback);
+  UpdateErrorCode;
 end;
 
 procedure TForm1.UpdateBtnStates;
