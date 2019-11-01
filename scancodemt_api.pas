@@ -77,7 +77,7 @@ type
 
   //typedef long (*MT_RequestCallback)(const char *, const char *);
   //PMT_RequestCallback = ^TMT_RequestCallback;
-  TMT_RequestCallback = function(const Param1:PChar; const Param2:PChar):LongInt; cdecl;
+  TMT_RequestCallback = function(const Param1:PChar; const Param2:PChar):TMTLong; cdecl;
 
 (*
   typedef long (*MT_RequestCallbackW)(const wchar_t *, const wchar_t *);
@@ -160,21 +160,21 @@ type
   /// \return 1 - запушен, 0 - ошибка
   ///
   //long MT_EXPORT MT_StartServer(long port);
-  TMT_StartServer = function(Port:LongInt):LongInt; cdecl;
+  TMT_StartServer = function(Port:TMTLong):TMTLong; cdecl;
 
   ///
   /// \brief Запустить tcp сервер с портом по умолчанию (3004)
   /// \return 1 - запушен, 0 - ошибка
   ///
   //long MT_EXPORT MT_StartServerDefault();
-  TMT_StartServerDefault = function():LongInt; cdecl;
+  TMT_StartServerDefault = function():TMTLong; cdecl;
 
   ///
   /// \brief Остановить tcp сервер
   /// \return 1 - остановлен, 0 - ошибка
   ///
   //long MT_EXPORT MT_StopServer();
-  TMT_StopServer = function():LongInt; cdecl;
+  TMT_StopServer = function():TMTLong; cdecl;
 
   (*
   ///

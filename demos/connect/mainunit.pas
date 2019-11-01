@@ -45,7 +45,7 @@ uses rxlogging, ScancodeMT_API;
 
 {$R *.lfm}
 
-function F_RequestCallback(const Param1:PChar; const Param2:PChar):LongInt; cdecl;
+function F_RequestCallback(const Param1:PChar; const Param2:PChar):TMTLong; cdecl;
 var
   I: Integer;
   S1, S2: String;

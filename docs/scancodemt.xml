@@ -8,6 +8,14 @@
 </descr>
       </element><element name="TScancodeMTLibrary.GetProtocolVersion.Version"><short>version&#x9;- версия протокола между устройством и обработчиком (сообщается устройству) </short>
       </element>
+    <element name="TScancodeMTLibrary.GetVersion"><short>Получить версию библиотеки</short><descr><p><b>Аргументы</b>
+          </p><ul><li>major</li> - указатель на мажорную версию
+<li>minor</li> - указатель на минорную версию
+<li>patch</li> - указатель на патч версию
+<li>build</li> - указатель на номер сборки
+</ul>
+        </descr>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
