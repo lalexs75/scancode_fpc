@@ -43,11 +43,35 @@ unit ScancodeMT_API;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes, SysUtils
+;
+
+const
+  {$IFDEF WINDOWS}
+  {$IFDEF}
+  slibScanCode_MobileTerminal_FileName = 'SCANCODE.MobileTerminal_x86.dll';
+  {$ELSE}
+  slibScanCode_MobileTerminal_FileName = 'SCANCODE.MobileTerminal_x86_64.dll';
+  {$ENDIF}
+  {$ENDIF}
+  {$IFDEF LINUX}
+  {$IFDEF CPU64}
+  slibScanCode_MobileTerminal_FileName = 'libSCANCODE.MobileTerminal_x86_64.so';
+  {$ELSE}
+  slibScanCode_MobileTerminal_FileName = 'libSCANCODE.MobileTerminal_x86.so';
+  {$ENDIF}
+  {$ENDIF}
+
+
+
+
 
 type
+  //typedef long (*MT_RequestCallback)(const char *, const char *);
+  //PMT_RequestCallback = ^TMT_RequestCallback;
+  TMT_RequestCallback = function(const Param1:PChar; const Param2:PChar):LongInt; cdecl;
+
 (*
-  typedef long (*MT_RequestCallback)(const char *, const char *);
   typedef long (*MT_RequestCallbackW)(const wchar_t *, const wchar_t *);
 *)
   ///
@@ -58,7 +82,8 @@ type
   /// \param build - указатель на номер сборки
   ///
   //void MT_EXPORT MT_GetVersion(long *major, long *minor, long *patch, long *build);
-  TMT_GetVersion = procedure(var Major:LongInt; var Minor:LongInt; var Patch:LongInt; var Build:LongInt);
+  TMT_GetVersion = procedure(Major:PLongint; Minor:PLongint; Patch:PLongint; Build:PLongint); cdecl;
+  //TMT_GetVersion = procedure(var Major:LongInt; var Minor:LongInt; var Patch:LongInt; var Build:LongInt); cdecl;
 
   ///
   /// \brief Получить версию протокола
@@ -67,7 +92,7 @@ type
   /// \return версия протокола между обработчиком и библиотекой
   ///
   //long MT_EXPORT MT_GetProtocolVersion(long version);
-  TMT_GetProtocolVersion = function(Version:LongInt):LongInt;
+  TMT_GetProtocolVersion = function(Version:LongInt):LongInt; cdecl;
 
   ///
   /// \brief Получить код последней ошибки и ее описание
@@ -78,7 +103,7 @@ type
   /// \note ANSI версия
   ///
   //long MT_EXPORT MT_GetLastError(char *description);
-  TMT_GetLastError = function(Description:PChar):LongInt;
+  TMT_GetLastError = function(Description:PChar):LongInt; cdecl;
 (*
   ///
   /// \brief Получить код последней ошибки и ее описание
@@ -89,54 +114,60 @@ type
   /// \note Unicode версия
   ///
   long MT_EXPORT MT_GetLastErrorW(wchar_t *description);
-
+*)
   ///
   /// \brief Установить путь поиска обновлений приложения для устройства
   /// \param path - полный путь к каталогу обновлений
   /// \note ANSI версия
   ///
-  void MT_EXPORT MT_SetUpdatePath(const char *path);
-
+  //void MT_EXPORT MT_SetUpdatePath(const char *path);
+  TMT_SetUpdatePath = procedure(const Path:PChar); cdecl;
+(*
   ///
   /// \brief Установить путь поиска обновлений приложения для устройства
   /// \param path - полный путь к каталогу обновлений
   /// \note Unicode версия
   ///
   void MT_EXPORT MT_SetUpdatePathW(const wchar_t *path);
-
+*)
   ///
   /// \brief Установить функцию обратного вызова для запросов от устройства
   /// \param callbackFunc - указатель на функцию
   /// \note ANSI версия
   ///
-  void MT_EXPORT MT_SetRequestCallback(MT_RequestCallback callbackFunc);
-
+  //void MT_EXPORT MT_SetRequestCallback(MT_RequestCallback callbackFunc);
+  TMT_SetRequestCallback = procedure(CallbackFunc:TMT_RequestCallback); cdecl;
+(*
   ///
   /// \brief Установить функцию обратного вызова для запросов от устройства
   /// \param callbackFunc - указатель на функцию
   /// \note Unicode версия
   ///
   void MT_EXPORT MT_SetRequestCallbackW(MT_RequestCallbackW callbackFunc);
-
+*)
   ///
   /// \brief Запустить tcp сервер
   /// \param port - порт для прослушивания
   /// \return 1 - запушен, 0 - ошибка
   ///
-  long MT_EXPORT MT_StartServer(long port);
+  //long MT_EXPORT MT_StartServer(long port);
+  TMT_StartServer = function(Port:LongInt):LongInt; cdecl;
 
   ///
   /// \brief Запустить tcp сервер с портом по умолчанию (3004)
   /// \return 1 - запушен, 0 - ошибка
   ///
-  long MT_EXPORT MT_StartServerDefault();
+  //long MT_EXPORT MT_StartServerDefault();
+  TMT_StartServerDefault = function():LongInt; cdecl;
 
   ///
   /// \brief Остановить tcp сервер
   /// \return 1 - остановлен, 0 - ошибка
   ///
-  long MT_EXPORT MT_StopServer();
+  //long MT_EXPORT MT_StopServer();
+  TMT_StopServer = function():LongInt; cdecl;
 
+  (*
   ///
   /// \brief Ответ для устройства
   /// \param command - Имя команды на которую ответили

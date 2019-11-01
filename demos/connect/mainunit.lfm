@@ -1,10 +1,39 @@
 object Form1: TForm1
   Left = 333
-  Height = 240
+  Height = 395
   Top = 142
-  Width = 320
+  Width = 966
   Caption = 'Form1'
+  ClientHeight = 395
+  ClientWidth = 966
   LCLVersion = '2.1.0.0'
+  object Button1: TButton
+    Left = 72
+    Height = 25
+    Top = 120
+    Width = 75
+    Caption = 'Button1'
+    OnClick = Button1Click
+    TabOrder = 0
+  end
+  object Label1: TLabel
+    Left = 80
+    Height = 17
+    Top = 176
+    Width = 39
+    Caption = 'Label1'
+    ParentColor = False
+  end
+  object Memo1: TMemo
+    Left = 235
+    Height = 350
+    Top = 27
+    Width = 676
+    Lines.Strings = (
+      'Memo1'
+    )
+    TabOrder = 1
+  end
   object ScancodeMT1: TScancodeMT
     Left = 62
     Top = 24

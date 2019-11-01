@@ -43,15 +43,51 @@ unit ScancodeMT;
 interface
 
 uses
-  Classes, SysUtils, ScancodeMT_API;
+  Classes, SysUtils, ScancodeMT_API
+  {$if FPC_FULLVERSION<30006}
+  , dynlibs
+  {$endif}
+  ;
 
 type
+  EScancodeMTLibrary = class(Exception);
 
   { TScancodeMTLibrary }
 
   TScancodeMTLibrary = class
+  private
+    FMTLib: TLibHandle;
+    FLibraryName: string;
+
+    FMT_GetVersion:TMT_GetVersion;
+    FMT_GetProtocolVersion:TMT_GetProtocolVersion;
+    FMT_GetLastError:TMT_GetLastError;
+    FMT_SetUpdatePath:TMT_SetUpdatePath;
+    FMT_SetRequestCallback:TMT_SetRequestCallback;
+    FMT_StartServer:TMT_StartServer;
+    FMT_StartServerDefault:TMT_StartServerDefault;
+    FMT_StopServer:TMT_StopServer;
+    function GetLoaded: boolean;
+    function IsLibraryNameStored: Boolean;
+    procedure InternalClearProcAdress;
   public
     constructor Create;
+    destructor Destroy; override;
+
+    procedure LoadMTLibrary;
+    procedure Unload;
+    property Loaded:boolean read GetLoaded;
+
+    function GetProtocolVersion(Version:LongInt):LongInt;
+    procedure GetVersion(var Major:LongInt; var Minor:LongInt; var Patch:LongInt; var Build:LongInt);
+    function GetLastError(Description:PChar):LongInt;
+    procedure SetUpdatePath(const Path:PChar);
+    procedure SetRequestCallback(CallbackFunc:TMT_RequestCallback);
+    function StartServer(Port:LongInt):LongInt;
+    function StartServerDefault:LongInt;
+    function StopServer:LongInt;
+  published
+    property LibraryName:string read FLibraryName write FLibraryName stored IsLibraryNameStored;
   end;
 
   TScancodeMT = class(TComponent)
@@ -67,6 +103,9 @@ type
 
 procedure Register;
 
+resourcestring
+  sCantLoadProc = 'Can''t load procedure "%s"';
+
 implementation
 
 {$R *.res}
@@ -77,9 +116,138 @@ end;
 
 { TScancodeMTLibrary }
 
+function TScancodeMTLibrary.GetLoaded: boolean;
+begin
+  Result := FMTLib <> NilHandle;
+end;
+
+function TScancodeMTLibrary.IsLibraryNameStored: Boolean;
+begin
+  Result:=FLibraryName = slibScanCode_MobileTerminal_FileName;
+end;
+
+procedure TScancodeMTLibrary.InternalClearProcAdress;
+begin
+  FMT_GetProtocolVersion:=nil;
+  FMT_GetVersion:=nil;
+  FMT_GetLastError:=nil;
+  FMT_SetUpdatePath:=nil;
+  FMT_SetRequestCallback:=nil;
+  FMT_StartServer:=nil;
+  FMT_StartServerDefault:=nil;
+  FMT_StopServer:=nil;
+end;
+
 constructor TScancodeMTLibrary.Create;
 begin
+  inherited Create;
+  InternalClearProcAdress;
+  FLibraryName:=slibScanCode_MobileTerminal_FileName
+end;
 
+destructor TScancodeMTLibrary.Destroy;
+begin
+  Unload;
+  inherited Destroy;
+end;
+
+procedure TScancodeMTLibrary.LoadMTLibrary;
+function DoGetProcAddress(Lib: TLibHandle; Name: string): Pointer;
+begin
+  Result := GetProcedureAddress(Lib, Name);
+  if not Assigned(Result) then
+    raise EScancodeMTLibrary.CreateFmt(sCantLoadProc, [Name]);
+end;
+begin
+  FMTLib := LoadLibrary(PChar(FLibraryName));
+
+  if Loaded then
+  begin
+    FMT_GetProtocolVersion := TMT_GetProtocolVersion(DoGetProcAddress(FMTLib, 'MT_GetProtocolVersion'));
+    FMT_GetVersion:=TMT_GetVersion(DoGetProcAddress(FMTLib, 'MT_GetVersion'));
+    FMT_GetLastError:=TMT_GetLastError(DoGetProcAddress(FMTLib, 'MT_GetLastError'));
+    FMT_SetUpdatePath:=TMT_SetUpdatePath(DoGetProcAddress(FMTLib, 'MT_SetUpdatePath'));
+    FMT_SetRequestCallback:=TMT_SetRequestCallback(DoGetProcAddress(FMTLib, 'MT_SetRequestCallback'));
+    FMT_StartServer:=TMT_StartServer(DoGetProcAddress(FMTLib, 'MT_StartServer'));
+    FMT_StartServerDefault:=TMT_StartServerDefault(DoGetProcAddress(FMTLib, 'MT_StartServerDefault'));
+    FMT_StopServer:=TMT_StopServer(DoGetProcAddress(FMTLib, 'MT_StartServerDefault'));
+  end;
+end;
+
+procedure TScancodeMTLibrary.Unload;
+begin
+  if Loaded then
+  begin
+    UnloadLibrary(FMTLib);
+    FMTLib:=NilHandle;
+  end;
+  InternalClearProcAdress;
+end;
+
+function TScancodeMTLibrary.GetProtocolVersion(Version: LongInt): LongInt;
+begin
+  if Assigned(FMT_GetProtocolVersion) then
+    Result:=FMT_GetProtocolVersion(Version)
+  else
+    raise EScancodeMTLibrary.CreateFmt(sCantLoadProc, ['MT_GetProtocolVersion']);
+end;
+
+procedure TScancodeMTLibrary.GetVersion(var Major: LongInt; var Minor: LongInt;
+  var Patch: LongInt; var Build: LongInt);
+begin
+  if Assigned(FMT_GetVersion) then
+    FMT_GetVersion(@Major, @Minor, @Patch, @Build)
+  else
+    raise EScancodeMTLibrary.CreateFmt(sCantLoadProc, ['MT_GetVersion']);
+end;
+
+function TScancodeMTLibrary.GetLastError(Description: PChar): LongInt;
+begin
+  if Assigned(FMT_GetLastError) then
+    Result:=FMT_GetLastError(Description)
+  else
+    raise EScancodeMTLibrary.CreateFmt(sCantLoadProc, ['MT_GetLastError']);
+end;
+
+procedure TScancodeMTLibrary.SetUpdatePath(const Path: PChar);
+begin
+  if Assigned(FMT_SetUpdatePath) then
+    FMT_SetUpdatePath(Path)
+  else
+    raise EScancodeMTLibrary.CreateFmt(sCantLoadProc, ['FMT_SetUpdatePath']);
+end;
+
+procedure TScancodeMTLibrary.SetRequestCallback(
+  CallbackFunc: TMT_RequestCallback);
+begin
+  if Assigned(FMT_SetRequestCallback) then
+    FMT_SetRequestCallback(CallbackFunc)
+  else
+    raise EScancodeMTLibrary.CreateFmt(sCantLoadProc, ['FMT_SetRequestCallback']);
+end;
+
+function TScancodeMTLibrary.StartServer(Port: LongInt): LongInt;
+begin
+  if Assigned(FMT_StartServer) then
+    Result:=FMT_StartServer(Port)
+  else
+    raise EScancodeMTLibrary.CreateFmt(sCantLoadProc, ['FMT_StartServer']);
+end;
+
+function TScancodeMTLibrary.StartServerDefault: LongInt;
+begin
+  if Assigned(FMT_StartServerDefault) then
+    Result:=FMT_StartServerDefault()
+  else
+    raise EScancodeMTLibrary.CreateFmt(sCantLoadProc, ['FMT_StartServerDefault']);
+end;
+
+function TScancodeMTLibrary.StopServer: LongInt;
+begin
+  if Assigned(FMT_StopServer) then
+    Result:=FMT_StopServer()
+  else
+    raise EScancodeMTLibrary.CreateFmt(sCantLoadProc, ['FMT_StopServer']);
 end;
 
 end.
