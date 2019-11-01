@@ -49,20 +49,21 @@ uses
 const
   {$IFDEF WINDOWS}
   {$IFDEF CPU64}
-  slibScanCode_MobileTerminal_FileName = 'SCANCODE.MobileTerminal_x86_64.dll';
+  mtlibScanCode_MobileTerminal_FileName = 'SCANCODE.MobileTerminal_x86_64.dll';
   {$ELSE}
-  slibScanCode_MobileTerminal_FileName = 'SCANCODE.MobileTerminal_x86.dll';
+  mtlibScanCode_MobileTerminal_FileName = 'SCANCODE.MobileTerminal_x86.dll';
   {$ENDIF}
   {$ENDIF}
 
   {$IFDEF LINUX}
   {$IFDEF CPU64}
-  slibScanCode_MobileTerminal_FileName = 'libSCANCODE.MobileTerminal_x86_64.so';
+  mtlibScanCode_MobileTerminal_FileName = 'libSCANCODE.MobileTerminal_x86_64.so';
   {$ELSE}
-  slibScanCode_MobileTerminal_FileName = 'libSCANCODE.MobileTerminal_x86.so';
+  mtlibScanCode_MobileTerminal_FileName = 'libSCANCODE.MobileTerminal_x86.so';
   {$ENDIF}
   {$ENDIF}
 
+  mtDefaultPort = 3004;
 
 
 

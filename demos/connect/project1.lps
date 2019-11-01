@@ -18,9 +18,8 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="MainUnit"/>
-        <IsVisibleTab Value="True"/>
-        <TopLine Value="159"/>
-        <CursorPos X="43" Y="180"/>
+        <TopLine Value="92"/>
+        <CursorPos X="37" Y="105"/>
         <UsageCount Value="29"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -28,10 +27,11 @@
       <Unit>
         <Filename Value="../../scancodemt.pas"/>
         <UnitName Value="ScancodeMT"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="193"/>
-        <CursorPos Y="205"/>
-        <UsageCount Value="13"/>
+        <TopLine Value="128"/>
+        <CursorPos X="32" Y="130"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -42,10 +42,10 @@
       <Unit>
         <Filename Value="../../scancodemt_api.pas"/>
         <UnitName Value="ScancodeMT_API"/>
-        <EditorIndex Value="2"/>
-        <TopLine Value="99"/>
-        <CursorPos X="61" Y="103"/>
-        <UsageCount Value="13"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="46"/>
+        <CursorPos X="5" Y="62"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -80,26 +80,26 @@
       </Unit>
       <Unit>
         <Filename Value="../../../ecr_atol/libfptr10.pas"/>
-        <EditorIndex Value="5"/>
-        <UsageCount Value="13"/>
+        <EditorIndex Value="6"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../ecr_atol/atollkkmv10.pas"/>
         <UnitName Value="AtollKKMv10"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="7"/>
         <TopLine Value="163"/>
         <CursorPos Y="182"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../ecr_atol/casheregisterabstract.pas"/>
         <UnitName Value="CasheRegisterAbstract"/>
-        <EditorIndex Value="8"/>
+        <EditorIndex Value="9"/>
         <TopLine Value="66"/>
         <CursorPos Y="86"/>
-        <UsageCount Value="13"/>
+        <UsageCount Value="14"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -125,148 +125,156 @@
       </Unit>
       <Unit>
         <Filename Value="../../../uib/source/uiblib.pas"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="46"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../uib/source/uibase.pas"/>
-        <EditorIndex Value="7"/>
+        <EditorIndex Value="8"/>
         <TopLine Value="3452"/>
         <CursorPos X="36" Y="3472"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/home/install/source/fpcsrc/rtl/inc/systemh.inc"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="94"/>
         <CursorPos X="3" Y="109"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/home/install/source/fpcsrc/rtl/objpas/classes/classesh.inc"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="2034"/>
+        <CursorPos Y="2058"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
     <JumpHistory Count="30" HistoryIndex="29">
       <Position1>
-        <Filename Value="../../scancodemt_api.pas"/>
-        <Caret Line="103" Column="61" TopLine="99"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="167" Column="20" TopLine="144"/>
       </Position1>
       <Position2>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="187" Column="29" TopLine="172"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="20" Column="15" TopLine="18"/>
       </Position2>
       <Position3>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="81" Column="41" TopLine="81"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="69" Column="3" TopLine="64"/>
       </Position3>
       <Position4>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="187" Column="57" TopLine="185"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="29" Column="15" TopLine="14"/>
       </Position4>
       <Position5>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="81" Column="56" TopLine="81"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="133" Column="3" TopLine="129"/>
       </Position5>
       <Position6>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="189" Column="3" TopLine="185"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="30" Column="15" TopLine="14"/>
       </Position6>
       <Position7>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="205" Column="20" TopLine="190"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="146" Column="3" TopLine="140"/>
       </Position7>
       <Position8>
         <Filename Value="mainunit.pas"/>
-        <Caret Line="142" Column="38" TopLine="129"/>
+        <Caret Line="31" Column="15" TopLine="16"/>
       </Position8>
       <Position9>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="82" Column="87" TopLine="68"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="155" Column="3" TopLine="150"/>
       </Position9>
       <Position10>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="195" Column="30" TopLine="180"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="32" Column="15" TopLine="17"/>
       </Position10>
       <Position11>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="82" Column="26" TopLine="82"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="168" Column="3" TopLine="159"/>
       </Position11>
       <Position12>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="203" Column="3" TopLine="193"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="33" Column="15" TopLine="18"/>
       </Position12>
       <Position13>
         <Filename Value="mainunit.pas"/>
-        <Caret Line="144" TopLine="129"/>
+        <Caret Line="168" Column="3" TopLine="159"/>
       </Position13>
       <Position14>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="205" TopLine="193"/>
+        <Filename Value="mainunit.pas"/>
+        <Caret Line="33" Column="15" TopLine="18"/>
       </Position14>
       <Position15>
         <Filename Value="mainunit.pas"/>
-        <Caret Line="76" TopLine="61"/>
+        <Caret Line="180" Column="43" TopLine="159"/>
       </Position15>
       <Position16>
         <Filename Value="mainunit.pas"/>
-        <Caret Line="78" TopLine="61"/>
+        <Caret Line="138" Column="26" TopLine="112"/>
       </Position16>
       <Position17>
         <Filename Value="mainunit.pas"/>
-        <Caret Line="167" Column="20" TopLine="144"/>
+        <Caret Line="31" Column="15" TopLine="14"/>
       </Position17>
       <Position18>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="20" Column="15" TopLine="18"/>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="201" Column="11" TopLine="193"/>
       </Position18>
       <Position19>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="69" Column="3" TopLine="64"/>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="82" Column="15" TopLine="68"/>
       </Position19>
       <Position20>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="29" Column="15" TopLine="14"/>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="197" TopLine="194"/>
       </Position20>
       <Position21>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="133" Column="3" TopLine="129"/>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="103" Column="52" TopLine="82"/>
       </Position21>
       <Position22>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="30" Column="15" TopLine="14"/>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="123" Column="3" TopLine="121"/>
       </Position22>
       <Position23>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="146" Column="3" TopLine="140"/>
+        <Filename Value="../../scancodemt_api.pas"/>
+        <Caret Line="165" Column="95" TopLine="141"/>
       </Position23>
       <Position24>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="31" Column="15" TopLine="16"/>
+        <Filename Value="../../scancodemt_api.pas"/>
+        <Caret Line="62" Column="5" TopLine="46"/>
       </Position24>
       <Position25>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="155" Column="3" TopLine="150"/>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="136" Column="28" TopLine="121"/>
       </Position25>
       <Position26>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="32" Column="15" TopLine="17"/>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="155" Column="19" TopLine="140"/>
       </Position26>
       <Position27>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="168" Column="3" TopLine="159"/>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="89" Column="17" TopLine="76"/>
       </Position27>
       <Position28>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="33" Column="15" TopLine="18"/>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="101" Column="54" TopLine="75"/>
       </Position28>
       <Position29>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="168" Column="3" TopLine="159"/>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="130" Column="23" TopLine="127"/>
       </Position29>
       <Position30>
-        <Filename Value="mainunit.pas"/>
-        <Caret Line="33" Column="15" TopLine="18"/>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="104" Column="68" TopLine="86"/>
       </Position30>
     </JumpHistory>
     <RunParams>
@@ -275,15 +283,6 @@
     </RunParams>
   </ProjectSession>
   <Debugging>
-    <BreakPoints Count="1">
-      <Item1>
-        <Kind Value="bpkSource"/>
-        <WatchScope Value="wpsLocal"/>
-        <WatchKind Value="wpkWrite"/>
-        <Source Value="mainunit.pas"/>
-        <Line Value="76"/>
-      </Item1>
-    </BreakPoints>
     <Watches Count="3">
       <Item1>
         <Expression Value="Self"/>

@@ -102,9 +102,9 @@ procedure TForm1.FormCreate(Sender: TObject);
 begin
   FLibrary:=TScancodeMTLibrary.Create;
   {$IFDEF WINDOWS}
-  FLibrary.LibraryName:='C:\2\' + slibScanCode_MobileTerminal_FileName;
+  FLibrary.LibraryName:='C:\2\' + mtlibScanCode_MobileTerminal_FileName;
   {$ELSE}
-  FLibrary.LibraryName:='/home/work/demos/Test_Trade/Demo_07_Scancode/' + slibScanCode_MobileTerminal_FileName;
+  FLibrary.LibraryName:='/home/work/demos/Test_Trade/Demo_07_Scancode/' + mtlibScanCode_MobileTerminal_FileName;
   {$ENDIF}
 
   UpdateBtnStates;
@@ -152,8 +152,8 @@ procedure TForm1.StartServer;
 var
   V: LongInt;
 begin
-  //V:=FLibrary.StartServer(22);
-  V:=FLibrary.StartServerDefault;
+  V:=FLibrary.StartServer(1122);
+  //V:=FLibrary.StartServerDefault;
   Memo1.Lines.Add('StartServerDefault: '+IntToStr(V));
   RxWriteLog(etDebug, 'StartServerDefault: '+IntToStr(V));
 
