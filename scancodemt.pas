@@ -78,9 +78,9 @@ type
     procedure Unload;
     property Loaded:boolean read GetLoaded;
 
-    function GetProtocolVersion(Version:LongInt):LongInt;
-    procedure GetVersion(var Major:LongInt; var Minor:LongInt; var Patch:LongInt; var Build:LongInt);
-    function GetLastError(Description:PChar):LongInt;
+    function GetProtocolVersion(Version:TMTLong):TMTLong;
+    procedure GetVersion(out Major:TMTLong; out Minor:TMTLong; out Patch:TMTLong; out Build:TMTLong);
+    function GetLastError(Description:PChar):TMTLong;
     procedure SetUpdatePath(const Path:PChar);
     procedure SetRequestCallback(CallbackFunc:TMT_RequestCallback);
     function StartServer(Port:LongInt):LongInt;
@@ -184,7 +184,7 @@ begin
   InternalClearProcAdress;
 end;
 
-function TScancodeMTLibrary.GetProtocolVersion(Version: LongInt): LongInt;
+function TScancodeMTLibrary.GetProtocolVersion(Version: TMTLong): TMTLong;
 begin
   if Assigned(FMT_GetProtocolVersion) then
     Result:=FMT_GetProtocolVersion(Version)
@@ -192,16 +192,23 @@ begin
     raise EScancodeMTLibrary.CreateFmt(sCantLoadProc, ['MT_GetProtocolVersion']);
 end;
 
-procedure TScancodeMTLibrary.GetVersion(var Major: LongInt; var Minor: LongInt;
-  var Patch: LongInt; var Build: LongInt);
+procedure TScancodeMTLibrary.GetVersion(out Major: TMTLong; out Minor: TMTLong;
+  out Patch: TMTLong; out Build: TMTLong);
+//var
+//  FMajor,
+//  FMinor,
+//  FPatch,
+//  FBuild:Int64;
 begin
   if Assigned(FMT_GetVersion) then
-    FMT_GetVersion(@Major, @Minor, @Patch, @Build)
+  begin
+    FMT_GetVersion(Major, Minor, Patch, Build)
+  end
   else
     raise EScancodeMTLibrary.CreateFmt(sCantLoadProc, ['MT_GetVersion']);
 end;
 
-function TScancodeMTLibrary.GetLastError(Description: PChar): LongInt;
+function TScancodeMTLibrary.GetLastError(Description: PChar): TMTLong;
 begin
   if Assigned(FMT_GetLastError) then
     Result:=FMT_GetLastError(Description)

@@ -139,7 +139,7 @@ end;
 
 procedure TForm1.GetProtoVersion;
 var
-  Major, Minor, Patch, Build: LongInt;
+  Major, Minor, Patch, Build: TMTLong;
 begin
   FLibrary.GetVersion(Major, Minor, Patch, Build);
   Memo1.Lines.Add(Format('GetVersion: Major=%d, Minor=%d, Patch=%d, Build=%d', [Major, Minor, Patch, Build]));
@@ -176,6 +176,8 @@ end;
 procedure TForm1.SetCallback;
 begin
   FLibrary.SetRequestCallback(@F_RequestCallback);
+  Memo1.Lines.Add('SetRequestCallback');
+  RxWriteLog(etDebug, 'SetRequestCallback');
   UpdateErrorCode;
 end;
 

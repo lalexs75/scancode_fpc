@@ -68,6 +68,12 @@ const
 
 
 type
+  {$IFDEF CPU64}
+  TMTLong = Int64;
+  {$ELSE}
+  TMTLong = Int32;
+  {$ENDIF}
+
   //typedef long (*MT_RequestCallback)(const char *, const char *);
   //PMT_RequestCallback = ^TMT_RequestCallback;
   TMT_RequestCallback = function(const Param1:PChar; const Param2:PChar):LongInt; cdecl;
@@ -83,8 +89,9 @@ type
   /// \param build - указатель на номер сборки
   ///
   //void MT_EXPORT MT_GetVersion(long *major, long *minor, long *patch, long *build);
-  TMT_GetVersion = procedure(Major:PLongint; Minor:PLongint; Patch:PLongint; Build:PLongint); cdecl;
-  //TMT_GetVersion = procedure(var Major:LongInt; var Minor:LongInt; var Patch:LongInt; var Build:LongInt); cdecl;
+  //TMT_GetVersion = procedure(Major:PLongint; Minor:PLongint; Patch:PLongint; Build:PLongint); cdecl; //stdcall;
+  //TMT_GetVersion = procedure(Major:PInt64; Minor:PInt64; Patch:PInt64; Build:PInt64); cdecl; //stdcall;
+  TMT_GetVersion = procedure(var Major:TMTLong; var Minor:TMTLong; var Patch:TMTLong; var Build:TMTLong); cdecl;
 
   ///
   /// \brief Получить версию протокола
@@ -93,7 +100,7 @@ type
   /// \return версия протокола между обработчиком и библиотекой
   ///
   //long MT_EXPORT MT_GetProtocolVersion(long version);
-  TMT_GetProtocolVersion = function(Version:LongInt):LongInt; cdecl;
+  TMT_GetProtocolVersion = function(Version:TMTLong):TMTLong; cdecl;
 
   ///
   /// \brief Получить код последней ошибки и ее описание
@@ -104,7 +111,7 @@ type
   /// \note ANSI версия
   ///
   //long MT_EXPORT MT_GetLastError(char *description);
-  TMT_GetLastError = function(Description:PChar):LongInt; cdecl;
+  TMT_GetLastError = function(Description:PChar):TMTLong; cdecl;
 (*
   ///
   /// \brief Получить код последней ошибки и ее описание
