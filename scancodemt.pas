@@ -92,13 +92,16 @@ type
 
   TScancodeMT = class(TComponent)
   private
+    FPort: Integer;
+    function IsSetPortStored: Boolean;
+    procedure SetPort(AValue: Integer);
 
   protected
 
   public
-
+    constructor Create(AOwner: TComponent); override;
   published
-
+    property Port:Integer read FPort write SetPort stored IsSetPortStored;
   end;
 
 procedure Register;
@@ -114,6 +117,25 @@ begin
   RegisterComponents('TradeEquipment',[TScancodeMT]);
 end;
 
+{ TScancodeMT }
+
+procedure TScancodeMT.SetPort(AValue: Integer);
+begin
+  if FPort=AValue then Exit;
+  FPort:=AValue;
+end;
+
+function TScancodeMT.IsSetPortStored: Boolean;
+begin
+  Result:=FPort = mtDefaultPort;
+end;
+
+constructor TScancodeMT.Create(AOwner: TComponent);
+begin
+  inherited Create(AOwner);
+  FPort:=mtDefaultPort;
+end;
+
 { TScancodeMTLibrary }
 
 function TScancodeMTLibrary.GetLoaded: boolean;
@@ -123,7 +145,7 @@ end;
 
 function TScancodeMTLibrary.IsLibraryNameStored: Boolean;
 begin
-  Result:=FLibraryName = slibScanCode_MobileTerminal_FileName;
+  Result:=FLibraryName = mtlibScanCode_MobileTerminal_FileName;
 end;
 
 procedure TScancodeMTLibrary.InternalClearProcAdress;
@@ -142,7 +164,7 @@ constructor TScancodeMTLibrary.Create;
 begin
   inherited Create;
   InternalClearProcAdress;
-  FLibraryName:=slibScanCode_MobileTerminal_FileName
+  FLibraryName:=mtlibScanCode_MobileTerminal_FileName
 end;
 
 destructor TScancodeMTLibrary.Destroy;
@@ -194,11 +216,6 @@ end;
 
 procedure TScancodeMTLibrary.GetVersion(out Major: TMTLong; out Minor: TMTLong;
   out Patch: TMTLong; out Build: TMTLong);
-//var
-//  FMajor,
-//  FMinor,
-//  FPatch,
-//  FBuild:Int64;
 begin
   if Assigned(FMT_GetVersion) then
   begin
