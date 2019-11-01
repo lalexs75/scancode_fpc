@@ -48,12 +48,13 @@ uses
 
 const
   {$IFDEF WINDOWS}
-  {$IFDEF}
-  slibScanCode_MobileTerminal_FileName = 'SCANCODE.MobileTerminal_x86.dll';
-  {$ELSE}
+  {$IFDEF CPU64}
   slibScanCode_MobileTerminal_FileName = 'SCANCODE.MobileTerminal_x86_64.dll';
+  {$ELSE}
+  slibScanCode_MobileTerminal_FileName = 'SCANCODE.MobileTerminal_x86.dll';
   {$ENDIF}
   {$ENDIF}
+
   {$IFDEF LINUX}
   {$IFDEF CPU64}
   slibScanCode_MobileTerminal_FileName = 'libSCANCODE.MobileTerminal_x86_64.so';

@@ -7,13 +7,19 @@ uses
   cthreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, MainUnit
+  Forms,
+  rxnew,
+  rxlogging,
+  MainUnit
   { you can add units after this };
 
 {$R *.res}
 
 begin
   RequireDerivedFormResource:=True;
+
+  InitRxLogs;
+
   Application.Scaled:=True;
   Application.Initialize;
   Application.CreateForm(TForm1, Form1);

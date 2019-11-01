@@ -6,21 +6,22 @@ object Form1: TForm1
   Caption = 'Form1'
   ClientHeight = 395
   ClientWidth = 966
+  OnCreate = FormCreate
   LCLVersion = '2.1.0.0'
   object Button1: TButton
-    Left = 72
+    Left = 16
     Height = 25
-    Top = 120
+    Top = 96
     Width = 75
-    Caption = 'Button1'
+    Caption = 'Start server'
     OnClick = Button1Click
     TabOrder = 0
   end
   object Label1: TLabel
-    Left = 80
-    Height = 17
-    Top = 176
-    Width = 39
+    Left = 16
+    Height = 15
+    Top = 64
+    Width = 34
     Caption = 'Label1'
     ParentColor = False
   end
@@ -33,6 +34,15 @@ object Form1: TForm1
       'Memo1'
     )
     TabOrder = 1
+  end
+  object Button2: TButton
+    Left = 16
+    Height = 25
+    Top = 142
+    Width = 75
+    Caption = 'Stop server'
+    OnClick = Button2Click
+    TabOrder = 2
   end
   object ScancodeMT1: TScancodeMT
     Left = 62

@@ -170,7 +170,7 @@ begin
     FMT_SetRequestCallback:=TMT_SetRequestCallback(DoGetProcAddress(FMTLib, 'MT_SetRequestCallback'));
     FMT_StartServer:=TMT_StartServer(DoGetProcAddress(FMTLib, 'MT_StartServer'));
     FMT_StartServerDefault:=TMT_StartServerDefault(DoGetProcAddress(FMTLib, 'MT_StartServerDefault'));
-    FMT_StopServer:=TMT_StopServer(DoGetProcAddress(FMTLib, 'MT_StartServerDefault'));
+    FMT_StopServer:=TMT_StopServer(DoGetProcAddress(FMTLib, 'MT_StopServer'));
   end;
 end;
 
