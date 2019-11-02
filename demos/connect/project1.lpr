@@ -18,7 +18,8 @@ uses
 begin
   RequireDerivedFormResource:=True;
 
-  InitRxLogs;
+  //InitRxLogs;
+  OnRxLoggerEvent:=@MDefaultWriteLog;
 
   Application.Scaled:=True;
   Application.Initialize;
