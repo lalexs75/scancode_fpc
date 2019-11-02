@@ -20,6 +20,15 @@
       </element><element name="TUserLogin.AddProd"><short>addprod - список кодов групп документов, в которые пользователь может добавлять товары из локальной или удаленной БД</short>
       </element><element name="TUserLogin.CreateFreeCollect"><short>create_free_collect - список кодов групп документов, для которых пользователь может создавать документы «Свободный набор»</short>
       </element>
+    <element name="TExtendedInformation.Version"><short>Версия протокола</short>
+      </element><element name="TExtendedInformation.UserIP"><short>IP адрес терминала</short>
+      </element><element name="TExtendedInformation.UserID"><short>Идентификатор</short>
+      </element><element name="TExtendedInformation.Serial"><short>Серийный номер ТСД</short>
+      </element><element name="TExtendedInformation.PackgeNumber"><short>Номер посылки</short>
+      </element><element name="TExtendedInformation.fileName"><short>Имя файла</short>
+      </element><element name="TExtendedInformation.DocType"><short>Тип документа</short>
+      </element><element name="TExtendedInformation.Confirm"><short>Статус подтверждения ордера</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
