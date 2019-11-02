@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="scancode_mt"><module name="ScancodeMT_API"><element name="TMTLong"><short>Стандартный тип данных для взаимодействия с библиотекой scancode</short>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
