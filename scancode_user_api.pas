@@ -171,8 +171,130 @@ type
     property Logins:TUserLogins read FLogins;
   end;
 
+  { TExtendedInformation }
+
+  TExtendedInformation = class(TXmlSerializationObject)
+  private
+    FConfirm: string;
+    FDocType: string;
+    FfileName: string;
+    FPackgeNumber: string;
+    FSerial: string;
+    FUserID: string;
+    FUserIP: string;
+    FVersion: string;
+    procedure SetConfirm(AValue: string);
+    procedure SetDocType(AValue: string);
+    procedure SetfileName(AValue: string);
+    procedure SetPackgeNumber(AValue: string);
+    procedure SetSerial(AValue: string);
+    procedure SetUserID(AValue: string);
+    procedure SetUserIP(AValue: string);
+    procedure SetVersion(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+    function RootNodeName:string; override;
+  public
+    destructor Destroy; override;
+  published
+    property Confirm:string read FConfirm write SetConfirm;
+    property DocType:string read FDocType write SetDocType;
+    property fileName:string read FfileName write SetfileName;
+    property PackgeNumber:string read FPackgeNumber write SetPackgeNumber;
+    property Serial:string read FSerial write SetSerial;
+    property UserID:string read FUserID write SetUserID;
+    property UserIP:string read FUserIP write SetUserIP;
+    property Version:string read FVersion write SetVersion;
+  end;
+
 implementation
 uses base64;
+
+{ TExtendedInformation }
+
+procedure TExtendedInformation.SetConfirm(AValue: string);
+begin
+  if FConfirm=AValue then Exit;
+  FConfirm:=AValue;
+  ModifiedProperty('Confirm');
+end;
+
+procedure TExtendedInformation.SetDocType(AValue: string);
+begin
+  if FDocType=AValue then Exit;
+  FDocType:=AValue;
+  ModifiedProperty('DocType');
+end;
+
+procedure TExtendedInformation.SetfileName(AValue: string);
+begin
+  if FfileName=AValue then Exit;
+  FfileName:=AValue;
+  ModifiedProperty('fileName');
+end;
+
+procedure TExtendedInformation.SetPackgeNumber(AValue: string);
+begin
+  if FPackgeNumber=AValue then Exit;
+  FPackgeNumber:=AValue;
+  ModifiedProperty('PackgeNumber');
+end;
+
+procedure TExtendedInformation.SetSerial(AValue: string);
+begin
+  if FSerial=AValue then Exit;
+  FSerial:=AValue;
+  ModifiedProperty('Serial');
+end;
+
+procedure TExtendedInformation.SetUserID(AValue: string);
+begin
+  if FUserID=AValue then Exit;
+  FUserID:=AValue;
+  ModifiedProperty('UserID');
+end;
+
+procedure TExtendedInformation.SetUserIP(AValue: string);
+begin
+  if FUserIP=AValue then Exit;
+  FUserIP:=AValue;
+  ModifiedProperty('UserIP');
+end;
+
+procedure TExtendedInformation.SetVersion(AValue: string);
+begin
+  if FVersion=AValue then Exit;
+  FVersion:=AValue;
+  ModifiedProperty('Version');
+end;
+
+procedure TExtendedInformation.InternalRegisterPropertys;
+begin
+  RegisterProperty('Confirm', 'confirm', '', 'Статус подтверждения ордера', 1, 255);
+  RegisterProperty('DocType', 'docType', '', 'Тип документа', 1, 255);
+  RegisterProperty('fileName', 'fileName', '', 'Имя файла', 1, 255);
+  RegisterProperty('PackgeNumber', 'packgeNumber', '', 'Номер посылки', 1, 255);
+  RegisterProperty('Serial', 'serial', '', 'Серийный номер ТСД', 1, 255);
+  RegisterProperty('UserID', 'userID', '', 'Идентификатор', 1, 255);
+  RegisterProperty('UserIP', 'userIP', '', 'IP адрес терминала', 1, 255);
+  RegisterProperty('Version', 'version', '', 'Версия протокола', 1, 255);
+end;
+
+procedure TExtendedInformation.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+function TExtendedInformation.RootNodeName: string;
+begin
+  Result:='protocol1C';
+end;
+
+destructor TExtendedInformation.Destroy;
+begin
+  inherited Destroy;
+end;
 
 { TUserRights }
 
