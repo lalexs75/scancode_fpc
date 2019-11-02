@@ -49,6 +49,7 @@ var
   U: TUserInformation;
   L: TUserLogin;
   R: TUserRight;
+  E: TExtendedInformation;
 begin
   U:=TUserInformation.Create;
 
@@ -81,6 +82,18 @@ begin
 
   U.SaveToFile(ExportFolder + 'sc_ui.xml');
   U.Free;
+
+  E:=TExtendedInformation.Create;
+  E.Confirm:='confimed';
+  E.DocType:='order';
+  E.fileName:='tst.txt';
+  E.PackgeNumber:='1234';
+  E.Serial:='SN-123-321';
+  E.UserID:='D2043489-6386-4D9A-8CC1-A91B2FDF7680';
+  E.UserIP:='127.0.0.1';
+  E.Version:='1.2.3.4';
+  E.SaveToFile(ExportFolder + 'ext.xml');
+  E.Free;
 end;
 
 procedure TfrmUsersAndRightFrame.GenerateData;
