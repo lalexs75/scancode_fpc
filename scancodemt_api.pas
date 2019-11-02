@@ -82,16 +82,14 @@ type
 (*
   typedef long (*MT_RequestCallbackW)(const wchar_t *, const wchar_t *);
 *)
-  ///
-  /// \brief Получить версию библиотеки
-  /// \param major - указатель на мажорную версию
-  /// \param minor - указатель на минорную версию
-  /// \param patch - указатель на патч версию
-  /// \param build - указатель на номер сборки
-  ///
+  //
+  // \brief Получить версию библиотеки
+  // \param major - указатель на мажорную версию
+  // \param minor - указатель на минорную версию
+  // \param patch - указатель на патч версию
+  // \param build - указатель на номер сборки
+  //
   //void MT_EXPORT MT_GetVersion(long *major, long *minor, long *patch, long *build);
-  //TMT_GetVersion = procedure(Major:PLongint; Minor:PLongint; Patch:PLongint; Build:PLongint); cdecl; //stdcall;
-  //TMT_GetVersion = procedure(Major:PInt64; Minor:PInt64; Patch:PInt64; Build:PInt64); cdecl; //stdcall;
   TMT_GetVersion = procedure(var Major:TMTLong; var Minor:TMTLong; var Patch:TMTLong; var Build:TMTLong); cdecl;
 
   ///
@@ -176,15 +174,16 @@ type
   //long MT_EXPORT MT_StopServer();
   TMT_StopServer = function():TMTLong; cdecl;
 
-  (*
+
   ///
   /// \brief Ответ для устройства
   /// \param command - Имя команды на которую ответили
   /// \param data - XML с информацией
   /// \note ANSI версия
   ///
-  void MT_EXPORT MT_SendAnswer(const char *command, const char *data);
-
+  //void MT_EXPORT MT_SendAnswer(const char *command, const char *data);
+  TMT_SendAnswer = procedure(const Command:PChar; const Data:PChar); cdecl;
+(*
   ///
   /// \brief Ответ для устройства
   /// \param command - Имя команды на которую ответили

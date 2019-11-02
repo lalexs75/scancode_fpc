@@ -67,6 +67,7 @@ type
     FMT_StartServer:TMT_StartServer;
     FMT_StartServerDefault:TMT_StartServerDefault;
     FMT_StopServer:TMT_StopServer;
+    FMT_SendAnswer:TMT_SendAnswer;
     function GetLoaded: boolean;
     function IsLibraryNameStored: Boolean;
     procedure InternalClearProcAdress;
@@ -86,6 +87,7 @@ type
     function StartServer(Port:LongInt):LongInt;
     function StartServerDefault:LongInt;
     function StopServer:LongInt;
+    procedure SendAnswer(const Command:PChar; const Data:PChar);
   published
     property LibraryName:string read FLibraryName write FLibraryName stored IsLibraryNameStored;
   end;
@@ -158,6 +160,7 @@ begin
   FMT_StartServer:=nil;
   FMT_StartServerDefault:=nil;
   FMT_StopServer:=nil;
+  FMT_SendAnswer:=nil;
 end;
 
 constructor TScancodeMTLibrary.Create;
@@ -193,6 +196,7 @@ begin
     FMT_StartServer:=TMT_StartServer(DoGetProcAddress(FMTLib, 'MT_StartServer'));
     FMT_StartServerDefault:=TMT_StartServerDefault(DoGetProcAddress(FMTLib, 'MT_StartServerDefault'));
     FMT_StopServer:=TMT_StopServer(DoGetProcAddress(FMTLib, 'MT_StopServer'));
+    FMT_SendAnswer:=TMT_SendAnswer(DoGetProcAddress(FMTLib, 'MT_SendAnswer'));
   end;
 end;
 
@@ -272,6 +276,15 @@ begin
     Result:=FMT_StopServer()
   else
     raise EScancodeMTLibrary.CreateFmt(sCantLoadProc, ['FMT_StopServer']);
+end;
+
+procedure TScancodeMTLibrary.SendAnswer(const Command: PChar; const Data: PChar
+  );
+begin
+  if Assigned(FMT_SendAnswer) then
+    FMT_SendAnswer(Command, Data)
+  else
+    raise EScancodeMTLibrary.CreateFmt(sCantLoadProc, ['FMT_SendAnswer']);
 end;
 
 end.
