@@ -6,7 +6,7 @@
           </p>
 версия протокола между обработчиком и библиотекой
 </descr>
-      </element><element name="TScancodeMTLibrary.GetProtocolVersion.Version"><short>version&#x9;- версия протокола между устройством и обработчиком (сообщается устройству) </short>
+      </element><element name="TScancodeMTLibrary.GetProtocolVersion.Version"><short>version - версия протокола между устройством и обработчиком (сообщается устройству)</short>
       </element>
     <element name="TScancodeMTLibrary.GetVersion"><short>Получить версию библиотеки</short><descr><p><b>Аргументы</b>
           </p><ul><li>major</li> - указатель на мажорную версию
@@ -15,6 +15,43 @@
 <li>build</li> - указатель на номер сборки
 </ul>
         </descr>
+      </element>
+    <element name="TScancodeMTLibrary.LibraryName"><short>Имя файла библиотеки</short>
+      </element><element name="TScancodeMTLibrary.LoadMTLibrary"><short>Процедура загружает библиотеку и подготавливает её к использованию</short>
+      </element><element name="TScancodeMTLibrary.Unload"><short>Процедура выгружает библиотек из памяти и очищает используемые ресуры</short>
+      </element><element name="TScancodeMTLibrary.Loaded"><short>Признак загруженности библиотеки</short>
+      </element><element name="TScancodeMTLibrary.GetLastError"><short>Получить код последней ошибки и ее описание</short><descr><p><b>Аргументы</b>
+          </p><ul><li><b>description</b> - указатель на строковоую переменную, в которую будет записано описание</li>
+          </ul><p><b>Возвращает</b>
+          </p>
+код ошибки
+</descr>
+      </element><element name="TScancodeMTLibrary.SendAnswer"><short>Ответ для устройства </short><descr><p><b>Аргументы</b>
+          </p><ul><li><b>command</b> - Имя команды на которую ответили</li><li><b>data</b> - XML с информацией</li>
+          </ul>
+        </descr>
+      </element><element name="TScancodeMTLibrary.SetRequestCallback"><short>Установить функцию обратного вызова для запросов от устройства </short><descr><p><b>Аргументы</b>
+          </p><ul><li><b>callbackFunc</b> - указатель на функцию</li>
+          </ul>
+        </descr>
+      </element><element name="TScancodeMTLibrary.SetUpdatePath"><short>Установить путь поиска обновлений приложения для устройства</short><descr><p><b>Аргументы</b>
+          </p><ul><li><b>path</b> - полный путь к каталогу обновлений</li>
+          </ul>
+        </descr>
+      </element><element name="TScancodeMTLibrary.StartServer"><short>Запустить tcp сервер </short><descr><p><b>Аргументы</b>
+          </p><ul><li><b>port</b> - порт для прослушивания</li>
+          </ul><p><b>Возвращает</b>
+          </p>
+1 - запушен, 0 - ошибка
+</descr>
+      </element><element name="TScancodeMTLibrary.StartServerDefault"><short>Запустить tcp сервер с портом по умолчанию (3004) </short><descr><p><b>Возвращает</b>
+          </p>
+1 - запушен, 0 - ошибка
+</descr>
+      </element><element name="TScancodeMTLibrary.StopServer"><short>Остановить tcp сервер</short><descr><p><b>Возвращает</b>
+          </p>
+1 - остановлен, 0 - ошибка
+</descr>
       </element>
     </module>
   </package>
