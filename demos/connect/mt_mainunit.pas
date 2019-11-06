@@ -97,8 +97,8 @@ begin
   Form1.ParseExtendeInfo(S2);
 
   Form1.FCurCommand:=S1;
-  //Form1.Timer1.Enabled:=true;
-  Form1.Timer1Timer(nil);
+  Form1.Timer1.Enabled:=true;
+  //Form1.Timer1Timer(nil);
 end;
 
 { TForm1 }
@@ -180,7 +180,7 @@ begin
   if FCurCommand = 'GetUsers' then
   begin
     //- Получить список пользователей
-    Form1.DoSendUserList;
+    DoSendUserList;
   end
   else
   if FCurCommand = 'GetDocum' then
@@ -283,9 +283,32 @@ begin
 end;
 
 procedure TForm1.SendAnswer(const Command: string; const Data: String);
+var
+  TT, S: String;
+  TTF: TFileStream;
+  Ex: TExtendedInformation;
 begin
-  RxWriteLog(etDebug, 'SendAnswer : %s '#13'%s'#13, [Command, Data]);
-  FLibrary.SendAnswer(PChar(Command), PChar(Data));
+  TT:=GetTempFileName;
+  TTF:=TFileStream.Create(TT, fmCreate);
+  if Data<>'' then
+    TTF.Write(Data[1], Length(Data));
+  TTF.Free;
+
+  Ex:=TExtendedInformation.Create;
+
+  Ex.Confirm:=Confirm;
+  Ex.DocType:=DocType;
+  Ex.FileName:=TT;
+  Ex.PackgeNumber:=PackgeNumber;
+  Ex.Serial:=Serial;
+  Ex.UserID:=UserID;
+  Ex.UserIP:=UserIP;
+  Ex.Version:=Version;
+  S:=Ex.SaveToStr;
+  Ex.Free;
+
+  RxWriteLog(etDebug, 'SendAnswer : %s '#13'%s'#13, [Command, S]);
+  FLibrary.SendAnswer(PChar(Command), PChar(S));
   UpdateErrorCode;
 end;
 
