@@ -43,13 +43,14 @@ unit ScancodeMT;
 interface
 
 uses
-  Classes, SysUtils, ScancodeMT_API
+  Classes, SysUtils, ScancodeMT_API, scancode_user_api
   {$if FPC_FULLVERSION<30006}
   , dynlibs
   {$endif}
   ;
 
 type
+  TScancodeMT = class;
   EScancodeMTLibrary = class(Exception);
 
   { TScancodeMTLibrary }
@@ -92,25 +93,37 @@ type
     property LibraryName:string read FLibraryName write FLibraryName stored IsLibraryNameStored;
   end;
 
+  TMTUserListEvent = procedure(Sender:TScancodeMT; UserInfo:TUserInformation) of object;
+
   TScancodeMT = class(TComponent)
   private
+    FActive: boolean;
+    FMTLibrary: TScancodeMTLibrary;
+    FOnUserList: TMTUserListEvent;
     FPort: Integer;
     function IsSetPortStored: Boolean;
+    procedure SetActive(AValue: boolean);
     procedure SetPort(AValue: Integer);
-
   protected
-
+    procedure InternalSendUserInfo;
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
+    procedure StartServer;
+    procedure StopServer;
+
+    property MTLibrary:TScancodeMTLibrary read FMTLibrary;
+    property Active:boolean read FActive write SetActive;
   published
     property Port:Integer read FPort write SetPort stored IsSetPortStored;
+    property OnUserList:TMTUserListEvent read FOnUserList write FOnUserList;
   end;
 
 procedure Register;
 
 resourcestring
   sCantLoadProc = 'Can''t load procedure "%s"';
+  sOnlyOneInstanse = 'Only one instanse of TScancodeMT allowed';
 
 implementation
 
@@ -143,24 +156,53 @@ begin
   FPort:=AValue;
 end;
 
+procedure TScancodeMT.InternalSendUserInfo;
+var
+  U: TUserInformation;
+  S: String;
+begin
+  U:=TUserInformation.Create;
+  if Assigned(FOnUserList) then;
+  S:=U.SaveToStr;
+  U.Free;
+end;
+
 function TScancodeMT.IsSetPortStored: Boolean;
 begin
   Result:=FPort = mtDefaultPort;
 end;
 
+procedure TScancodeMT.SetActive(AValue: boolean);
+begin
+  if FActive=AValue then Exit;
+  FActive:=AValue;
+end;
+
 constructor TScancodeMT.Create(AOwner: TComponent);
 begin
   if Assigned(FScancodeMT) then
-    raise EScancodeMTLibrary.Create('Only one instanse of TScancodeMT allowed');
+    raise EScancodeMTLibrary.Create(sOnlyOneInstanse);
   inherited Create(AOwner);
   FPort:=mtDefaultPort;
   FScancodeMT:=Self;
+  FMTLibrary:=TScancodeMTLibrary.Create;
 end;
 
 destructor TScancodeMT.Destroy;
 begin
+  FreeAndNil(FMTLibrary);
   FScancodeMT:=nil;
   inherited Destroy;
+end;
+
+procedure TScancodeMT.StartServer;
+begin
+
+end;
+
+procedure TScancodeMT.StopServer;
+begin
+
 end;
 
 { TScancodeMTLibrary }

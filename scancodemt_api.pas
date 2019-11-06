@@ -76,7 +76,6 @@ type
   {$ENDIF}
 
   //typedef long (*MT_RequestCallback)(const char *, const char *);
-  //PMT_RequestCallback = ^TMT_RequestCallback;
   TMT_RequestCallback = function(const Param1:PChar; const Param2:PChar):TMTLong; cdecl;
 
 (*
