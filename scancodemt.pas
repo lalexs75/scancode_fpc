@@ -102,6 +102,7 @@ type
 
   public
     constructor Create(AOwner: TComponent); override;
+    destructor Destroy; override;
   published
     property Port:Integer read FPort write SetPort stored IsSetPortStored;
   end;
@@ -119,6 +120,21 @@ begin
   RegisterComponents('TradeEquipment',[TScancodeMT]);
 end;
 
+var
+  FScancodeMT : TScancodeMT = nil;
+
+function F_RequestCallback(const Param1:PChar; const Param2:PChar):TMTLong; cdecl;
+var
+  I: Integer;
+  S1, S2: String;
+begin
+(*  Result:=0;
+
+  S1:=StrPas(Param1);
+  S2:=StrPas(Param2);
+  MDefaultWriteLog(etDebug, Format('S1=%s || S2=%s', [S1, S2])); *)
+end;
+
 { TScancodeMT }
 
 procedure TScancodeMT.SetPort(AValue: Integer);
@@ -134,8 +150,17 @@ end;
 
 constructor TScancodeMT.Create(AOwner: TComponent);
 begin
+  if Assigned(FScancodeMT) then
+    raise EScancodeMTLibrary.Create('Only one instanse of TScancodeMT allowed');
   inherited Create(AOwner);
   FPort:=mtDefaultPort;
+  FScancodeMT:=Self;
+end;
+
+destructor TScancodeMT.Destroy;
+begin
+  FScancodeMT:=nil;
+  inherited Destroy;
 end;
 
 { TScancodeMTLibrary }
