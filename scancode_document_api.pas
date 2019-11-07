@@ -466,8 +466,8 @@ end;
 
 procedure TTask.SetIdStock(AValue: string);
 begin
-  if FIdSclad=AValue then Exit;
-  FIdSclad:=AValue;
+  if FIdStock=AValue then Exit;
+  FIdStock:=AValue;
   ModifiedProperty('IdStock');
 end;
 
