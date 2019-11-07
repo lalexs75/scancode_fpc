@@ -104,8 +104,10 @@ type
     FGoodSerial: TGoodSerial;
     FIdPack: string;
     FQuantity: string;
+    FSerialVar: string;
     procedure SetIdPack(AValue: string);
     procedure SetQuantity(AValue: string);
+    procedure SetSerialVar(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -114,6 +116,7 @@ type
   published
     property IdPack:string read FIdPack write SetIdPack;
     property Quantity:string read FQuantity write SetQuantity;
+    property SerialVar:string read FSerialVar write SetSerialVar;
     property GoodSerial:TGoodSerial read FGoodSerial;
   end;
 
@@ -337,10 +340,18 @@ begin
   ModifiedProperty('Quantity');
 end;
 
+procedure TGoodProperty.SetSerialVar(AValue: string);
+begin
+  if FSerialVar=AValue then Exit;
+  FSerialVar:=AValue;
+  ModifiedProperty('SerialVar');
+end;
+
 procedure TGoodProperty.InternalRegisterPropertys;
 begin
   RegisterProperty('IdPack', 'id_pack', 'О', 'guid идентификатор упаковки', 0, 250);
   RegisterProperty('Quantity', 'quantity', 'О', 'требуемое количество (в разрезе упаковки)', 0, 250);
+  RegisterProperty('SerialVar', 'serial_var', 'О', 'способ выбора/ввода серий', 0, 250);
   RegisterProperty('GoodSerial', 'serial', 'О', 'информация о серии товара', -1, -1);
 end;
 
