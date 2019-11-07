@@ -140,7 +140,9 @@ object Form1: TForm1
     Top = 108
     Width = 151
     Caption = 'Порт по умолчанию'
+    Checked = True
     OnChange = CheckBox1Change
+    State = cbChecked
     TabOrder = 6
   end
   object Label3: TLabel
@@ -185,8 +187,8 @@ object Form1: TForm1
   end
   object ScancodeMT1: TScancodeMT
     Port = 3004
-    Left = 62
-    Top = 24
+    Left = 136
+    Top = 104
   end
   object RxIniPropStorage1: TRxIniPropStorage
     StoredValues = <>
