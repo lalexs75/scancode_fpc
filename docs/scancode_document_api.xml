@@ -10,6 +10,9 @@
       </element><element name="TGoodSerial.Quantity"><short>quantity – требуемое количество (в разрезе серии)</short>
       </element><element name="TGoodSerial.IdSerial"><short>id_serial – guid идентификатор серии</short>
       </element>
+    <element name="TDocuments.Documents"><short>группа документов</short><descr>одна на весь файл
+</descr>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
