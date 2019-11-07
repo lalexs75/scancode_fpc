@@ -35,6 +35,11 @@
       </element><element name="TGoods"><short>описание табличной части списка товаров</short>
       </element><element name="TGood"><short>товар</short>
       </element>
+    <element name="TGoodProperty"><short>свойства товара</short>
+      </element><element name="TGoodProperty.SerialVar"><short>serial_var –характеризует способ выбора/ввода серий</short><descr><p>Значения признака варианта: НОМЕР_ВАРИАНТА:МАСКА</p><p>Номера вариантов:</p><li><ul><b>0</b> - без учета серий</ul><ul><b>1</b> - просто выбор из списка</ul><ul><b>2</b> - выбор из списка и ОБЯЗАТЕЛЬНОЕ указание: маска</ul><ul><b>3</b> - выбор из списка и НЕОБЯЗАТЕЛЬНОЕ указание: маска</ul><ul><b>4</b> - формирование списка при подборе товара с ОБЯЗАТЕЛЬНЫМ указанием:маска</ul><ul><b>5</b> - формирование списка при подборе товара с НЕОБЯЗАТЕЛЬНЫ указанием: маска</ul>
+          </li>
+        </descr>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

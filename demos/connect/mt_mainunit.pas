@@ -433,7 +433,7 @@ begin
     D.Task.IdDoc:='121f36a9-837d-11e8-ba4d-50465d72dd18';
     D.Task.IdZone:='';
     D.Task.IdRoom:='148249978629133692556415878208956447339';
-    D.Task.IdSclad="148249978153764717470829852647692745323">
+    D.Task.IdStock:='148249978153764717470829852647692745323';
   <table>
   <record id_char="b02e2809-720f-11df-b436-0015e92f2802" id_goods="bd72d913-55bc-11d9-848a-
   00112f43529a" quantity=”1”>
