@@ -50,6 +50,16 @@
       </element><element name="TSclad.IsAdress"><short>is_adress – признак использования адресного хранения</short>
       </element><element name="TSclad.IsOrder"><short>is_order – признак использования ордерной схемы</short>
       </element>
+    <element name="TDictionary"><short>Справочник товаров и их характеристик</short>
+      </element><element name="TDictionary.SprGoods"><short>Список товаров</short>
+      </element><element name="TSprGoods"><short>Список товаров</short>
+      </element><element name="TSprGood"><short>Описание товара</short>
+      </element><element name="TCharacteristics"><short>Справочник характеристик</short>
+      </element><element name="TCharacteristic"><short>Характеристика товара</short>
+      </element><element name="TDictionary.Packs"><short>packs — справочник упаковок</short>
+      </element><element name="TPacks"><short>packs — справочник упаковок</short>
+      </element><element name="TPack"><short>Упаковка товара</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
