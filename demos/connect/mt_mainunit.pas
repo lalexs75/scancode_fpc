@@ -420,16 +420,20 @@ end;
 procedure TForm1.DoSendDocsList;
 var
   DD: TDocuments;
+  D: TDocument;
 begin
-(*  DD:=TDocuments.Create;
+  DD:=TDocuments.Create;
     D:=DD.Documents.CreateChild;
-    T:=D
-
-  <?xml version="1.0" encoding="UTF-8"?><Documents>
-  <Document>
-  <Task barcode="24088173807114864056976259793525333272" date="18.09.2018 0:00:00" as_="1" control="0"
-  type="103" nomer="00-00000001" id_doc="121f36a9-837d-11e8-ba4d-50465d72dd18" id_zone=""
-  id_room="148249978629133692556415878208956447339" id_stock="148249978153764717470829852647692745323">
+    D.Task.Barcode:='24088173807114864056976259793525333272'
+    D.Task.Date:='18.09.2018 0:00:00';
+    D.Task.UseAdress:='1';
+    D.Task.Control:='0'
+    D.Task.TypeDoc:='103';
+    D.Task.Nomer:='00-00000001';
+    D.Task.IdDoc:='121f36a9-837d-11e8-ba4d-50465d72dd18';
+    D.Task.IdZone:='';
+    D.Task.IdRoom:='148249978629133692556415878208956447339';
+    D.Task.IdSclad="148249978153764717470829852647692745323">
   <table>
   <record id_char="b02e2809-720f-11df-b436-0015e92f2802" id_goods="bd72d913-55bc-11d9-848a-
   00112f43529a" quantity=”1”>

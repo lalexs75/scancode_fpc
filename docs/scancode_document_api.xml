@@ -13,6 +13,28 @@
     <element name="TDocuments.Documents"><short>группа документов</short><descr>одна на весь файл
 </descr>
       </element>
+    <element name="TDocumentsList"><short>группа документов</short>
+      </element><element name="TDocument"><short>документ</short>
+      </element><element name="TDocument.Task"><short>реквизиты документа</short>
+      </element><element name="TTask"><short>реквизиты документа</short>
+      </element><element name="TTask.Nomer"><short>наименование документа</short>
+      </element><element name="TTask.IdDoc"><short>guid идентификатор документа</short>
+      </element><element name="TTask.TypeDoc"><short>type – код типа группы документов</short>
+      </element><element name="TTask.UseAdress"><short>as_ - признак использования адресного хранения</short>
+      </element><element name="TTask.Date"><short>date – дата создания документа</short>
+      </element><element name="TTask.Control"><short>control – признак строгого учета кол-ва товаров</short><descr>используется для инвентаризации, где можно не указывать требуемое кол-во
+</descr>
+      </element><element name="TTask.Barcode"><short>ШК документа</short>
+      </element><element name="TTask.IdZone"><short>guid идентификатор зоны склада</short><descr>Если используется адресное хранение
+</descr>
+      </element><element name="TTask.IdStock"><short>guid идентификатор склад</short><descr>Если используется адресное хранение
+</descr>
+      </element><element name="TTask.IdRoom"><short>guid идентификатор помещения</short><descr>Если используется адресное хранение
+</descr>
+      </element><element name="TTask.Goods"><short>описание табличной части списка товаров</short>
+      </element><element name="TGoods"><short>описание табличной части списка товаров</short>
+      </element><element name="TGood"><short>товар</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
