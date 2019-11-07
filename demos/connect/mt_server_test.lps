@@ -9,7 +9,7 @@
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
         <CursorPos X="38" Y="22"/>
-        <UsageCount Value="37"/>
+        <UsageCount Value="38"/>
       </Unit>
       <Unit>
         <Filename Value="mt_mainunit.pas"/>
@@ -17,19 +17,20 @@
         <ComponentName Value="Form1"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-        <TopLine Value="287"/>
-        <CursorPos Y="311"/>
-        <UsageCount Value="37"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="417"/>
+        <CursorPos X="17" Y="451"/>
+        <UsageCount Value="38"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../scancodemt.pas"/>
         <UnitName Value="ScancodeMT"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="2"/>
         <TopLine Value="327"/>
         <CursorPos X="19" Y="352"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="19"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -40,11 +41,10 @@
       <Unit>
         <Filename Value="../../scancodemt_api.pas"/>
         <UnitName Value="ScancodeMT_API"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="164"/>
         <CursorPos X="3" Y="184"/>
-        <UsageCount Value="18"/>
+        <UsageCount Value="19"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -57,8 +57,11 @@
       </Unit>
       <Unit>
         <Filename Value="../../scancode_document_api.pas"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="218"/>
+        <CursorPos X="28" Y="239"/>
         <UsageCount Value="10"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../scancode_mt.pas"/>
@@ -147,10 +150,10 @@
       </Unit>
       <Unit>
         <Filename Value="../../scancode_user_api.pas"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="175"/>
-        <CursorPos X="23" Y="176"/>
-        <UsageCount Value="12"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="399"/>
+        <CursorPos Y="405"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -163,10 +166,10 @@
       <Unit>
         <Filename Value="../scancode/frames/frmusersandrightunit.pas"/>
         <UnitName Value="frmUsersAndRightUnit"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="22"/>
         <CursorPos X="15" Y="34"/>
-        <UsageCount Value="12"/>
+        <UsageCount Value="13"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -192,127 +195,109 @@
         <CursorPos Y="1256"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="../../../../lcl/interfaces/gtk2/gtk2memostrings.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="49"/>
+        <CursorPos Y="64"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="/home/install/source/fpcsrc/packages/fcl-base/src/base64.pp"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="447"/>
+        <CursorPos Y="475"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../../../lcl/interfaces/gtk2/gtk2widgetset.inc"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="2341"/>
+        <CursorPos Y="2355"/>
+        <UsageCount Value="10"/>
+      </Unit>
     </Units>
-    <JumpHistory Count="30" HistoryIndex="29">
+    <JumpHistory Count="20" HistoryIndex="19">
       <Position1>
         <Filename Value="mt_mainunit.pas"/>
-        <Caret Line="306" TopLine="284"/>
+        <Caret Line="94" Column="64" TopLine="68"/>
       </Position1>
       <Position2>
         <Filename Value="mt_mainunit.pas"/>
-        <Caret Line="307" TopLine="284"/>
+        <Caret Line="375" TopLine="360"/>
       </Position2>
       <Position3>
-        <Filename Value="mt_mainunit.pas"/>
-        <Caret Line="308" TopLine="284"/>
+        <Filename Value="../../scancode_user_api.pas"/>
+        <Caret Line="405" TopLine="399"/>
       </Position3>
       <Position4>
-        <Filename Value="mt_mainunit.pas"/>
-        <Caret Line="310" TopLine="285"/>
+        <Filename Value="../../scancode_user_api.pas"/>
+        <Caret Line="405" TopLine="399"/>
       </Position4>
       <Position5>
         <Filename Value="mt_mainunit.pas"/>
-        <Caret Line="311" TopLine="287"/>
+        <Caret Line="375" TopLine="379"/>
       </Position5>
       <Position6>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="91" Column="15" TopLine="78"/>
+        <Filename Value="mt_mainunit.pas"/>
+        <Caret Line="50" Column="15" TopLine="36"/>
       </Position6>
       <Position7>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="352" Column="18" TopLine="327"/>
+        <Filename Value="mt_mainunit.pas"/>
+        <Caret Line="388" Column="41" TopLine="376"/>
       </Position7>
       <Position8>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="354" Column="71" TopLine="327"/>
+        <Filename Value="mt_mainunit.pas"/>
+        <Caret Line="38" Column="14" TopLine="20"/>
       </Position8>
       <Position9>
-        <Filename Value="../../scancodemt.pas"/>
+        <Filename Value="mt_mainunit.pas"/>
+        <Caret Line="193" Column="5" TopLine="177"/>
       </Position9>
       <Position10>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="71" Column="19" TopLine="46"/>
+        <Filename Value="mt_mainunit.pas"/>
+        <Caret Line="66" Column="30" TopLine="39"/>
       </Position10>
       <Position11>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="230" Column="17" TopLine="205"/>
+        <Filename Value="mt_mainunit.pas"/>
+        <Caret Line="422" Column="24" TopLine="393"/>
       </Position11>
       <Position12>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="266" Column="19" TopLine="241"/>
+        <Filename Value="mt_mainunit.pas"/>
+        <Caret Line="38" Column="15" TopLine="37"/>
       </Position12>
       <Position13>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="91" Column="15" TopLine="65"/>
+        <Filename Value="mt_mainunit.pas"/>
+        <Caret Line="191" Column="29" TopLine="181"/>
       </Position13>
       <Position14>
         <Filename Value="mt_mainunit.pas"/>
-        <Caret Line="311" TopLine="283"/>
+        <Caret Line="422" Column="17" TopLine="396"/>
       </Position14>
       <Position15>
-        <Filename Value="mt_mainunit.pas"/>
-        <Caret Line="291" TopLine="283"/>
+        <Filename Value="../../scancode_document_api.pas"/>
+        <Caret Line="225" Column="13" TopLine="221"/>
       </Position15>
       <Position16>
         <Filename Value="mt_mainunit.pas"/>
-        <Caret Line="292" TopLine="283"/>
+        <Caret Line="422" Column="17" TopLine="393"/>
       </Position16>
       <Position17>
         <Filename Value="mt_mainunit.pas"/>
-        <Caret Line="293" TopLine="283"/>
+        <Caret Line="76" Column="73" TopLine="49"/>
       </Position17>
       <Position18>
         <Filename Value="mt_mainunit.pas"/>
-        <Caret Line="294" TopLine="283"/>
+        <Caret Line="424" Column="5" TopLine="393"/>
       </Position18>
       <Position19>
         <Filename Value="mt_mainunit.pas"/>
-        <Caret Line="295" TopLine="283"/>
+        <Caret Line="425" Column="7" TopLine="402"/>
       </Position19>
       <Position20>
         <Filename Value="mt_mainunit.pas"/>
-        <Caret Line="297" TopLine="283"/>
+        <Caret Line="426" Column="8" TopLine="417"/>
       </Position20>
-      <Position21>
-        <Filename Value="mt_mainunit.pas"/>
-        <Caret Line="311" TopLine="287"/>
-      </Position21>
-      <Position22>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="351" TopLine="327"/>
-      </Position22>
-      <Position23>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="350" Column="70" TopLine="327"/>
-      </Position23>
-      <Position24>
-        <Filename Value="mt_mainunit.pas"/>
-        <Caret Line="291" TopLine="284"/>
-      </Position24>
-      <Position25>
-        <Filename Value="mt_mainunit.pas"/>
-        <Caret Line="311" TopLine="287"/>
-      </Position25>
-      <Position26>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="332" Column="110" TopLine="327"/>
-      </Position26>
-      <Position27>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="71" Column="19" TopLine="56"/>
-      </Position27>
-      <Position28>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="230" Column="17" TopLine="205"/>
-      </Position28>
-      <Position29>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="266" Column="19" TopLine="241"/>
-      </Position29>
-      <Position30>
-        <Filename Value="../../scancodemt.pas"/>
-        <Caret Line="351" Column="29" TopLine="326"/>
-      </Position30>
     </JumpHistory>
     <RunParams>
       <FormatVersion Value="2"/>

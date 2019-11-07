@@ -63,6 +63,7 @@ type
 
     procedure ParseExtendeInfo(AInfo:string);
     function DoSendUserList:string;
+    procedure DoSendDocsList;
   public
 
   end;
@@ -72,7 +73,7 @@ var
 
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
 implementation
-uses rxlogging, ScancodeMT_API, scancode_user_api;
+uses rxlogging, ScancodeMT_API, scancode_user_api, scancode_document_api;
 
 {$R *.lfm}
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
@@ -91,7 +92,7 @@ begin
 
   S1:=StrPas(Param1);
   S2:=StrPas(Param2);
-  RxWriteLog(etDebug, 'S1=%s || S2=%s', [S1, S2]);
+  RxDefaultWriteLog(etDebug, Format('S1=%s || S2=%s', [S1, S2]));
 
   if not Assigned(Form1) then Exit;
   Form1.ParseExtendeInfo(S2);
@@ -141,6 +142,10 @@ begin
     FLibrary.LibraryName:=FileNameEdit1.Text;
     RxWriteLog(etDebug, 'Try to load file "%s"', [FileNameEdit1.Text]);
     FLibrary.LoadMTLibrary;
+    if FLibrary.Loaded then
+      RxWriteLog(etDebug, 'Success.')
+    else
+      RxWriteLog(etDebug, 'Error.');
   end
   else
     RxWriteLog(etError, 'File "%s" not found', [FileNameEdit1.Text]);
@@ -186,6 +191,7 @@ begin
   if FCurCommand = 'GetDocum' then
   begin
     // Получить документы
+    DoSendDocsList;
   end
   else
   if FCurCommand = 'GetData' then
@@ -307,7 +313,7 @@ begin
   S:=Ex.SaveToStr;
   Ex.Free;
 
-  RxWriteLog(etDebug, 'SendAnswer : %s '#13'%s'#13, [Command, S]);
+  RxDefaultWriteLog(etDebug, Format('SendAnswer : %s '#13'%s'#13, [Command, S]));
   FLibrary.SendAnswer(PChar(Command), PChar(S));
   UpdateErrorCode;
 end;
@@ -374,6 +380,16 @@ begin
     //L.Id:='USER_ID_0001';
     L.Id:='8368e8b098294ae292bd8d4ddd658d9a';
     L.Login:='Лагунов Алексей Анатольевич';
+    L.PasswordDecoded:='';
+    L.Rights:='1/2/3/4/5';
+    L.CreateProd:='1/2/3/4';
+    L.AddProd:='1/2/3/4';
+    L.CreateFreeCollect:='1/2/3/4';
+
+  L:=U.Logins.Records.CreateChild;
+    L.Id:='USER_ID_0001';
+    //L.Id:='8368e8b098294ae292bd8d4ddd658d9a';
+    L.Login:='Харин Андрей';
     L.PasswordDecoded:='123';
     L.Rights:='1/2/3/4/5';
     L.CreateProd:='1/2/3/4';
@@ -399,6 +415,40 @@ begin
 
   U.Free;
 
+end;
+
+procedure TForm1.DoSendDocsList;
+var
+  DD: TDocuments;
+begin
+(*  DD:=TDocuments.Create;
+    D:=DD.Documents.CreateChild;
+    T:=D
+
+  <?xml version="1.0" encoding="UTF-8"?><Documents>
+  <Document>
+  <Task barcode="24088173807114864056976259793525333272" date="18.09.2018 0:00:00" as_="1" control="0"
+  type="103" nomer="00-00000001" id_doc="121f36a9-837d-11e8-ba4d-50465d72dd18" id_zone=""
+  id_room="148249978629133692556415878208956447339" id_stock="148249978153764717470829852647692745323">
+  <table>
+  <record id_char="b02e2809-720f-11df-b436-0015e92f2802" id_goods="bd72d913-55bc-11d9-848a-
+  00112f43529a" quantity=”1”>
+  <property id_pack="dff7f708-7a0b-11df-b33a-0011955cba6b" serial_var="0:001"
+  quantity=”1”>
+  <serial quantity="1" id_serial="">
+  <cells cell="305982541796071806599496327226965408363"
+  celladdress="ОСТ3-2-1"/>
+  </serial>
+  </property>
+  </record>
+  </table>
+  </Task>
+  </Document>
+  </Documents>
+
+  S:=DD.SaveToStr;
+  SendAnswer('GetDocum', S);
+  DD.Free;    *)
 end;
 
 end.
