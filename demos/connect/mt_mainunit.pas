@@ -64,6 +64,8 @@ type
     procedure ParseExtendeInfo(AInfo:string);
     procedure DoSendUserList;
     procedure DoSendDocsList;
+    procedure DoSendGetData;
+    procedure DoSendGetProd;
   public
 
   end;
@@ -73,7 +75,7 @@ var
 
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
 implementation
-uses rxlogging, ScancodeMT_API, scancode_user_api, scancode_document_api;
+uses rxlogging, ScancodeMT_API, scancode_user_api, scancode_document_api, scancode_characteristics_api;
 
 {$R *.lfm}
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
@@ -197,6 +199,7 @@ begin
   if FCurCommand = 'GetData' then
   begin
     // Получить список всех товаров
+    DoSendGetData;
   end
   else
   if FCurCommand = 'PutDocum' then
@@ -207,14 +210,15 @@ begin
   if FCurCommand = 'GetProd' then
   begin
     // Получить информацию о товаре
+    DoSendGetProd;
   end
   else
   if FCurCommand = 'CreateProd' then
   begin
     // Создать товар
   end
-{  else
-    raise EScancodeMTLibrary.CreateFmt('Unknow command %s', [S1]);}
+  else
+    raise EScancodeMTLibrary.CreateFmt('Unknow command %s', [FCurCommand]);
 
 end;
 
@@ -443,6 +447,124 @@ begin
     GC.Cell:='celladdress="ОСТ3-2-1';
   SendAnswer('GetDocum', DD);
   DD.Free;
+end;
+
+procedure TForm1.DoSendGetData;
+var
+  Dic: TDictionary;
+  G: TSprGood;
+  Ch: TCharacteristic;
+  Pck: TPack;
+  Sr: TSerial;
+  Br: TBarcode;
+  M: TMeasure;
+  Prc: TPrice;
+  VN: TNomenclatureType;
+  Skld: TSclad;
+begin
+  Dic:=TDictionary.Create;
+  G:=Dic.SprGoods.SprGoodLists.CreateChild;
+    G.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
+    G.Name:='Наименование товара';
+    G.IdMeasure:='bd72d90f-55bc-11d9-848a-00112f43529a';
+    G.Art:='Б- 130005';
+    G.Alco:='0';
+    G.IdVidnomencl:='';
+    G.IdNaborPack:='';
+    G.Img:='';
+    G.Bitmap:='';
+
+  Ch:=Dic.Characteristics.CharacteristicList.CreateChild;
+    Ch.IdOwner:='bd72d913-55bc-11d9-848a-00112f43529a';
+    Ch.Relation:='видыноменклатуры';
+    Ch.Name:='38, Бежевый, 6, натуральная кожа';
+    Ch.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
+
+  Pck:=Dic.Packs.PackList.CreateChild;
+    Pck.IdOwner:='bd72d913-55bc-11d9-848a-00112f43529a';
+    Pck.Relation:='';
+    Pck.Name:='пар';
+    Pck.IdPack:='bd72d90f-55bc-11d9-848a-00112f43529a';
+    Pck.Koeff:='1';
+
+  Sr:=Dic.Serials.SerialList.CreateChild;
+    Sr.IdOwner:='e8a71fbf-55bc-11d9-848a-00112f43529a';
+    Sr.Relation:='';
+    Sr.Name:='до 20.12.16';
+    Sr.IdSerial:='0ed9fc88-d9fe-11e4-92f1-0050568b35ac';
+    Sr.Num:='';
+    Sr.Date:='2016-12-20T00:00:00';
+
+  Br:=Dic.Barcodes.BarcodeList.CreateChild;
+    Br.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
+    Br.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
+    Br.IdPack:='';
+    Br.Barcode:='2000000000480';
+  Br:=Dic.Barcodes.BarcodeList.CreateChild;
+    Br.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
+    Br.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
+    Br.IdPack:='f0e40f7b-7390-11df-b338-0011955cba6b';
+    Br.Barcode:='2000000000497';
+  Br:=Dic.Barcodes.BarcodeList.CreateChild;
+    Br.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
+    Br.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
+    Br.IdPack:='f0e40f7d-7390-11df-b338-0011955cba6b';
+    Br.Barcode:='2000000000503';
+  Br:=Dic.Barcodes.BarcodeList.CreateChild;
+    Br.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
+    Br.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
+    Br.IdPack:='dff7f708-7a0b-11df-b33a-0011955cba6b';
+    Br.Barcode:='2000000000510';
+
+  M:=Dic.Measures.MeasureList.CreateChild;
+    M.IdMeasure:='bd72d90f-55bc-11d9-848a-00112f43529a';
+    M.Name:='пар';
+
+  Prc:=Dic.Prices.PriceList.CreateChild;
+    Prc.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
+    Prc.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
+    Prc.IdPack:='dff7f708-7a0b-11df-b33a-0011955cba6b';
+    Prc.Price:='8166.4';
+    Prc.Currency:='руб';
+
+  VN:=Dic.NomenclatureTypes.NomenclatureTypeList.CreateChild;
+    VN.IdNomenclatureType:='9c556d55-720f-11df-b436-0015e92f2802';
+    VN.Name:='Холодильники';
+    VN.IsChar:='0';
+    VN.IsSerial:='0';
+  VN:=Dic.NomenclatureTypes.NomenclatureTypeList.CreateChild;
+    VN.IdNomenclatureType:='9c556d52-720f-11df-b436-0015e92f2802';
+    VN.Name:='Электротовары';
+    VN.IsChar:='0';
+    VN.IsSerial:='0';
+
+  Skld:=Dic.Sclads.ScladList.CreateChild;
+    Skld.IdSclad:='abf5870d-f5c8-11e2-802f-0015e9b8c48d';
+    Skld.Name:='Домодедовская таможня';
+    Skld.IsAdress:='0';
+    Skld.IsOrder:='0';
+  Skld:=Dic.Sclads.ScladList.CreateChild;
+    Skld.IdSclad:='abf58710-f5c8-11e2-802f-0015e9b8c48d';
+    Skld.Name:='Внуковская таможня';
+    Skld.IsAdress:='0';
+    Skld.IsOrder:='0';
+
+  SendAnswer('GetData', Dic);
+  Dic.Free;
+end;
+
+procedure TForm1.DoSendGetProd;
+var
+  Q: TQueryGoods;
+begin
+  if FileName <> '' then
+  begin
+    Q:=TQueryGoods.Create;
+    Q.LoadFromFile(FileName);
+
+    //SendAnswer('GetProd', Dic);
+    Q.Free;
+  end;
 end;
 
 end.
