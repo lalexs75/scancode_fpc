@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn,
-  Spin, ComCtrls, ExtCtrls, ScancodeMT, RxIniPropStorage;
+  Spin, ComCtrls, ExtCtrls, ScancodeMT, xmlobject, RxIniPropStorage;
 
 type
 
@@ -47,7 +47,7 @@ type
     procedure StartServer;
     procedure StopServer;
     procedure SetCallback;
-    procedure SendAnswer(const Command:string; const Data:String);
+    procedure SendAnswer(const Command:string; const Data:TXmlSerializationObject);
 
     procedure UpdateBtnStates;
   private
@@ -62,7 +62,7 @@ type
     Version: String;
 
     procedure ParseExtendeInfo(AInfo:string);
-    function DoSendUserList:string;
+    procedure DoSendUserList;
     procedure DoSendDocsList;
   public
 
@@ -288,23 +288,20 @@ begin
   UpdateErrorCode;
 end;
 
-procedure TForm1.SendAnswer(const Command: string; const Data: String);
+procedure TForm1.SendAnswer(const Command: string;
+  const Data: TXmlSerializationObject);
 var
-  TT, S: String;
-  TTF: TFileStream;
   Ex: TExtendedInformation;
+  FTmpFileName, S: String;
 begin
-  TT:=GetTempFileName;
-  TTF:=TFileStream.Create(TT, fmCreate);
-  if Data<>'' then
-    TTF.Write(Data[1], Length(Data));
-  TTF.Free;
+  FTmpFileName:=GetTempFileName;
+  Data.SaveToFile(FTmpFileName);
 
   Ex:=TExtendedInformation.Create;
 
   Ex.Confirm:=Confirm;
   Ex.DocType:=DocType;
-  Ex.FileName:=TT;
+  Ex.FileName:=FTmpFileName;
   Ex.PackgeNumber:=PackgeNumber;
   Ex.Serial:=Serial;
   Ex.UserID:=UserID;
@@ -368,7 +365,7 @@ begin
   MDefaultWriteLog(etDebug, 'Version := '+Version);
 end;
 
-function TForm1.DoSendUserList: string;
+procedure TForm1.DoSendUserList;
 var
   U: TUserInformation;
   L: TUserLogin;
@@ -409,50 +406,43 @@ begin
     R.Id:='303';
     R.groupId:='3';
 
-  Result:=U.SaveToStr;
-
-  SendAnswer('GetUsers', Result);
-
+  SendAnswer('GetUsers', U);
   U.Free;
-
 end;
 
 procedure TForm1.DoSendDocsList;
 var
   DD: TDocuments;
   D: TDocument;
+  G: TGood;
+  GC: TGoodCell;
 begin
   DD:=TDocuments.Create;
     D:=DD.Documents.CreateChild;
-    D.Task.Barcode:='24088173807114864056976259793525333272'
+    D.Task.Barcode:='24088173807114864056976259793525333272';
     D.Task.Date:='18.09.2018 0:00:00';
     D.Task.UseAdress:='1';
-    D.Task.Control:='0'
+    D.Task.Control:='0';
     D.Task.TypeDoc:='103';
     D.Task.Nomer:='00-00000001';
     D.Task.IdDoc:='121f36a9-837d-11e8-ba4d-50465d72dd18';
     D.Task.IdZone:='';
     D.Task.IdRoom:='148249978629133692556415878208956447339';
     D.Task.IdStock:='148249978153764717470829852647692745323';
-  <table>
-  <record id_char="b02e2809-720f-11df-b436-0015e92f2802" id_goods="bd72d913-55bc-11d9-848a-
-  00112f43529a" quantity=”1”>
-  <property id_pack="dff7f708-7a0b-11df-b33a-0011955cba6b" serial_var="0:001"
-  quantity=”1”>
-  <serial quantity="1" id_serial="">
-  <cells cell="305982541796071806599496327226965408363"
-  celladdress="ОСТ3-2-1"/>
-  </serial>
-  </property>
-  </record>
-  </table>
-  </Task>
-  </Document>
-  </Documents>
-
-  S:=DD.SaveToStr;
-  SendAnswer('GetDocum', S);
-  DD.Free;    *)
+    G:=D.Task.Goods.CreateChild;
+    G.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
+    G.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
+    G.Quantity:='1';
+    G.GoodProperty.IdPack:='dff7f708-7a0b-11df-b33a-0011955cba6b';
+    G.GoodProperty.SerialVar:='0:001';
+    G.GoodProperty.Quantity:='1';
+    G.GoodProperty.GoodSerial.Quantity:='1';
+    G.GoodProperty.GoodSerial.IdSerial:='';
+    GC:=G.GoodProperty.GoodSerial.GoodCells.CreateChild;
+    GC.Cell:='305982541796071806599496327226965408363';
+    GC.Cell:='celladdress="ОСТ3-2-1';
+  SendAnswer('GetDocum', DD);
+  DD.Free;
 end;
 
 end.
