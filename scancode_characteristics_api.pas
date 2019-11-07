@@ -549,7 +549,140 @@ type
     property Sclads:TSclads read FSclads;
   end;
 
+  { TQueryGood }
+
+  TQueryGood = class(TXmlSerializationObject)
+  private
+    FIdChar: string;
+    FIdGoods: string;
+    FIdSklad: string;
+    procedure SetIdChar(AValue: string);
+    procedure SetIdGoods(AValue: string);
+    procedure SetIdSklad(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+    function RootNodeName:string; override;
+  public
+    destructor Destroy; override;
+  published
+    property IdGoods:string read FIdGoods write SetIdGoods;
+    property IdSklad:string read FIdSklad write SetIdSklad;
+    property IdChar:string read FIdChar write SetIdChar;
+  end;
+
+  { TQueryGoodList }
+
+  TQueryGoodList = class(TXmlSerializationObjectList)
+  private
+    function GetItem(AIndex: Integer): TQueryGood; inline;
+  public
+    constructor Create;
+    function CreateChild:TQueryGood;
+    property Item[AIndex:Integer]:TQueryGood read GetItem; default;
+  end;
+
+  { TQueryGoods }
+  TQueryGoods = class(TXmlSerializationObject)
+  private
+    FGoodList: TQueryGoodList;
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+    function RootNodeName:string; override;
+  public
+    destructor Destroy; override;
+  published
+    property GoodList:TQueryGoodList read FGoodList;
+  end;
+
 implementation
+
+{ TQueryGoodList }
+
+function TQueryGoodList.GetItem(AIndex: Integer): TQueryGood;
+begin
+  Result:=TQueryGood(InternalGetItem(AIndex));
+end;
+
+constructor TQueryGoodList.Create;
+begin
+  inherited Create(TQueryGood)
+end;
+
+function TQueryGoodList.CreateChild: TQueryGood;
+begin
+  Result:=InternalAddObject as TQueryGood;
+end;
+
+{ TQueryGood }
+
+procedure TQueryGood.SetIdChar(AValue: string);
+begin
+  if FIdChar=AValue then Exit;
+  FIdChar:=AValue;
+  ModifiedProperty('IdChar');
+end;
+
+procedure TQueryGood.SetIdGoods(AValue: string);
+begin
+  if FIdGoods=AValue then Exit;
+  FIdGoods:=AValue;
+  ModifiedProperty('IdGoods');
+end;
+
+procedure TQueryGood.SetIdSklad(AValue: string);
+begin
+  if FIdSklad=AValue then Exit;
+  FIdSklad:=AValue;
+  ModifiedProperty('IdSklad');
+end;
+
+procedure TQueryGood.InternalRegisterPropertys;
+begin
+  RegisterProperty('IdGoods', 'id_goods', 'О', '', 1, 255);
+  RegisterProperty('IdSklad', 'id_sklad', 'О', '', 1, 255);
+  RegisterProperty('IdChar', 'id_char', 'О', '', 1, 255);
+end;
+
+procedure TQueryGood.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+function TQueryGood.RootNodeName: string;
+begin
+  Result:=inherited RootNodeName;
+end;
+
+destructor TQueryGood.Destroy;
+begin
+  inherited Destroy;
+end;
+
+{ TQueryGoods }
+
+procedure TQueryGoods.InternalRegisterPropertys;
+begin
+  RegisterProperty('GoodList', 'Record', 'О', 'Список товаров', -1, -1);
+end;
+
+procedure TQueryGoods.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FGoodList:=TQueryGoodList.Create;
+end;
+
+function TQueryGoods.RootNodeName: string;
+begin
+  Result:='Table';
+end;
+
+destructor TQueryGoods.Destroy;
+begin
+  FreeAndNil(FGoodList);
+  inherited Destroy;
+end;
 
 { TSclad }
 
