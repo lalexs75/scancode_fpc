@@ -161,7 +161,7 @@ type
     FGoods: TGoods;
     FIdDoc: string;
     FIdRoom: string;
-    FIdSclad: string;
+    FIdStock: string;
     FIdZone: string;
     FNomer: string;
     FTypeDoc: string;
@@ -171,7 +171,7 @@ type
     procedure SetDate(AValue: string);
     procedure SetIdDoc(AValue: string);
     procedure SetIdRoom(AValue: string);
-    procedure SetIdSclad(AValue: string);
+    procedure SetIdStock(AValue: string);
     procedure SetIdZone(AValue: string);
     procedure SetNomer(AValue: string);
     procedure SetTypeDoc(AValue: string);
@@ -190,7 +190,7 @@ type
     property Control:string read FControl write SetControl;
     property Barcode:string read FBarcode write SetBarcode;
     property IdZone:string read FIdZone write SetIdZone;
-    property IdSclad:string read FIdSclad write SetIdSclad;
+    property IdStock:string read FIdStock write SetIdStock;
     property IdRoom:string read FIdRoom write SetIdRoom;
     property Goods:TGoods read FGoods;
   end;
@@ -453,11 +453,11 @@ begin
   ModifiedProperty('IdRoom');
 end;
 
-procedure TTask.SetIdSclad(AValue: string);
+procedure TTask.SetIdStock(AValue: string);
 begin
   if FIdSclad=AValue then Exit;
   FIdSclad:=AValue;
-  ModifiedProperty('IdSclad');
+  ModifiedProperty('IdStock');
 end;
 
 procedure TTask.SetIdZone(AValue: string);
@@ -498,7 +498,7 @@ begin
   RegisterProperty('Control', 'control', 'О', 'признак строгого учета кол-ва товаров', 0, 150);
   RegisterProperty('Barcode', 'barcode', 'О', 'ШК документа', 0, 150);
   RegisterProperty('IdZone', 'id_zone', 'О', 'guid идентификатор зоны склада', 0, 150);
-  RegisterProperty('IdSclad', 'id_sclad', 'О', 'guid идентификатор склад', 0, 150);
+  RegisterProperty('IdSclad', 'id_stock', 'О', 'guid идентификатор склад', 0, 150);
   RegisterProperty('IdRoom', 'id_room', 'О', 'guid идентификатор помещения', 0, 150);
   RegisterProperty('Goods', 'record', 'О', 'товар', -1, -1);
 end;
