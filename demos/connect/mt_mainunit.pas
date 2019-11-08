@@ -67,6 +67,8 @@ type
     procedure DoSendGetData;
     procedure DoSendGetProd;
     procedure DoSendGetStock;
+
+    procedure DoGetPutDocum;
   public
 
   end;
@@ -77,7 +79,7 @@ var
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
 implementation
 uses rxlogging, ScancodeMT_API, scancode_user_api, scancode_document_api, scancode_characteristics_api,
-  scancode_stock_api;
+  scancode_stock_api, scancode_tsd_order_api;
 
 {$R *.lfm}
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
@@ -207,11 +209,9 @@ begin
   if FCurCommand = 'GetData' then // Получить список всех товаров
     DoSendGetData
   else
-(*  if FCurCommand = 'PutDocum' then
-  begin
-    // Передача ордеров
-  end
-  else*)
+  if FCurCommand = 'PutDocum' then // Передача ордеров
+    DoGetPutDocum
+  else
   if FCurCommand = 'GetProd' then // Получить информацию о товаре
     DoSendGetProd
   else
@@ -670,6 +670,18 @@ begin
 
   SendAnswer('GetStock', St);
   St.Free;
+end;
+
+procedure TForm1.DoGetPutDocum;
+var
+  O: TOrders;
+begin
+  if FileName <> '' then
+  begin
+    O:=TOrders.Create;
+    O.LoadFromFile(FileName);
+    O.Free;
+  end;
 end;
 
 end.
