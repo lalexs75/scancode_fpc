@@ -48,6 +48,7 @@ uses
   Classes, SysUtils, xmlobject;
 
 type
+  TNomenclatureListEnumerator = class;
 
   { TTaskGoodMarking }
 
@@ -182,12 +183,14 @@ type
     FGoods: TTaskGoods;
     FIdDoc: string;
     FIdSclad: string;
+    FLastOrder: string;
     FTaskType: string;
     procedure SetDate(AValue: string);
     procedure SetDateOrder(AValue: string);
     procedure SetFC(AValue: string);
     procedure SetIdDoc(AValue: string);
     procedure SetIdSclad(AValue: string);
+    procedure SetLastOrder(AValue: string);
     procedure SetTaskType(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
@@ -202,6 +205,7 @@ type
     property FC:string read FFC write SetFC;
     property IdSclad:string read FIdSclad write SetIdSclad;
     property Goods:TTaskGoods read FGoods;
+    property LastOrder:string read FLastOrder write SetLastOrder;
   end;
 
   { TTasks }
@@ -299,8 +303,23 @@ type
   public
     constructor Create;
     function CreateChild:TNomenclature;
+    function GetEnumerator: TNomenclatureListEnumerator;
     property Item[AIndex:Integer]:TNomenclature read GetItem; default;
   end;
+
+  { TNomenclatureListEnumerator }
+
+  TNomenclatureListEnumerator = class
+  private
+    FList: TNomenclatureList;
+    FPosition: Integer;
+  public
+    constructor Create(AList: TNomenclatureList);
+    function GetCurrent: TNomenclature;
+    function MoveNext: Boolean;
+    property Current: TNomenclature read GetCurrent;
+  end;
+
 
   { TNomenclatures }
 
@@ -407,6 +426,25 @@ uses DOM, XMLWrite;
 
 type
   THackXmlSerializationObject = class(TXmlSerializationObject);
+
+{ TNomenclatureListEnumerator }
+
+constructor TNomenclatureListEnumerator.Create(AList: TNomenclatureList);
+begin
+  FList := AList;
+  FPosition := -1;
+end;
+
+function TNomenclatureListEnumerator.GetCurrent: TNomenclature;
+begin
+  Result := FList[FPosition];
+end;
+
+function TNomenclatureListEnumerator.MoveNext: Boolean;
+begin
+  Inc(FPosition);
+  Result := FPosition < FList.Count;
+end;
 
 { TBarcode }
 
@@ -668,6 +706,11 @@ begin
   Result:=InternalAddObject as TNomenclature;
 end;
 
+function TNomenclatureList.GetEnumerator: TNomenclatureListEnumerator;
+begin
+  Result:=TNomenclatureListEnumerator.Create(Self);
+end;
+
 { TTaskGoodPropertySerialCell }
 
 procedure TTaskGoodPropertySerialCell.SetCellAddress(AValue: string);
@@ -920,6 +963,13 @@ begin
   ModifiedProperty('IdSclad');
 end;
 
+procedure TTask.SetLastOrder(AValue: string);
+begin
+  if FLastOrder=AValue then Exit;
+  FLastOrder:=AValue;
+  ModifiedProperty('LastOrder');
+end;
+
 procedure TTask.SetTaskType(AValue: string);
 begin
   if FTaskType=AValue then Exit;
@@ -936,6 +986,7 @@ begin
   RegisterProperty('FC', 'fc', 'О', 'признак «свободный набор» (значение: 1 или 0)', 0, 250);
   RegisterProperty('IdSclad', 'id_sclad', 'О', 'guid идентификатор склада', 0, 250);
   RegisterProperty('Goods', 'record', 'О', 'товар', -1, -1);
+  RegisterProperty('LastOrder', 'last_order', 'О', '', 0, 250);
 end;
 
 procedure TTask.InternalInitChilds;
