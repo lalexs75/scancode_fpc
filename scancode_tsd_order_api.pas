@@ -316,9 +316,9 @@ type
     property NomenclatureList:TNomenclatureList read FNomenclatureList;
   end;
 
-  { TBarcode }
+  { TTSDBarcode }
 
-  TBarcode = class(TXmlSerializationObject)
+  TTSDBarcode = class(TXmlSerializationObject)
   private
     FBarcode: string;
     FIdChar: string;
@@ -340,36 +340,36 @@ type
     property Barcode:string read FBarcode write SetBarcode;
   end;
 
-  { TBarcodeList }
+  { TTSDBarcodeList }
 
-  TBarcodeList = class(TXmlSerializationObjectList)
+  TTSDBarcodeList = class(TXmlSerializationObjectList)
   private
-    function GetItem(AIndex: Integer): TBarcode; inline;
+    function GetItem(AIndex: Integer): TTSDBarcode; inline;
   public
     constructor Create;
-    function CreateChild:TBarcode;
-    property Item[AIndex:Integer]:TBarcode read GetItem; default;
+    function CreateChild:TTSDBarcode;
+    property Item[AIndex:Integer]:TTSDBarcode read GetItem; default;
   end;
 
-  { TBarcodes }
+  { TTSDBarcodes }
 
-  TBarcodes = class(TXmlSerializationObject)
+  TTSDBarcodes = class(TXmlSerializationObject)
   private
-    FBarcodeList: TBarcodeList;
+    FBarcodeList: TTSDBarcodeList;
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
   published
-    property BarcodeList:TBarcodeList read FBarcodeList;
+    property BarcodeList:TTSDBarcodeList read FBarcodeList;
   end;
 
   { THandbooks }
 
   THandbooks = class(TXmlSerializationObject)
   private
-    FBarcodes: TBarcodes;
+    FBarcodes: TTSDBarcodes;
     FCharacteristics: TCharacteristics;
     FNomenclatures: TNomenclatures;
   protected
@@ -381,7 +381,7 @@ type
   published
     property Nomenclatures:TNomenclatures read FNomenclatures;
     property Characteristics:TCharacteristics read FCharacteristics;
-    property Barcodes:TBarcodes read FBarcodes;
+    property Barcodes:TTSDBarcodes read FBarcodes;
   end;
 
 
@@ -410,35 +410,35 @@ type
 
 { TBarcode }
 
-procedure TBarcode.SetIdChar(AValue: string);
+procedure TTSDBarcode.SetIdChar(AValue: string);
 begin
   if FIdChar=AValue then Exit;
   FIdChar:=AValue;
   ModifiedProperty('IdChar');
 end;
 
-procedure TBarcode.SetBarcode(AValue: string);
+procedure TTSDBarcode.SetBarcode(AValue: string);
 begin
   if FBarcode=AValue then Exit;
   FBarcode:=AValue;
   ModifiedProperty('Barcode');
 end;
 
-procedure TBarcode.SetIdGoods(AValue: string);
+procedure TTSDBarcode.SetIdGoods(AValue: string);
 begin
   if FIdGoods=AValue then Exit;
   FIdGoods:=AValue;
   ModifiedProperty('IdGoods');
 end;
 
-procedure TBarcode.SetIdPack(AValue: string);
+procedure TTSDBarcode.SetIdPack(AValue: string);
 begin
   if FIdPack=AValue then Exit;
   FIdPack:=AValue;
   ModifiedProperty('IdPack');
 end;
 
-procedure TBarcode.InternalRegisterPropertys;
+procedure TTSDBarcode.InternalRegisterPropertys;
 begin
   RegisterProperty('IdGoods', 'id_goods', 'О', '', 0, 250);
   RegisterProperty('IdChar', 'id_char', 'О', '', 0, 250);
@@ -446,47 +446,47 @@ begin
   RegisterProperty('Barcode', 'barcode', 'О', '', 0, 250);
 end;
 
-procedure TBarcode.InternalInitChilds;
+procedure TTSDBarcode.InternalInitChilds;
 begin
   inherited InternalInitChilds;
 end;
 
-destructor TBarcode.Destroy;
+destructor TTSDBarcode.Destroy;
 begin
   inherited Destroy;
 end;
 
-{ TBarcodeList }
+{ TTSDBarcodeList }
 
-function TBarcodeList.GetItem(AIndex: Integer): TBarcode;
+function TTSDBarcodeList.GetItem(AIndex: Integer): TTSDBarcode;
 begin
-  Result:=TBarcode(InternalGetItem(AIndex));
+  Result:=TTSDBarcode(InternalGetItem(AIndex));
 end;
 
-constructor TBarcodeList.Create;
+constructor TTSDBarcodeList.Create;
 begin
-  inherited Create(TBarcode)
+  inherited Create(TTSDBarcode)
 end;
 
-function TBarcodeList.CreateChild: TBarcode;
+function TTSDBarcodeList.CreateChild: TTSDBarcode;
 begin
-  Result:=InternalAddObject as TBarcode;
+  Result:=InternalAddObject as TTSDBarcode;
 end;
 
-{ TBarcodes }
+{ TTSDBarcodes }
 
-procedure TBarcodes.InternalRegisterPropertys;
+procedure TTSDBarcodes.InternalRegisterPropertys;
 begin
   RegisterProperty('BarcodeList', 'record', 'О', '', -1, -1);
 end;
 
-procedure TBarcodes.InternalInitChilds;
+procedure TTSDBarcodes.InternalInitChilds;
 begin
   inherited InternalInitChilds;
-  FBarcodeList:=TBarcodeList.Create;
+  FBarcodeList:=TTSDBarcodeList.Create;
 end;
 
-destructor TBarcodes.Destroy;
+destructor TTSDBarcodes.Destroy;
 begin
   FreeAndNil(FBarcodeList);
   inherited Destroy;
@@ -1008,7 +1008,7 @@ begin
   inherited InternalInitChilds;
   FNomenclatures:=TNomenclatures.Create;
   FCharacteristics:=TCharacteristics.Create;
-  FBarcodes:=TBarcodes.Create;
+  FBarcodes:=TTSDBarcodes.Create;
 end;
 
 function THandbooks.RootNodeName: string;
