@@ -280,7 +280,6 @@ type
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
-    function RootNodeName:string; override;
   public
     destructor Destroy; override;
   published
@@ -645,11 +644,6 @@ end;
 procedure TNomenclature.InternalInitChilds;
 begin
   inherited InternalInitChilds;
-end;
-
-function TNomenclature.RootNodeName: string;
-begin
-  Result:=inherited RootNodeName;
 end;
 
 destructor TNomenclature.Destroy;

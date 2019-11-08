@@ -562,7 +562,6 @@ type
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
-    function RootNodeName:string; override;
   public
     destructor Destroy; override;
   published
@@ -648,11 +647,6 @@ end;
 procedure TQueryGood.InternalInitChilds;
 begin
   inherited InternalInitChilds;
-end;
-
-function TQueryGood.RootNodeName: string;
-begin
-  Result:=inherited RootNodeName;
 end;
 
 destructor TQueryGood.Destroy;
