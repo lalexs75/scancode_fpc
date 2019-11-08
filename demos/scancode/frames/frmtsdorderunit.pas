@@ -13,6 +13,7 @@ type
 
   TfrmTSDOrderFrame = class(TFrame)
     Button1: TButton;
+    CLabel: TLabel;
     procedure Button1Click(Sender: TObject);
   private
 
@@ -36,7 +37,7 @@ var
   TSDO: TOrders;
   //Handbooks: THandbooks;
   CH: TCharacteristic;
-  BR: TBarcode;
+  BR: TTSDBarcode;
 begin
   TSDO:=TOrders.Create;
 
