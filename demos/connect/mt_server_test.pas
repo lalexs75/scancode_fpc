@@ -8,17 +8,29 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms,
-  rxnew,
+  sysutils,
   rxlogging,
   mt_mainunit
   { you can add units after this };
 
 {$R *.res}
 
+procedure InitLocale;
+begin
+  //
+  DefaultFormatSettings.LongDateFormat:='dd.mm.yyyy';
+  DefaultFormatSettings.ShortDateFormat:=DefaultFormatSettings.LongDateFormat;
+  DefaultFormatSettings.DateSeparator:='.';
+  DefaultFormatSettings.TimeSeparator:=':';
+  //ConvetToUTF8LocalConst;
+  DefaultFormatSettings.ThousandSeparator:=' ';
+  DefaultFormatSettings.CurrencyString:='р.';
+end;
+
 begin
   RequireDerivedFormResource:=True;
+  InitLocale;
 
-  //InitRxLogs;
   OnRxLoggerEvent:=@MDefaultWriteLog;
 
   Application.Scaled:=True;

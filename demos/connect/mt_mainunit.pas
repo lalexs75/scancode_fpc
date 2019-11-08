@@ -66,6 +66,7 @@ type
     procedure DoSendDocsList;
     procedure DoSendGetData;
     procedure DoSendGetProd;
+    procedure DoSendGetStock;
   public
 
   end;
@@ -75,7 +76,8 @@ var
 
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
 implementation
-uses rxlogging, ScancodeMT_API, scancode_user_api, scancode_document_api, scancode_characteristics_api;
+uses rxlogging, ScancodeMT_API, scancode_user_api, scancode_document_api, scancode_characteristics_api,
+  scancode_stock_api;
 
 {$R *.lfm}
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
@@ -184,39 +186,42 @@ end;
 procedure TForm1.Timer1Timer(Sender: TObject);
 begin
   Timer1.Enabled:=false;
-  if FCurCommand = 'GetUsers' then
-  begin
-    //- Получить список пользователей
-    DoSendUserList;
-  end
+
+  RxWriteLog(etDebug, #13'-------------------------------------------');
+  RxWriteLog(etDebug, 'Process command : %s', [FCurCommand]);
+  RxWriteLog(etDebug, 'Confirm := '+Confirm);
+  RxWriteLog(etDebug, 'DocType := '+DocType);
+  RxWriteLog(etDebug, 'FileName := '+FileName);
+  RxWriteLog(etDebug, 'PackgeNumber := '+PackgeNumber);
+  RxWriteLog(etDebug, 'Serial := '+Serial);
+  RxWriteLog(etDebug, 'UserID := '+UserID);
+  RxWriteLog(etDebug, 'UserIP := '+UserIP);
+  RxWriteLog(etDebug, 'Version := '+Version);
+
+  if FCurCommand = 'GetUsers' then //Получить список пользователей
+    DoSendUserList
   else
-  if FCurCommand = 'GetDocum' then
-  begin
-    // Получить документы
-    DoSendDocsList;
-  end
+  if FCurCommand = 'GetDocum' then // Получить документы
+    DoSendDocsList
   else
-  if FCurCommand = 'GetData' then
-  begin
-    // Получить список всех товаров
-    DoSendGetData;
-  end
+  if FCurCommand = 'GetData' then // Получить список всех товаров
+    DoSendGetData
   else
-  if FCurCommand = 'PutDocum' then
+(*  if FCurCommand = 'PutDocum' then
   begin
     // Передача ордеров
   end
+  else*)
+  if FCurCommand = 'GetProd' then // Получить информацию о товаре
+    DoSendGetProd
   else
-  if FCurCommand = 'GetProd' then
-  begin
-    // Получить информацию о товаре
-    DoSendGetProd;
-  end
-  else
-  if FCurCommand = 'CreateProd' then
+(*  if FCurCommand = 'CreateProd' then
   begin
     // Создать товар
   end
+  else*)
+  if FCurCommand = 'GetStock' then
+    DoSendGetStock // Создать товар
   else
     raise EScancodeMTLibrary.CreateFmt('Unknow command %s', [FCurCommand]);
 
@@ -314,7 +319,7 @@ begin
   S:=Ex.SaveToStr;
   Ex.Free;
 
-  RxDefaultWriteLog(etDebug, Format('SendAnswer : %s '#13'%s'#13, [Command, S]));
+  RxWriteLog(etDebug, Format('SendAnswer : %s '#13'%s'#13, [Command, S]));
   FLibrary.SendAnswer(PChar(Command), PChar(S));
   UpdateErrorCode;
 end;
@@ -358,15 +363,6 @@ begin
   Version:=Ex.Version;
 
   Ex.Free;
-
-  MDefaultWriteLog(etDebug, 'Confirm := '+Confirm);
-  MDefaultWriteLog(etDebug, 'DocType := '+DocType);
-  MDefaultWriteLog(etDebug, 'FileName := '+FileName);
-  MDefaultWriteLog(etDebug, 'PackgeNumber := '+PackgeNumber);
-  MDefaultWriteLog(etDebug, 'Serial := '+Serial);
-  MDefaultWriteLog(etDebug, 'UserID := '+UserID);
-  MDefaultWriteLog(etDebug, 'UserIP := '+UserIP);
-  MDefaultWriteLog(etDebug, 'Version := '+Version);
 end;
 
 procedure TForm1.DoSendUserList;
@@ -422,7 +418,7 @@ var
   GC: TGoodCell;
 begin
   DD:=TDocuments.Create;
-    D:=DD.Documents.CreateChild;
+(*    D:=DD.Documents.CreateChild;
     D.Task.Barcode:='24088173807114864056976259793525333272';
     D.Task.Date:='18.09.2018 0:00:00';
     D.Task.UseAdress:='1';
@@ -444,7 +440,32 @@ begin
     G.GoodProperty.GoodSerial.IdSerial:='';
     GC:=G.GoodProperty.GoodSerial.GoodCells.CreateChild;
     GC.Cell:='305982541796071806599496327226965408363';
-    GC.Cell:='celladdress="ОСТ3-2-1';
+    GC.CellAddress:='ОСТ3-2-1';
+*)
+  D:=DD.Documents.CreateChild;
+    D.Task.Barcode:='S0010101000';
+    D.Task.Date:=FormatDateTime('dd.mm.yyyy', Now);
+    D.Task.UseAdress:='1';
+    D.Task.Control:='0';
+    D.Task.TypeDoc:='301';
+    D.Task.Nomer:='00000002';
+    D.Task.IdDoc:='TBDOC-00101010';
+    D.Task.IdZone:='';
+    D.Task.IdRoom:='R01000001';
+    D.Task.IdStock:='SKLD-000001';
+    G:=D.Task.Goods.CreateChild;
+    //G.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
+    G.IdGoods:='SPR3-000001';
+    G.Quantity:='1';
+    G.GoodProperty.IdPack:='EDIZM-000001';
+//    G.GoodProperty.SerialVar:='0:001';
+    G.GoodProperty.Quantity:='1';
+//    G.GoodProperty.GoodSerial.Quantity:='1';
+//    G.GoodProperty.GoodSerial.IdSerial:='';
+    GC:=G.GoodProperty.GoodSerial.GoodCells.CreateChild;
+    GC.Cell:='CELL-000001-000001-000001';
+    GC.CellAddress:='Ул 1 Этаж 1 Яч 1';
+
   SendAnswer('GetDocum', DD);
   DD.Free;
 end;
@@ -463,7 +484,21 @@ var
   Skld: TSclad;
 begin
   Dic:=TDictionary.Create;
-  G:=Dic.SprGoods.SprGoodLists.CreateChild;
+
+  Pck:=Dic.Packs.PackList.CreateChild;
+    Pck.IdOwner:='';
+    Pck.Relation:='';
+    Pck.Name:='шт.';
+    Pck.IdPack:='EDIZM-000001';
+    Pck.Koeff:='1';
+
+  VN:=Dic.NomenclatureTypes.NomenclatureTypeList.CreateChild;
+    VN.IdNomenclatureType:='SPR1-000001';
+    VN.Name:='Освещение и эектротовары';
+    VN.IsChar:='0';
+    VN.IsSerial:='0';
+
+(*  G:=Dic.SprGoods.SprGoodLists.CreateChild;
     G.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
     G.Name:='Наименование товара';
     G.IdMeasure:='bd72d90f-55bc-11d9-848a-00112f43529a';
@@ -472,9 +507,31 @@ begin
     G.IdVidnomencl:='';
     G.IdNaborPack:='';
     G.Img:='';
+    G.Bitmap:=''; *)
+  G:=Dic.SprGoods.SprGoodLists.CreateChild;
+    G.IdGoods:='SPR3-000001';
+    G.Name:='Лампочка 1/23*ыв';
+    //G.IdMeasure:='bd72d90f-55bc-11d9-848a-00112f43529a';
+    G.Art:='130005';
+    G.Alco:='0';
+    G.IdVidnomencl:='SPR1-000001';
+    G.IdNaborPack:='';
+    G.Img:='';
     G.Bitmap:='';
+    Br:=Dic.Barcodes.BarcodeList.CreateChild;
+      Br.IdGoods:=G.IdGoods;
+      //Br.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
+      //Br.IdPack:='dff7f708-7a0b-11df-b33a-0011955cba6b';
+      Br.Barcode:='2000000010510';
 
-  Ch:=Dic.Characteristics.CharacteristicList.CreateChild;
+  Prc:=Dic.Prices.PriceList.CreateChild;
+    Prc.IdGoods:='SPR3-000001';
+    //Prc.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
+    //Prc.IdPack:='dff7f708-7a0b-11df-b33a-0011955cba6b';
+    Prc.Price:='8166.4';
+    Prc.Currency:='руб';
+
+(*  Ch:=Dic.Characteristics.CharacteristicList.CreateChild;
     Ch.IdOwner:='bd72d913-55bc-11d9-848a-00112f43529a';
     Ch.Relation:='видыноменклатуры';
     Ch.Name:='38, Бежевый, 6, натуральная кожа';
@@ -515,11 +572,12 @@ begin
     Br.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
     Br.IdPack:='dff7f708-7a0b-11df-b33a-0011955cba6b';
     Br.Barcode:='2000000000510';
+*)
 
   M:=Dic.Measures.MeasureList.CreateChild;
     M.IdMeasure:='bd72d90f-55bc-11d9-848a-00112f43529a';
     M.Name:='пар';
-
+(*
   Prc:=Dic.Prices.PriceList.CreateChild;
     Prc.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
     Prc.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
@@ -548,7 +606,7 @@ begin
     Skld.Name:='Внуковская таможня';
     Skld.IsAdress:='0';
     Skld.IsOrder:='0';
-
+*)
   SendAnswer('GetData', Dic);
   Dic.Free;
 end;
@@ -565,6 +623,53 @@ begin
     //SendAnswer('GetProd', Dic);
     Q.Free;
   end;
+end;
+
+procedure TForm1.DoSendGetStock;
+var
+  St: TStocks;
+  S: TStock;
+  R: TRoom;
+  C: TCell;
+begin
+  St:=TStocks.Create;
+  S:=St.Stocks.CreateChild;
+    S.Barcode:='148249978';
+    S.IdStock:='6f87e83f-722c-11df-b336-0011955cba6b';
+    S.Name:='Центральный склад';
+  R:=S.Rooms.CreateChild;
+    R.Barcode:='148249978';
+    R.IdRoom:='6f87e842-722c-11df-b336-0011955cba6b';
+    R.Name:='Продукты';
+  C:=R.Cells.CreateChild;
+    C.Barcode:='262838176';
+    C.IdCell:='c5bcca8d-44ca-11e0-af0b-0015e9b8c48d';
+    C.Name:='П-А2-12';
+  C:=R.Cells.CreateChild;
+    C.barcode:='262838177';
+    C.IdCell:='4dd6daf4-44ca-11e0-af0b-0015e9b8c48d';
+    C.Name:='П-А3';
+
+
+  S:=St.Stocks.CreateChild;
+    S.Barcode:='S01000001';
+    S.IdStock:='SKLD-000001';
+    S.Name:='Склад №1';
+  R:=S.Rooms.CreateChild;
+    R.Barcode:='R01000001';
+    R.IdRoom:='ROOM-000001-000001';
+    R.Name:='Ангар № 1';
+  C:=R.Cells.CreateChild;
+    C.Barcode:='С0101000001';
+    C.IdCell:='CELL-000001-000001-000001';
+    C.Name:='Ул 1 Этаж 1 Яч 1';
+  C:=R.Cells.CreateChild;
+    C.barcode:='С0101000002';
+    C.IdCell:='CELL-000001-000001-000002';
+    C.Name:='Ул 1 Этаж 1 Яч 2';
+
+  SendAnswer('GetStock', St);
+  St.Free;
 end;
 
 end.
