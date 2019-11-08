@@ -9,15 +9,16 @@ object frmTSDOrderFrame: TfrmTSDOrderFrame
   DesignLeft = 463
   DesignTop = 307
   object Button1: TButton
-    AnchorSideLeft.Control = Owner
     AnchorSideLeft.Side = asrCenter
+    AnchorSideRight.Control = CLabel
+    AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 322
+    Left = 261
     Height = 33
     Top = 323
     Width = 112
-    Anchors = [akLeft, akBottom]
+    Anchors = [akRight, akBottom]
     AutoSize = True
     BorderSpacing.Around = 6
     Caption = 'Сформировать'
@@ -25,10 +26,105 @@ object frmTSDOrderFrame: TfrmTSDOrderFrame
     TabOrder = 0
   end
   object CLabel: TLabel
-    Left = 336
+    AnchorSideLeft.Control = Owner
+    AnchorSideLeft.Side = asrCenter
+    AnchorSideTop.Control = Owner
+    Left = 378
     Height = 1
-    Top = 51
+    Top = 0
     Width = 1
     ParentColor = False
+  end
+  object Button2: TButton
+    AnchorSideLeft.Control = CLabel
+    AnchorSideLeft.Side = asrBottom
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 385
+    Height = 33
+    Top = 323
+    Width = 78
+    Anchors = [akLeft, akBottom]
+    AutoSize = True
+    BorderSpacing.Around = 6
+    Caption = 'Загрузить'
+    OnClick = Button2Click
+    TabOrder = 1
+  end
+  object RxDBGrid1: TRxDBGrid
+    Left = 26
+    Height = 100
+    Top = 10
+    Width = 200
+    ColumnDefValues.BlobText = '(данные)'
+    TitleButtons = False
+    AutoSort = True
+    KeyStrokes = <    
+      item
+        Command = rxgcShowFindDlg
+        ShortCut = 16454
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowColumnsDlg
+        ShortCut = 16471
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowFilterDlg
+        ShortCut = 16468
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowSortDlg
+        ShortCut = 16467
+        Enabled = True
+      end    
+      item
+        Command = rxgcShowQuickFilter
+        ShortCut = 16465
+        Enabled = True
+      end    
+      item
+        Command = rxgcHideQuickFilter
+        ShortCut = 16456
+        Enabled = True
+      end    
+      item
+        Command = rxgcSelectAll
+        ShortCut = 16449
+        Enabled = True
+      end    
+      item
+        Command = rxgcDeSelectAll
+        ShortCut = 16429
+        Enabled = True
+      end    
+      item
+        Command = rxgcInvertSelection
+        ShortCut = 16426
+        Enabled = True
+      end    
+      item
+        Command = rxgcOptimizeColumnsWidth
+        ShortCut = 16427
+        Enabled = True
+      end    
+      item
+        Command = rxgcCopyCellValue
+        ShortCut = 16451
+        Enabled = True
+      end>
+    FooterOptions.DrawFullLine = False
+    SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+    SearchOptions.FromStart = False
+    OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+    Color = clWindow
+    DrawFullLine = False
+    FocusColor = clRed
+    SelectedColor = clHighlight
+    GridLineStyle = psSolid
+    Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+    TabOrder = 2
   end
 end

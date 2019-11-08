@@ -35,6 +35,9 @@
         </descr>
       </element><element name="TOrders.Tasks"><short>Task – реквизиты документа, на основании которого создан ордер</short>
       </element>
+    <element name="THandbooks.Nomenclatures"><short>nomencls — список товаров, созданных пользователем на ТСД или загруженных отдельно (по запросу) из ТУП.</short>
+      </element><element name="TNomenclature"><short>товаров, созданных пользователем на ТСД или загруженных отдельно (по запросу) из ТУП</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

@@ -5,7 +5,7 @@ unit frmTSDOrderUnit;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, StdCtrls;
+  Classes, SysUtils, Forms, Controls, StdCtrls, rxdbgrid;
 
 type
 
@@ -13,8 +13,11 @@ type
 
   TfrmTSDOrderFrame = class(TFrame)
     Button1: TButton;
+    Button2: TButton;
     CLabel: TLabel;
+    RxDBGrid1: TRxDBGrid;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
 
   public
@@ -108,6 +111,20 @@ begin
 
 //  Handbooks.SaveToFile(ExportFolder + 'Handbooks.xml');
 //  Handbooks.Free;
+end;
+
+procedure TfrmTSDOrderFrame.Button2Click(Sender: TObject);
+var
+  O: TOrders;
+  NM: TNomenclature;
+begin
+  O:=TOrders.Create;
+  O.LoadFromFile('/home/alexs/8/18500f45c81b8f43f42ecec.tmp');
+  for NM in O.Handbooks.Nomenclatures.NomenclatureList do
+  begin
+    ;
+  end;
+  O.Free;
 end;
 
 procedure TfrmTSDOrderFrame.GenerateData;
