@@ -5,7 +5,7 @@ unit frmTSDOrderUnit;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, StdCtrls, rxdbgrid;
+  Classes, SysUtils, Forms, Controls, StdCtrls, DBCtrls, DB, rxdbgrid, rxmemds;
 
 type
 
@@ -14,8 +14,18 @@ type
   TfrmTSDOrderFrame = class(TFrame)
     Button1: TButton;
     Button2: TButton;
+    CheckBox1: TCheckBox;
     CLabel: TLabel;
+    DBImage1: TDBImage;
+    dsGoods: TDataSource;
     RxDBGrid1: TRxDBGrid;
+    rxGoods: TRxMemoryData;
+    rxGoodsBmp: TBlobField;
+    rxGoodsIdGoods: TStringField;
+    rxGoodsIdMeasure: TStringField;
+    rxGoodsIdVidnomencl: TStringField;
+    rxGoodsImg: TStringField;
+    rxGoodsName: TStringField;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
   private
@@ -25,7 +35,7 @@ type
   end;
 
 implementation
-uses scancode_tsd_order_api, scGlobal;
+uses scancode_tsd_order_api, scGlobal, base64;
 
 {$R *.lfm}
 
@@ -117,14 +127,39 @@ procedure TfrmTSDOrderFrame.Button2Click(Sender: TObject);
 var
   O: TOrders;
   NM: TNomenclature;
+  St1: TStringStream;
+  Decoder: TBase64DecodingStream;
+  St2: TMemoryStream;
 begin
+  rxGoods.CloseOpen;
   O:=TOrders.Create;
   O.LoadFromFile('/home/alexs/8/18500f45c81b8f43f42ecec.tmp');
   for NM in O.Handbooks.Nomenclatures.NomenclatureList do
   begin
-    ;
+    rxGoods.Append;
+    rxGoodsIdGoods.AsString:=NM.IdGoods;
+    rxGoodsName.AsString:=NM.Name;
+    rxGoodsIdMeasure.AsString:=NM.IdMeasure;
+    rxGoodsIdVidnomencl.AsString:=NM.IdVidnomencl;
+    rxGoodsImg.AsString:=NM.Img;
+
+    if NM.Bitmap<>'' then
+    begin
+      St1:=TStringStream.Create(NM.Bitmap);
+      St2:=TMemoryStream.Create;
+      Decoder:=TBase64DecodingStream.Create(St1,bdmMIME);
+
+      St2.CopyFrom(Decoder, Decoder.Size);
+      St2.Position:=0;
+      rxGoodsBmp.LoadFromStream(St2);
+      Decoder.Free;
+      St1.Free;
+      St2.Free;
+    end;
+    rxGoods.Post;
   end;
   O.Free;
+  rxGoods.First;
 end;
 
 procedure TfrmTSDOrderFrame.GenerateData;

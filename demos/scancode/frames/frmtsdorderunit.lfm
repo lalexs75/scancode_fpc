@@ -2,9 +2,9 @@ object frmTSDOrderFrame: TfrmTSDOrderFrame
   Left = 0
   Height = 362
   Top = 0
-  Width = 757
+  Width = 1033
   ClientHeight = 362
-  ClientWidth = 757
+  ClientWidth = 1033
   TabOrder = 0
   DesignLeft = 463
   DesignTop = 307
@@ -14,7 +14,7 @@ object frmTSDOrderFrame: TfrmTSDOrderFrame
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 261
+    Left = 399
     Height = 33
     Top = 323
     Width = 112
@@ -29,7 +29,7 @@ object frmTSDOrderFrame: TfrmTSDOrderFrame
     AnchorSideLeft.Control = Owner
     AnchorSideLeft.Side = asrCenter
     AnchorSideTop.Control = Owner
-    Left = 378
+    Left = 516
     Height = 1
     Top = 0
     Width = 1
@@ -40,7 +40,7 @@ object frmTSDOrderFrame: TfrmTSDOrderFrame
     AnchorSideLeft.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 385
+    Left = 523
     Height = 33
     Top = 323
     Width = 78
@@ -53,9 +53,9 @@ object frmTSDOrderFrame: TfrmTSDOrderFrame
   end
   object RxDBGrid1: TRxDBGrid
     Left = 26
-    Height = 100
+    Height = 294
     Top = 10
-    Width = 200
+    Width = 496
     ColumnDefValues.BlobText = '(данные)'
     TitleButtons = False
     AutoSort = True
@@ -124,7 +124,125 @@ object frmTSDOrderFrame: TfrmTSDOrderFrame
     FocusColor = clRed
     SelectedColor = clHighlight
     GridLineStyle = psSolid
+    DataSource = dsGoods
     Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
     TabOrder = 2
+  end
+  object DBImage1: TDBImage
+    Left = 536
+    Height = 262
+    Top = 40
+    Width = 416
+    Center = True
+    DataField = 'Bmp'
+    DataSource = dsGoods
+    Stretch = True
+  end
+  object CheckBox1: TCheckBox
+    Left = 544
+    Height = 23
+    Top = 14
+    Width = 92
+    Caption = 'CheckBox1'
+    TabOrder = 3
+  end
+  object rxGoods: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'IdGoods'
+        DataType = ftString
+        Size = 250
+      end    
+      item
+        Name = 'Name'
+        DataType = ftString
+        Size = 250
+      end    
+      item
+        Name = 'IdMeasure'
+        DataType = ftString
+        Size = 250
+      end    
+      item
+        Name = 'IdVidnomencl'
+        DataType = ftString
+        Size = 250
+      end    
+      item
+        Name = 'Img'
+        DataType = ftString
+        Size = 250
+      end    
+      item
+        Name = 'Bmp'
+        DataType = ftBlob
+      end>
+    PacketRecords = 0
+    Left = 152
+    Top = 46
+    object rxGoodsIdGoods: TStringField
+      FieldKind = fkData
+      FieldName = 'IdGoods'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 250
+    end
+    object rxGoodsName: TStringField
+      FieldKind = fkData
+      FieldName = 'Name'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 250
+    end
+    object rxGoodsIdMeasure: TStringField
+      FieldKind = fkData
+      FieldName = 'IdMeasure'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 250
+    end
+    object rxGoodsIdVidnomencl: TStringField
+      FieldKind = fkData
+      FieldName = 'IdVidnomencl'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 250
+    end
+    object rxGoodsImg: TStringField
+      FieldKind = fkData
+      FieldName = 'Img'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 250
+    end
+    object rxGoodsBmp: TBlobField
+      FieldKind = fkData
+      FieldName = 'Bmp'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object dsGoods: TDataSource
+    DataSet = rxGoods
+    Left = 120
+    Top = 46
   end
 end
