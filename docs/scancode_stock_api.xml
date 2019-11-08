@@ -4,11 +4,24 @@
       </element><element name="TStock.IdStock"><short>guid идентификатор склада</short>
       </element><element name="TStock.Barcode"><short>ШК склада</short>
       </element><element name="TStock.Name"><short>наименование склада</short>
-      </element><element name="TStock.Rooms"><short>помещение внутри склада (может быть несколько, а может и не быть вообще)</short>
+      </element><element name="TStock.Rooms"><short>помещение внутри склада</short>
+      <descr>может быть несколько, а может и не быть вообще
+</descr>
       </element><element name="TRoom.IdCell"><short>guid идентификатор ячейки склада</short>
       </element><element name="TRoom.Barcode"><short>ШК помещения</short>
       </element><element name="TRoom.Name"><short>наименование помещения</short>
       </element><element name="TRoom.IdRoom"><short>id_room – guid идентификатор помещения склада</short>
+      </element>
+    <element name="TStocks.Stocks"><short>Список складов</short>
+      </element><element name="TStock"><short>склад</short>
+      </element><element name="TRooms"><short>помещение внутри склада</short>
+      </element><element name="TRoom"><short>помещение внутри склада</short>
+      </element><element name="TRoom.Cells"><short>Список складских ячеек</short>
+      </element><element name="TCells"><short>Список складских ячеек</short>
+      </element><element name="TCell"><short>складская ячейка</short>
+      </element><element name="TCell.IdCell"><short>id_cell – УИ ячейки склада</short>
+      </element><element name="TCell.Barcode"><short>barcode – ШК ячейки</short>
+      </element><element name="TCell.Name"><short>name – наименование ячейки</short>
       </element>
     </module>
   </package>
