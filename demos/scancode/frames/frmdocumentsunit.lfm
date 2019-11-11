@@ -6,8 +6,8 @@ object frmDocumentsFrame: TfrmDocumentsFrame
   ClientHeight = 240
   ClientWidth = 320
   TabOrder = 0
-  DesignLeft = 354
-  DesignTop = 140
+  DesignLeft = 885
+  DesignTop = 352
   object Button1: TButton
     AnchorSideLeft.Control = Owner
     AnchorSideLeft.Side = asrCenter

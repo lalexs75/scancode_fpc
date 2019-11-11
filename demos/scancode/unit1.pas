@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls, DB,
-  rxdbgrid, rxmemds;
+  rxdbgrid, rxmemds, ScancodeMT;
 
 type
 
@@ -15,6 +15,7 @@ type
   TForm1 = class(TForm)
     PageControl1: TPageControl;
     PageControl2: TPageControl;
+    ScancodeMT1: TScancodeMT;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
