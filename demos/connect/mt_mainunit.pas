@@ -514,9 +514,9 @@ begin
     L.Login:='Лагунов Алексей Анатольевич';
     L.PasswordDecoded:='';
     L.Rights:='1/2/3/4/5';
-    L.CreateProd:='1/2/3/4';
-    L.AddProd:='1/2/3/4';
-    L.CreateFreeCollect:='1/2/3/4';
+    L.CreateProd:='1/2/3/4/5';
+    L.AddProd:='1/2/3/4/5';
+    L.CreateFreeCollect:='1/2/3/4/5';
 
   L:=U.Logins.Records.CreateChild;
     L.Id:='USER_ID_0002';
@@ -731,9 +731,9 @@ begin
 
       G:=D.Task.Goods.CreateChild;
       G.IdGoods:='SPR3-000002';
-      G.Quantity:='10';
+      G.Quantity:='2';
       G.GoodProperty.IdPack:='EDIZM-000001';
-      G.GoodProperty.Quantity:='10';
+      G.GoodProperty.Quantity:='2';
       GC:=G.GoodProperty.GoodSerial.GoodCells.CreateChild;
       GC.Cell:='CELL-000001-000001-000001';
       GC.CellAddress:='Ул 1 Этаж 1 Яч 11`';
