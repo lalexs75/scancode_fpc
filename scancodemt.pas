@@ -45,7 +45,7 @@ interface
 uses
   Classes, SysUtils, ExtCtrls, xmlobject,
   ScancodeMT_API, scancode_user_api, scancode_characteristics_api, scancode_document_api,
-  scancode_stock_api
+  scancode_stock_api, scancode_tsd_order_api
   {$if FPC_FULLVERSION<30006}
   , dynlibs
   {$endif}
@@ -111,6 +111,8 @@ type
   TMTDictionaryListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Dictionary:TDictionary) of object;
   TMTDocumentsListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Documents:TDocuments) of object;
   TMTStocksListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Stocks:TStocks) of object;
+  TMTOrdersListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Orders:TOrders) of object;
+  TMTStatusEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord) of object;
 
   TScancodeMT = class(TComponent)
   private
@@ -118,6 +120,8 @@ type
     FMTLibrary: TScancodeMTLibrary;
     FOnDictionaryList: TMTDictionaryListEvent;
     FOnDocumentsList: TMTDocumentsListEvent;
+    FOnOrdersList: TMTOrdersListEvent;
+    FOnStatus: TMTStatusEvent;
     FOnStocksList: TMTStocksListEvent;
     FOnUserList: TMTUserListEvent;
     FPort: Integer;
@@ -139,6 +143,7 @@ type
     procedure InternalSendDocsList(const Rec: TMTQueueRecord);
     procedure InternalSendGetData(const Rec: TMTQueueRecord);
     procedure InternalSendGetStock(const Rec: TMTQueueRecord);
+    procedure InternalSendPutDocum(const Rec: TMTQueueRecord);
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -153,6 +158,8 @@ type
     property OnDictionaryList:TMTDictionaryListEvent read FOnDictionaryList write FOnDictionaryList;
     property OnDocumentsList:TMTDocumentsListEvent read FOnDocumentsList write FOnDocumentsList;
     property OnStocksList:TMTStocksListEvent read FOnStocksList write FOnStocksList;
+    property OnOrdersList:TMTOrdersListEvent read FOnOrdersList write FOnOrdersList;
+    property OnStatus:TMTStatusEvent read FOnStatus write FOnStatus;
   end;
 
 procedure Register;
@@ -229,7 +236,7 @@ procedure TScancodeMT.MTTimerQueueTick(Sender: TObject);
 var
   Rec: TMTQueueRecord;
 begin
-  if FMTQueue.Count>0 then
+  while (FMTQueue.Count>0) do
   begin
     EnterCriticalSection(FCriticalSection);
     Rec:=TMTQueueRecord(FMTQueue[0]);
@@ -283,6 +290,9 @@ end;
 
 procedure TScancodeMT.InternalProcessMessage(const Rec: TMTQueueRecord);
 begin
+  if Assigned(FOnStatus) then
+    FOnStatus(Self, Rec);
+
   if Rec.Command = 'GetUsers' then //Получить список пользователей
     InternalSendUserInfo(Rec)
   else
@@ -292,10 +302,10 @@ begin
   if Rec.Command = 'GetData' then // Получить список всех товаров
     InternalSendGetData(Rec)
   else
-(*  if FCurCommand = 'PutDocum' then // Передача ордеров
-    DoGetPutDocum
+  if Rec.Command = 'PutDocum' then // Передача ордеров
+    InternalSendPutDocum(Rec)
   else
-  if FCurCommand = 'GetProd' then // Получить информацию о товаре
+  (*if FCurCommand = 'GetProd' then // Получить информацию о товаре
     DoSendGetProd
   else
   if FCurCommand = 'CreateProd' then
@@ -352,6 +362,17 @@ begin
     FOnStocksList(Self, Rec, Stocks);
   SendAnswer('GetStock', Rec, Stocks);
   Stocks.Free;
+end;
+
+procedure TScancodeMT.InternalSendPutDocum(const Rec: TMTQueueRecord);
+var
+  Orders: TOrders;
+begin
+  Orders:=TOrders.Create;
+  if Assigned(FOnOrdersList) then
+    FOnOrdersList(Self, Rec, Orders);
+  SendAnswer('PutDocum', Rec, nil);
+  Orders.Free;
 end;
 
 function TScancodeMT.IsSetPortStored: Boolean;

@@ -250,7 +250,7 @@ end;
 
 procedure TExtendedInformation.SetUserID(AValue: string);
 begin
-  if FUserID=AValue then Exit;
+  //if FUserID=AValue then Exit;
   FUserID:=AValue;
   ModifiedProperty('UserID');
 end;

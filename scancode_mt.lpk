@@ -12,7 +12,7 @@
     </CompilerOptions>
     <Description Value="Интерфейс библиотеки взаимодействия с ПО СКАНКОД.Мобильный Терминал (SCANCODE.MobileTerminal)"/>
     <License Value="LGPL"/>
-    <Version Minor="1" Release="3" Build="5"/>
+    <Version Minor="1" Release="4" Build="7"/>
     <Files Count="7">
       <Item1>
         <Filename Value="scancode_user_api.pas"/>
