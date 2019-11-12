@@ -5,16 +5,21 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls, DB,
-  rxdbgrid, rxmemds, ScancodeMT;
+  Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
+  ExtCtrls, DB, rxdbgrid, rxmemds, ScancodeMT;
 
 type
 
   { TForm1 }
 
   TForm1 = class(TForm)
+    Button1: TButton;
+    Button2: TButton;
+    CLabel: TLabel;
+    Memo1: TMemo;
     PageControl1: TPageControl;
     PageControl2: TPageControl;
+    Panel1: TPanel;
     ScancodeMT1: TScancodeMT;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
@@ -23,6 +28,7 @@ type
     TabSheet5: TTabSheet;
     TabSheet6: TTabSheet;
     TabSheet7: TTabSheet;
+    TabSheet8: TTabSheet;
     procedure FormCreate(Sender: TObject);
   private
 

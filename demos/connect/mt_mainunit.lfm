@@ -213,12 +213,28 @@ object Form1: TForm1
     Caption = 'Component'
     ParentColor = False
   end
+  object Button3: TButton
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = FileNameEdit1
+    AnchorSideTop.Side = asrBottom
+    Left = 5
+    Height = 33
+    Top = 69
+    Width = 71
+    AutoSize = True
+    BorderSpacing.Around = 5
+    Caption = 'Clear log'
+    OnClick = Button3Click
+    TabOrder = 11
+  end
   object ScancodeMT1: TScancodeMT
     Port = 3004
     OnUserList = ScancodeMT1UserList
     OnDictionaryList = ScancodeMT1DictionaryList
     OnDocumentsList = ScancodeMT1DocumentsList
     OnStocksList = ScancodeMT1StocksList
+    OnOrdersList = ScancodeMT1OrdersList
+    OnStatus = ScancodeMT1Status
     Left = 696
     Top = 88
   end

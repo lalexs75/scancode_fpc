@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, EditBtn,
-  Spin, ComCtrls, ExtCtrls, ScancodeMT, xmlobject, RxIniPropStorage, scancode_user_api, scancode_characteristics_api, scancode_document_api, scancode_stock_api;
+  Spin, ComCtrls, ExtCtrls, ScancodeMT, xmlobject, RxIniPropStorage, scancode_user_api, scancode_characteristics_api, scancode_document_api, scancode_stock_api, scancode_tsd_order_api;
 
 type
 
@@ -19,6 +19,7 @@ type
     btnUnload: TButton;
     Button1: TButton;
     Button2: TButton;
+    Button3: TButton;
     CheckBox1: TCheckBox;
     FileNameEdit1: TFileNameEdit;
     Label1: TLabel;
@@ -37,6 +38,7 @@ type
     procedure btnStopClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure Button3Click(Sender: TObject);
     procedure CheckBox1Change(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -44,6 +46,10 @@ type
       const AMessage: TMTQueueRecord; const Dictionary: TDictionary);
     procedure ScancodeMT1DocumentsList(Sender: TScancodeMT;
       const AMessage: TMTQueueRecord; const Documents: TDocuments);
+    procedure ScancodeMT1OrdersList(Sender: TScancodeMT;
+      const AMessage: TMTQueueRecord; const Orders: TOrders);
+    procedure ScancodeMT1Status(Sender: TScancodeMT;
+      const AMessage: TMTQueueRecord);
     procedure ScancodeMT1StocksList(Sender: TScancodeMT;
       const AMessage: TMTQueueRecord; const Stocks: TStocks);
     procedure ScancodeMT1UserList(Sender: TScancodeMT;
@@ -99,7 +105,7 @@ var
 
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
 implementation
-uses rxlogging, ScancodeMT_API, scancode_tsd_order_api;
+uses rxlogging, ScancodeMT_API;
 
 {$R *.lfm}
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
@@ -198,6 +204,11 @@ begin
   UpdateBtnStates1;
 end;
 
+procedure TForm1.Button3Click(Sender: TObject);
+begin
+  Memo1.Lines.Clear;
+end;
+
 procedure TForm1.CheckBox1Change(Sender: TObject);
 begin
   UpdateBtnStates;
@@ -229,6 +240,21 @@ procedure TForm1.ScancodeMT1DocumentsList(Sender: TScancodeMT;
   const AMessage: TMTQueueRecord; const Documents: TDocuments);
 begin
   FillDocList(Documents);
+end;
+
+procedure TForm1.ScancodeMT1OrdersList(Sender: TScancodeMT;
+  const AMessage: TMTQueueRecord; const Orders: TOrders);
+begin
+  //
+end;
+
+procedure TForm1.ScancodeMT1Status(Sender: TScancodeMT;
+  const AMessage: TMTQueueRecord);
+begin
+  RxWriteLog(etDebug, #13'-------------------------------------------');
+  RxWriteLog(etDebug, 'Process command : %s', [AMessage.Command]);
+  RxWriteLog(etDebug, 'Confirm : %s; DocType : %s; FileName : %s; PackgeNumber : %s; Serial : %s; UserID : %s; UserIP : %s; Version : %s',
+    [AMessage.Confirm, AMessage.DocType, AMessage.FileName, AMessage.PackgeNumber, AMessage.Serial, AMessage.UserID, AMessage.UserIP, AMessage.Version]);
 end;
 
 procedure TForm1.ScancodeMT1StocksList(Sender: TScancodeMT;
@@ -510,13 +536,22 @@ var
   R: TUserRight;
 begin
   L:=U.Logins.Records.CreateChild;
+    L.Login:='Орлов Александр Владимирович';
+    L.Id:='8368e8b098294ae292bd8d4ddd658d9a';
+    L.Pass:='';
+    L.Rights:='1/2/3/4/5';
+    L.CreateProd:='1/2/3/4';
+    L.AddProd:='1/2/3/4';
+    L.CreateFreeCollect:='1/2/3/4';
+
+  L:=U.Logins.Records.CreateChild;
     L.Id:='USER_ID_0001';
     L.Login:='Лагунов Алексей Анатольевич';
     L.PasswordDecoded:='';
     L.Rights:='1/2/3/4/5';
-    L.CreateProd:='1/2/3/4/5';
-    L.AddProd:='1/2/3/4/5';
-    L.CreateFreeCollect:='1/2/3/4/5';
+    L.CreateProd:='1/2/3/4';
+    L.AddProd:='1/2/3/4';
+    L.CreateFreeCollect:='1/2/3/4';
 
   L:=U.Logins.Records.CreateChild;
     L.Id:='USER_ID_0002';
@@ -526,7 +561,16 @@ begin
     L.CreateProd:='1/2/3/4';
     L.AddProd:='1/2/3/4';
     L.CreateFreeCollect:='1/2/3/4';
-
+(*
+  L:=U.Logins.Records.CreateChild;
+    L.Id:='';
+    L.Login:='Тест тестовый';
+    L.PasswordDecoded:='';
+    L.Rights:='1/2/3/4/5';
+    L.CreateProd:='1/2/3/4';
+    L.AddProd:='1/2/3/4';
+    L.CreateFreeCollect:='1/2/3/4';
+*)
   R:=U.Rights.Records.CreateChild;
     R.Name:='Заказ поставщику';
     R.Id:='101';

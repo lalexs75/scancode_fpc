@@ -14,9 +14,9 @@ object Form1: TForm1
     Height = 552
     Top = 0
     Width = 957
-    ActivePage = TabSheet1
+    ActivePage = TabSheet8
     Align = alClient
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Выгрузка файлов'
@@ -51,10 +51,72 @@ object Form1: TForm1
     object TabSheet2: TTabSheet
       Caption = 'Загрузка файлов'
     end
+    object TabSheet8: TTabSheet
+      Caption = 'Server'
+      ClientHeight = 521
+      ClientWidth = 947
+      object Panel1: TPanel
+        Left = 0
+        Height = 50
+        Top = 0
+        Width = 947
+        Align = alTop
+        ClientHeight = 50
+        ClientWidth = 947
+        TabOrder = 0
+        object Button1: TButton
+          AnchorSideTop.Control = Panel1
+          AnchorSideRight.Control = CLabel
+          Left = 382
+          Height = 33
+          Top = 7
+          Width = 85
+          Anchors = [akTop, akRight]
+          AutoSize = True
+          BorderSpacing.Around = 6
+          Caption = 'Start server'
+          TabOrder = 0
+        end
+        object Button2: TButton
+          AnchorSideLeft.Control = CLabel
+          AnchorSideLeft.Side = asrBottom
+          AnchorSideTop.Control = Panel1
+          Left = 480
+          Height = 33
+          Top = 7
+          Width = 84
+          AutoSize = True
+          BorderSpacing.Around = 6
+          Caption = 'Stop server'
+          TabOrder = 1
+        end
+        object CLabel: TLabel
+          AnchorSideLeft.Control = Panel1
+          AnchorSideLeft.Side = asrCenter
+          AnchorSideTop.Control = Panel1
+          Left = 473
+          Height = 1
+          Top = 1
+          Width = 1
+          ParentColor = False
+        end
+      end
+      object Memo1: TMemo
+        Left = 0
+        Height = 471
+        Top = 50
+        Width = 947
+        Align = alClient
+        Lines.Strings = (
+          'Memo1'
+        )
+        TabOrder = 1
+      end
+    end
   end
   object ScancodeMT1: TScancodeMT
     Port = 3004
-    Left = 368
-    Top = 199
+    Left = 488
+    Top = 160
   end
 end

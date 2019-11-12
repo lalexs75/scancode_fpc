@@ -2,9 +2,9 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
   Left = 0
   Height = 484
   Top = 0
-  Width = 804
+  Width = 1054
   ClientHeight = 484
-  ClientWidth = 804
+  ClientWidth = 1054
   TabOrder = 0
   DesignLeft = 494
   DesignTop = 284
@@ -13,10 +13,10 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
     AnchorSideLeft.Side = asrCenter
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 368
-    Height = 30
-    Top = 448
-    Width = 69
+    Left = 493
+    Height = 33
+    Top = 445
+    Width = 68
     Anchors = [akLeft, akBottom]
     AutoSize = True
     BorderSpacing.Around = 6
@@ -31,18 +31,18 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Button1
     Left = 0
-    Height = 442
+    Height = 439
     Top = 0
-    Width = 804
+    Width = 1054
     Anchors = [akTop, akLeft, akRight, akBottom]
-    ClientHeight = 442
-    ClientWidth = 804
+    ClientHeight = 439
+    ClientWidth = 1054
     TabOrder = 1
     object RxDBGrid1: TRxDBGrid
       Left = 1
-      Height = 440
+      Height = 437
       Top = 1
-      Width = 529
+      Width = 855
       ColumnDefValues.BlobText = '(данные)'
       TitleButtons = False
       AutoSort = True
@@ -83,6 +83,106 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
           Title.Caption = 'Password'
           Width = 70
           FieldName = 'Password'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Пусто)'
+          Filter.NotEmptyValue = '(Не пусто)'
+          Filter.AllValue = '(Все значения)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Доступ|Приём'
+          Width = 60
+          FieldName = 'R1'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Пусто)'
+          Filter.NotEmptyValue = '(Не пусто)'
+          Filter.AllValue = '(Все значения)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'Доступ|От-ка'
+          Width = 60
+          FieldName = 'R2'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Пусто)'
+          Filter.NotEmptyValue = '(Не пусто)'
+          Filter.AllValue = '(Все значения)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'R3'
+          FieldName = 'R3'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Пусто)'
+          Filter.NotEmptyValue = '(Не пусто)'
+          Filter.AllValue = '(Все значения)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'R4'
+          FieldName = 'R4'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Пусто)'
+          Filter.NotEmptyValue = '(Не пусто)'
+          Filter.AllValue = '(Все значения)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'R5'
+          FieldName = 'R5'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Пусто)'
+          Filter.NotEmptyValue = '(Не пусто)'
+          Filter.AllValue = '(Все значения)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'R6'
+          FieldName = 'R6'
+          EditButtons = <>
+          Filter.DropDownRows = 0
+          Filter.EmptyValue = '(Пусто)'
+          Filter.NotEmptyValue = '(Не пусто)'
+          Filter.AllValue = '(Все значения)'
+          Filter.EmptyFont.Style = [fsItalic]
+          Filter.ItemIndex = -1
+          Footers = <>
+        end      
+        item
+          Title.Alignment = taCenter
+          Title.Orientation = toHorizontal
+          Title.Caption = 'R7'
+          FieldName = 'R7'
           EditButtons = <>
           Filter.DropDownRows = 0
           Filter.EmptyValue = '(Пусто)'
@@ -224,10 +324,10 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       TitleStyle = tsNative
     end
     object RxDBGrid2: TRxDBGrid
-      Left = 535
-      Height = 440
+      Left = 861
+      Height = 437
       Top = 1
-      Width = 268
+      Width = 192
       ColumnDefValues.BlobText = '(данные)'
       TitleButtons = False
       AutoSort = True
@@ -349,8 +449,8 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       TitleStyle = tsNative
     end
     object Splitter1: TSplitter
-      Left = 530
-      Height = 440
+      Left = 856
+      Height = 437
       Top = 1
       Width = 5
       Align = alRight
@@ -396,6 +496,34 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       item
         Name = 'CreateFreeCollect'
         DataType = ftString
+      end    
+      item
+        Name = 'R1'
+        DataType = ftBoolean
+      end    
+      item
+        Name = 'R2'
+        DataType = ftUnknown
+      end    
+      item
+        Name = 'R3'
+        DataType = ftUnknown
+      end    
+      item
+        Name = 'R4'
+        DataType = ftUnknown
+      end    
+      item
+        Name = 'R5'
+        DataType = ftUnknown
+      end    
+      item
+        Name = 'R6'
+        DataType = ftUnknown
+      end    
+      item
+        Name = 'R7'
+        DataType = ftUnknown
       end>
     PacketRecords = 0
     Left = 136
@@ -469,6 +597,70 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       ReadOnly = False
       Required = False
       Size = 0
+    end
+    object rxUsersR1: TBooleanField
+      FieldKind = fkData
+      FieldName = 'R1'
+      Index = 7
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+    object rxUsersR2: TField
+      FieldKind = fkData
+      FieldName = 'R2'
+      Index = 8
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object rxUsersR3: TField
+      FieldKind = fkData
+      FieldName = 'R3'
+      Index = 9
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object rxUsersR4: TField
+      FieldKind = fkData
+      FieldName = 'R4'
+      Index = 10
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object rxUsersR5: TField
+      FieldKind = fkData
+      FieldName = 'R5'
+      Index = 11
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object rxUsersR6: TField
+      FieldKind = fkData
+      FieldName = 'R6'
+      Index = 12
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object rxUsersR7: TField
+      FieldKind = fkData
+      FieldName = 'R7'
+      Index = 13
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
     end
   end
   object dsRight: TDataSource

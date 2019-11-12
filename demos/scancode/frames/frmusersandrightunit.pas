@@ -5,7 +5,7 @@ unit frmUsersAndRightUnit;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, StdCtrls, ExtCtrls, DB, rxdbgrid, rxmemds;
+  Classes, SysUtils, Forms, Controls, StdCtrls, ExtCtrls, DB, rxdbgrid, rxmemds, scancode_user_api;
 
 type
 
@@ -29,6 +29,13 @@ type
     rxUsersID: TStringField;
     rxUsersLogin: TStringField;
     rxUsersPassword: TStringField;
+    rxUsersR1: TBooleanField;
+    rxUsersR2: TField;
+    rxUsersR3: TField;
+    rxUsersR4: TField;
+    rxUsersR5: TField;
+    rxUsersR6: TField;
+    rxUsersR7: TField;
     rxUsersRights: TStringField;
     Splitter1: TSplitter;
     procedure Button1Click(Sender: TObject);
@@ -36,10 +43,11 @@ type
 
   public
     procedure GenerateData;
+    function CreateUserInfo:TUserInformation;
   end;
 
 implementation
-uses scancode_user_api, scGlobal;
+uses scGlobal;
 {$R *.lfm}
 
 { TfrmUsersAndRightFrame }
@@ -47,38 +55,9 @@ uses scancode_user_api, scGlobal;
 procedure TfrmUsersAndRightFrame.Button1Click(Sender: TObject);
 var
   U: TUserInformation;
-  L: TUserLogin;
-  R: TUserRight;
   E: TExtendedInformation;
 begin
-  U:=TUserInformation.Create;
-
-  rxUsers.First;
-  while not rxUsers.EOF do
-  begin
-    L:=U.Logins.Records.CreateChild;
-    L.Id:=rxUsersID.AsString;
-    L.Login:=rxUsersLogin.AsString;
-    L.PasswordDecoded:=rxUsersPassword.AsString;
-    L.Rights:=rxUsersRights.AsString;
-    L.CreateProd:=rxUsersCreateProd.AsString;
-    L.AddProd:=rxUsersAddProd.AsString;
-    L.CreateFreeCollect:=rxUsersCreateFreeCollect.AsString;
-    rxUsers.Next;
-  end;
-  rxUsers.First;
-
-
-  rxRight.First;
-  while not rxRight.EOF do
-  begin
-    R:=U.Rights.Records.CreateChild;
-    R.Name:=rxRightName.AsString;
-    R.Id:=rxRightID.AsString;
-    R.groupId:=rxRightGroupId.AsString;
-    rxRight.Next;
-  end;
-  rxRight.First;
+  U:=CreateUserInfo;
 
   U.SaveToFile(ExportFolder + 'sc_ui.xml');
   U.Free;
@@ -110,6 +89,52 @@ begin
   rxRight.AppendRecord(['Заказ поставщику', '101', '1']);
   rxRight.AppendRecord(['Заказ клиента', '202', '2']);
   rxRight.AppendRecord(['Инвентаризация', '303', '3']);
+  rxRight.First;
+end;
+
+function TfrmUsersAndRightFrame.CreateUserInfo: TUserInformation;
+var
+  L: TUserLogin;
+  S: String;
+  i: Integer;
+  R: TUserRight;
+begin
+  Result:=TUserInformation.Create;
+
+  rxUsers.First;
+  while not rxUsers.EOF do
+  begin
+    L:=Result.Logins.Records.CreateChild;
+    L.Id:=rxUsersID.AsString;
+    L.Login:=rxUsersLogin.AsString;
+    L.PasswordDecoded:=rxUsersPassword.AsString;
+
+    S:='';
+    for i:=1 to 7 do
+      if rxUsers.FieldByName('R'+IntToStr(i)).AsBoolean then
+      begin
+        if S<>'' then S:=S + '/';
+        S:=S + IntToStr(i);
+      end;
+
+    L.Rights:=S; //rxUsersRights.AsString;
+    L.CreateProd:=rxUsersCreateProd.AsString;
+    L.AddProd:=rxUsersAddProd.AsString;
+    L.CreateFreeCollect:=rxUsersCreateFreeCollect.AsString;
+    rxUsers.Next;
+  end;
+  rxUsers.First;
+
+
+  rxRight.First;
+  while not rxRight.EOF do
+  begin
+    R:=Result.Rights.Records.CreateChild;
+    R.Name:=rxRightName.AsString;
+    R.Id:=rxRightID.AsString;
+    R.groupId:=rxRightGroupId.AsString;
+    rxRight.Next;
+  end;
   rxRight.First;
 end;
 
