@@ -105,7 +105,7 @@ var
 
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
 implementation
-uses rxlogging, ScancodeMT_API;
+uses rxlogging, ScancodeMT_API, ScancodeMT_utils;
 
 {$R *.lfm}
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
@@ -545,16 +545,21 @@ begin
     L.CreateFreeCollect:='1/2/3/4';
 
   L:=U.Logins.Records.CreateChild;
-    L.Id:='USER_ID_0001';
+    //L.Id:='USER_ID_0001';
+  //L.Id:='F6BA47FA-D20D-423A-B56C-8235A0A93FC9';
+//    L.Id:='FFFFFFFF-FFFF-FFFF-FFFF-000000000001';
+    L.Id:=UserIDToGUID(1);
     L.Login:='Лагунов Алексей Анатольевич';
-    L.PasswordDecoded:='';
+    L.Pass:='';
     L.Rights:='1/2/3/4/5';
     L.CreateProd:='1/2/3/4';
     L.AddProd:='1/2/3/4';
     L.CreateFreeCollect:='1/2/3/4';
 
   L:=U.Logins.Records.CreateChild;
-    L.Id:='USER_ID_0002';
+    //L.Id:='USER_ID_0002';
+    //L.Id:='FFFFFFFF-FFFF-FFFF-FFFF-000000000002';
+    L.Id:=UserIDToGUID(2);
     L.Login:='Харин Андрей';
     L.PasswordDecoded:='123';
     L.Rights:='1/2/3/4/5';
