@@ -817,11 +817,11 @@ var
 begin
   S:=Stocks.Stocks.CreateChild;
     S.Barcode:='148249978';
-    S.IdStock:='6f87e83f-722c-11df-b336-0011955cba6b';
+    S.IdStock:=StockIDToGUID(1); //'6f87e83f-722c-11df-b336-0011955cba6b';
     S.Name:='Центральный склад';
   R:=S.Rooms.CreateChild;
     R.Barcode:='148249978';
-    R.IdRoom:='6f87e842-722c-11df-b336-0011955cba6b';
+    R.IdRoom:=RoomIDToGUID(1); //'6f87e842-722c-11df-b336-0011955cba6b';
     R.Name:='Продукты';
   C:=R.Cells.CreateChild;
     C.Barcode:='262838176';
@@ -835,10 +835,10 @@ begin
 
   S:=Stocks.Stocks.CreateChild;
     S.Barcode:='S01000001';
-    S.IdStock:='SKLD-000001';
+    S.IdStock:=StockIDToGUID(2); //'SKLD-000001';
     S.Name:='Склад №1';
   R:=S.Rooms.CreateChild;
-    R.Barcode:='R01000001';
+    R.Barcode:=RoomIDToGUID(2);//'R01000001';
     R.IdRoom:='ROOM-000001-000001';
     R.Name:='Ангар № 1';
   C:=R.Cells.CreateChild;

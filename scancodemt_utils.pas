@@ -44,11 +44,15 @@ function GUIDToUserID(AGUID:string):Integer;
 
 function StockIDToGUID(AId:Integer):string;
 function GUIDToStockID(AGUID:string):Integer;
+
+function RoomIDToGUID(AId:Integer):string;
+function GUIDToRoomID(AGUID:string):Integer;
 implementation
 
 const
-  sUserGUIDBase = 'FFFFFFFF-FFFF-FFFF-FFFF-';
+  sUserGUIDBase  = 'FFFFFFFF-FFFF-FFFF-FFFF-';
   sStockGUIDBase = 'FFFFFFFF-FFFF-FFFF-FFFE-';
+  sRoomGUIDBase  = 'FFFFFFFF-FFFF-FFFF-FFFD-';
 
 function UserIDToGUID(AId:Integer):string;
 begin
@@ -74,6 +78,19 @@ begin
     Result:=StrToInt(Copy(AGUID, Length(sStockGUIDBase)+1, Length(AGUID)))
   else
     raise Exception.CreateFmt('%s is not stock GUID', [AGUID]);
+end;
+
+function RoomIDToGUID(AId: Integer): string;
+begin
+  Result:=Format('%s%012.12d', [sRoomGUIDBase, AId]);
+end;
+
+function GUIDToRoomID(AGUID: string): Integer;
+begin
+  if Copy(AGUID, 1, Length(sRoomGUIDBase)) = sRoomGUIDBase then
+    Result:=StrToInt(Copy(AGUID, Length(sRoomGUIDBase)+1, Length(AGUID)))
+  else
+    raise Exception.CreateFmt('%s is not room GUID', [AGUID]);
 end;
 
 end.
