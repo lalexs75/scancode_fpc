@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fpdoc-descriptions><package name="scancode_mt"><module name="ScancodeMT_utils"><element name="UserIDToGUID"><short>Функция перевода ID пользователя в GUID для отправки в ТСД</short>
       </element><element name="GUIDToUserID"><short>Функция перевода GUID пользователя в ID для приёмки с ТСД</short>
+      </element><element name="StockIDToGUID"><short>Функция перевода ID склада в GUID для отправки в ТСД</short>
+      </element><element name="GUIDToStockID"><short>Функция перевода GUID склада в ID для приёмки с ТСД</short>
       </element>
     </module>
   </package>

@@ -41,10 +41,14 @@ uses
 
 function UserIDToGUID(AId:Integer):string;
 function GUIDToUserID(AGUID:string):Integer;
+
+function StockIDToGUID(AId:Integer):string;
+function GUIDToStockID(AGUID:string):Integer;
 implementation
 
 const
   sUserGUIDBase = 'FFFFFFFF-FFFF-FFFF-FFFF-';
+  sStockGUIDBase = 'FFFFFFFF-FFFF-FFFF-FFFE-';
 
 function UserIDToGUID(AId:Integer):string;
 begin
@@ -57,6 +61,19 @@ begin
     Result:=StrToInt(Copy(AGUID, Length(sUserGUIDBase)+1, Length(AGUID)))
   else
     raise Exception.CreateFmt('%s is not user GUID', [AGUID]);
+end;
+
+function StockIDToGUID(AId: Integer): string;
+begin
+  Result:=Format('%s%012.12d', [sStockGUIDBase, AId]);
+end;
+
+function GUIDToStockID(AGUID: string): Integer;
+begin
+  if Copy(AGUID, 1, Length(sStockGUIDBase)) = sStockGUIDBase then
+    Result:=StrToInt(Copy(AGUID, Length(sStockGUIDBase)+1, Length(AGUID)))
+  else
+    raise Exception.CreateFmt('%s is not stock GUID', [AGUID]);
 end;
 
 end.
