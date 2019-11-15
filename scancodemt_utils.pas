@@ -47,12 +47,38 @@ function GUIDToStockID(AGUID:string):Integer;
 
 function RoomIDToGUID(AId:Integer):string;
 function GUIDToRoomID(AGUID:string):Integer;
+
+function CellIDToGUID(AId:Integer):string;
+function GUIDToCellID(AGUID:string):Integer;
+
+function DocIDToGUID(AId:Integer):string;
+function GUIDToDocID(AGUID:string):Integer;
+
+function GoodsIDToGUID(AId:Integer):string;
+function GUIDToGoodsID(AGUID:string):Integer;
+
+function MeasureIDToGUID(AId:Integer):string;
+function GUIDToMeasureID(AGUID:string):Integer;
+
+function NomenclatureIDToGUID(AId:Integer):string;
+function GUIDToNomenclatureID(AGUID:string):Integer;
+
+function PackIDToGUID(AId:Integer):string;
+function GUIDToPackID(AGUID:string):Integer;
+
+
 implementation
 
 const
-  sUserGUIDBase  = 'FFFFFFFF-FFFF-FFFF-FFFF-';
-  sStockGUIDBase = 'FFFFFFFF-FFFF-FFFF-FFFE-';
-  sRoomGUIDBase  = 'FFFFFFFF-FFFF-FFFF-FFFD-';
+  sUserGUIDBase          = 'FFFFFFFF-FFFF-FFFF-FFFF-';
+  sStockGUIDBase         = 'FFFFFFFF-FFFF-FFFF-FFFE-';
+  sRoomGUIDBase          = 'FFFFFFFF-FFFF-FFFF-FFFD-';
+  sCellGUIDBase          = 'FFFFFFFF-FFFF-FFFF-FFFC-';
+  sDocGUIDBase           = 'FFFFFFFF-FFFF-FFFF-FFFB-';
+  sGoodsGUIDBase         = 'FFFFFFFF-FFFF-FFFF-FFFA-';
+  sMeasureGUIDBase       = 'FFFFFFFF-FFFF-FFFF-FFF9-';
+  sNomenclatureGUIDBase  = 'FFFFFFFF-FFFF-FFFF-FFF8-';
+  sPackGUIDBase          = 'FFFFFFFF-FFFF-FFFF-FFF7-';
 
 function UserIDToGUID(AId:Integer):string;
 begin
@@ -91,6 +117,84 @@ begin
     Result:=StrToInt(Copy(AGUID, Length(sRoomGUIDBase)+1, Length(AGUID)))
   else
     raise Exception.CreateFmt('%s is not room GUID', [AGUID]);
+end;
+
+function CellIDToGUID(AId: Integer): string;
+begin
+  Result:=Format('%s%012.12d', [sCellGUIDBase, AId]);
+end;
+
+function GUIDToCellID(AGUID: string): Integer;
+begin
+  if Copy(AGUID, 1, Length(sCellGUIDBase)) = sCellGUIDBase then
+    Result:=StrToInt(Copy(AGUID, Length(sCellGUIDBase)+1, Length(AGUID)))
+  else
+    raise Exception.CreateFmt('%s is not cell GUID', [AGUID]);
+end;
+
+function DocIDToGUID(AId: Integer): string;
+begin
+  Result:=Format('%s%012.12d', [sDocGUIDBase, AId]);
+end;
+
+function GUIDToDocID(AGUID: string): Integer;
+begin
+  if Copy(AGUID, 1, Length(sDocGUIDBase)) = sDocGUIDBase then
+    Result:=StrToInt(Copy(AGUID, Length(sDocGUIDBase)+1, Length(AGUID)))
+  else
+    raise Exception.CreateFmt('%s is not document GUID', [AGUID]);
+end;
+
+function GoodsIDToGUID(AId: Integer): string;
+begin
+  Result:=Format('%s%012.12d', [sGoodsGUIDBase, AId]);
+end;
+
+function GUIDToGoodsID(AGUID: string): Integer;
+begin
+  if Copy(AGUID, 1, Length(sGoodsGUIDBase)) = sGoodsGUIDBase then
+    Result:=StrToInt(Copy(AGUID, Length(sGoodsGUIDBase)+1, Length(AGUID)))
+  else
+    raise Exception.CreateFmt('%s is not goods GUID', [AGUID]);
+end;
+
+function MeasureIDToGUID(AId: Integer): string;
+begin
+  Result:=Format('%s%012.12d', [sMeasureGUIDBase, AId]);
+end;
+
+function GUIDToMeasureID(AGUID: string): Integer;
+begin
+  if Copy(AGUID, 1, Length(sMeasureGUIDBase)) = sMeasureGUIDBase then
+    Result:=StrToInt(Copy(AGUID, Length(sMeasureGUIDBase)+1, Length(AGUID)))
+  else
+    raise Exception.CreateFmt('%s is not measure GUID', [AGUID]);
+end;
+
+function NomenclatureIDToGUID(AId: Integer): string;
+begin
+  Result:=Format('%s%012.12d', [sNomenclatureGUIDBase, AId]);
+end;
+
+function GUIDToNomenclatureID(AGUID: string): Integer;
+begin
+  if Copy(AGUID, 1, Length(sNomenclatureGUIDBase)) = sNomenclatureGUIDBase then
+    Result:=StrToInt(Copy(AGUID, Length(sNomenclatureGUIDBase)+1, Length(AGUID)))
+  else
+    raise Exception.CreateFmt('%s is not nomenclature GUID', [AGUID]);
+end;
+
+function PackIDToGUID(AId: Integer): string;
+begin
+  Result:=Format('%s%012.12d', [sPackGUIDBase, AId]);
+end;
+
+function GUIDToPackID(AGUID: string): Integer;
+begin
+  if Copy(AGUID, 1, Length(sPackGUIDBase)) = sPackGUIDBase then
+    Result:=StrToInt(Copy(AGUID, Length(sPackGUIDBase)+1, Length(AGUID)))
+  else
+    raise Exception.CreateFmt('%s is not nomenclature GUID', [AGUID]);
 end;
 
 end.

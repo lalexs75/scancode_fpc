@@ -5,6 +5,18 @@
       </element><element name="GUIDToStockID"><short>Функция перевода GUID склада в ID для приёмки с ТСД</short>
       </element><element name="RoomIDToGUID"><short>Функция перевода ID помещения в GUID для отправки в ТСД</short>
       </element><element name="GUIDToRoomID"><short>Функция перевода GUID помещения в ID для приёмки с ТСД</short>
+      </element><element name="CellIDToGUID"><short>Функция перевода ID ячейки в GUID для отправки в ТСД</short>
+      </element><element name="GUIDToCellID"><short>Функция перевода GUID ячейки в ID для приёмки с ТСД</short>
+      </element><element name="DocIDToGUID"><short>Функция перевода ID документа в GUID для отправки в ТСД</short>
+      </element><element name="GUIDToDocID"><short>Функция перевода GUID документа в ID для приёмки с ТСД</short>
+      </element><element name="GoodsIDToGUID"><short>Функция перевода ID товара в GUID для отправки в ТСД</short>
+      </element><element name="GUIDToGoodsID"><short>Функция перевода GUID товара в ID для приёмки с ТСД</short>
+      </element><element name="MeasureIDToGUID"><short>Функция перевода ID единицы измерения в GUID для отправки в ТСД</short>
+      </element><element name="NomenclatureIDToGUID"><short>Функция перевода ID вида номенклатуры в GUID для отправки в ТСД</short>
+      </element><element name="PackIDToGUID"><short>Функция перевода ID вида упаковки в GUID для отправки в ТСД</short>
+      </element><element name="GUIDToMeasureID"><short>Функция перевода GUID единицы измерения в ID для приёмки с ТСД</short>
+      </element><element name="GUIDToNomenclatureID"><short>Функция перевода GUID вида номенклатуры в ID для приёмки с ТСД</short>
+      </element><element name="GUIDToPackID"><short>Функция перевода GUID упаковки в ID для приёмки с ТСД</short>
       </element>
     </module>
   </package>
