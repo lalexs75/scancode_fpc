@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fpdoc-descriptions><package name="scancode_mt"><module name="ScancodeMT_utils"><element name="UserIDToGUID"><short>Функция перевода ID пользователя в GUID для отправки в ТСД</short>
+      </element>
+    </module>
+  </package>
+</fpdoc-descriptions>
