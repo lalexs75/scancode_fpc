@@ -60,6 +60,12 @@
       </element><element name="TPacks"><short>packs — справочник упаковок</short>
       </element><element name="TPack"><short>Упаковка товара</short>
       </element>
+    <element name="TGoodQuantity.IdGoods"><short>УИ товара</short>
+      </element><element name="TGoodQuantity.IdSklad"><short>УИ склада</short>
+      </element><element name="TGoodQuantity.IdChar"><short>id_char – УИ характеристики</short>
+      </element><element name="TGoodQuantity.SkladName"><short>sklad_name – наименование склада (на случай, если в ТСД нет данных по складу)</short>
+      </element><element name="TGoodQuantity.Quantity"><short>quantity – количество в базовых ед. измерения для номенклатуры</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

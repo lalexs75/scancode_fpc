@@ -234,6 +234,7 @@ object Form1: TForm1
     OnDocumentsList = ScancodeMT1DocumentsList
     OnStocksList = ScancodeMT1StocksList
     OnOrdersList = ScancodeMT1OrdersList
+    OnGetProd1 = ScancodeMT1GetProd1
     OnStatus = ScancodeMT1Status
     Left = 696
     Top = 88

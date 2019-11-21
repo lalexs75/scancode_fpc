@@ -113,6 +113,8 @@ type
   TMTStocksListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Stocks:TStocks) of object;
   TMTOrdersListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Orders:TOrders) of object;
   TMTStatusEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord) of object;
+  //TMTGetProd0Event = procedure(Sender:TScancodeMT; const AQuery:TQueryGoods0; const AMessage:TMTQueueRecord) of object;
+  TMTGetProd1Event = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const AQuery:TQueryGoods1; const AAnswer:TGetProdAnswer) of object;
 
   TScancodeMT = class(TComponent)
   private
@@ -120,6 +122,7 @@ type
     FMTLibrary: TScancodeMTLibrary;
     FOnDictionaryList: TMTDictionaryListEvent;
     FOnDocumentsList: TMTDocumentsListEvent;
+    FOnGetProd1: TMTGetProd1Event;
     FOnOrdersList: TMTOrdersListEvent;
     FOnStatus: TMTStatusEvent;
     FOnStocksList: TMTStocksListEvent;
@@ -144,6 +147,7 @@ type
     procedure InternalSendGetData(const Rec: TMTQueueRecord);
     procedure InternalSendGetStock(const Rec: TMTQueueRecord);
     procedure InternalSendPutDocum(const Rec: TMTQueueRecord);
+    procedure InternalSendGetProd(const Rec: TMTQueueRecord);
   public
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
@@ -159,6 +163,8 @@ type
     property OnDocumentsList:TMTDocumentsListEvent read FOnDocumentsList write FOnDocumentsList;
     property OnStocksList:TMTStocksListEvent read FOnStocksList write FOnStocksList;
     property OnOrdersList:TMTOrdersListEvent read FOnOrdersList write FOnOrdersList;
+    //property OnGetProd0:TMTGetProd0Event read FOnGetProd0 write FOnGetProd0;
+    property OnGetProd1:TMTGetProd1Event read FOnGetProd1 write FOnGetProd1;
     property OnStatus:TMTStatusEvent read FOnStatus write FOnStatus;
   end;
 
@@ -299,16 +305,16 @@ begin
   if Rec.Command = 'GetDocum' then // Получить документы
     InternalSendDocsList(Rec)
   else
-  if Rec.Command = 'GetData' then // Получить список всех товаров
+  if Rec.Command = 'GetData' then // 3 - Получить список всех товаров
     InternalSendGetData(Rec)
   else
   if Rec.Command = 'PutDocum' then // Передача ордеров
     InternalSendPutDocum(Rec)
   else
-  (*if FCurCommand = 'GetProd' then // Получить информацию о товаре
-    DoSendGetProd
+  if Rec.Command = 'GetProd' then // 10 - Получить информацию о товаре
+    InternalSendGetProd(Rec)
   else
-  if FCurCommand = 'CreateProd' then
+  (*if FCurCommand = 'CreateProd' then
   begin
     // Создать товар
   end
@@ -373,6 +379,36 @@ begin
     FOnOrdersList(Self, Rec, Orders);
   SendAnswer('PutDocum', Rec, nil);
   Orders.Free;
+end;
+
+procedure TScancodeMT.InternalSendGetProd(const Rec: TMTQueueRecord);
+var
+  FQuery1: TQueryGoods1;
+  FAnswer1: TGetProdAnswer;
+begin
+
+  if Rec.DocType = '0' then
+  begin
+(*  Orders:=TOrders.Create;
+  if Assigned(FOnOrdersList) then
+    FOnOrdersList(Self, Rec, Orders);
+  SendAnswer('PutDocum', Rec, nil);
+  Orders.Free;*)
+  end
+  else
+  begin
+    FQuery1:=TQueryGoods1.Create;
+    FAnswer1:=TGetProdAnswer.Create;
+
+    if Rec.FileName <> '' then;
+      FQuery1.LoadFromFile(Rec.FileName);
+    if Assigned(OnGetProd1) then
+      OnGetProd1(Self, Rec, FQuery1, FAnswer1);
+    SendAnswer('GetProd', Rec, FAnswer1);
+
+    FQuery1.Free;
+    FAnswer1.Free;
+  end;
 end;
 
 function TScancodeMT.IsSetPortStored: Boolean;

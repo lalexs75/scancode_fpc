@@ -46,6 +46,9 @@ type
       const AMessage: TMTQueueRecord; const Dictionary: TDictionary);
     procedure ScancodeMT1DocumentsList(Sender: TScancodeMT;
       const AMessage: TMTQueueRecord; const Documents: TDocuments);
+    procedure ScancodeMT1GetProd1(Sender: TScancodeMT;
+      const AMessage: TMTQueueRecord; const AQuery: TQueryGoods1;
+      const AAnswer: TGetProdAnswer);
     procedure ScancodeMT1OrdersList(Sender: TScancodeMT;
       const AMessage: TMTQueueRecord; const Orders: TOrders);
     procedure ScancodeMT1Status(Sender: TScancodeMT;
@@ -240,6 +243,17 @@ procedure TForm1.ScancodeMT1DocumentsList(Sender: TScancodeMT;
   const AMessage: TMTQueueRecord; const Documents: TDocuments);
 begin
   FillDocList(Documents);
+end;
+
+procedure TForm1.ScancodeMT1GetProd1(Sender: TScancodeMT;
+  const AMessage: TMTQueueRecord; const AQuery: TQueryGoods1;
+  const AAnswer: TGetProdAnswer);
+begin
+  AAnswer.GoodQuantity.IdChar:=AQuery.GoodList[0].IdChar;
+  AAnswer.GoodQuantity.IdGoods:=AQuery.GoodList[0].IdGoods;
+  //AAnswer.GoodQuantity.IdSklad:=AQuery.GoodList[0].IdChar;
+  AAnswer.GoodQuantity.SkladName:='Склад 123';
+  AAnswer.GoodQuantity.Quantity:='12.34';
 end;
 
 procedure TForm1.ScancodeMT1OrdersList(Sender: TScancodeMT;
@@ -494,15 +508,34 @@ end;
 
 procedure TForm1.DoSendGetProd;
 var
-  Q: TQueryGoods;
+  Q1: TQueryGoods1;
+  Q0: TQueryGoods0;
+  PA: TGetProdAnswer;
 begin
   if FileName <> '' then
   begin
-    Q:=TQueryGoods.Create;
-    Q.LoadFromFile(FileName);
+    if DocType = '1' then
+    begin
+      Q1:=TQueryGoods1.Create;
+      Q1.LoadFromFile(FileName);
 
-    //SendAnswer('GetProd', Dic);
-    Q.Free;
+      PA:=TGetProdAnswer.Create;
+      PA.GoodQuantity.IdGoods:=Q1.GoodList.Item[0].IdGoods;
+      PA.GoodQuantity.IdChar:=Q1.GoodList.Item[0].IdChar;
+      PA.GoodQuantity.IdSklad:=Q1.GoodList.Item[0].IdSklad;
+      PA.GoodQuantity.Quantity:='123';
+      SendAnswer('GetProd', PA);
+      PA.Free;
+
+      Q1.Free;
+    end
+    else
+    begin
+      Q0:=TQueryGoods0.Create;
+      Q0.LoadFromFile(FileName);
+      //SendAnswer('GetProd', Dic);
+      Q0.Free;
+    end;
   end;
 end;
 
@@ -598,6 +631,7 @@ var
   Br: TBarcode;
   Prc: TPrice;
   M: TMeasure;
+  Skld: TSclad;
 begin
   Pck:=Dic.Packs.PackList.CreateChild;
     Pck.IdOwner:='';
@@ -637,7 +671,7 @@ begin
       Br.Barcode:='2000000010510';
 
   Prc:=Dic.Prices.PriceList.CreateChild;
-    Prc.IdGoods:='SPR3-000001';
+    Prc.IdGoods:=G.IdGoods;
     Prc.Price:='166.00';
     Prc.Currency:='руб';
 
@@ -663,7 +697,7 @@ begin
     G.Name:='Затирка для плиточных швов "004", серая, 2 кг, Старатели, Россия';
     G.Art:='068.460.024';
     G.Alco:='0';
-    G.IdVidnomencl:='SPR1-000001';
+    G.IdVidnomencl:=NomenclatureIDToGUID(2);
     G.IdNaborPack:='';
     G.Img:='';
     G.Bitmap:='';
@@ -674,42 +708,6 @@ begin
     Prc.IdGoods:=G.IdGoods;
     Prc.Price:='200.4';
     Prc.Currency:='руб';
-
-(*  Ch:=Dic.Characteristics.CharacteristicList.CreateChild;
-    Ch.IdOwner:='bd72d913-55bc-11d9-848a-00112f43529a';
-    Ch.Relation:='видыноменклатуры';
-    Ch.Name:='38, Бежевый, 6, натуральная кожа';
-    Ch.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
-
-  Sr:=Dic.Serials.SerialList.CreateChild;
-    Sr.IdOwner:='e8a71fbf-55bc-11d9-848a-00112f43529a';
-    Sr.Relation:='';
-    Sr.Name:='до 20.12.16';
-    Sr.IdSerial:='0ed9fc88-d9fe-11e4-92f1-0050568b35ac';
-    Sr.Num:='';
-    Sr.Date:='2016-12-20T00:00:00';
-
-  Br:=Dic.Barcodes.BarcodeList.CreateChild;
-    Br.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
-    Br.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
-    Br.IdPack:='';
-    Br.Barcode:='2000000000480';
-  Br:=Dic.Barcodes.BarcodeList.CreateChild;
-    Br.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
-    Br.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
-    Br.IdPack:='f0e40f7b-7390-11df-b338-0011955cba6b';
-    Br.Barcode:='2000000000497';
-  Br:=Dic.Barcodes.BarcodeList.CreateChild;
-    Br.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
-    Br.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
-    Br.IdPack:='f0e40f7d-7390-11df-b338-0011955cba6b';
-    Br.Barcode:='2000000000503';
-  Br:=Dic.Barcodes.BarcodeList.CreateChild;
-    Br.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
-    Br.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
-    Br.IdPack:='dff7f708-7a0b-11df-b33a-0011955cba6b';
-    Br.Barcode:='2000000000510';
-*)
 
   M:=Dic.Measures.MeasureList.CreateChild;
     M.IdMeasure:=MeasureIDToGUID(1);
@@ -723,36 +721,17 @@ begin
   M:=Dic.Measures.MeasureList.CreateChild;
     M.IdMeasure:=MeasureIDToGUID(4);
     M.Name:='кв.м.';
-(*
-  Prc:=Dic.Prices.PriceList.CreateChild;
-    Prc.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
-    Prc.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
-    Prc.IdPack:='dff7f708-7a0b-11df-b33a-0011955cba6b';
-    Prc.Price:='8166.4';
-    Prc.Currency:='руб';
-
-  VN:=Dic.NomenclatureTypes.NomenclatureTypeList.CreateChild;
-    VN.IdNomenclatureType:='9c556d55-720f-11df-b436-0015e92f2802';
-    VN.Name:='Холодильники';
-    VN.IsChar:='0';
-    VN.IsSerial:='0';
-  VN:=Dic.NomenclatureTypes.NomenclatureTypeList.CreateChild;
-    VN.IdNomenclatureType:='9c556d52-720f-11df-b436-0015e92f2802';
-    VN.Name:='Электротовары';
-    VN.IsChar:='0';
-    VN.IsSerial:='0';
 
   Skld:=Dic.Sclads.ScladList.CreateChild;
-    Skld.IdSclad:='abf5870d-f5c8-11e2-802f-0015e9b8c48d';
+    Skld.IdSclad:=StockIDToGUID(1);
     Skld.Name:='Домодедовская таможня';
     Skld.IsAdress:='0';
     Skld.IsOrder:='0';
   Skld:=Dic.Sclads.ScladList.CreateChild;
-    Skld.IdSclad:='abf58710-f5c8-11e2-802f-0015e9b8c48d';
+    Skld.IdSclad:=StockIDToGUID(2);
     Skld.Name:='Внуковская таможня';
     Skld.IsAdress:='0';
     Skld.IsOrder:='0';
-*)
 end;
 
 procedure TForm1.FillDocList(Doc: TDocuments);
