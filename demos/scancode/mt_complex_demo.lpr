@@ -11,7 +11,7 @@ uses
   sysutils,
   rxlogging,
 
-  Unit1,
+  mtMainUnit,
   frmUsersAndRightUnit,
   scGlobal,
   frmStocksUnit;
@@ -35,9 +35,10 @@ begin
 
   OnRxLoggerEvent:=@MDefaultWriteLog;
 
+  Application.Title:='MT complex demo';
   Application.Scaled:=True;
   Application.Initialize;
-  Application.CreateForm(TForm1, Form1);
+  Application.CreateForm(TmtMainForm, mtMainForm);
   Application.Run;
 end.
 

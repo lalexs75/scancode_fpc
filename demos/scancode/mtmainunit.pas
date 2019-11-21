@@ -1,4 +1,4 @@
-unit Unit1;
+unit mtMainUnit;
 
 {$mode objfpc}{$H+}
 
@@ -12,9 +12,9 @@ uses
 
 type
 
-  { TForm1 }
+  { TmtMainForm }
 
-  TForm1 = class(TForm)
+  TmtMainForm = class(TForm)
     Button1: TButton;
     Button2: TButton;
     CLabel: TLabel;
@@ -49,7 +49,7 @@ type
   end;
 
 var
-  Form1: TForm1;
+  mtMainForm: TmtMainForm;
 
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
 implementation
@@ -59,14 +59,14 @@ uses rxlogging, ScancodeMT_API;
 
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
 begin
-  if Assigned(Form1) then
-    Form1.Memo1.Lines.Add(ALogMessage);
+  if Assigned(mtMainForm) then
+    mtMainForm.Memo1.Lines.Add(ALogMessage);
   RxDefaultWriteLog(ALogType, ALogMessage);
 end;
 
-{ TForm1 }
+{ TmtMainForm }
 
-procedure TForm1.FormCreate(Sender: TObject);
+procedure TmtMainForm.FormCreate(Sender: TObject);
 var
   F:TFrame;
 begin
@@ -101,20 +101,20 @@ begin
   UpdateBtnStates1;
 end;
 
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TmtMainForm.Button1Click(Sender: TObject);
 begin
   ScancodeMT1.MTLibrary.LibraryName:=FileNameEdit1.FileName;
   ScancodeMT1.Active:=true;
   UpdateBtnStates1;
 end;
 
-procedure TForm1.Button2Click(Sender: TObject);
+procedure TmtMainForm.Button2Click(Sender: TObject);
 begin
   ScancodeMT1.Active:=false;
   UpdateBtnStates1;
 end;
 
-procedure TForm1.ScancodeMT1Status(Sender: TScancodeMT;
+procedure TmtMainForm.ScancodeMT1Status(Sender: TScancodeMT;
   const AMessage: TMTQueueRecord);
 begin
   RxWriteLog(etDebug, #13'-------------------------------------------');
@@ -123,13 +123,13 @@ begin
     [AMessage.Confirm, AMessage.DocType, AMessage.FileName, AMessage.PackgeNumber, AMessage.Serial, AMessage.UserID, AMessage.UserIP, AMessage.Version]);
 end;
 
-procedure TForm1.ScancodeMT1UserList(Sender: TScancodeMT;
+procedure TmtMainForm.ScancodeMT1UserList(Sender: TScancodeMT;
   const AMessage: TMTQueueRecord; const UserInfo: TUserInformation);
 begin
   FUsersAndRight.CreateUserInfo(UserInfo);
 end;
 
-procedure TForm1.UpdateBtnStates1;
+procedure TmtMainForm.UpdateBtnStates1;
 begin
   Button1.Enabled:=not ScancodeMT1.Active;
   Button2.Enabled:=ScancodeMT1.Active;

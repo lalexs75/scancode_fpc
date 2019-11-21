@@ -1,9 +1,9 @@
-object Form1: TForm1
+object mtMainForm: TmtMainForm
   Left = 393
   Height = 552
   Top = 180
   Width = 957
-  Caption = 'Form1'
+  Caption = 'MT complex demo'
   ClientHeight = 552
   ClientWidth = 957
   OnCreate = FormCreate
