@@ -30,12 +30,12 @@ type
     rxUsersLogin: TStringField;
     rxUsersPassword: TStringField;
     rxUsersR1: TBooleanField;
-    rxUsersR2: TField;
-    rxUsersR3: TField;
-    rxUsersR4: TField;
-    rxUsersR5: TField;
-    rxUsersR6: TField;
-    rxUsersR7: TField;
+    rxUsersR2: TBooleanField;
+    rxUsersR3: TBooleanField;
+    rxUsersR4: TBooleanField;
+    rxUsersR5: TBooleanField;
+    rxUsersR6: TBooleanField;
+    rxUsersR7: TBooleanField;
     rxUsersRights: TStringField;
     Splitter1: TSplitter;
     procedure Button1Click(Sender: TObject);
@@ -43,7 +43,7 @@ type
 
   public
     procedure GenerateData;
-    function CreateUserInfo:TUserInformation;
+    function CreateUserInfo(UI:TUserInformation):TUserInformation;
   end;
 
 implementation
@@ -57,7 +57,7 @@ var
   U: TUserInformation;
   E: TExtendedInformation;
 begin
-  U:=CreateUserInfo;
+  U:=CreateUserInfo(nil);
 
   U.SaveToFile(ExportFolder + 'sc_ui.xml');
   U.Free;
@@ -78,11 +78,11 @@ end;
 procedure TfrmUsersAndRightFrame.GenerateData;
 begin
   rxUsers.CloseOpen;
-  rxUsers.AppendRecord(['98FA15A4-E0C4-432B-A8BC-5564C82888F4', 'Иванов Иван Иванович', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5']);
-  rxUsers.AppendRecord(['2ECFBCAE-A230-4BC4-9F2A-840E838391F5', 'Петров Пётр Перович', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5']);
-  rxUsers.AppendRecord(['8F8FB2C3-A450-4FD6-B129-8590B62C7D9F', 'Сидоров Сидор Сидорович', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5']);
-  rxUsers.AppendRecord(['F4B044DC-2906-45B3-9268-E74E82EDFA27', 'Орлов Александр Владимирович', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5']);
-  rxUsers.AppendRecord(['6FD83876-CD80-491F-9785-EF564AE84149', 'Пушкин Александр Сергеевич', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5']);
+  rxUsers.AppendRecord(['98FA15A4-E0C4-432B-A8BC-5564C82888F4', 'Иванов Иван Иванович', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', true, true, true, true, true]);
+  rxUsers.AppendRecord(['2ECFBCAE-A230-4BC4-9F2A-840E838391F5', 'Петров Пётр Перович', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', true, true, true, true, true]);
+  rxUsers.AppendRecord(['8F8FB2C3-A450-4FD6-B129-8590B62C7D9F', 'Сидоров Сидор Сидорович', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', true, true, true, true, true]);
+  rxUsers.AppendRecord(['F4B044DC-2906-45B3-9268-E74E82EDFA27', 'Орлов Александр Владимирович', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', true, true, true, true, true]);
+  rxUsers.AppendRecord(['6FD83876-CD80-491F-9785-EF564AE84149', 'Пушкин Александр Сергеевич', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', true, true, true, true, true]);
   rxUsers.First;
 
   rxRight.CloseOpen;
@@ -92,14 +92,18 @@ begin
   rxRight.First;
 end;
 
-function TfrmUsersAndRightFrame.CreateUserInfo: TUserInformation;
+function TfrmUsersAndRightFrame.CreateUserInfo(UI: TUserInformation
+  ): TUserInformation;
 var
   L: TUserLogin;
   S: String;
   i: Integer;
   R: TUserRight;
 begin
-  Result:=TUserInformation.Create;
+  if Assigned(UI) then
+    Result:=UI
+  else
+    Result:=TUserInformation.Create;
 
   rxUsers.First;
   while not rxUsers.EOF do

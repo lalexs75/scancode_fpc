@@ -110,8 +110,8 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
         item
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
-          Title.Caption = 'Доступ|От-ка'
-          Width = 60
+          Title.Caption = 'Доступ|Отгрузка'
+          Width = 80
           FieldName = 'R2'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -125,7 +125,9 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
         item
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
-          Title.Caption = 'R3'
+          Title.Hint = 'Инвентаризация'
+          Title.Caption = 'Доступ|Инвент.'
+          Width = 80
           FieldName = 'R3'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -139,7 +141,8 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
         item
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
-          Title.Caption = 'R4'
+          Title.Caption = 'Доступ|Перемещение'
+          Width = 100
           FieldName = 'R4'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -467,63 +470,79 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       item
         Name = 'ID'
         DataType = ftString
+        Precision = -1
         Size = 50
       end    
       item
         Name = 'Login'
         DataType = ftString
-        Size = 250
+        Precision = -1
+        Size = 200
       end    
       item
         Name = 'Password'
         DataType = ftString
+        Precision = -1
+        Size = 200
       end    
       item
         Name = 'Rights'
         DataType = ftString
+        Precision = -1
         Size = 200
       end    
       item
         Name = 'CreateProd'
         DataType = ftString
-        Size = 250
+        Precision = -1
+        Size = 200
       end    
       item
         Name = 'AddProd'
         DataType = ftString
-        Size = 250
+        Precision = -1
+        Size = 200
       end    
       item
         Name = 'CreateFreeCollect'
         DataType = ftString
+        Precision = -1
+        Size = 200
       end    
       item
         Name = 'R1'
         DataType = ftBoolean
+        Precision = -1
       end    
       item
         Name = 'R2'
-        DataType = ftUnknown
+        DataType = ftBoolean
+        Precision = -1
       end    
       item
         Name = 'R3'
-        DataType = ftUnknown
+        DataType = ftBoolean
+        Precision = -1
       end    
       item
         Name = 'R4'
-        DataType = ftUnknown
+        DataType = ftBoolean
+        Precision = -1
       end    
       item
         Name = 'R5'
-        DataType = ftUnknown
+        DataType = ftBoolean
+        Precision = -1
       end    
       item
         Name = 'R6'
-        DataType = ftUnknown
+        DataType = ftBoolean
+        Precision = -1
       end    
       item
         Name = 'R7'
-        DataType = ftUnknown
+        DataType = ftBoolean
+        Precision = -1
       end>
     PacketRecords = 0
     Left = 136
@@ -546,7 +565,7 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 250
+      Size = 200
     end
     object rxUsersPassword: TStringField
       FieldKind = fkData
@@ -556,7 +575,7 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 0
+      Size = 200
     end
     object rxUsersRights: TStringField
       FieldKind = fkData
@@ -576,7 +595,7 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 250
+      Size = 200
     end
     object rxUsersAddProd: TStringField
       FieldKind = fkData
@@ -586,7 +605,7 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 250
+      Size = 200
     end
     object rxUsersCreateFreeCollect: TStringField
       FieldKind = fkData
@@ -596,7 +615,7 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 0
+      Size = 200
     end
     object rxUsersR1: TBooleanField
       FieldKind = fkData
@@ -608,7 +627,7 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       Required = False
       DisplayValues = 'True;False'
     end
-    object rxUsersR2: TField
+    object rxUsersR2: TBooleanField
       FieldKind = fkData
       FieldName = 'R2'
       Index = 8
@@ -616,8 +635,9 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      DisplayValues = 'True;False'
     end
-    object rxUsersR3: TField
+    object rxUsersR3: TBooleanField
       FieldKind = fkData
       FieldName = 'R3'
       Index = 9
@@ -625,8 +645,9 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      DisplayValues = 'True;False'
     end
-    object rxUsersR4: TField
+    object rxUsersR4: TBooleanField
       FieldKind = fkData
       FieldName = 'R4'
       Index = 10
@@ -634,8 +655,9 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      DisplayValues = 'True;False'
     end
-    object rxUsersR5: TField
+    object rxUsersR5: TBooleanField
       FieldKind = fkData
       FieldName = 'R5'
       Index = 11
@@ -643,8 +665,9 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      DisplayValues = 'True;False'
     end
-    object rxUsersR6: TField
+    object rxUsersR6: TBooleanField
       FieldKind = fkData
       FieldName = 'R6'
       Index = 12
@@ -652,8 +675,9 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      DisplayValues = 'True;False'
     end
-    object rxUsersR7: TField
+    object rxUsersR7: TBooleanField
       FieldKind = fkData
       FieldName = 'R7'
       Index = 13
@@ -661,6 +685,7 @@ object frmUsersAndRightFrame: TfrmUsersAndRightFrame
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
+      DisplayValues = 'True;False'
     end
   end
   object dsRight: TDataSource

@@ -259,7 +259,7 @@ end;
 procedure TForm1.ScancodeMT1OrdersList(Sender: TScancodeMT;
   const AMessage: TMTQueueRecord; const Orders: TOrders);
 begin
-  //
+  RxWriteLog(etDebug, 'Process command : %s', [AMessage.Command]);
 end;
 
 procedure TForm1.ScancodeMT1Status(Sender: TScancodeMT;
