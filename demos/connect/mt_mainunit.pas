@@ -108,7 +108,7 @@ var
 
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
 implementation
-uses rxlogging, ScancodeMT_API, ScancodeMT_utils;
+uses rxlogging, ScancodeMT_API, ScancodeMT_utils, sha1, base64;
 
 {$R *.lfm}
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
@@ -567,11 +567,16 @@ procedure TForm1.FillUserList(const U: TUserInformation);
 var
   L: TUserLogin;
   R: TUserRight;
+  S: String;
 begin
   L:=U.Logins.Records.CreateChild;
     L.Login:='Орлов Александр Владимирович';
     L.Id:='8368e8b098294ae292bd8d4ddd658d9a';
-    L.Pass:='';
+
+    S:=SHA1Print(SHA1String('123'));
+    L.Pass:=EncodeStringBase64(S)+','+EncodeStringBase64(UpperCase(S));
+
+
     L.Rights:='1/2/3/4/5';
     L.CreateProd:='1/2/3/4';
     L.AddProd:='1/2/3/4';

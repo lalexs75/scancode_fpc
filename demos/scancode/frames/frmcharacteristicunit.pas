@@ -14,11 +14,17 @@ type
 
   TfrmCharacteristicFrame = class(TFrame)
     Button1: TButton;
+    dsMeasureList: TDataSource;
     dsSklad: TDataSource;
     dsrxNomenclatureTypes: TDataSource;
     PageControl1: TPageControl;
+    Panel1: TPanel;
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
+    RxDBGrid3: TRxDBGrid;
+    rxMeasureList: TRxMemoryData;
+    rxMeasureListMeasure_ID: TStringField;
+    rxMeasureListMeasure_NAME: TStringField;
     rxSklad: TRxMemoryData;
     rxNomenclatureTypes: TRxMemoryData;
     rxNomenclatureTypesIdNomenclatureType: TStringField;
@@ -31,6 +37,7 @@ type
     rxSkladIsOrder: TBooleanField;
     rxSkladSKLAD_ID: TStringField;
     rxSkladSKLAD_NAME: TStringField;
+    Splitter1: TSplitter;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
@@ -61,12 +68,26 @@ end;
 procedure TfrmCharacteristicFrame.GenerateData;
 begin
   rxSklad.Open;
+  rxMeasureList.Open;
+  rxNomenclatureTypes.Open;
+
   rxSklad.AppendRecord(['5E5C46C3-44FF-443D-9503-646D342C2483', 'Склад № 1', true, true]);
   rxSklad.AppendRecord(['66570A44-5BF2-4DEA-9782-BFA176F7B7D5', 'Склад № 2', true, true]);
   rxSklad.AppendRecord(['8CFADDD2-C9F9-4658-8EDA-E7BF44B1597A', 'Склад № 3', true, true]);
   rxSklad.AppendRecord(['DFF040EB-ACFA-4C6A-9DB5-AB8867D7747C', 'Склад № 4 - Транзит', true, true]);
 
+  rxMeasureList.AppendRecord(['C78F8CCC-1374-4B70-AEB6-CE27603527CA', 'шт']);
+  rxMeasureList.AppendRecord(['468D6F31-DEFB-4BCF-835D-542B674A9973', 'кв.м.']);
+  rxMeasureList.AppendRecord(['AB7DE341-7CCB-47BF-BAE1-FF358F3E7779', 'кг']);
+
+  rxNomenclatureTypes.AppendRecord(['2E0369F2-1EC6-44B7-99EA-CCF3D3152B66', 'Бытовая химия', true, true, false, false]);
+  rxNomenclatureTypes.AppendRecord(['DF5F28A5-5CD3-49D2-9979-FF206D6393F5', 'Хозяйственные товары, Садово-Огородный инвентарь', true, true, false, false]);
+  rxNomenclatureTypes.AppendRecord(['94F0965D-E273-49A0-95CB-2A77F1A7D041', 'Строительно-дорожная, Коммунальная  техника', true, true, false, false]);
+  rxNomenclatureTypes.AppendRecord(['4A53DD65-AE03-4BA3-92D0-85292E4C670A', 'Сантехнические изделия', true, true, false, false]);
+
+  rxNomenclatureTypes.First;
   rxSklad.First;
+  rxMeasureList.First;
 end;
 
 function TfrmCharacteristicFrame.CreateDictionarys(DI: TDictionary
@@ -149,9 +170,14 @@ begin
   BR.Barcode:='2000000000510';
 
   //Заполняем справочник единиц измерения
-  MS:=Result.Measures.MeasureList.CreateChild;
-  MS.IdMeasure:='bd72d90f-55bc-11d9-848a-00112f43529a';
-  MS.Name:='пар';
+  rxMeasureList.First;
+  while not rxMeasureList.EOF do
+  begin
+    MS:=Result.Measures.MeasureList.CreateChild;
+    MS.IdMeasure:=rxMeasureListMeasure_ID.AsString;
+    MS.Name:=rxMeasureListMeasure_NAME.AsString;
+    rxMeasureList.Next;
+  end;
 
   //Заполняем справочник цен
   PR:=Result.Prices.PriceList.CreateChild;
@@ -162,21 +188,18 @@ begin
   PR.Currency:='руб';
 
   //Заполняем справочник видов номенклатуры
-  NT:=Result.NomenclatureTypes.NomenclatureTypeList.CreateChild;
-  NT.IdNomenclatureType:='9c556d55-720f-11df-b436-0015e92f2802';
-  NT.Name:='Холодильники';
-  NT.IsChar:='0';
-  NT.IsSerial:='0';
-  NT.IsNomerSerial:='0';
-  NT.IsDateSerial:='0';
-
-  NT:=Result.NomenclatureTypes.NomenclatureTypeList.CreateChild;
-  NT.IdNomenclatureType:='9c556d52-720f-11df-b436-0015e92f2802';
-  NT.Name:='Электротовары';
-  NT.IsChar:='0';
-  NT.IsSerial:='0';
-  NT.IsNomerSerial:='0';
-  NT.IsDateSerial:='0';
+  rxNomenclatureTypes.First;
+  while not rxNomenclatureTypes.EOF do
+  begin
+    NT:=Result.NomenclatureTypes.NomenclatureTypeList.CreateChild;
+    NT.IdNomenclatureType:=rxNomenclatureTypesIdNomenclatureType.AsString;
+    NT.Name:=rxNomenclatureTypesName.AsString;
+    NT.IsChar:=BoolToStr(rxNomenclatureTypesIsChar.AsBoolean, '1', '0');
+    NT.IsSerial:=BoolToStr(rxNomenclatureTypesIsSerial.AsBoolean, '1', '0');
+    NT.IsNomerSerial:=BoolToStr(rxNomenclatureTypesIsNomerSerial.AsBoolean, '1', '0');
+    NT.IsDateSerial:=BoolToStr(rxNomenclatureTypesIsDateSerial.AsBoolean, '1', '0');
+    rxNomenclatureTypes.Next;
+  end;
 
   //Заполняем справочник складов
   rxSklad.First;
@@ -189,6 +212,10 @@ begin
     Skld.IsOrder:=BoolToStr(rxSkladIsOrder.AsBoolean, '0', '1');
     rxSklad.Next;
   end;
+
+  rxSklad.First;
+  rxMeasureList.First;
+  rxNomenclatureTypes.First;
 end;
 
 end.

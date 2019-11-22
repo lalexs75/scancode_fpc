@@ -34,9 +34,9 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
     Height = 416
     Top = 0
     Width = 751
-    ActivePage = TabSheet3
+    ActivePage = TabSheet1
     Anchors = [akTop, akLeft, akRight, akBottom]
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 1
     TabPosition = tpBottom
     object TabSheet1: TTabSheet
@@ -47,10 +47,97 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
         Left = 0
         Height = 385
         Top = 0
-        Width = 200
+        Width = 263
         ColumnDefValues.BlobText = '(данные)'
         TitleButtons = False
         AutoSort = True
+        Columns = <        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Наименование номенклатуры'
+            Width = 150
+            FieldName = 'Name'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'ID'
+            Width = 150
+            FieldName = 'IdNomenclatureType'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'IsChar'
+            FieldName = 'IsChar'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'IsSerial'
+            FieldName = 'IsSerial'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'IsNomerSerial'
+            FieldName = 'IsNomerSerial'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'IsDateSerial'
+            FieldName = 'IsDateSerial'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end>
         KeyStrokes = <        
           item
             Command = rxgcShowFindDlg
@@ -117,8 +204,23 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
         FocusColor = clRed
         SelectedColor = clHighlight
         GridLineStyle = psSolid
+        DataSource = dsrxNomenclatureTypes
         Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
         TabOrder = 0
+      end
+      object Splitter1: TSplitter
+        Left = 263
+        Height = 385
+        Top = 0
+        Width = 5
+      end
+      object Panel1: TPanel
+        Left = 268
+        Height = 385
+        Top = 0
+        Width = 473
+        Align = alClient
+        TabOrder = 2
       end
     end
     object TabSheet2: TTabSheet
@@ -270,6 +372,118 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
     end
     object TabSheet3: TTabSheet
       Caption = 'Ед. изм.'
+      ClientHeight = 385
+      ClientWidth = 741
+      object RxDBGrid3: TRxDBGrid
+        Left = 0
+        Height = 385
+        Top = 0
+        Width = 741
+        ColumnDefValues.BlobText = '(данные)'
+        TitleButtons = False
+        AutoSort = True
+        Columns = <        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'ID'
+            Width = 300
+            FieldName = 'Measure_ID'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Наименование единицы измерения'
+            Width = 350
+            FieldName = 'Measure_NAME'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end>
+        KeyStrokes = <        
+          item
+            Command = rxgcShowFindDlg
+            ShortCut = 16454
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowColumnsDlg
+            ShortCut = 16471
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowFilterDlg
+            ShortCut = 16468
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowSortDlg
+            ShortCut = 16467
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowQuickFilter
+            ShortCut = 16465
+            Enabled = True
+          end        
+          item
+            Command = rxgcHideQuickFilter
+            ShortCut = 16456
+            Enabled = True
+          end        
+          item
+            Command = rxgcSelectAll
+            ShortCut = 16449
+            Enabled = True
+          end        
+          item
+            Command = rxgcDeSelectAll
+            ShortCut = 16429
+            Enabled = True
+          end        
+          item
+            Command = rxgcInvertSelection
+            ShortCut = 16426
+            Enabled = True
+          end        
+          item
+            Command = rxgcOptimizeColumnsWidth
+            ShortCut = 16427
+            Enabled = True
+          end        
+          item
+            Command = rxgcCopyCellValue
+            ShortCut = 16451
+            Enabled = True
+          end>
+        FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
+        OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+        Align = alClient
+        Color = clWindow
+        DrawFullLine = False
+        FocusColor = clRed
+        SelectedColor = clHighlight
+        GridLineStyle = psSolid
+        DataSource = dsMeasureList
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+        TabOrder = 0
+        TitleStyle = tsNative
+      end
     end
   end
   object rxNomenclatureTypes: TRxMemoryData
@@ -436,6 +650,47 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
   object dsSklad: TDataSource
     DataSet = rxSklad
     Left = 200
+    Top = 315
+  end
+  object rxMeasureList: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'Measure_ID'
+        DataType = ftString
+        Size = 100
+      end    
+      item
+        Name = 'Measure_NAME'
+        DataType = ftString
+        Size = 150
+      end>
+    PacketRecords = 0
+    Left = 420
+    Top = 315
+    object rxMeasureListMeasure_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'Measure_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object rxMeasureListMeasure_NAME: TStringField
+      FieldKind = fkData
+      FieldName = 'Measure_NAME'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 150
+    end
+  end
+  object dsMeasureList: TDataSource
+    DataSet = rxMeasureList
+    Left = 384
     Top = 315
   end
 end
