@@ -14,6 +14,7 @@ type
 
   TfrmCharacteristicFrame = class(TFrame)
     Button1: TButton;
+    dsGoods: TDataSource;
     dsMeasureList: TDataSource;
     dsSklad: TDataSource;
     dsrxNomenclatureTypes: TDataSource;
@@ -22,9 +23,18 @@ type
     RxDBGrid1: TRxDBGrid;
     RxDBGrid2: TRxDBGrid;
     RxDBGrid3: TRxDBGrid;
+    RxDBGrid4: TRxDBGrid;
+    rxGoodsGOODS_ATRTICLE: TStringField;
+    rxGoodsGOODS_ID: TStringField;
+    rxGoodsGOODS_IsAlco: TBooleanField;
+    rxGoodsGOODS_NAME: TStringField;
+    rxGoodsIdNomenclatureType: TStringField;
+    rxGoodsIdPack: TStringField;
+    rxGoodsMeasure_ID: TStringField;
     rxMeasureList: TRxMemoryData;
     rxMeasureListMeasure_ID: TStringField;
     rxMeasureListMeasure_NAME: TStringField;
+    rxGoods: TRxMemoryData;
     rxSklad: TRxMemoryData;
     rxNomenclatureTypes: TRxMemoryData;
     rxNomenclatureTypesIdNomenclatureType: TStringField;
@@ -38,10 +48,13 @@ type
     rxSkladSKLAD_ID: TStringField;
     rxSkladSKLAD_NAME: TStringField;
     Splitter1: TSplitter;
+    StringField1: TStringField;
     TabSheet1: TTabSheet;
     TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
     procedure Button1Click(Sender: TObject);
+    procedure rxGoodsFilterRecord(DataSet: TDataSet; var Accept: Boolean);
+    procedure rxNomenclatureTypesAfterScroll(DataSet: TDataSet);
   private
 
   public
@@ -65,11 +78,24 @@ begin
   DD.Free;
 end;
 
+procedure TfrmCharacteristicFrame.rxGoodsFilterRecord(DataSet: TDataSet;
+  var Accept: Boolean);
+begin
+  Accept:=rxGoodsIdNomenclatureType.AsString = rxNomenclatureTypesIdNomenclatureType.AsString;
+end;
+
+procedure TfrmCharacteristicFrame.rxNomenclatureTypesAfterScroll(
+  DataSet: TDataSet);
+begin
+  rxGoods.First;
+end;
+
 procedure TfrmCharacteristicFrame.GenerateData;
 begin
   rxSklad.Open;
   rxMeasureList.Open;
   rxNomenclatureTypes.Open;
+  rxGoods.Open;
 
   rxSklad.AppendRecord(['5E5C46C3-44FF-443D-9503-646D342C2483', 'Склад № 1', true, true]);
   rxSklad.AppendRecord(['66570A44-5BF2-4DEA-9782-BFA176F7B7D5', 'Склад № 2', true, true]);
@@ -85,9 +111,15 @@ begin
   rxNomenclatureTypes.AppendRecord(['94F0965D-E273-49A0-95CB-2A77F1A7D041', 'Строительно-дорожная, Коммунальная  техника', true, true, false, false]);
   rxNomenclatureTypes.AppendRecord(['4A53DD65-AE03-4BA3-92D0-85292E4C670A', 'Сантехнические изделия', true, true, false, false]);
 
+  rxGoods.AppendRecord(['3C459E0E-2F3D-4285-90A6-0A1A2F776191', 'Пеногаситель (125мл)  Karcher 6.295-875.0 Керхер-Германия', 'C78F8CCC-1374-4B70-AEB6-CE27603527CA', '008.651.050', false, '2E0369F2-1EC6-44B7-99EA-CCF3D3152B66']);
+
   rxNomenclatureTypes.First;
   rxSklad.First;
   rxMeasureList.First;
+
+  rxGoods.Filtered:=true;
+  rxGoods.First;
+
 end;
 
 function TfrmCharacteristicFrame.CreateDictionarys(DI: TDictionary

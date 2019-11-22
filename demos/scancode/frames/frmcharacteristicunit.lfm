@@ -207,6 +207,7 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
         DataSource = dsrxNomenclatureTypes
         Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
         TabOrder = 0
+        TitleStyle = tsNative
       end
       object Splitter1: TSplitter
         Left = 263
@@ -220,7 +221,205 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
         Top = 0
         Width = 473
         Align = alClient
+        ClientHeight = 385
+        ClientWidth = 473
         TabOrder = 2
+        object RxDBGrid4: TRxDBGrid
+          Left = 1
+          Height = 183
+          Top = 1
+          Width = 471
+          ColumnDefValues.BlobText = '(данные)'
+          TitleButtons = False
+          AutoSort = True
+          Columns = <          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Наименование товара'
+              Width = 150
+              FieldName = 'GOODS_NAME'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Ед. изм.'
+              Width = 50
+              FieldName = 'Measure_NAME'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Арткул'
+              Width = 100
+              FieldName = 'GOODS_ATRTICLE'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'GOODS_ID'
+              Width = 150
+              FieldName = 'GOODS_ID'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Measure_ID'
+              Width = 150
+              FieldName = 'Measure_ID'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'GOODS_IsAlco'
+              FieldName = 'GOODS_IsAlco'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'IdNomenclatureType'
+              FieldName = 'IdNomenclatureType'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'IdPack'
+              FieldName = 'IdPack'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end>
+          KeyStrokes = <          
+            item
+              Command = rxgcShowFindDlg
+              ShortCut = 16454
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowColumnsDlg
+              ShortCut = 16471
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowFilterDlg
+              ShortCut = 16468
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowSortDlg
+              ShortCut = 16467
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowQuickFilter
+              ShortCut = 16465
+              Enabled = True
+            end          
+            item
+              Command = rxgcHideQuickFilter
+              ShortCut = 16456
+              Enabled = True
+            end          
+            item
+              Command = rxgcSelectAll
+              ShortCut = 16449
+              Enabled = True
+            end          
+            item
+              Command = rxgcDeSelectAll
+              ShortCut = 16429
+              Enabled = True
+            end          
+            item
+              Command = rxgcInvertSelection
+              ShortCut = 16426
+              Enabled = True
+            end          
+            item
+              Command = rxgcOptimizeColumnsWidth
+              ShortCut = 16427
+              Enabled = True
+            end          
+            item
+              Command = rxgcCopyCellValue
+              ShortCut = 16451
+              Enabled = True
+            end>
+          FooterOptions.DrawFullLine = False
+          SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+          SearchOptions.FromStart = False
+          OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+          Align = alTop
+          Color = clWindow
+          DrawFullLine = False
+          FocusColor = clRed
+          SelectedColor = clHighlight
+          GridLineStyle = psSolid
+          DataSource = dsGoods
+          Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+          TabOrder = 0
+        end
       end
     end
     object TabSheet2: TTabSheet
@@ -514,6 +713,7 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
         Name = 'IsDateSerial'
         DataType = ftBoolean
       end>
+    AfterScroll = rxNomenclatureTypesAfterScroll
     PacketRecords = 0
     Left = 112
     Top = 120
@@ -692,5 +892,135 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
     DataSet = rxMeasureList
     Left = 384
     Top = 315
+  end
+  object rxGoods: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'GOODS_ID'
+        DataType = ftString
+        Size = 100
+      end    
+      item
+        Name = 'GOODS_NAME'
+        DataType = ftString
+        Size = 200
+      end    
+      item
+        Name = 'Measure_ID'
+        DataType = ftString
+        Size = 150
+      end    
+      item
+        Name = 'GOODS_ATRTICLE'
+        DataType = ftString
+        Size = 100
+      end    
+      item
+        Name = 'GOODS_IsAlco'
+        DataType = ftBoolean
+      end    
+      item
+        Name = 'IdNomenclatureType'
+        DataType = ftString
+        Size = 150
+      end    
+      item
+        Name = 'IdPack'
+        DataType = ftString
+        Size = 150
+      end>
+    OnFilterRecord = rxGoodsFilterRecord
+    PacketRecords = 0
+    Left = 488
+    Top = 68
+    object rxGoodsGOODS_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'GOODS_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object rxGoodsGOODS_NAME: TStringField
+      FieldKind = fkData
+      FieldName = 'GOODS_NAME'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object rxGoodsMeasure_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'Measure_ID'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 150
+    end
+    object rxGoodsGOODS_ATRTICLE: TStringField
+      FieldKind = fkData
+      FieldName = 'GOODS_ATRTICLE'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object rxGoodsGOODS_IsAlco: TBooleanField
+      FieldKind = fkData
+      FieldName = 'GOODS_IsAlco'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+    object rxGoodsIdNomenclatureType: TStringField
+      FieldKind = fkData
+      FieldName = 'IdNomenclatureType'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 150
+    end
+    object rxGoodsIdPack: TStringField
+      FieldKind = fkData
+      FieldName = 'IdPack'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 150
+    end
+    object StringField1: TStringField
+      FieldKind = fkLookup
+      FieldName = 'Measure_NAME'
+      Index = 7
+      KeyFields = 'Measure_ID'
+      LookupCache = False
+      LookupDataSet = rxMeasureList
+      LookupKeyFields = 'Measure_ID'
+      LookupResultField = 'Measure_NAME'
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 150
+    end
+  end
+  object dsGoods: TDataSource
+    DataSet = rxGoods
+    Left = 456
+    Top = 68
   end
 end
