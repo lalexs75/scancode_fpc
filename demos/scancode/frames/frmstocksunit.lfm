@@ -2,11 +2,11 @@ object frmStocksFrame: TfrmStocksFrame
   Left = 0
   Height = 406
   Top = 0
-  Width = 752
+  Width = 1014
   ClientHeight = 406
-  ClientWidth = 752
+  ClientWidth = 1014
   TabOrder = 0
-  DesignLeft = 662
+  DesignLeft = 400
   DesignTop = 409
   object Panel1: TPanel
     AnchorSideLeft.Control = Owner
@@ -17,25 +17,25 @@ object frmStocksFrame: TfrmStocksFrame
     Left = 0
     Height = 361
     Top = 0
-    Width = 752
+    Width = 1014
     Anchors = [akTop, akLeft, akRight, akBottom]
     ClientHeight = 361
-    ClientWidth = 752
+    ClientWidth = 1014
     TabOrder = 0
     object Panel2: TPanel
-      Left = 293
+      Left = 416
       Height = 359
       Top = 1
-      Width = 458
+      Width = 597
       Align = alClient
       ClientHeight = 359
-      ClientWidth = 458
+      ClientWidth = 597
       TabOrder = 0
       object RxDBGrid2: TRxDBGrid
         Left = 1
         Height = 154
         Top = 1
-        Width = 456
+        Width = 595
         ColumnDefValues.BlobText = '(данные)'
         TitleButtons = False
         AutoSort = True
@@ -58,8 +58,8 @@ object frmStocksFrame: TfrmStocksFrame
           item
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
-            Title.Caption = 'barcode'
-            Width = 80
+            Title.Caption = 'Штрихкод'
+            Width = 90
             FieldName = 'barcode'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -73,8 +73,8 @@ object frmStocksFrame: TfrmStocksFrame
           item
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
-            Title.Caption = 'name'
-            Width = 150
+            Title.Caption = 'Наименование помещения'
+            Width = 250
             FieldName = 'name'
             EditButtons = <>
             Filter.DropDownRows = 0
@@ -160,7 +160,7 @@ object frmStocksFrame: TfrmStocksFrame
         Left = 1
         Height = 198
         Top = 160
-        Width = 456
+        Width = 595
         ColumnDefValues.BlobText = '(данные)'
         TitleButtons = False
         AutoSort = True
@@ -183,7 +183,7 @@ object frmStocksFrame: TfrmStocksFrame
           item
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
-            Title.Caption = 'barcode'
+            Title.Caption = 'Штрихкод'
             Width = 100
             FieldName = 'barcode'
             EditButtons = <>
@@ -198,7 +198,7 @@ object frmStocksFrame: TfrmStocksFrame
           item
             Title.Alignment = taCenter
             Title.Orientation = toHorizontal
-            Title.Caption = 'name'
+            Title.Caption = 'Наименование ячейки'
             Width = 150
             FieldName = 'name'
             EditButtons = <>
@@ -286,7 +286,7 @@ object frmStocksFrame: TfrmStocksFrame
         Left = 1
         Height = 5
         Top = 155
-        Width = 456
+        Width = 595
         Align = alTop
         ResizeAnchor = akTop
       end
@@ -295,7 +295,7 @@ object frmStocksFrame: TfrmStocksFrame
       Left = 1
       Height = 359
       Top = 1
-      Width = 287
+      Width = 410
       ColumnDefValues.BlobText = '(данные)'
       TitleButtons = False
       AutoSort = True
@@ -318,8 +318,8 @@ object frmStocksFrame: TfrmStocksFrame
         item
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
-          Title.Caption = 'barcode'
-          Width = 70
+          Title.Caption = 'Штрихкод'
+          Width = 90
           FieldName = 'barcode'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -333,8 +333,8 @@ object frmStocksFrame: TfrmStocksFrame
         item
           Title.Alignment = taCenter
           Title.Orientation = toHorizontal
-          Title.Caption = 'name'
-          Width = 150
+          Title.Caption = 'Наименование склада'
+          Width = 200
           FieldName = 'name'
           EditButtons = <>
           Filter.DropDownRows = 0
@@ -417,7 +417,7 @@ object frmStocksFrame: TfrmStocksFrame
       TitleStyle = tsNative
     end
     object Splitter1: TSplitter
-      Left = 288
+      Left = 411
       Height = 359
       Top = 1
       Width = 5
@@ -428,7 +428,7 @@ object frmStocksFrame: TfrmStocksFrame
     AnchorSideLeft.Side = asrCenter
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 336
+    Left = 467
     Height = 33
     Top = 367
     Width = 81

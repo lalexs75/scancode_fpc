@@ -73,6 +73,7 @@
         <Filename Value="frames/frmstocksunit.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmStocksFrame"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmStocksUnit"/>
       </Unit>
@@ -88,6 +89,7 @@
         <Filename Value="frames/frmcharacteristicunit.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="frmCharacteristicFrame"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmCharacteristicUnit"/>
       </Unit>

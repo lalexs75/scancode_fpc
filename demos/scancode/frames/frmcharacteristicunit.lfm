@@ -1,21 +1,21 @@
 object frmCharacteristicFrame: TfrmCharacteristicFrame
   Left = 0
-  Height = 240
+  Height = 461
   Top = 0
-  Width = 320
-  ClientHeight = 240
-  ClientWidth = 320
+  Width = 751
+  ClientHeight = 461
+  ClientWidth = 751
   TabOrder = 0
-  DesignLeft = 354
-  DesignTop = 140
+  DesignLeft = 581
+  DesignTop = 208
   object Button1: TButton
     AnchorSideLeft.Control = Owner
     AnchorSideLeft.Side = asrCenter
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 104
+    Left = 319
     Height = 33
-    Top = 201
+    Top = 422
     Width = 112
     Anchors = [akLeft, akBottom]
     AutoSize = True
@@ -23,5 +23,419 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
     Caption = 'Сформировать'
     OnClick = Button1Click
     TabOrder = 0
+  end
+  object PageControl1: TPageControl
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Button1
+    Left = 0
+    Height = 416
+    Top = 0
+    Width = 751
+    ActivePage = TabSheet3
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabIndex = 2
+    TabOrder = 1
+    TabPosition = tpBottom
+    object TabSheet1: TTabSheet
+      Caption = 'Товарные справочники'
+      ClientHeight = 385
+      ClientWidth = 741
+      object RxDBGrid1: TRxDBGrid
+        Left = 0
+        Height = 385
+        Top = 0
+        Width = 200
+        ColumnDefValues.BlobText = '(данные)'
+        TitleButtons = False
+        AutoSort = True
+        KeyStrokes = <        
+          item
+            Command = rxgcShowFindDlg
+            ShortCut = 16454
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowColumnsDlg
+            ShortCut = 16471
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowFilterDlg
+            ShortCut = 16468
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowSortDlg
+            ShortCut = 16467
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowQuickFilter
+            ShortCut = 16465
+            Enabled = True
+          end        
+          item
+            Command = rxgcHideQuickFilter
+            ShortCut = 16456
+            Enabled = True
+          end        
+          item
+            Command = rxgcSelectAll
+            ShortCut = 16449
+            Enabled = True
+          end        
+          item
+            Command = rxgcDeSelectAll
+            ShortCut = 16429
+            Enabled = True
+          end        
+          item
+            Command = rxgcInvertSelection
+            ShortCut = 16426
+            Enabled = True
+          end        
+          item
+            Command = rxgcOptimizeColumnsWidth
+            ShortCut = 16427
+            Enabled = True
+          end        
+          item
+            Command = rxgcCopyCellValue
+            ShortCut = 16451
+            Enabled = True
+          end>
+        FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
+        OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+        Align = alLeft
+        Color = clWindow
+        DrawFullLine = False
+        FocusColor = clRed
+        SelectedColor = clHighlight
+        GridLineStyle = psSolid
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+        TabOrder = 0
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Склады'
+      ClientHeight = 385
+      ClientWidth = 741
+      object RxDBGrid2: TRxDBGrid
+        Left = 0
+        Height = 385
+        Top = 0
+        Width = 741
+        ColumnDefValues.BlobText = '(данные)'
+        TitleButtons = False
+        AutoSort = True
+        Columns = <        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'ID'
+            Width = 300
+            FieldName = 'SKLAD_ID'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Наименование склада'
+            Width = 250
+            FieldName = 'SKLAD_NAME'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Hint = 'Адресация на складе'
+            Title.Caption = 'Адресация'
+            Width = 80
+            FieldName = 'IsAdressExists'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Hint = 'Есть ордера на складе'
+            Title.Caption = 'Ордера'
+            Width = 80
+            FieldName = 'IsOrder'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end>
+        KeyStrokes = <        
+          item
+            Command = rxgcShowFindDlg
+            ShortCut = 16454
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowColumnsDlg
+            ShortCut = 16471
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowFilterDlg
+            ShortCut = 16468
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowSortDlg
+            ShortCut = 16467
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowQuickFilter
+            ShortCut = 16465
+            Enabled = True
+          end        
+          item
+            Command = rxgcHideQuickFilter
+            ShortCut = 16456
+            Enabled = True
+          end        
+          item
+            Command = rxgcSelectAll
+            ShortCut = 16449
+            Enabled = True
+          end        
+          item
+            Command = rxgcDeSelectAll
+            ShortCut = 16429
+            Enabled = True
+          end        
+          item
+            Command = rxgcInvertSelection
+            ShortCut = 16426
+            Enabled = True
+          end        
+          item
+            Command = rxgcOptimizeColumnsWidth
+            ShortCut = 16427
+            Enabled = True
+          end        
+          item
+            Command = rxgcCopyCellValue
+            ShortCut = 16451
+            Enabled = True
+          end>
+        FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
+        OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+        Align = alClient
+        Color = clWindow
+        DrawFullLine = False
+        FocusColor = clRed
+        SelectedColor = clHighlight
+        GridLineStyle = psSolid
+        DataSource = dsSklad
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+        TabOrder = 0
+        TitleStyle = tsNative
+      end
+    end
+    object TabSheet3: TTabSheet
+      Caption = 'Ед. изм.'
+    end
+  end
+  object rxNomenclatureTypes: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'IdNomenclatureType'
+        DataType = ftString
+        Size = 50
+      end    
+      item
+        Name = 'Name'
+        DataType = ftString
+        Size = 250
+      end    
+      item
+        Name = 'IsChar'
+        DataType = ftBoolean
+      end    
+      item
+        Name = 'IsSerial'
+        DataType = ftBoolean
+      end    
+      item
+        Name = 'IsNomerSerial'
+        DataType = ftBoolean
+      end    
+      item
+        Name = 'IsDateSerial'
+        DataType = ftBoolean
+      end>
+    PacketRecords = 0
+    Left = 112
+    Top = 120
+    object rxNomenclatureTypesIdNomenclatureType: TStringField
+      FieldKind = fkData
+      FieldName = 'IdNomenclatureType'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object rxNomenclatureTypesName: TStringField
+      FieldKind = fkData
+      FieldName = 'Name'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 250
+    end
+    object rxNomenclatureTypesIsChar: TBooleanField
+      FieldKind = fkData
+      FieldName = 'IsChar'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+    object rxNomenclatureTypesIsSerial: TBooleanField
+      FieldKind = fkData
+      FieldName = 'IsSerial'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+    object rxNomenclatureTypesIsNomerSerial: TBooleanField
+      FieldKind = fkData
+      FieldName = 'IsNomerSerial'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+    object rxNomenclatureTypesIsDateSerial: TBooleanField
+      FieldKind = fkData
+      FieldName = 'IsDateSerial'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+  end
+  object dsrxNomenclatureTypes: TDataSource
+    DataSet = rxNomenclatureTypes
+    Left = 80
+    Top = 120
+  end
+  object rxSklad: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'SKLAD_ID'
+        DataType = ftString
+        Size = 100
+      end    
+      item
+        Name = 'SKLAD_NAME'
+        DataType = ftString
+        Size = 500
+      end    
+      item
+        Name = 'IsAdressExists'
+        DataType = ftBoolean
+      end    
+      item
+        Name = 'IsOrder'
+        DataType = ftBoolean
+      end>
+    PacketRecords = 0
+    Left = 234
+    Top = 315
+    object rxSkladSKLAD_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'SKLAD_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object rxSkladSKLAD_NAME: TStringField
+      FieldKind = fkData
+      FieldName = 'SKLAD_NAME'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+    object rxSkladIsAdressExists: TBooleanField
+      FieldKind = fkData
+      FieldName = 'IsAdressExists'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+    object rxSkladIsOrder: TBooleanField
+      FieldKind = fkData
+      FieldName = 'IsOrder'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayValues = 'True;False'
+    end
+  end
+  object dsSklad: TDataSource
+    DataSet = rxSklad
+    Left = 200
+    Top = 315
   end
 end

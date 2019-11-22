@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
   ExtCtrls, EditBtn, DB, rxdbgrid, rxmemds, RxIniPropStorage, ScancodeMT,
   scancode_user_api, frmUsersAndRightUnit, frmStocksUnit, frmDocumentsUnit,
-  frmCharacteristicUnit, frmTSDOrderUnit;
+  frmCharacteristicUnit, frmTSDOrderUnit, scancode_stock_api;
 
 type
 
@@ -39,10 +39,14 @@ type
     procedure FormCreate(Sender: TObject);
     procedure ScancodeMT1Status(Sender: TScancodeMT;
       const AMessage: TMTQueueRecord);
+    procedure ScancodeMT1StocksList(Sender: TScancodeMT;
+      const AMessage: TMTQueueRecord; const Stocks: TStocks);
     procedure ScancodeMT1UserList(Sender: TScancodeMT;
       const AMessage: TMTQueueRecord; const UserInfo: TUserInformation);
   private
     FUsersAndRight: TfrmUsersAndRightFrame;
+    FStocksFrame: TfrmStocksFrame;
+    FCharacteristicFrame: TfrmCharacteristicFrame;
     procedure UpdateBtnStates1;
   public
 
@@ -78,20 +82,21 @@ begin
   FUsersAndRight.Align:=alClient;
   FUsersAndRight.GenerateData;
 
-  F:=TfrmStocksFrame.Create(Self);
-  F.Parent:=TabSheet4;
-  F.Align:=alClient;
-  TfrmStocksFrame(F).GenerateData;
+  FStocksFrame:=TfrmStocksFrame.Create(Self);
+  FStocksFrame.Parent:=TabSheet4;
+  FStocksFrame.Align:=alClient;
+  FStocksFrame.GenerateData;
+
+  FCharacteristicFrame:=TfrmCharacteristicFrame.Create(Self);
+  FCharacteristicFrame.Parent:=TabSheet6;
+  FCharacteristicFrame.Align:=alClient;
+  FCharacteristicFrame.GenerateData;
 
   F:=TfrmDocumentsFrame.Create(Self);
   F.Parent:=TabSheet5;
   F.Align:=alClient;
   TfrmDocumentsFrame(F).GenerateData;
 
-  F:=TfrmCharacteristicFrame.Create(Self);
-  F.Parent:=TabSheet6;
-  F.Align:=alClient;
-  TfrmCharacteristicFrame(F).GenerateData;
 
   F:=TfrmTSDOrderFrame.Create(Self);
   F.Parent:=TabSheet7;
@@ -121,6 +126,12 @@ begin
   RxWriteLog(etDebug, 'Process command : %s', [AMessage.Command]);
   RxWriteLog(etDebug, 'Confirm : %s; DocType : %s; FileName : %s; PackgeNumber : %s; Serial : %s; UserID : %s; UserIP : %s; Version : %s',
     [AMessage.Confirm, AMessage.DocType, AMessage.FileName, AMessage.PackgeNumber, AMessage.Serial, AMessage.UserID, AMessage.UserIP, AMessage.Version]);
+end;
+
+procedure TmtMainForm.ScancodeMT1StocksList(Sender: TScancodeMT;
+  const AMessage: TMTQueueRecord; const Stocks: TStocks);
+begin
+  FStocksFrame.CreateStocksInfo(Stocks);
 end;
 
 procedure TmtMainForm.ScancodeMT1UserList(Sender: TScancodeMT;

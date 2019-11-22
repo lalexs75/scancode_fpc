@@ -5,7 +5,7 @@ unit frmStocksUnit;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, ExtCtrls, StdCtrls, DB, rxdbgrid, rxmemds;
+  Classes, SysUtils, Forms, Controls, ExtCtrls, StdCtrls, DB, rxdbgrid, rxmemds, scancode_stock_api;
 
 type
 
@@ -50,10 +50,11 @@ type
 
   public
     procedure GenerateData;
+    function CreateStocksInfo(SI:TStocks):TStocks;
   end;
 
 implementation
-uses scancode_stock_api, scGlobal;
+uses scGlobal;
 
 {$R *.lfm}
 
@@ -90,42 +91,8 @@ end;
 procedure TfrmStocksFrame.Button1Click(Sender: TObject);
 var
   FStocks: TStocks;
-  S: TStock;
-  R: TRoom;
-  C: TCell;
 begin
-  FStocks:=TStocks.Create;
-  rxStocks.First;
-  while not rxStocks.EOF do
-  begin
-    S:=FStocks.Stocks.CreateChild;
-    S.IdStock:=rxStocksid_stock.AsString;
-    S.Barcode:=rxStocksbarcode.AsString;
-    S.Name:=rxStocksname.AsString;
-
-    rxRoom.First;
-    while not rxRoom.EOF do
-    begin
-      R:=S.Rooms.CreateChild;
-      R.IdRoom:=rxRoomid_room.AsString;
-      R.Barcode:=rxRoombarcode.AsString;
-      R.Name:=rxRoomname.AsString;
-
-      rxCell.First;
-      while not rxCell.EOF do
-      begin
-        C:=R.Cells.CreateChild;
-        C.IdCell:=rxCellid_cell.AsString;
-        C.Barcode:=rxCellbarcode.AsString;
-        C.Name:=rxCellname.AsString;
-        rxCell.Next;
-      end;
-
-      rxRoom.Next;
-    end;
-    rxStocks.Next;
-  end;
-  rxStocks.First;
+  FStocks:=CreateStocksInfo(nil);
   FStocks.SaveToFile(ExportFolder + 'Stocks.xml');
   FStocks.Free;
 end;
@@ -167,6 +134,49 @@ begin
       rxCell.AppendRecord(['4E8079AA-921E-47BE-9579-9BFB0C6B7160', '26123532213', 'Цемент']);
       rxCell.AppendRecord(['18DA8A1D-7DD3-4C89-8197-BF4E6A45B5FE', '262832763477', 'Кафель']);
       rxCell.AppendRecord(['18DA8A1D-7DD3-4C89-8197-BF4E6A45B5FE', '262832763477', 'Краска']);
+  rxStocks.First;
+end;
+
+function TfrmStocksFrame.CreateStocksInfo(SI: TStocks): TStocks;
+var
+  S: TStock;
+  R: TRoom;
+  C: TCell;
+begin
+  if Assigned(SI) then
+    Result:=SI
+  else
+    Result:=TStocks.Create;
+  rxStocks.First;
+  while not rxStocks.EOF do
+  begin
+    S:=Result.Stocks.CreateChild;
+    S.IdStock:=rxStocksid_stock.AsString;
+    S.Barcode:=rxStocksbarcode.AsString;
+    S.Name:=rxStocksname.AsString;
+
+    rxRoom.First;
+    while not rxRoom.EOF do
+    begin
+      R:=S.Rooms.CreateChild;
+      R.IdRoom:=rxRoomid_room.AsString;
+      R.Barcode:=rxRoombarcode.AsString;
+      R.Name:=rxRoomname.AsString;
+
+      rxCell.First;
+      while not rxCell.EOF do
+      begin
+        C:=R.Cells.CreateChild;
+        C.IdCell:=rxCellid_cell.AsString;
+        C.Barcode:=rxCellbarcode.AsString;
+        C.Name:=rxCellname.AsString;
+        rxCell.Next;
+      end;
+
+      rxRoom.Next;
+    end;
+    rxStocks.Next;
+  end;
   rxStocks.First;
 end;
 

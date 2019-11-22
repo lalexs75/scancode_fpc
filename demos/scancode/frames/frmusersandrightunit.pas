@@ -112,6 +112,7 @@ begin
     L.Id:=rxUsersID.AsString;
     L.Login:=rxUsersLogin.AsString;
     L.PasswordDecoded:=rxUsersPassword.AsString;
+    //L.Pass:=rxUsersPassword.AsString;
 
     S:='';
     for i:=1 to 7 do
