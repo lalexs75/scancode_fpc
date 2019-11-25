@@ -77,9 +77,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmCharacteristicUnit"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="92"/>
-        <CursorPos X="73" Y="116"/>
+        <TopLine Value="93"/>
+        <CursorPos X="73" Y="117"/>
         <UsageCount Value="50"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -192,22 +193,17 @@
       </Unit>
       <Unit>
         <Filename Value="../../../rxnew/rxdb/rxmemds.pas"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="5"/>
-        <TopLine Value="1429"/>
+        <TopLine Value="1456"/>
         <CursorPos X="16" Y="1487"/>
         <UsageCount Value="10"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="29">
+    <JumpHistory HistoryIndex="28">
       <Position>
         <Filename Value="frames/frmcharacteristicunit.pas"/>
         <Caret Line="152" Column="12" TopLine="136"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="49" Column="5" TopLine="80"/>
       </Position>
       <Position>
         <Filename Value="frames/frmcharacteristicunit.pas"/>
@@ -228,10 +224,6 @@
       <Position>
         <Filename Value="frames/frmcharacteristicunit.pas"/>
         <Caret Line="192" TopLine="182"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="90" Column="5" TopLine="134"/>
       </Position>
       <Position>
         <Filename Value="frames/frmcharacteristicunit.pas"/>
@@ -320,6 +312,10 @@
       <Position>
         <Filename Value="../../../rxnew/rxdb/rxmemds.pas"/>
         <Caret Line="1461" TopLine="1446"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmcharacteristicunit.pas"/>
+        <Caret Line="116" Column="73" TopLine="92"/>
       </Position>
     </JumpHistory>
     <RunParams>

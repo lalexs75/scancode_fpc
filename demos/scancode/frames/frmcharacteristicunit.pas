@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, ExtCtrls, ComCtrls, DB, rxmemds,
-  rxdbgrid, scancode_characteristics_api;
+  rxdbgrid, RxIniPropStorage, scancode_characteristics_api;
 
 type
 
@@ -31,6 +31,7 @@ type
     rxGoodsIdNomenclatureType: TStringField;
     rxGoodsIdPack: TStringField;
     rxGoodsMeasure_ID: TStringField;
+    RxIniPropStorage1: TRxIniPropStorage;
     rxMeasureList: TRxMemoryData;
     rxMeasureListMeasure_ID: TStringField;
     rxMeasureListMeasure_NAME: TStringField;

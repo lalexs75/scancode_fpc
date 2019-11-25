@@ -1023,4 +1023,10 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
     Left = 456
     Top = 68
   end
+  object RxIniPropStorage1: TRxIniPropStorage
+    StoredValues = <>
+    SeparateFiles = False
+    Left = 22
+    Top = 195
+  end
 end

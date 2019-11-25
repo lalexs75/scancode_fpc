@@ -567,15 +567,12 @@ procedure TForm1.FillUserList(const U: TUserInformation);
 var
   L: TUserLogin;
   R: TUserRight;
-  S: String;
 begin
   L:=U.Logins.Records.CreateChild;
     L.Login:='Орлов Александр Владимирович';
     L.Id:='8368e8b098294ae292bd8d4ddd658d9a';
 
-    S:=SHA1Print(SHA1String('123'));
-    L.Pass:=EncodeStringBase64(S)+','+EncodeStringBase64(UpperCase(S));
-
+    L.SetPassword('123');
 
     L.Rights:='1/2/3/4/5';
     L.CreateProd:='1/2/3/4';
@@ -583,37 +580,23 @@ begin
     L.CreateFreeCollect:='1/2/3/4';
 
   L:=U.Logins.Records.CreateChild;
-    //L.Id:='USER_ID_0001';
-  //L.Id:='F6BA47FA-D20D-423A-B56C-8235A0A93FC9';
-//    L.Id:='FFFFFFFF-FFFF-FFFF-FFFF-000000000001';
     L.Id:=UserIDToGUID(1);
     L.Login:='Лагунов Алексей Анатольевич';
-    L.Pass:='';
+    L.SetPassword('123');
     L.Rights:='1/2/3/4/5';
     L.CreateProd:='1/2/3/4';
     L.AddProd:='1/2/3/4';
     L.CreateFreeCollect:='1/2/3/4';
 
   L:=U.Logins.Records.CreateChild;
-    //L.Id:='USER_ID_0002';
-    //L.Id:='FFFFFFFF-FFFF-FFFF-FFFF-000000000002';
     L.Id:=UserIDToGUID(2);
     L.Login:='Харин Андрей';
-    L.PasswordDecoded:='123';
+    L.SetPassword('123');
     L.Rights:='1/2/3/4/5';
     L.CreateProd:='1/2/3/4';
     L.AddProd:='1/2/3/4';
     L.CreateFreeCollect:='1/2/3/4';
-(*
-  L:=U.Logins.Records.CreateChild;
-    L.Id:='';
-    L.Login:='Тест тестовый';
-    L.PasswordDecoded:='';
-    L.Rights:='1/2/3/4/5';
-    L.CreateProd:='1/2/3/4';
-    L.AddProd:='1/2/3/4';
-    L.CreateFreeCollect:='1/2/3/4';
-*)
+
   R:=U.Rights.Records.CreateChild;
     R.Name:='Заказ поставщику';
     R.Id:='101';
