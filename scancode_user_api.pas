@@ -104,21 +104,19 @@ type
     FLogin: string;
     FPass: string;
     FRights: string;
-    function GetPasswordDecoded: string;
     procedure SetAddProd(AValue: string);
     procedure SetCreateFreeCollect(AValue: string);
     procedure SetCreateProd(AValue: string);
     procedure SetId(AValue: string);
     procedure SetLogin(AValue: string);
     procedure SetPass(AValue: string);
-    procedure SetPasswordDecoded(AValue: string);
     procedure SetRights(AValue: string);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
-    property PasswordDecoded:string read GetPasswordDecoded write SetPasswordDecoded;
+    procedure SetPassword(APassword:string);
   published
     property Login:string read FLogin write SetLogin;
     property Id:string read FId write SetId;
@@ -209,7 +207,7 @@ type
   end;
 
 implementation
-uses base64;
+uses sha1, base64;
 
 { TExtendedInformation }
 
@@ -360,11 +358,6 @@ begin
   ModifiedProperty('AddProd');
 end;
 
-function TUserLogin.GetPasswordDecoded: string;
-begin
-  Result:=DecodeStringBase64(FPass);
-end;
-
 procedure TUserLogin.SetCreateFreeCollect(AValue: string);
 begin
   if FCreateFreeCollect=AValue then Exit;
@@ -400,11 +393,6 @@ begin
   ModifiedProperty('Pass');
 end;
 
-procedure TUserLogin.SetPasswordDecoded(AValue: string);
-begin
-  Pass:=EncodeStringBase64(AValue);
-end;
-
 procedure TUserLogin.SetRights(AValue: string);
 begin
   if FRights=AValue then Exit;
@@ -416,7 +404,7 @@ procedure TUserLogin.InternalRegisterPropertys;
 begin
   RegisterProperty('Login', 'Login', 'О', 'псевдоним типа документа', 1, 50);
   RegisterProperty('Id', 'Id', 'О', 'псевдоним типа документа', 1, 50);
-  RegisterProperty('Pass', 'Pass', 'О', 'псевдоним типа документа', 1, 50);
+  RegisterProperty('Pass', 'Pass', 'О', 'псевдоним типа документа', 1, 250);
   RegisterProperty('Rights', 'Rights', 'О', 'псевдоним типа документа', 1, 50);
   RegisterProperty('CreateProd', 'CreateProd', 'О', 'псевдоним типа документа', 1, 50);
   RegisterProperty('AddProd', 'AddProd', 'О', 'псевдоним типа документа', 1, 50);
@@ -431,6 +419,22 @@ end;
 destructor TUserLogin.Destroy;
 begin
   inherited Destroy;
+end;
+
+procedure TUserLogin.SetPassword(APassword: string);
+var
+  FSha1: TSHA1Digest;
+  S1, S2:string;
+begin
+  FSha1:=SHA1String(APassword);
+  SetLength(S1, SizeOf(FSha1));
+  Move(FSha1, S1[1], SizeOf(FSha1));
+
+  FSha1:=SHA1String(UpperCase(APassword));
+  SetLength(S2, SizeOf(FSha1));
+  Move(FSha1, S2[1], SizeOf(FSha1));
+
+  Pass:=EncodeStringBase64(S1)+','+EncodeStringBase64(S2);
 end;
 
 { TUserRight }
