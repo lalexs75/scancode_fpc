@@ -480,6 +480,7 @@ type
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
+    procedure LoadImage(AFileName:string);
   published
     property IdGoods:string read FIdGoods write SetIdGoods;
     property Name:string read FName write SetName;
@@ -669,6 +670,7 @@ type
   end;
 
 implementation
+uses base64;
 
 { TGoodQuantity }
 
@@ -1669,6 +1671,29 @@ end;
 destructor TSprGood.Destroy;
 begin
   inherited Destroy;
+end;
+
+procedure TSprGood.LoadImage(AFileName: string);
+var
+  F: TFileStream;
+  FS: TStringStream;
+  Encoder: TBase64EncodingStream;
+begin
+  F:=TFileStream.Create(AFileName, fmOpenRead);
+  FS:=TStringStream.Create;
+  try
+    Encoder:=TBase64EncodingStream.create(FS);
+    try
+      Encoder.CopyFrom(F, 0);
+    finally
+      Encoder.Free;
+    end;
+    Bitmap:=FS.DataString;
+    Img:=ExtractFileName(AFileName);
+  finally
+    F.Free;
+    FS.Free;
+  end;
 end;
 
 { TSprGoodLists }

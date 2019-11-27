@@ -66,6 +66,7 @@ function GUIDToNomenclatureID(AGUID:string):Integer;
 function PackIDToGUID(AId:Integer):string;
 function GUIDToPackID(AGUID:string):Integer;
 
+function NormalaizeGUID(AGUID:string):string;
 
 implementation
 
@@ -195,6 +196,19 @@ begin
     Result:=StrToInt(Copy(AGUID, Length(sPackGUIDBase)+1, Length(AGUID)))
   else
     raise Exception.CreateFmt('%s is not nomenclature GUID', [AGUID]);
+end;
+
+function NormalaizeGUID(AGUID: string): string;
+begin
+  if (Length(AGUID) = 32) and (Pos('-', AGUID) = 0) then
+    Result:=UpperCase(Copy(AGUID, 1, 8) + '-' + Copy(AGUID, 9, 4) + '-' + Copy(AGUID, 13, 4) + '-' + Copy(AGUID, 17, 4) + '-' + Copy(AGUID, 21, Length(AGUID)))
+  else
+    Result:=AGUID;
+//ffffffffffffffffffff000000000001
+//FFFFFFFF-FFFF-FFFF-FFF7-
+//FFFFFFFF-FFFF-FFFF-FFFF-F000000000001
+//FFFFFFFFFFFFFFFFFFFFF000000000001
+//ffffffffffffffffffff000000000001
 end;
 
 end.

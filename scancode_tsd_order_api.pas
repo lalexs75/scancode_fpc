@@ -49,6 +49,8 @@ uses
 
 type
   TNomenclatureListEnumerator = class;
+  TTasksEnumerator = class;
+  TTaskGoodsEnumerator = class;
 
   { TTaskGoodMarking }
 
@@ -168,8 +170,22 @@ type
     function GetItem(AIndex: Integer): TTaskGood; inline;
   public
     constructor Create;
+    function GetEnumerator: TTaskGoodsEnumerator;
     function CreateChild:TTaskGood;
     property Item[AIndex:Integer]:TTaskGood read GetItem; default;
+  end;
+
+  { TTaskGoodsEnumerator }
+
+  TTaskGoodsEnumerator = class
+  private
+    FList: TTaskGoods;
+    FPosition: Integer;
+  public
+    constructor Create(AList: TTaskGoods);
+    function GetCurrent: TTaskGood;
+    function MoveNext: Boolean;
+    property Current: TTaskGood read GetCurrent;
   end;
 
 
@@ -216,7 +232,21 @@ type
   public
     constructor Create;
     function CreateChild:TTask;
+    function GetEnumerator: TTasksEnumerator;
     property Item[AIndex:Integer]:TTask read GetItem; default;
+  end;
+
+  { TTasksEnumerator }
+
+  TTasksEnumerator = class
+  private
+    FList: TTasks;
+    FPosition: Integer;
+  public
+    constructor Create(AList: TTasks);
+    function GetCurrent: TTask;
+    function MoveNext: Boolean;
+    property Current: TTask read GetCurrent;
   end;
 
   { TCharacteristic }
@@ -426,6 +456,44 @@ uses DOM, XMLWrite;
 
 type
   THackXmlSerializationObject = class(TXmlSerializationObject);
+
+{ TTaskGoodsEnumerator }
+
+constructor TTaskGoodsEnumerator.Create(AList: TTaskGoods);
+begin
+  FList := AList;
+  FPosition := -1;
+end;
+
+function TTaskGoodsEnumerator.GetCurrent: TTaskGood;
+begin
+  Result := FList[FPosition];
+end;
+
+function TTaskGoodsEnumerator.MoveNext: Boolean;
+begin
+  Inc(FPosition);
+  Result := FPosition < FList.Count;
+end;
+
+{ TTasksEnumerator }
+
+constructor TTasksEnumerator.Create(AList: TTasks);
+begin
+  FList := AList;
+  FPosition := -1;
+end;
+
+function TTasksEnumerator.GetCurrent: TTask;
+begin
+  Result := FList[FPosition];
+end;
+
+function TTasksEnumerator.MoveNext: Boolean;
+begin
+  Inc(FPosition);
+  Result := FPosition < FList.Count;
+end;
 
 { TNomenclatureListEnumerator }
 
@@ -921,6 +989,11 @@ begin
   inherited Create(TTaskGood)
 end;
 
+function TTaskGoods.GetEnumerator: TTaskGoodsEnumerator;
+begin
+  Result:=TTaskGoodsEnumerator.Create(Self);
+end;
+
 function TTaskGoods.CreateChild: TTaskGood;
 begin
   Result:=InternalAddObject as TTaskGood;
@@ -1016,6 +1089,11 @@ end;
 function TTasks.CreateChild: TTask;
 begin
   Result:=InternalAddObject as TTask;
+end;
+
+function TTasks.GetEnumerator: TTasksEnumerator;
+begin
+  Result:=TTasksEnumerator.Create(Self);
 end;
 
 { TOrders }

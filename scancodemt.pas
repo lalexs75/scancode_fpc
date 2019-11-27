@@ -269,7 +269,7 @@ begin
 
   Ex:=TExtendedInformation.Create;
 
-  Ex.Confirm:=Rec.Command;
+  Ex.Confirm:=Rec.Confirm;
   Ex.DocType:=Rec.DocType;
   Ex.FileName:=FTmpFileName;
   Ex.PackgeNumber:=Rec.PackgeNumber;
@@ -375,6 +375,8 @@ var
   Orders: TOrders;
 begin
   Orders:=TOrders.Create;
+  if Rec.FileName <> '' then;
+    Orders.LoadFromFile(Rec.FileName);
   if Assigned(FOnOrdersList) then
     FOnOrdersList(Self, Rec, Orders);
   SendAnswer('PutDocum', Rec, nil);
