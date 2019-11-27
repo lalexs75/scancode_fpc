@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
   ExtCtrls, EditBtn, DB, rxdbgrid, rxmemds, RxIniPropStorage, ScancodeMT,
   scancode_user_api, frmUsersAndRightUnit, frmStocksUnit, frmDocumentsUnit,
-  frmCharacteristicUnit, frmTSDOrderUnit, scancode_stock_api;
+  frmCharacteristicUnit, frmTSDOrderUnit, scancode_stock_api, scancode_characteristics_api, scancode_document_api, scancode_tsd_order_api;
 
 type
 
@@ -27,7 +27,6 @@ type
     RxIniPropStorage1: TRxIniPropStorage;
     ScancodeMT1: TScancodeMT;
     TabSheet1: TTabSheet;
-    TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
@@ -37,6 +36,15 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure ScancodeMT1DictionaryList(Sender: TScancodeMT;
+      const AMessage: TMTQueueRecord; const Dictionary: TDictionary);
+    procedure ScancodeMT1DocumentsList(Sender: TScancodeMT;
+      const AMessage: TMTQueueRecord; const Documents: TDocuments);
+    procedure ScancodeMT1GetProd1(Sender: TScancodeMT;
+      const AMessage: TMTQueueRecord; const AQuery: TQueryGoods1;
+      const AAnswer: TGetProdAnswer);
+    procedure ScancodeMT1OrdersList(Sender: TScancodeMT;
+      const AMessage: TMTQueueRecord; const Orders: TOrders);
     procedure ScancodeMT1Status(Sender: TScancodeMT;
       const AMessage: TMTQueueRecord);
     procedure ScancodeMT1StocksList(Sender: TScancodeMT;
@@ -47,6 +55,7 @@ type
     FUsersAndRight: TfrmUsersAndRightFrame;
     FStocksFrame: TfrmStocksFrame;
     FCharacteristicFrame: TfrmCharacteristicFrame;
+    FDocumentsFrame: TfrmDocumentsFrame;
     procedure UpdateBtnStates1;
   public
 
@@ -57,7 +66,7 @@ var
 
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
 implementation
-uses rxlogging, ScancodeMT_API;
+uses rxlogging, ScancodeMT_API, ScancodeMT_utils;
 
 {$R *.lfm}
 
@@ -92,10 +101,10 @@ begin
   FCharacteristicFrame.Align:=alClient;
   FCharacteristicFrame.GenerateData;
 
-  F:=TfrmDocumentsFrame.Create(Self);
-  F.Parent:=TabSheet5;
-  F.Align:=alClient;
-  TfrmDocumentsFrame(F).GenerateData;
+  FDocumentsFrame:=TfrmDocumentsFrame.Create(Self);
+  FDocumentsFrame.Parent:=TabSheet5;
+  FDocumentsFrame.Align:=alClient;
+  FDocumentsFrame.GenerateData;
 
 
   F:=TfrmTSDOrderFrame.Create(Self);
@@ -104,6 +113,67 @@ begin
   TfrmTSDOrderFrame(F).GenerateData;
 
   UpdateBtnStates1;
+end;
+
+procedure TmtMainForm.ScancodeMT1DictionaryList(Sender: TScancodeMT;
+  const AMessage: TMTQueueRecord; const Dictionary: TDictionary);
+begin
+  FCharacteristicFrame.CreateDictionarys(Dictionary);
+end;
+
+procedure TmtMainForm.ScancodeMT1DocumentsList(Sender: TScancodeMT;
+  const AMessage: TMTQueueRecord; const Documents: TDocuments);
+var
+  S: String;
+begin
+  S:=FUsersAndRight.GetUserName(NormalaizeGUID(AMessage.UserID));
+  FDocumentsFrame.CreateDocsList(Documents, S, 1);
+end;
+
+procedure TmtMainForm.ScancodeMT1GetProd1(Sender: TScancodeMT;
+  const AMessage: TMTQueueRecord; const AQuery: TQueryGoods1;
+  const AAnswer: TGetProdAnswer);
+begin
+  if AQuery.GoodList.Count>0 then
+  begin
+    FCharacteristicFrame.rxGoods.Filtered:=false;
+    AAnswer.GoodQuantity.IdGoods:=AQuery.GoodList[0].IdGoods;
+
+    if FCharacteristicFrame.rxGoods.Locate('GOODS_ID', AQuery.GoodList[0].IdGoods, []) then
+      AAnswer.GoodQuantity.Quantity:=FloatToStr(FCharacteristicFrame.rxGoodsGOODS_COUNTED.AsFloat)
+    else
+      AAnswer.GoodQuantity.Quantity:='0';
+    FCharacteristicFrame.rxGoods.Filtered:=true;
+  end;
+end;
+
+procedure TmtMainForm.ScancodeMT1OrdersList(Sender: TScancodeMT;
+  const AMessage: TMTQueueRecord; const Orders: TOrders);
+var
+  T: TTask;
+  G: TTaskGood;
+begin
+  for T in Orders.Tasks do
+  begin
+    if FDocumentsFrame.rxTasks.Locate('IdDoc', T.IdDoc, []) then
+    begin
+      FDocumentsFrame.rxTasks.Edit;
+      FDocumentsFrame.rxTasksCOMPLETED.AsBoolean:=True;
+      FDocumentsFrame.rxTasks.Post;
+
+      for G in T.Goods do
+      begin
+        if FDocumentsFrame.rxGoods.Locate('ID_GOODS', G.IdGoods, []) then
+        begin
+          FDocumentsFrame.rxGoods.Edit;
+          FDocumentsFrame.rxGoodsCOMPLETED.AsBoolean:=true;
+          FDocumentsFrame.rxGoodsBARCODE.AsString:=G.GoodMarking.DATAMATRIX + ';';
+          FDocumentsFrame.rxGoods.Post;
+        end;
+      end;
+    end;
+  end;
+  AMessage.Confirm:='1';
 end;
 
 procedure TmtMainForm.Button1Click(Sender: TObject);

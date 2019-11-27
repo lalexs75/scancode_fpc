@@ -44,10 +44,12 @@ type
   public
     procedure GenerateData;
     function CreateUserInfo(UI:TUserInformation):TUserInformation;
+    function GetUserName(AUserGUID:string):string;
   end;
 
 implementation
-uses scGlobal;
+uses scGlobal, ScancodeMT_utils;
+
 {$R *.lfm}
 
 { TfrmUsersAndRightFrame }
@@ -78,11 +80,11 @@ end;
 procedure TfrmUsersAndRightFrame.GenerateData;
 begin
   rxUsers.CloseOpen;
-  rxUsers.AppendRecord(['98FA15A4-E0C4-432B-A8BC-5564C82888F4', 'Иванов Иван Иванович', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', true, true, true, true, true]);
-  rxUsers.AppendRecord(['2ECFBCAE-A230-4BC4-9F2A-840E838391F5', 'Петров Пётр Перович', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', true, true, true, true, true]);
-  rxUsers.AppendRecord(['8F8FB2C3-A450-4FD6-B129-8590B62C7D9F', 'Сидоров Сидор Сидорович', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', true, true, true, true, true]);
-  rxUsers.AppendRecord(['F4B044DC-2906-45B3-9268-E74E82EDFA27', 'Орлов Александр Владимирович', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', true, true, true, true, true]);
-  rxUsers.AppendRecord(['6FD83876-CD80-491F-9785-EF564AE84149', 'Пушкин Александр Сергеевич', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', true, true, true, true, true]);
+  rxUsers.AppendRecord([UserIDToGUID(1), 'Иванов Иван Иванович', '123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', true, true, true, true, true]);
+  rxUsers.AppendRecord([UserIDToGUID(2), 'Петров Пётр Перович', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', true, true, true, true, true]);
+  rxUsers.AppendRecord([UserIDToGUID(3), 'Сидоров Сидор Сидорович', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', true, true, true, true, true]);
+  rxUsers.AppendRecord([UserIDToGUID(4), 'Орлов Александр Владимирович', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', true, true, true, true, true]);
+  rxUsers.AppendRecord([UserIDToGUID(5), 'Пушкин Александр Сергеевич', '123321123', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', '1/2/3/4/5', true, true, true, true, true]);
   rxUsers.First;
 
   rxRight.CloseOpen;
@@ -111,8 +113,7 @@ begin
     L:=Result.Logins.Records.CreateChild;
     L.Id:=rxUsersID.AsString;
     L.Login:=rxUsersLogin.AsString;
-    L.PasswordDecoded:=rxUsersPassword.AsString;
-    //L.Pass:=rxUsersPassword.AsString;
+    L.SetPassword(rxUsersPassword.AsString);
 
     S:='';
     for i:=1 to 7 do
@@ -141,6 +142,14 @@ begin
     rxRight.Next;
   end;
   rxRight.First;
+end;
+
+function TfrmUsersAndRightFrame.GetUserName(AUserGUID: string): string;
+begin
+  if rxUsers.Locate('ID', AUserGUID, []) then
+    Result:=rxUsersLogin.AsString
+  else
+    Result:='';
 end;
 
 end.

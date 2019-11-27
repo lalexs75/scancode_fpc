@@ -1,21 +1,21 @@
 object frmCharacteristicFrame: TfrmCharacteristicFrame
   Left = 0
-  Height = 461
+  Height = 495
   Top = 0
-  Width = 751
-  ClientHeight = 461
-  ClientWidth = 751
+  Width = 791
+  ClientHeight = 495
+  ClientWidth = 791
   TabOrder = 0
-  DesignLeft = 581
-  DesignTop = 208
+  DesignLeft = 573
+  DesignTop = 153
   object Button1: TButton
     AnchorSideLeft.Control = Owner
     AnchorSideLeft.Side = asrCenter
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 319
+    Left = 339
     Height = 33
-    Top = 422
+    Top = 456
     Width = 112
     Anchors = [akLeft, akBottom]
     AutoSize = True
@@ -31,9 +31,9 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
     AnchorSideRight.Side = asrBottom
     AnchorSideBottom.Control = Button1
     Left = 0
-    Height = 416
+    Height = 450
     Top = 0
-    Width = 751
+    Width = 791
     ActivePage = TabSheet1
     Anchors = [akTop, akLeft, akRight, akBottom]
     TabIndex = 0
@@ -41,11 +41,11 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
     TabPosition = tpBottom
     object TabSheet1: TTabSheet
       Caption = 'Товарные справочники'
-      ClientHeight = 385
-      ClientWidth = 741
+      ClientHeight = 419
+      ClientWidth = 781
       object RxDBGrid1: TRxDBGrid
         Left = 0
-        Height = 385
+        Height = 419
         Top = 0
         Width = 263
         ColumnDefValues.BlobText = '(данные)'
@@ -211,28 +211,42 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
       end
       object Splitter1: TSplitter
         Left = 263
-        Height = 385
+        Height = 419
         Top = 0
         Width = 5
       end
       object Panel1: TPanel
         Left = 268
-        Height = 385
+        Height = 419
         Top = 0
-        Width = 473
+        Width = 513
         Align = alClient
-        ClientHeight = 385
-        ClientWidth = 473
+        ClientHeight = 419
+        ClientWidth = 513
         TabOrder = 2
         object RxDBGrid4: TRxDBGrid
           Left = 1
           Height = 183
           Top = 1
-          Width = 471
+          Width = 511
           ColumnDefValues.BlobText = '(данные)'
           TitleButtons = False
           AutoSort = True
           Columns = <          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Остаток'
+              FieldName = 'GOODS_COUNTED'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
             item
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
@@ -312,6 +326,7 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'GOODS_IsAlco'
+              Width = 90
               FieldName = 'GOODS_IsAlco'
               EditButtons = <>
               Filter.DropDownRows = 0
@@ -326,6 +341,7 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'IdNomenclatureType'
+              Width = 90
               FieldName = 'IdNomenclatureType'
               EditButtons = <>
               Filter.DropDownRows = 0
@@ -340,6 +356,7 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
               Title.Alignment = taCenter
               Title.Orientation = toHorizontal
               Title.Caption = 'IdPack'
+              Width = 90
               FieldName = 'IdPack'
               EditButtons = <>
               Filter.DropDownRows = 0
@@ -420,12 +437,305 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
           Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
           TabOrder = 0
         end
+        object PageControl2: TPageControl
+          Left = 1
+          Height = 229
+          Top = 189
+          Width = 511
+          ActivePage = TabSheet5
+          Align = alClient
+          TabIndex = 1
+          TabOrder = 1
+          object TabSheet4: TTabSheet
+            Caption = 'Штрихкоды'
+            ClientHeight = 198
+            ClientWidth = 501
+            object RxDBGrid5: TRxDBGrid
+              Left = 0
+              Height = 164
+              Top = 0
+              Width = 461
+              ColumnDefValues.BlobText = '(данные)'
+              TitleButtons = False
+              AutoSort = True
+              Columns = <              
+                item
+                  Title.Alignment = taCenter
+                  Title.Orientation = toHorizontal
+                  Title.Caption = 'Штрихкод'
+                  Width = 250
+                  FieldName = 'BARCODE'
+                  EditButtons = <>
+                  Filter.DropDownRows = 0
+                  Filter.EmptyValue = '(Пусто)'
+                  Filter.NotEmptyValue = '(Не пусто)'
+                  Filter.AllValue = '(Все значения)'
+                  Filter.EmptyFont.Style = [fsItalic]
+                  Filter.ItemIndex = -1
+                  Footers = <>
+                end              
+                item
+                  Title.Alignment = taCenter
+                  Title.Orientation = toHorizontal
+                  Title.Caption = 'ID штрихкода'
+                  Width = 160
+                  FieldName = 'GOODS_ID'
+                  EditButtons = <>
+                  Filter.DropDownRows = 0
+                  Filter.EmptyValue = '(Пусто)'
+                  Filter.NotEmptyValue = '(Не пусто)'
+                  Filter.AllValue = '(Все значения)'
+                  Filter.EmptyFont.Style = [fsItalic]
+                  Filter.ItemIndex = -1
+                  Footers = <>
+                end>
+              KeyStrokes = <              
+                item
+                  Command = rxgcShowFindDlg
+                  ShortCut = 16454
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcShowColumnsDlg
+                  ShortCut = 16471
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcShowFilterDlg
+                  ShortCut = 16468
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcShowSortDlg
+                  ShortCut = 16467
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcShowQuickFilter
+                  ShortCut = 16465
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcHideQuickFilter
+                  ShortCut = 16456
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcSelectAll
+                  ShortCut = 16449
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcDeSelectAll
+                  ShortCut = 16429
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcInvertSelection
+                  ShortCut = 16426
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcOptimizeColumnsWidth
+                  ShortCut = 16427
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcCopyCellValue
+                  ShortCut = 16451
+                  Enabled = True
+                end>
+              FooterOptions.DrawFullLine = False
+              SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+              SearchOptions.FromStart = False
+              OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+              Align = alClient
+              Color = clWindow
+              DrawFullLine = False
+              FocusColor = clRed
+              SelectedColor = clHighlight
+              GridLineStyle = psSolid
+              DataSource = dsBarcode
+              Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+              TabOrder = 0
+              TitleStyle = tsNative
+            end
+          end
+          object TabSheet5: TTabSheet
+            Caption = 'Отпускные цены'
+            ClientHeight = 198
+            ClientWidth = 501
+            object RxDBGrid6: TRxDBGrid
+              Left = 0
+              Height = 198
+              Top = 0
+              Width = 501
+              ColumnDefValues.BlobText = '(данные)'
+              TitleButtons = False
+              AutoSort = True
+              Columns = <              
+                item
+                  Title.Alignment = taCenter
+                  Title.Orientation = toHorizontal
+                  Title.Caption = 'Цена'
+                  Width = 90
+                  FieldName = 'PRICE'
+                  EditButtons = <>
+                  Filter.DropDownRows = 0
+                  Filter.EmptyValue = '(Пусто)'
+                  Filter.NotEmptyValue = '(Не пусто)'
+                  Filter.AllValue = '(Все значения)'
+                  Filter.EmptyFont.Style = [fsItalic]
+                  Filter.ItemIndex = -1
+                  Footers = <>
+                end              
+                item
+                  Title.Alignment = taCenter
+                  Title.Orientation = toHorizontal
+                  Title.Caption = 'Валюта'
+                  Width = 100
+                  FieldName = 'Currency_Name'
+                  EditButtons = <>
+                  Filter.DropDownRows = 0
+                  Filter.EmptyValue = '(Пусто)'
+                  Filter.NotEmptyValue = '(Не пусто)'
+                  Filter.AllValue = '(Все значения)'
+                  Filter.EmptyFont.Style = [fsItalic]
+                  Filter.ItemIndex = -1
+                  Footers = <>
+                end              
+                item
+                  Title.Alignment = taCenter
+                  Title.Orientation = toHorizontal
+                  Title.Caption = 'GOODS_ID'
+                  Width = 150
+                  FieldName = 'GOODS_ID'
+                  EditButtons = <>
+                  Filter.DropDownRows = 0
+                  Filter.EmptyValue = '(Пусто)'
+                  Filter.NotEmptyValue = '(Не пусто)'
+                  Filter.AllValue = '(Все значения)'
+                  Filter.EmptyFont.Style = [fsItalic]
+                  Filter.ItemIndex = -1
+                  Footers = <>
+                end              
+                item
+                  Title.Alignment = taCenter
+                  Title.Orientation = toHorizontal
+                  Title.Caption = 'CHARACTERISTIC_ID'
+                  Width = 150
+                  FieldName = 'CHARACTERISTIC_ID'
+                  EditButtons = <>
+                  Filter.DropDownRows = 0
+                  Filter.EmptyValue = '(Пусто)'
+                  Filter.NotEmptyValue = '(Не пусто)'
+                  Filter.AllValue = '(Все значения)'
+                  Filter.EmptyFont.Style = [fsItalic]
+                  Filter.ItemIndex = -1
+                  Footers = <>
+                end              
+                item
+                  Title.Alignment = taCenter
+                  Title.Orientation = toHorizontal
+                  Title.Caption = 'PACK_ID'
+                  Width = 150
+                  FieldName = 'PACK_ID'
+                  EditButtons = <>
+                  Filter.DropDownRows = 0
+                  Filter.EmptyValue = '(Пусто)'
+                  Filter.NotEmptyValue = '(Не пусто)'
+                  Filter.AllValue = '(Все значения)'
+                  Filter.EmptyFont.Style = [fsItalic]
+                  Filter.ItemIndex = -1
+                  Footers = <>
+                end>
+              KeyStrokes = <              
+                item
+                  Command = rxgcShowFindDlg
+                  ShortCut = 16454
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcShowColumnsDlg
+                  ShortCut = 16471
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcShowFilterDlg
+                  ShortCut = 16468
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcShowSortDlg
+                  ShortCut = 16467
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcShowQuickFilter
+                  ShortCut = 16465
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcHideQuickFilter
+                  ShortCut = 16456
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcSelectAll
+                  ShortCut = 16449
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcDeSelectAll
+                  ShortCut = 16429
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcInvertSelection
+                  ShortCut = 16426
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcOptimizeColumnsWidth
+                  ShortCut = 16427
+                  Enabled = True
+                end              
+                item
+                  Command = rxgcCopyCellValue
+                  ShortCut = 16451
+                  Enabled = True
+                end>
+              FooterOptions.DrawFullLine = False
+              SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+              SearchOptions.FromStart = False
+              OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+              Align = alClient
+              Color = clWindow
+              DrawFullLine = False
+              FocusColor = clRed
+              SelectedColor = clHighlight
+              GridLineStyle = psSolid
+              DataSource = dsPriceList
+              Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+              TabOrder = 0
+            end
+          end
+        end
+        object Splitter2: TSplitter
+          Cursor = crVSplit
+          Left = 1
+          Height = 5
+          Top = 184
+          Width = 511
+          Align = alTop
+          ResizeAnchor = akTop
+        end
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Склады'
-      ClientHeight = 385
-      ClientWidth = 741
+      ClientHeight = 419
+      ClientWidth = 781
       object RxDBGrid2: TRxDBGrid
         Left = 0
         Height = 385
@@ -571,8 +881,8 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
     end
     object TabSheet3: TTabSheet
       Caption = 'Ед. изм.'
-      ClientHeight = 385
-      ClientWidth = 741
+      ClientHeight = 419
+      ClientWidth = 781
       object RxDBGrid3: TRxDBGrid
         Left = 0
         Height = 385
@@ -928,7 +1238,12 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
         Name = 'IdPack'
         DataType = ftString
         Size = 150
+      end    
+      item
+        Name = 'GOODS_COUNTED'
+        DataType = ftFloat
       end>
+    AfterScroll = rxGoodsAfterScroll
     OnFilterRecord = rxGoodsFilterRecord
     PacketRecords = 0
     Left = 488
@@ -993,10 +1308,21 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
       Required = False
       Size = 150
     end
+    object rxGoodsGOODS_COUNTED: TFloatField
+      FieldKind = fkData
+      FieldName = 'GOODS_COUNTED'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      DisplayFormat = '#,##0.000'
+      Precision = 2
+    end
     object rxGoodsIdPack: TStringField
       FieldKind = fkData
       FieldName = 'IdPack'
-      Index = 6
+      Index = 7
       LookupCache = False
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
@@ -1006,7 +1332,7 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
     object StringField1: TStringField
       FieldKind = fkLookup
       FieldName = 'Measure_NAME'
-      Index = 7
+      Index = 8
       KeyFields = 'Measure_ID'
       LookupCache = False
       LookupDataSet = rxMeasureList
@@ -1028,5 +1354,133 @@ object frmCharacteristicFrame: TfrmCharacteristicFrame
     SeparateFiles = False
     Left = 22
     Top = 195
+  end
+  object rxBarcode: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'GOODS_ID'
+        DataType = ftString
+        Size = 50
+      end    
+      item
+        Name = 'BARCODE'
+        DataType = ftString
+        Size = 200
+      end>
+    OnFilterRecord = rxBarcodeFilterRecord
+    PacketRecords = 0
+    Left = 512
+    Top = 264
+    object rxBarcodeGOODS_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'GOODS_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 50
+    end
+    object rxBarcodeBARCODE: TStringField
+      FieldKind = fkData
+      FieldName = 'BARCODE'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+  end
+  object dsBarcode: TDataSource
+    DataSet = rxBarcode
+    Left = 477
+    Top = 264
+  end
+  object rxPriceList: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'GOODS_ID'
+        DataType = ftString
+        Size = 100
+      end    
+      item
+        Name = 'CHARACTERISTIC_ID'
+        DataType = ftString
+        Size = 150
+      end    
+      item
+        Name = 'PACK_ID'
+        DataType = ftString
+        Size = 200
+      end    
+      item
+        Name = 'PRICE'
+        DataType = ftCurrency
+      end    
+      item
+        Name = 'Currency_Name'
+        DataType = ftString
+        Size = 200
+      end>
+    OnFilterRecord = rxPriceListFilterRecord
+    PacketRecords = 0
+    Left = 656
+    Top = 328
+    object rxPriceListGOODS_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'GOODS_ID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object rxPriceListPRICE: TCurrencyField
+      FieldKind = fkData
+      FieldName = 'PRICE'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Precision = 2
+    end
+    object rxPriceListCurrency_Name: TStringField
+      FieldKind = fkData
+      FieldName = 'Currency_Name'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+    object rxPriceListCHARACTERISTIC_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'CHARACTERISTIC_ID'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 150
+    end
+    object rxPriceListPACK_ID: TStringField
+      FieldKind = fkData
+      FieldName = 'PACK_ID'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 200
+    end
+  end
+  object dsPriceList: TDataSource
+    DataSet = rxPriceList
+    Left = 624
+    Top = 328
   end
 end

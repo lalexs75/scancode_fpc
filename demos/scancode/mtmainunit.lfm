@@ -28,9 +28,9 @@ object mtMainForm: TmtMainForm
         Height = 744
         Top = 0
         Width = 1180
-        ActivePage = TabSheet4
+        ActivePage = TabSheet5
         Align = alClient
-        TabIndex = 1
+        TabIndex = 3
         TabOrder = 0
         object TabSheet3: TTabSheet
           Caption = 'Список пользователей и их прав'
@@ -49,9 +49,6 @@ object mtMainForm: TmtMainForm
         end
       end
     end
-    object TabSheet2: TTabSheet
-      Caption = 'Загрузка файлов'
-    end
     object TabSheet8: TTabSheet
       Caption = 'Server'
       ClientHeight = 744
@@ -60,17 +57,17 @@ object mtMainForm: TmtMainForm
         Left = 0
         Height = 110
         Top = 0
-        Width = 947
+        Width = 1180
         Align = alTop
         AutoSize = True
         ClientHeight = 110
-        ClientWidth = 947
+        ClientWidth = 1180
         TabOrder = 0
         object Button1: TButton
           AnchorSideTop.Control = FileNameEdit1
           AnchorSideTop.Side = asrBottom
           AnchorSideRight.Control = CLabel
-          Left = 382
+          Left = 499
           Height = 33
           Top = 70
           Width = 85
@@ -86,7 +83,7 @@ object mtMainForm: TmtMainForm
           AnchorSideLeft.Side = asrBottom
           AnchorSideTop.Control = FileNameEdit1
           AnchorSideTop.Side = asrBottom
-          Left = 480
+          Left = 597
           Height = 33
           Top = 70
           Width = 84
@@ -100,7 +97,7 @@ object mtMainForm: TmtMainForm
           AnchorSideLeft.Control = Panel1
           AnchorSideLeft.Side = asrCenter
           AnchorSideTop.Control = Panel1
-          Left = 473
+          Left = 590
           Height = 1
           Top = 1
           Width = 1
@@ -126,7 +123,7 @@ object mtMainForm: TmtMainForm
           Left = 13
           Height = 34
           Top = 30
-          Width = 927
+          Width = 1160
           FilterIndex = 0
           HideDirectories = False
           ButtonWidth = 23
@@ -139,9 +136,9 @@ object mtMainForm: TmtMainForm
       end
       object Memo1: TMemo
         Left = 0
-        Height = 411
+        Height = 634
         Top = 110
-        Width = 947
+        Width = 1180
         Align = alClient
         Lines.Strings = (
           'Memo1'
@@ -153,7 +150,11 @@ object mtMainForm: TmtMainForm
   object ScancodeMT1: TScancodeMT
     Port = 3004
     OnUserList = ScancodeMT1UserList
+    OnDictionaryList = ScancodeMT1DictionaryList
+    OnDocumentsList = ScancodeMT1DocumentsList
     OnStocksList = ScancodeMT1StocksList
+    OnOrdersList = ScancodeMT1OrdersList
+    OnGetProd1 = ScancodeMT1GetProd1
     OnStatus = ScancodeMT1Status
     Left = 488
     Top = 160
