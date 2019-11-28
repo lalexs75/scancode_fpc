@@ -23,20 +23,20 @@
     <RunParams>
       <FormatVersion Value="2"/>
     </RunParams>
-    <RequiredPackages Count="3">
-      <Item1>
+    <RequiredPackages>
+      <Item>
         <PackageName Value="rxnew"/>
-      </Item1>
-      <Item2>
+      </Item>
+      <Item>
         <PackageName Value="scancode_mt"/>
-      </Item2>
-      <Item3>
+      </Item>
+      <Item>
         <PackageName Value="LCL"/>
-      </Item3>
+      </Item>
     </RequiredPackages>
     <Units>
       <Unit>
-        <Filename Value="mt_server_test.pas"/>
+        <Filename Value="mt_server_test.lpr"/>
         <IsPartOfProject Value="True"/>
       </Unit>
       <Unit>
