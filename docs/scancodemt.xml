@@ -53,6 +53,17 @@
 1 - остановлен, 0 - ошибка
 </descr>
       </element>
+    <element name="TScancodeMT.Port"><short>Порт, на которому сервер будет ожидать сетевые подключения</short><descr>По умолчанию используется порт 3004
+</descr>
+      </element><element name="TScancodeMT.OnUserList"><short>Событие на запрос списка пользователей от терминала сбора данных</short>
+      </element><element name="TScancodeMT.OnDictionaryList"><short>Событие на запрос справочников с терминала сбора данных</short>
+      </element><element name="TScancodeMT.OnDocumentsList"><short>Событие на запрос документов-заданий с терминала сбора данных</short>
+      </element><element name="TScancodeMT.OnStocksList"><short>Событие на запрос складов (мест хранения) с терминала сбора данных</short>
+      </element><element name="TScancodeMT.OnStatus"><short>Событие - статус взаимодействия с ТСД</short>
+      </element><element name="TScancodeMT.Active"><short>Призанак активности сервера</short>
+      </element><element name="TScancodeMT.StartServer"><short>Запуск сервера взаимодействия с терминалом сбора данных</short>
+      </element><element name="TScancodeMT.StopServer"><short>Остановка сервера взаимодействия с терминалом сбора данных</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
