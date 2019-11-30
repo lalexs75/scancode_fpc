@@ -20,7 +20,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="mtMainUnit"/>
         <IsVisibleTab Value="True"/>
-        <CursorPos Y="137"/>
+        <TopLine Value="9"/>
+        <CursorPos X="15" Y="31"/>
         <UsageCount Value="60"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -215,8 +216,8 @@
         <Filename Value="../../scancodemt.pas"/>
         <UnitName Value="ScancodeMT"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="154"/>
-        <CursorPos Y="178"/>
+        <TopLine Value="339"/>
+        <CursorPos X="3" Y="350"/>
         <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit>
@@ -245,102 +246,6 @@
     </Units>
     <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="141" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="144" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="145" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="146" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="148" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="149" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="150" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="139" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="141" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="144" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="145" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="146" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="148" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="149" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="150" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="139" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="141" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="144" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="145" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="146" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="148" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="149" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="/home/install/source/fpcsrc/rtl/inc/astrings.inc"/>
-        <Caret Line="150" TopLine="124"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmusersandrightunit.pas"/>
-        <Caret Line="148" TopLine="125"/>
-      </Position>
-      <Position>
         <Filename Value="frames/frmusersandrightunit.pas"/>
         <Caret Line="149" TopLine="125"/>
       </Position>
@@ -363,6 +268,102 @@
       <Position>
         <Filename Value="../../scancodemt_utils.pas"/>
         <Caret Line="204" TopLine="184"/>
+      </Position>
+      <Position>
+        <Filename Value="mtmainunit.pas"/>
+        <Caret Line="139" TopLine="108"/>
+      </Position>
+      <Position>
+        <Filename Value="mtmainunit.pas"/>
+        <Caret Line="44" Column="15" TopLine="29"/>
+      </Position>
+      <Position>
+        <Filename Value="mtmainunit.pas"/>
+        <Caret Line="125" Column="62" TopLine="123"/>
+      </Position>
+      <Position>
+        <Filename Value="mtmainunit.pas"/>
+        <Caret Line="26" Column="15" TopLine="11"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="119" Column="3" TopLine="106"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="125" Column="35" TopLine="106"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="149" Column="37" TopLine="138"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="386" Column="28" TopLine="372"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="140" Column="15" TopLine="126"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="276" Column="23" TopLine="254"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="146" Column="15" TopLine="125"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="344" Column="3" TopLine="339"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="147" Column="15" TopLine="131"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="357" Column="3" TopLine="350"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="148" Column="15" TopLine="132"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="366" Column="3" TopLine="361"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="148" Column="15" TopLine="133"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="366" Column="3" TopLine="361"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="149" Column="15" TopLine="133"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="384" TopLine="372"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="146" Column="15" TopLine="134"/>
+      </Position>
+      <Position>
+        <Filename Value="mtmainunit.pas"/>
+        <Caret Line="26" Column="15" TopLine="11"/>
+      </Position>
+      <Position>
+        <Filename Value="mtmainunit.pas"/>
+        <Caret Line="29" Column="15" TopLine="9"/>
+      </Position>
+      <Position>
+        <Filename Value="mtmainunit.pas"/>
+        <Caret Line="30" Column="15" TopLine="9"/>
       </Position>
     </JumpHistory>
     <RunParams>

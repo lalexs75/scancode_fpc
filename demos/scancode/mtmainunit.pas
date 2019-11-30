@@ -8,7 +8,9 @@ uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
   ExtCtrls, EditBtn, DB, rxdbgrid, rxmemds, RxIniPropStorage, ScancodeMT,
   scancode_user_api, frmUsersAndRightUnit, frmStocksUnit, frmDocumentsUnit,
-  frmCharacteristicUnit, frmTSDOrderUnit, scancode_stock_api, scancode_characteristics_api, scancode_document_api, scancode_tsd_order_api;
+  frmCharacteristicUnit, frmTSDOrderUnit, scancode_stock_api,
+  scancode_characteristics_api, scancode_document_api, scancode_tsd_order_api,
+  DividerBevel;
 
 type
 
@@ -17,7 +19,10 @@ type
   TmtMainForm = class(TForm)
     Button1: TButton;
     Button2: TButton;
+    CheckBox1: TCheckBox;
     CLabel: TLabel;
+    DividerBevel1: TDividerBevel;
+    DividerBevel2: TDividerBevel;
     FileNameEdit1: TFileNameEdit;
     Label2: TLabel;
     Memo1: TMemo;
@@ -128,6 +133,7 @@ var
 begin
   S:=FUsersAndRight.GetUserName(NormalaizeGUID(AMessage.UserID));
   FDocumentsFrame.CreateDocsList(Documents, S, 1);
+  AMessage.Confirm:='1';
 end;
 
 procedure TmtMainForm.ScancodeMT1GetProd1(Sender: TScancodeMT;

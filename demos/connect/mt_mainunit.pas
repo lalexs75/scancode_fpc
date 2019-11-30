@@ -491,8 +491,11 @@ var
 begin
   Doc:=TDocuments.Create;
   FillDocList(Doc);
+  Confirm:='1';
   SendAnswer('GetDocum', Doc);
   Doc.Free;
+
+  DoSendGetData;
 end;
 
 procedure TForm1.DoSendGetData;
@@ -545,6 +548,7 @@ var
 begin
   St:=TStocks.Create;
   FillStocksList(St);
+  Confirm:='1';
   SendAnswer('GetStock', St);
   St.Free;
 end;

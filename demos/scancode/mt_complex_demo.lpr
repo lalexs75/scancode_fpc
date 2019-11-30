@@ -9,7 +9,7 @@ uses
   Interfaces, // this includes the LCL widgetset
   Forms,
   sysutils,
-  rxlogging,
+  rxlogging, lazcontrols,
 
   mtMainUnit,
   frmUsersAndRightUnit,
