@@ -43,7 +43,7 @@ unit ScancodeMT;
 interface
 
 uses
-  Classes, SysUtils, ExtCtrls, xmlobject,
+  Classes, SysUtils, CustomTimer, xmlobject,
   ScancodeMT_API, scancode_user_api, scancode_characteristics_api, scancode_document_api,
   scancode_stock_api, scancode_tsd_order_api
   {$if FPC_FULLVERSION<30006}
@@ -128,7 +128,7 @@ type
     FOnStocksList: TMTStocksListEvent;
     FOnUserList: TMTUserListEvent;
     FPort: Integer;
-    FTimer:TTimer;
+    FTimer:TCustomTimer;
     FMTQueue:TFpList;
     FCriticalSection : TRTLCriticalSection;
     function IsSetPortStored: Boolean;
@@ -153,6 +153,7 @@ type
     destructor Destroy; override;
     procedure StartServer;
     procedure StopServer;
+    procedure ProcessMTQueue;
 
     property MTLibrary:TScancodeMTLibrary read FMTLibrary;
     property Active:boolean read FActive write SetActive;
@@ -239,18 +240,8 @@ begin
 end;
 
 procedure TScancodeMT.MTTimerQueueTick(Sender: TObject);
-var
-  Rec: TMTQueueRecord;
 begin
-  while (FMTQueue.Count>0) do
-  begin
-    EnterCriticalSection(FCriticalSection);
-    Rec:=TMTQueueRecord(FMTQueue[0]);
-    FMTQueue.Delete(0);
-    LeaveCriticalSection(FCriticalSection);
-    InternalProcessMessage(Rec);
-    Rec.Free;
-  end;
+  ProcessMTQueue;
 end;
 
 procedure TScancodeMT.SendAnswer(const Command: string;
@@ -440,7 +431,7 @@ begin
   FPort:=mtDefaultPort;
   FScancodeMT:=Self;
   FMTLibrary:=TScancodeMTLibrary.Create;
-  FTimer:=TTimer.Create(nil);
+  FTimer:=TCustomTimer.Create(nil);
   FTimer.Enabled:=false;
   FTimer.Interval:=300;
   FTimer.OnTimer:=@MTTimerQueueTick;
@@ -475,7 +466,16 @@ begin
     V:=FMTLibrary.StartServer(FPort);
   FActive:=V = 1;
   if V = 1 then
-    FTimer.Enabled:=true;
+  begin
+    try
+      FTimer.Enabled:=true;
+    except
+      on E:EOutOfResources do
+      begin
+
+      end;
+    end;
+  end;
 end;
 
 procedure TScancodeMT.StopServer;
@@ -487,6 +487,21 @@ begin
   ClearMTQueue;
   if FActive and (V=1) then
     FActive:=false;
+end;
+
+procedure TScancodeMT.ProcessMTQueue;
+var
+  Rec: TMTQueueRecord;
+begin
+  while (FMTQueue.Count>0) do
+  begin
+    EnterCriticalSection(FCriticalSection);
+    Rec:=TMTQueueRecord(FMTQueue[0]);
+    FMTQueue.Delete(0);
+    LeaveCriticalSection(FCriticalSection);
+    InternalProcessMessage(Rec);
+    Rec.Free;
+  end;
 end;
 
 { TScancodeMTLibrary }
