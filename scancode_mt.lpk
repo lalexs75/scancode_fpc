@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CONFIG>
-  <Package Version="4">
+  <Package Version="5">
     <Name Value="scancode_mt"/>
     <Type Value="RunAndDesignTime"/>
     <Author Value="Лагунов А.А."/>
@@ -12,41 +12,41 @@
     </CompilerOptions>
     <Description Value="Интерфейс библиотеки взаимодействия с ПО СКАНКОД.Мобильный Терминал (SCANCODE.MobileTerminal)"/>
     <License Value="LGPL"/>
-    <Version Minor="1" Release="4" Build="7"/>
-    <Files Count="8">
-      <Item1>
+    <Version Minor="9" Release="1" Build="10"/>
+    <Files>
+      <Item>
         <Filename Value="scancode_user_api.pas"/>
         <UnitName Value="scancode_user_api"/>
-      </Item1>
-      <Item2>
+      </Item>
+      <Item>
         <Filename Value="scancode_stock_api.pas"/>
         <UnitName Value="scancode_stock_api"/>
-      </Item2>
-      <Item3>
+      </Item>
+      <Item>
         <Filename Value="scancode_document_api.pas"/>
         <UnitName Value="scancode_document_api"/>
-      </Item3>
-      <Item4>
+      </Item>
+      <Item>
         <Filename Value="scancode_characteristics_api.pas"/>
         <UnitName Value="scancode_characteristics_api"/>
-      </Item4>
-      <Item5>
+      </Item>
+      <Item>
         <Filename Value="scancode_tsd_order_api.pas"/>
         <UnitName Value="scancode_tsd_order_api"/>
-      </Item5>
-      <Item6>
+      </Item>
+      <Item>
         <Filename Value="scancodemt.pas"/>
         <HasRegisterProc Value="True"/>
         <UnitName Value="ScancodeMT"/>
-      </Item6>
-      <Item7>
+      </Item>
+      <Item>
         <Filename Value="scancodemt_api.pas"/>
         <UnitName Value="ScancodeMT_API"/>
-      </Item7>
-      <Item8>
+      </Item>
+      <Item>
         <Filename Value="scancodemt_utils.pas"/>
-        <UnitName Value="scancodemt_utils"/>
-      </Item8>
+        <UnitName Value="ScancodeMT_utils"/>
+      </Item>
     </Files>
     <LazDoc Paths="docs"/>
     <i18n>
@@ -54,16 +54,16 @@
       <OutDir Value="languages"/>
       <EnableI18NForLFM Value="True"/>
     </i18n>
-    <RequiredPkgs Count="3">
-      <Item1>
+    <RequiredPkgs>
+      <Item>
         <PackageName Value="LCLBase"/>
-      </Item1>
-      <Item2>
+      </Item>
+      <Item>
         <PackageName Value="xmlobjects"/>
-      </Item2>
-      <Item3>
+      </Item>
+      <Item>
         <PackageName Value="FCL"/>
-      </Item3>
+      </Item>
     </RequiredPkgs>
     <UsageOptions>
       <UnitPath Value="$(PkgOutDir)"/>

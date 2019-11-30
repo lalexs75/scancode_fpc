@@ -1,7 +1,7 @@
 object mtMainForm: TmtMainForm
-  Left = 399
+  Left = 664
   Height = 775
-  Top = 139
+  Top = 199
   Width = 1190
   Caption = 'MT complex demo'
   ClientHeight = 775

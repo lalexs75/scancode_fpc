@@ -64,6 +64,19 @@
       </element><element name="TScancodeMT.StartServer"><short>Запуск сервера взаимодействия с терминалом сбора данных</short>
       </element><element name="TScancodeMT.StopServer"><short>Остановка сервера взаимодействия с терминалом сбора данных</short>
       </element>
+    <element name="TMTQueueRecord"><short>Заголовок сообщения при обмене с ТСД</short>
+      </element><element name="TMTQueueRecord.Command"><short>Полученная команда с ТСД</short>
+      </element><element name="TMTQueueRecord.Confirm"><short>Признак подтверждения</short>
+      </element><element name="TMTQueueRecord.DocType"><short>Тип документа</short>
+      </element><element name="TMTQueueRecord.FileName"><short>Имя файла, полученного с ТСД</short>
+      </element><element name="TMTQueueRecord.PackgeNumber"><short>Порядковый номер пакета, полученный с ТСД</short>
+      </element><element name="TMTQueueRecord.Serial"><short>Серийный номер ТСД</short>
+      </element><element name="TMTQueueRecord.UserID"><short>GUID пользователя, в данный момент работающего на ТСД</short>
+      </element><element name="TMTQueueRecord.UserIP"><short>IP адрес ТСД</short>
+      </element><element name="TMTQueueRecord.Version"><short>Версия по ТСД</short>
+      </element>
+    <element name="TScancodeMT.ProcessMTQueue"><short>Метод принудительного старта очередной итерации обработки очереди запросов от ТСД</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
