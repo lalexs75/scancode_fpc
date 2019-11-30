@@ -48,6 +48,8 @@ uses
   Classes, SysUtils, xmlobject;
 
 type
+  TUserRightDoc = (urdAcceptance = 1, urdShipment = 2, urdInventory = 3, urdMoving = 4);
+  TUserRightDocs = set of TUserRightDoc;
 
   { TUserRight }
 
@@ -117,6 +119,9 @@ type
   public
     destructor Destroy; override;
     procedure SetPassword(APassword:string);
+    procedure SetUserRightCreate(ARight:TUserRightDocs);
+    procedure SetUserRightAdd(ARight:TUserRightDocs);
+    procedure SetUserRightFree(ARight:TUserRightDocs);
   published
     property Login:string read FLogin write SetLogin;
     property Id:string read FId write SetId;
@@ -435,6 +440,39 @@ begin
   Move(FSha1, S2[1], SizeOf(FSha1));
 
   Pass:=EncodeStringBase64(S1)+','+EncodeStringBase64(S2);
+end;
+
+procedure TUserLogin.SetUserRightCreate(ARight: TUserRightDocs);
+var
+  S: String;
+  R: TUserRightDoc;
+begin
+  S:='';
+  for R in ARight do
+    S:=S + IntToStr(Ord(R)) + '/';
+  CreateProd:=Copy(S, 1, Length(S)-1);
+end;
+
+procedure TUserLogin.SetUserRightAdd(ARight: TUserRightDocs);
+var
+  S: String;
+  R: TUserRightDoc;
+begin
+  S:='';
+  for R in ARight do
+    S:=S + IntToStr(Ord(R)) + '/';
+  AddProd:=Copy(S, 1, Length(S)-1);
+end;
+
+procedure TUserLogin.SetUserRightFree(ARight: TUserRightDocs);
+var
+  S: String;
+  R: TUserRightDoc;
+begin
+  S:='';
+  for R in ARight do
+    S:=S + IntToStr(Ord(R)) + '/';
+  CreateFreeCollect:=Copy(S, 1, Length(S)-1);
 end;
 
 { TUserRight }
