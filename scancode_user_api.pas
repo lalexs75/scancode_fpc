@@ -119,6 +119,7 @@ type
   public
     destructor Destroy; override;
     procedure SetPassword(APassword:string);
+    procedure SetUserRight(ARight:TUserRightDocs);
     procedure SetUserRightCreate(ARight:TUserRightDocs);
     procedure SetUserRightAdd(ARight:TUserRightDocs);
     procedure SetUserRightFree(ARight:TUserRightDocs);
@@ -440,6 +441,17 @@ begin
   Move(FSha1, S2[1], SizeOf(FSha1));
 
   Pass:=EncodeStringBase64(S1)+','+EncodeStringBase64(S2);
+end;
+
+procedure TUserLogin.SetUserRight(ARight: TUserRightDocs);
+var
+  S: String;
+  R: TUserRightDoc;
+begin
+  S:='';
+  for R in ARight do
+    S:=S + IntToStr(Ord(R)) + '/';
+  Rights:=Copy(S, 1, Length(S)-1);
 end;
 
 procedure TUserLogin.SetUserRightCreate(ARight: TUserRightDocs);
