@@ -346,6 +346,9 @@ begin
     FOnDocumentsList(Self, Rec, Doc);
   SendAnswer('GetDocum', Rec, Doc);
   Doc.Free;
+
+  if Rec.Confirm = '1' then
+    InternalSendGetData(Rec);
 end;
 
 procedure TScancodeMT.InternalSendGetData(const Rec: TMTQueueRecord);
