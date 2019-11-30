@@ -473,7 +473,7 @@ begin
     V:=FMTLibrary.StartServerDefault
   else
     V:=FMTLibrary.StartServer(FPort);
-  //FServerStarted:= V = 1;
+  FActive:=V = 1;
   if V = 1 then
     FTimer.Enabled:=true;
 end;
@@ -485,8 +485,8 @@ begin
   FTimer.Enabled:=false;
   V:=FMTLibrary.StopServer;
   ClearMTQueue;
-//  if FServerStarted and (V=1) then
-//    FServerStarted:=false;
+  if FActive and (V=1) then
+    FActive:=false;
 end;
 
 { TScancodeMTLibrary }
