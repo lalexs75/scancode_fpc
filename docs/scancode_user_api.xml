@@ -8,7 +8,8 @@
       </element><element name="TUserRight.Name"><short>Name – псевдоним типа документа</short>
       </element><element name="TUserRight.ID"><short>Id – код типа документа внутри группы</short>
       </element><element name="TUserRight.GroupID"><short>groupId – код группы документов, с которыми пользователь может работать</short>
-      </element><element name="TUserInformation.Logins"/><element name="TUserLogins"><short>Login – учетные данные пользователя</short>
+      </element><element name="TUserInformation.Logins"><short>Список логинов пользователей, которым разрешён доступ к терминалу</short>
+      </element><element name="TUserLogins"><short>Login – учетные данные пользователя</short>
       </element><element name="TUserLogins.Records"><short>Коллекция учетных данных пользователей</short>
       </element><element name="TUserLoginList"><short>Коллекция учетных данных пользователей</short>
       </element><element name="TUserLogin.Login"><short>Login – строковой идентификатор пользователя</short>
@@ -28,6 +29,20 @@
       </element><element name="TExtendedInformation.fileName"><short>Имя файла</short>
       </element><element name="TExtendedInformation.DocType"><short>Тип документа</short>
       </element><element name="TExtendedInformation.Confirm"><short>Статус подтверждения ордера</short>
+      </element>
+    <element name="TUserLogin.SetPassword"><short>Процедура производит генерацию пароля в соответсвии с правилами создания пароля</short>
+      </element><element name="TUserRightDoc"><short>Право доступа</short>
+      <descr><p>Права доступа</p><ul><li><b>urdAcceptance</b> - Право доступа на документы прихода</li><li><b>urdShipment</b> - Право доступа на документы продаж</li><li><b>urdInventory</b> - Право доступа на документы инвентаризации</li><li><b>urdMoving</b> - Право доступа на документы внутреннего перемещения</li>
+          </ul>
+        </descr>
+      </element><element name="TUserRightDoc.urdAcceptance"><short>Право доступа на документы прихода</short>
+      </element><element name="TUserRightDoc.urdShipment"><short>Право доступа на документы продаж</short>
+      </element><element name="TUserRightDoc.urdInventory"><short>Право доступа на документы инвентаризации</short>
+      </element><element name="TUserRightDoc.urdMoving"><short>Право доступа на документы внутреннего перемещения</short>
+      </element>
+    <element name="TUserRightDocs"><short>Список прав доступа</short><descr><p>Права доступа</p><ul><li><b>urdAcceptance</b> - Право доступа на документы прихода</li><li><b>urdShipment</b> - Право доступа на документы продаж</li><li><b>urdInventory</b> - Право доступа на документы инвентаризации</li><li><b>urdMoving</b> - Право доступа на документы внутреннего перемещения</li>
+          </ul>
+        </descr>
       </element>
     </module>
   </package>
