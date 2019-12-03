@@ -77,6 +77,15 @@
       </element>
     <element name="TScancodeMT.ProcessMTQueue"><short>Метод принудительного старта очередной итерации обработки очереди запросов от ТСД</short>
       </element>
+    <element name="TScancodeMT.OnGetProd1"><short>Запрос информации об остатках товара от ТСД</short>
+      </element><element name="TMTGetProd1Event"><short>Событие запроса информации об остатках товара от ТСД</short><descr>Параметры товара находятся в структуре запроса AQuery
+Для ответа необходимо заполнить AAnswer
+</descr>
+      </element>
+    <element name="TScancodeMT.OnOrdersList"><short>Результат обработки документов на ТСД</short>
+      </element><element name="TMTOrdersListEvent"><short>Событие результат обработки документов на ТСД</short><descr>Возникает при отправке результута с ТСД в товаро-учётную систему
+</descr>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

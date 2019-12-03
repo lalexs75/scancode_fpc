@@ -66,6 +66,14 @@
       </element><element name="TGoodQuantity.SkladName"><short>sklad_name – наименование склада (на случай, если в ТСД нет данных по складу)</short>
       </element><element name="TGoodQuantity.Quantity"><short>quantity – количество в базовых ед. измерения для номенклатуры</short>
       </element>
+    <element name="TQueryGoods1"><short>запрос остатков товара по складу</short>
+      </element><element name="TQueryGoodList1"><short>запрос остатков товара по складу</short>
+      </element><element name="TQueryGood1"><short>запрос остатков товара по складу</short>
+      </element><element name="TQueryGood1.IdGoods"><short>id_goods – УИ товара</short>
+      </element><element name="TQueryGood1.IdSklad"><short>id_sklad – УИ склада (может быть пустым, тогда по всем складам)</short>
+      </element><element name="TQueryGood1.IdChar"><short>id_char – УИ характеристики товара</short><descr>может быть пустым, если нет характеристики
+</descr>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

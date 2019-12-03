@@ -19,8 +19,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="mtMainUnit"/>
-        <TopLine Value="195"/>
-        <CursorPos Y="205"/>
+        <IsVisibleTab Value="True"/>
+        <TopLine Value="156"/>
+        <CursorPos Y="183"/>
         <UsageCount Value="64"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -62,8 +63,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmDocumentsUnit"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="91"/>
         <CursorPos X="5" Y="115"/>
         <UsageCount Value="64"/>
@@ -117,14 +117,15 @@
       </Unit>
       <Unit>
         <Filename Value="../../scancode_tsd_order_api.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="478"/>
-        <CursorPos Y="496"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="423"/>
+        <CursorPos X="3" Y="439"/>
         <UsageCount Value="16"/>
         <Bookmarks Count="2">
           <Item0 X="3" Y="1087" ID="2"/>
           <Item1 X="29" Y="336" ID="1"/>
         </Bookmarks>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/home/install/source/fpcsrc/packages/fcl-xml/src/dom.pp"/>
@@ -209,10 +210,11 @@
       <Unit>
         <Filename Value="../../scancodemt.pas"/>
         <UnitName Value="ScancodeMT"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="231"/>
-        <CursorPos Y="247"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="98"/>
+        <CursorPos X="101" Y="114"/>
         <UsageCount Value="11"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/home/install/source/fpcsrc/rtl/inc/except.inc"/>
@@ -243,10 +245,50 @@
         <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory>
+    <JumpHistory HistoryIndex="10">
       <Position>
         <Filename Value="mtmainunit.pas"/>
         <Caret Line="78" Column="17" TopLine="54"/>
+      </Position>
+      <Position>
+        <Filename Value="mtmainunit.pas"/>
+        <Caret Line="217" Column="19" TopLine="194"/>
+      </Position>
+      <Position>
+        <Filename Value="mtmainunit.pas"/>
+        <Caret Line="156" Column="44" TopLine="156"/>
+      </Position>
+      <Position>
+        <Filename Value="mtmainunit.pas"/>
+        <Caret Line="51" Column="15" TopLine="12"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="119" Column="3" TopLine="103"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="126" Column="33" TopLine="103"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="166" Column="84" TopLine="141"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="374" Column="28" TopLine="347"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="166" Column="18" TopLine="143"/>
+      </Position>
+      <Position>
+        <Filename Value="../../scancodemt.pas"/>
+        <Caret Line="114" Column="101" TopLine="98"/>
+      </Position>
+      <Position>
+        <Filename Value="mtmainunit.pas"/>
+        <Caret Line="51" Column="15" TopLine="12"/>
       </Position>
     </JumpHistory>
     <RunParams>
