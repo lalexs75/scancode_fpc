@@ -38,6 +38,13 @@
     <element name="THandbooks.Nomenclatures"><short>nomencls — список товаров, созданных пользователем на ТСД или загруженных отдельно (по запросу) из ТУП.</short>
       </element><element name="TNomenclature"><short>товаров, созданных пользователем на ТСД или загруженных отдельно (по запросу) из ТУП</short>
       </element>
+    <element name="TNomenclature.IdGoods"><short>УИ товара</short>
+      </element><element name="TNomenclature.Name"><short>Наиемнование товара</short>
+      </element><element name="TNomenclature.IdMeasure"><short>ID единицы измерения</short>
+      </element><element name="TNomenclature.IdVidnomencl"><short>ID вида номенклатуры</short>
+      </element><element name="TNomenclature.Img"><short>Имя файла изображения товара</short>
+      </element><element name="TNomenclature.Bitmap"><short>Изображение товара, закодированное кодом BASE64</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
