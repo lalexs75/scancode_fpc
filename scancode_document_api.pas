@@ -48,6 +48,7 @@ uses
   Classes, SysUtils, xmlobject;
 
 type
+  TGoodsEnumerator = class;
   { TGoodCell }
 
   TGoodCell = class(TXmlSerializationObject)
@@ -151,8 +152,23 @@ type
   public
     constructor Create;
     function CreateChild:TGood;
+    function GetEnumerator: TGoodsEnumerator;
     property Item[AIndex:Integer]:TGood read GetItem; default;
   end;
+
+  { TGoodsEnumerator }
+
+  TGoodsEnumerator = class
+  private
+    FList: TGoods;
+    FPosition: Integer;
+  public
+    constructor Create(AList: TGoods);
+    function GetCurrent: TGood;
+    function MoveNext: Boolean;
+    property Current: TGood read GetCurrent;
+  end;
+
 
   { TTask }
 
@@ -239,6 +255,25 @@ type
   end;
 
 implementation
+
+{ TGoodsEnumerator }
+
+constructor TGoodsEnumerator.Create(AList: TGoods);
+begin
+  FList := AList;
+  FPosition := -1;
+end;
+
+function TGoodsEnumerator.GetCurrent: TGood;
+begin
+  Result := FList[FPosition];
+end;
+
+function TGoodsEnumerator.MoveNext: Boolean;
+begin
+  Inc(FPosition);
+  Result := FPosition < FList.Count;
+end;
 
 { TGoodCell }
 
@@ -425,6 +460,11 @@ end;
 function TGoods.CreateChild: TGood;
 begin
   Result:=InternalAddObject as TGood;
+end;
+
+function TGoods.GetEnumerator: TGoodsEnumerator;
+begin
+  Result:=TGoodsEnumerator.Create(Self);
 end;
 
 { TTask }
