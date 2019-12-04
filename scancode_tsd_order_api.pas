@@ -316,6 +316,7 @@ type
     procedure InternalInitChilds; override;
   public
     destructor Destroy; override;
+    procedure SaveImageToFile(AImageFileName:string);
   published
     property IdGoods:string read FIdGoods write SetIdGoods;
     property Name:string read FName write SetName;
@@ -452,7 +453,7 @@ type
   end;
 
 implementation
-uses DOM, XMLWrite;
+uses {DOM, XMLWrite, } base64;
 
 type
   THackXmlSerializationObject = class(TXmlSerializationObject);
@@ -755,6 +756,39 @@ end;
 destructor TNomenclature.Destroy;
 begin
   inherited Destroy;
+end;
+
+procedure TNomenclature.SaveImageToFile(AImageFileName: string);
+var
+  SD: String;
+  Instream: TStringStream;
+  Decoder: TBase64DecodingStream;
+  Outstream: TFileStream;
+begin
+  if (FBitmap<>'') then
+  begin
+    SD:=FBitmap;
+    while Length(Sd) mod 4 > 0 do SD := SD + '=';
+    Instream:=TStringStream.Create(SD);
+    try
+      Outstream:=TFileStream.Create(AImageFileName, fmOpenWrite + fmCreate);
+      try
+(*        if strict then
+          Decoder:=TBase64DecodingStream.Create(Instream,bdmStrict)
+        else *)
+          Decoder:=TBase64DecodingStream.Create(Instream,bdmMIME);
+        try
+          Outstream.CopyFrom(Decoder,Decoder.Size);
+        finally
+          Decoder.Free;
+        end;
+      finally
+        Outstream.Free;
+      end;
+    finally
+      Instream.Free;
+    end;
+  end;
 end;
 
 { TNomenclatureList }
