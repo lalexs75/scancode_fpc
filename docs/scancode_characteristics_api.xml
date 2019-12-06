@@ -74,6 +74,9 @@
       </element><element name="TQueryGood1.IdChar"><short>id_char – УИ характеристики товара</short><descr>может быть пустым, если нет характеристики
 </descr>
       </element>
+    <element name="TSprGood.IdNaborPack"><short>id_nabor_pack - УИ наборов упаковок</short><descr>ссылка на поле id_owner блока packs (см. ниже) с relation= “наборупаковок”
+</descr>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
