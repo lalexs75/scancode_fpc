@@ -293,8 +293,8 @@ end;
 
 procedure TGoodCell.InternalRegisterPropertys;
 begin
-  RegisterProperty('Cell', 'cell', 'О', '', 0, 250);
-  RegisterProperty('CellAddress', 'celladdress', 'О', '', 0, 250);
+  RegisterProperty('Cell', 'cell', [xsaRequared], '', 0, 250);
+  RegisterProperty('CellAddress', 'celladdress', [xsaRequared], '', 0, 250);
 end;
 
 procedure TGoodCell.InternalInitChilds;
@@ -342,9 +342,9 @@ end;
 
 procedure TGoodSerial.InternalRegisterPropertys;
 begin
-  RegisterProperty('Quantity', 'quantity', 'О', 'требуемое количество (в разрезе серии)', 0, 250);
-  RegisterProperty('IdSerial', 'id_serial', 'О', 'guid идентификатор серии', 0, 250);
-  RegisterProperty('GoodCells', 'cells', 'О', '', -1, -1);
+  RegisterProperty('Quantity', 'quantity', [xsaRequared], 'требуемое количество (в разрезе серии)', 0, 250);
+  RegisterProperty('IdSerial', 'id_serial', [xsaRequared], 'guid идентификатор серии', 0, 250);
+  RegisterProperty('GoodCells', 'cells', [xsaRequared], '', -1, -1);
 end;
 
 procedure TGoodSerial.InternalInitChilds;
@@ -384,10 +384,10 @@ end;
 
 procedure TGoodProperty.InternalRegisterPropertys;
 begin
-  RegisterProperty('IdPack', 'id_pack', 'О', 'guid идентификатор упаковки', 0, 250);
-  RegisterProperty('Quantity', 'quantity', 'О', 'требуемое количество (в разрезе упаковки)', 0, 250);
-  RegisterProperty('SerialVar', 'serial_var', 'О', 'способ выбора/ввода серий', 0, 250);
-  RegisterProperty('GoodSerial', 'serial', 'О', 'информация о серии товара', -1, -1);
+  RegisterProperty('IdPack', 'id_pack', [xsaRequared], 'guid идентификатор упаковки', 0, 250);
+  RegisterProperty('Quantity', 'quantity', [xsaRequared], 'требуемое количество (в разрезе упаковки)', 0, 250);
+  RegisterProperty('SerialVar', 'serial_var', [xsaRequared], 'способ выбора/ввода серий', 0, 250);
+  RegisterProperty('GoodSerial', 'serial', [xsaRequared], 'информация о серии товара', -1, -1);
 end;
 
 procedure TGoodProperty.InternalInitChilds;
@@ -427,10 +427,10 @@ end;
 
 procedure TGood.InternalRegisterPropertys;
 begin
-  RegisterProperty('IdGoods', 'id_goods', 'О', 'уникальный идентификатор товара', 0, 250);
-  RegisterProperty('IdChar', 'id_char', 'О', 'уникальный идентификатор характеристики товара', 0, 250);
-  RegisterProperty('Quantity', 'quantity', 'О', 'требуемое количество (общее)', 0, 250);
-  RegisterProperty('GoodProperty', 'property', 'О', 'свойства товара', -1, -1);
+  RegisterProperty('IdGoods', 'id_goods', [xsaRequared], 'уникальный идентификатор товара', 0, 250);
+  RegisterProperty('IdChar', 'id_char', [xsaRequared], 'уникальный идентификатор характеристики товара', 0, 250);
+  RegisterProperty('Quantity', 'quantity', [xsaRequared], 'требуемое количество (общее)', 0, 250);
+  RegisterProperty('GoodProperty', 'property', [xsaRequared], 'свойства товара', -1, -1);
 end;
 
 procedure TGood.InternalInitChilds;
@@ -541,17 +541,17 @@ end;
 
 procedure TTask.InternalRegisterPropertys;
 begin
-  RegisterProperty('Nomer', 'nomer', 'О', 'наименование документа', 0, 250);
-  RegisterProperty('IdDoc', 'id_doc', 'О', 'guid идентификатор документа', 0, 250);
-  RegisterProperty('TypeDoc', 'type', 'О', 'код типа группы документов', 0, 150);
-  RegisterProperty('UseAdress', 'as_', 'О', 'признак использования адресного хранения', 0, 150);
-  RegisterProperty('Date', 'date', 'О', 'дата создания документа', 0, 150);
-  RegisterProperty('Control', 'control', 'О', 'признак строгого учета кол-ва товаров', 0, 150);
-  RegisterProperty('Barcode', 'barcode', 'О', 'ШК документа', 0, 150);
-  RegisterProperty('IdZone', 'id_zone', 'О', 'guid идентификатор зоны склада', 0, 150);
-  RegisterProperty('IdStock', 'id_stock', 'О', 'guid идентификатор склад', 0, 150);
-  RegisterProperty('IdRoom', 'id_room', 'О', 'guid идентификатор помещения', 0, 150);
-  RegisterProperty('Goods', 'record', 'О', 'товар', -1, -1);
+  RegisterProperty('Nomer', 'nomer', [xsaRequared], 'наименование документа', 0, 250);
+  RegisterProperty('IdDoc', 'id_doc', [xsaRequared], 'guid идентификатор документа', 0, 250);
+  RegisterProperty('TypeDoc', 'type', [xsaRequared], 'код типа группы документов', 0, 150);
+  RegisterProperty('UseAdress', 'as_', [xsaRequared], 'признак использования адресного хранения', 0, 150);
+  RegisterProperty('Date', 'date', [xsaRequared], 'дата создания документа', 0, 150);
+  RegisterProperty('Control', 'control', [xsaRequared], 'признак строгого учета кол-ва товаров', 0, 150);
+  RegisterProperty('Barcode', 'barcode', [xsaRequared], 'ШК документа', 0, 150);
+  RegisterProperty('IdZone', 'id_zone', [xsaRequared], 'guid идентификатор зоны склада', 0, 150);
+  RegisterProperty('IdStock', 'id_stock', [xsaRequared], 'guid идентификатор склад', 0, 150);
+  RegisterProperty('IdRoom', 'id_room', [xsaRequared], 'guid идентификатор помещения', 0, 150);
+  RegisterProperty('Goods', 'record', [xsaRequared], 'товар', -1, -1);
 end;
 
 procedure TTask.InternalInitChilds;
@@ -570,7 +570,7 @@ end;
 
 procedure TDocument.InternalRegisterPropertys;
 begin
-  RegisterProperty('Task', 'Task', 'О', 'реквизиты документа', -1, -1);
+  RegisterProperty('Task', 'Task', [xsaRequared], 'реквизиты документа', -1, -1);
 end;
 
 procedure TDocument.InternalInitChilds;
@@ -606,7 +606,7 @@ end;
 
 procedure TDocuments.InternalRegisterPropertys;
 begin
-  RegisterProperty('Documents', 'Document', 'О', 'группа документов', -1, -1);
+  RegisterProperty('Documents', 'Document', [xsaRequared], 'группа документов', -1, -1);
 end;
 
 procedure TDocuments.InternalInitChilds;

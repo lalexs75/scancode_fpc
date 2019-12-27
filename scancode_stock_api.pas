@@ -191,9 +191,9 @@ end;
 
 procedure TCell.InternalRegisterPropertys;
 begin
-  RegisterProperty('IdCell', 'id_cell', 'О', 'guid идентификатор ячейки склада', 0, 250);
-  RegisterProperty('Barcode', 'barcode', 'О', 'ШК ячейки', 0, 250);
-  RegisterProperty('Name', 'name', 'О', 'наименование ячейки', 0, 250);
+  RegisterProperty('IdCell', 'id_cell', [xsaRequared], 'guid идентификатор ячейки склада', 0, 250);
+  RegisterProperty('Barcode', 'barcode', [xsaRequared], 'ШК ячейки', 0, 250);
+  RegisterProperty('Name', 'name', [xsaRequared], 'наименование ячейки', 0, 250);
 end;
 
 procedure TCell.InternalInitChilds;
@@ -282,10 +282,10 @@ end;
 
 procedure TRoom.InternalRegisterPropertys;
 begin
-  RegisterProperty('IdRoom', 'id_room', 'О', 'guid идентификатор помещения склада', 0, 250);
-  RegisterProperty('Barcode', 'barcode', 'О', 'ШК помещения', 0, 250);
-  RegisterProperty('Name', 'name', 'О', 'наименование помещения', 0, 250);
-  RegisterProperty('Cells', 'Сell', 'О', 'складская ячейка', -1, -1);
+  RegisterProperty('IdRoom', 'id_room', [xsaRequared], 'guid идентификатор помещения склада', 0, 250);
+  RegisterProperty('Barcode', 'barcode', [xsaRequared], 'ШК помещения', 0, 250);
+  RegisterProperty('Name', 'name', [xsaRequared], 'наименование помещения', 0, 250);
+  RegisterProperty('Cells', 'Сell', [xsaRequared], 'складская ячейка', -1, -1);
 end;
 
 procedure TRoom.InternalInitChilds;
@@ -304,7 +304,7 @@ end;
 
 procedure TStocks.InternalRegisterPropertys;
 begin
-  RegisterProperty('Stocks', 'Stocks', 'О', 'группа складов (одна на весь файл)', -1, -1);
+  RegisterProperty('Stocks', 'Stocks', [xsaRequared], 'группа складов (одна на весь файл)', -1, -1);
 end;
 
 procedure TStocks.InternalInitChilds;
@@ -349,10 +349,10 @@ end;
 
 procedure TStock.InternalRegisterPropertys;
 begin
-  RegisterProperty('IdStock', 'id_stock', 'О', 'guid идентификатор склада', 0, 255);
-  RegisterProperty('Barcode', 'barcode', 'О', 'ШК склада', 0, 255);
-  RegisterProperty('Name', 'name', 'О', 'наименование склада', 0, 255);
-  RegisterProperty('Rooms', 'Room', 'О', 'помещение внутри склада (может быть несколько, а может и не быть вообще)', -1, -1);
+  RegisterProperty('IdStock', 'id_stock', [xsaRequared], 'guid идентификатор склада', 0, 255);
+  RegisterProperty('Barcode', 'barcode', [xsaRequared], 'ШК склада', 0, 255);
+  RegisterProperty('Name', 'name', [xsaRequared], 'наименование склада', 0, 255);
+  RegisterProperty('Rooms', 'Room', [xsaRequared], 'помещение внутри склада (может быть несколько, а может и не быть вообще)', -1, -1);
 end;
 
 procedure TStock.InternalInitChilds;

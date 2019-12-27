@@ -275,14 +275,14 @@ end;
 
 procedure TExtendedInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('Confirm', 'confirm', '', 'Статус подтверждения ордера', 1, 255);
-  RegisterProperty('DocType', 'docType', '', 'Тип документа', 1, 255);
-  RegisterProperty('fileName', 'fileName', '', 'Имя файла', 1, 255);
-  RegisterProperty('PackgeNumber', 'packgeNumber', '', 'Номер посылки', 1, 255);
-  RegisterProperty('Serial', 'serial', '', 'Серийный номер ТСД', 1, 255);
-  RegisterProperty('UserID', 'userID', '', 'Идентификатор', 1, 255);
-  RegisterProperty('UserIP', 'userIP', '', 'IP адрес терминала', 1, 255);
-  RegisterProperty('Version', 'version', '', 'Версия протокола', 1, 255);
+  RegisterProperty('Confirm', 'confirm', [], 'Статус подтверждения ордера', 1, 255);
+  RegisterProperty('DocType', 'docType', [], 'Тип документа', 1, 255);
+  RegisterProperty('fileName', 'fileName', [], 'Имя файла', 1, 255);
+  RegisterProperty('PackgeNumber', 'packgeNumber', [], 'Номер посылки', 1, 255);
+  RegisterProperty('Serial', 'serial', [], 'Серийный номер ТСД', 1, 255);
+  RegisterProperty('UserID', 'userID', [], 'Идентификатор', 1, 255);
+  RegisterProperty('UserIP', 'userIP', [], 'IP адрес терминала', 1, 255);
+  RegisterProperty('Version', 'version', [], 'Версия протокола', 1, 255);
 end;
 
 procedure TExtendedInformation.InternalInitChilds;
@@ -304,7 +304,7 @@ end;
 
 procedure TUserRights.InternalRegisterPropertys;
 begin
-  RegisterProperty('Records', 'Record', 'О', 'Строки', -1, -1);
+  RegisterProperty('Records', 'Record', [xsaRequared], 'Строки', -1, -1);
 end;
 
 procedure TUserRights.InternalInitChilds;
@@ -323,7 +323,7 @@ end;
 
 procedure TUserLogins.InternalRegisterPropertys;
 begin
-  RegisterProperty('Records', 'Record', 'О', 'Строки', -1, -1);
+  RegisterProperty('Records', 'Record', [xsaRequared], 'Строки', -1, -1);
 end;
 
 procedure TUserLogins.InternalInitChilds;
@@ -408,13 +408,13 @@ end;
 
 procedure TUserLogin.InternalRegisterPropertys;
 begin
-  RegisterProperty('Login', 'Login', 'О', 'псевдоним типа документа', 1, 50);
-  RegisterProperty('Id', 'Id', 'О', 'псевдоним типа документа', 1, 50);
-  RegisterProperty('Pass', 'Pass', 'О', 'псевдоним типа документа', 1, 250);
-  RegisterProperty('Rights', 'Rights', 'О', 'псевдоним типа документа', 1, 50);
-  RegisterProperty('CreateProd', 'CreateProd', 'О', 'псевдоним типа документа', 1, 50);
-  RegisterProperty('AddProd', 'AddProd', 'О', 'псевдоним типа документа', 1, 50);
-  RegisterProperty('CreateFreeCollect', 'CreateFreeCollect', 'О', 'псевдоним типа документа', 1, 50);
+  RegisterProperty('Login', 'Login', [xsaRequared], 'псевдоним типа документа', 1, 50);
+  RegisterProperty('Id', 'Id', [xsaRequared], 'псевдоним типа документа', 1, 50);
+  RegisterProperty('Pass', 'Pass', [xsaRequared], 'псевдоним типа документа', 1, 250);
+  RegisterProperty('Rights', 'Rights', [xsaRequared], 'псевдоним типа документа', 1, 50);
+  RegisterProperty('CreateProd', 'CreateProd', [xsaRequared], 'псевдоним типа документа', 1, 50);
+  RegisterProperty('AddProd', 'AddProd', [xsaRequared], 'псевдоним типа документа', 1, 50);
+  RegisterProperty('CreateFreeCollect', 'CreateFreeCollect', [xsaRequared], 'псевдоним типа документа', 1, 50);
 end;
 
 procedure TUserLogin.InternalInitChilds;
@@ -512,9 +512,9 @@ end;
 
 procedure TUserRight.InternalRegisterPropertys;
 begin
-  RegisterProperty('Name', 'Name', 'О', 'псевдоним типа документа', 1, 50);
-  RegisterProperty('ID', 'ID', 'О', 'код типа документа внутри группы', 1, 50);
-  RegisterProperty('GroupID', 'GroupID', 'О', 'код группы документов, с которыми пользователь может работать', 1, 150);
+  RegisterProperty('Name', 'Name', [xsaRequared], 'псевдоним типа документа', 1, 50);
+  RegisterProperty('ID', 'ID', [xsaRequared], 'код типа документа внутри группы', 1, 50);
+  RegisterProperty('GroupID', 'GroupID', [xsaRequared], 'код группы документов, с которыми пользователь может работать', 1, 150);
 end;
 
 procedure TUserRight.InternalInitChilds;
@@ -548,8 +548,8 @@ end;
 
 procedure TUserInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('Logins', 'Login', 'О', 'учетные данные пользователя', -1, -1);
-  RegisterProperty('Rights', 'Right', 'О', 'описание набора доступных прав пользователя', -1, -1);
+  RegisterProperty('Logins', 'Login', [xsaRequared], 'учетные данные пользователя', -1, -1);
+  RegisterProperty('Rights', 'Right', [xsaRequared], 'описание набора доступных прав пользователя', -1, -1);
 end;
 
 procedure TUserInformation.InternalInitChilds;

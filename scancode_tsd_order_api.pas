@@ -547,10 +547,10 @@ end;
 
 procedure TTSDBarcode.InternalRegisterPropertys;
 begin
-  RegisterProperty('IdGoods', 'id_goods', 'О', '', 0, 250);
-  RegisterProperty('IdChar', 'id_char', 'О', '', 0, 250);
-  RegisterProperty('IdPack', 'id_pack', 'О', '', 0, 250);
-  RegisterProperty('Barcode', 'barcode', 'О', '', 0, 250);
+  RegisterProperty('IdGoods', 'id_goods', [xsaRequared], '', 0, 250);
+  RegisterProperty('IdChar', 'id_char', [xsaRequared], '', 0, 250);
+  RegisterProperty('IdPack', 'id_pack', [xsaRequared], '', 0, 250);
+  RegisterProperty('Barcode', 'barcode', [xsaRequared], '', 0, 250);
 end;
 
 procedure TTSDBarcode.InternalInitChilds;
@@ -584,7 +584,7 @@ end;
 
 procedure TTSDBarcodes.InternalRegisterPropertys;
 begin
-  RegisterProperty('BarcodeList', 'record', 'О', '', -1, -1);
+  RegisterProperty('BarcodeList', 'record', [xsaRequared], '', -1, -1);
 end;
 
 procedure TTSDBarcodes.InternalInitChilds;
@@ -624,9 +624,9 @@ end;
 
 procedure TCharacteristic.InternalRegisterPropertys;
 begin
-  RegisterProperty('IdGoods', 'id_goods', 'О', '', 0, 250);
-  RegisterProperty('IdChar', 'id_char', 'О', '', 0, 250);
-  RegisterProperty('Name', 'name', 'О', '', 0, 250);
+  RegisterProperty('IdGoods', 'id_goods', [xsaRequared], '', 0, 250);
+  RegisterProperty('IdChar', 'id_char', [xsaRequared], '', 0, 250);
+  RegisterProperty('Name', 'name', [xsaRequared], '', 0, 250);
 end;
 
 procedure TCharacteristic.InternalInitChilds;
@@ -660,7 +660,7 @@ end;
 
 procedure TCharacteristics.InternalRegisterPropertys;
 begin
-   RegisterProperty('CharacteristicList', 'record', 'О', '', -1, -1);
+   RegisterProperty('CharacteristicList', 'record', [xsaRequared], '', -1, -1);
 end;
 
 procedure TCharacteristics.InternalInitChilds;
@@ -679,7 +679,7 @@ end;
 
 procedure TNomenclatures.InternalRegisterPropertys;
 begin
-  RegisterProperty('NomenclatureList', 'record', 'О', '', -1, -1);
+  RegisterProperty('NomenclatureList', 'record', [xsaRequared], '', -1, -1);
 end;
 
 procedure TNomenclatures.InternalInitChilds;
@@ -740,12 +740,12 @@ end;
 
 procedure TNomenclature.InternalRegisterPropertys;
 begin
-  RegisterProperty('IdGoods', 'id_goods', 'О', '', 0, 250);
-  RegisterProperty('Name', 'name', 'О', '', 0, 250);
-  RegisterProperty('IdMeasure', 'id_measure', 'О', '', 0, 250);
-  RegisterProperty('IdVidnomencl', 'id_vidnomencl', 'О', '', 0, 250);
-  RegisterProperty('Img', 'img', 'О', '', 0, 250);
-  RegisterProperty('Bitmap', 'bitmap', 'О', '', 0, -1);
+  RegisterProperty('IdGoods', 'id_goods', [xsaRequared], '', 0, 250);
+  RegisterProperty('Name', 'name', [xsaRequared], '', 0, 250);
+  RegisterProperty('IdMeasure', 'id_measure', [xsaRequared], '', 0, 250);
+  RegisterProperty('IdVidnomencl', 'id_vidnomencl', [xsaRequared], '', 0, 250);
+  RegisterProperty('Img', 'img', [xsaRequared], '', 0, 250);
+  RegisterProperty('Bitmap', 'bitmap', [xsaRequared], '', 0, -1);
 end;
 
 procedure TNomenclature.InternalInitChilds;
@@ -831,8 +831,8 @@ end;
 
 procedure TTaskGoodPropertySerialCell.InternalRegisterPropertys;
 begin
-  RegisterProperty('IdCell', 'id_cell', 'О', 'идентификатор ячейки', 0, 250);
-  RegisterProperty('CellAddress', 'celladdress', 'О', 'наименование ячейки', 0, 250);
+  RegisterProperty('IdCell', 'id_cell', [xsaRequared], 'идентификатор ячейки', 0, 250);
+  RegisterProperty('CellAddress', 'celladdress', [xsaRequared], 'наименование ячейки', 0, 250);
 end;
 
 procedure TTaskGoodPropertySerialCell.InternalInitChilds;
@@ -895,11 +895,11 @@ end;
 
 procedure TTaskGoodPropertySerial.InternalRegisterPropertys;
 begin
-  RegisterProperty('Quantity', 'quantity', 'О', 'оличество собранного товара в единицах измерения упаковки', 0, 250);
-  RegisterProperty('IdSerial', 'id_serial', 'О', 'идентификатор серии', 0, 250);
-  RegisterProperty('Value', 'value', 'О', 'серия (произвольное значение) введенное пользователем на ТСД', 0, 250);
-  RegisterProperty('Date', 'date', 'О', 'указанная пользователем дата срока годности (если требуется)', 0, 250);
-  RegisterProperty('Cells', 'сells', 'О', 'информация о ячейках товара', -1, -1);
+  RegisterProperty('Quantity', 'quantity', [xsaRequared], 'оличество собранного товара в единицах измерения упаковки', 0, 250);
+  RegisterProperty('IdSerial', 'id_serial', [xsaRequared], 'идентификатор серии', 0, 250);
+  RegisterProperty('Value', 'value', [xsaRequared], 'серия (произвольное значение) введенное пользователем на ТСД', 0, 250);
+  RegisterProperty('Date', 'date', [xsaRequared], 'указанная пользователем дата срока годности (если требуется)', 0, 250);
+  RegisterProperty('Cells', 'сells', [xsaRequared], 'информация о ячейках товара', -1, -1);
 end;
 
 procedure TTaskGoodPropertySerial.InternalInitChilds;
@@ -932,8 +932,8 @@ end;
 
 procedure TTaskGoodMarking.InternalRegisterPropertys;
 begin
-  RegisterProperty('PDF417', 'PDF417', 'О', '', 0, 250);
-  RegisterProperty('DATAMATRIX', 'DATAMATRIX', 'О', '', 0, 250);
+  RegisterProperty('PDF417', 'PDF417', [xsaRequared], '', 0, 250);
+  RegisterProperty('DATAMATRIX', 'DATAMATRIX', [xsaRequared], '', 0, 250);
 end;
 
 procedure TTaskGoodMarking.InternalInitChilds;
@@ -957,8 +957,8 @@ end;
 
 procedure TTaskGoodProperty.InternalRegisterPropertys;
 begin
-  RegisterProperty('IdPack', 'id_pack', 'О', 'идентификатор упаковки', 0, 250);
-  RegisterProperty('Serial', 'serial', 'О', 'серии товаров', -1, -1);
+  RegisterProperty('IdPack', 'id_pack', [xsaRequared], 'идентификатор упаковки', 0, 250);
+  RegisterProperty('Serial', 'serial', [xsaRequared], 'серии товаров', -1, -1);
 end;
 
 procedure TTaskGoodProperty.InternalInitChilds;
@@ -991,10 +991,10 @@ end;
 
 procedure TTaskGood.InternalRegisterPropertys;
 begin
-  RegisterProperty('IdChar', 'id_char', 'О', 'идентификатор характеристик', 0, 250);
-  RegisterProperty('IdGoods', 'id_goods', 'О', 'идентификатор товара', 0, 250);
-  RegisterProperty('GoodProperty', 'property', 'О', 'описание свойств', -1, -1);
-  RegisterProperty('GoodMarking', 'alco', 'О', 'коды акцизных марок', -1, -1);
+  RegisterProperty('IdChar', 'id_char', [xsaRequared], 'идентификатор характеристик', 0, 250);
+  RegisterProperty('IdGoods', 'id_goods', [xsaRequared], 'идентификатор товара', 0, 250);
+  RegisterProperty('GoodProperty', 'property', [xsaRequared], 'описание свойств', -1, -1);
+  RegisterProperty('GoodMarking', 'alco', [xsaRequared], 'коды акцизных марок', -1, -1);
 end;
 
 procedure TTaskGood.InternalInitChilds;
@@ -1086,14 +1086,14 @@ end;
 
 procedure TTask.InternalRegisterPropertys;
 begin
-  RegisterProperty('IdDoc', 'id_doc', 'О', 'уникальный идентификатор документа', 0, 250);
-  RegisterProperty('Date', 'date', 'О', 'дата создания документа (во внешней учетной системе)', 0, 250);
-  RegisterProperty('TaskType', 'type', 'О', 'тип группы документа', 0, 250);
-  RegisterProperty('DateOrder', 'date_order', 'О', 'дата создания ордера', 0, 250);
-  RegisterProperty('FC', 'fc', 'О', 'признак «свободный набор» (значение: 1 или 0)', 0, 250);
-  RegisterProperty('IdSclad', 'id_sclad', 'О', 'guid идентификатор склада', 0, 250);
-  RegisterProperty('Goods', 'record', 'О', 'товар', -1, -1);
-  RegisterProperty('LastOrder', 'last_order', 'О', '', 0, 250);
+  RegisterProperty('IdDoc', 'id_doc', [xsaRequared], 'уникальный идентификатор документа', 0, 250);
+  RegisterProperty('Date', 'date', [xsaRequared], 'дата создания документа (во внешней учетной системе)', 0, 250);
+  RegisterProperty('TaskType', 'type', [xsaRequared], 'тип группы документа', 0, 250);
+  RegisterProperty('DateOrder', 'date_order', [xsaRequared], 'дата создания ордера', 0, 250);
+  RegisterProperty('FC', 'fc', [xsaRequared], 'признак «свободный набор» (значение: 1 или 0)', 0, 250);
+  RegisterProperty('IdSclad', 'id_sclad', [xsaRequared], 'guid идентификатор склада', 0, 250);
+  RegisterProperty('Goods', 'record', [xsaRequared], 'товар', -1, -1);
+  RegisterProperty('LastOrder', 'last_order', [xsaRequared], '', 0, 250);
 end;
 
 procedure TTask.InternalInitChilds;
@@ -1134,8 +1134,8 @@ end;
 
 procedure TOrders.InternalRegisterPropertys;
 begin
-  RegisterProperty('Tasks', 'Task', 'О', '', -1, -1);
-  RegisterProperty('Handbooks', 'handbooks', 'О', 'справочник товаров и сопутствующих списков для новых', -1, -1);
+  RegisterProperty('Tasks', 'Task', [xsaRequared], '', -1, -1);
+  RegisterProperty('Handbooks', 'handbooks', [xsaRequared], 'справочник товаров и сопутствующих списков для новых', -1, -1);
 end;
 
 procedure TOrders.InternalInitChilds;
@@ -1161,9 +1161,9 @@ end;
 
 procedure THandbooks.InternalRegisterPropertys;
 begin
-  RegisterProperty('Nomenclatures', 'nomencls', 'О', 'список товаров, созданных пользователем на ТСД', -1, -1);
-  RegisterProperty('Characteristics', 'characteristics', 'О', 'список характеристик', -1, -1);
-  RegisterProperty('Barcodes', 'barcodes', 'О', 'список штрих кодов', -1, -1);
+  RegisterProperty('Nomenclatures', 'nomencls', [xsaRequared], 'список товаров, созданных пользователем на ТСД', -1, -1);
+  RegisterProperty('Characteristics', 'characteristics', [xsaRequared], 'список характеристик', -1, -1);
+  RegisterProperty('Barcodes', 'barcodes', [xsaRequared], 'список штрих кодов', -1, -1);
 end;
 
 procedure THandbooks.InternalInitChilds;
