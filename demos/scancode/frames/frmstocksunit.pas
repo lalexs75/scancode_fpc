@@ -150,7 +150,7 @@ begin
   rxStocks.First;
   while not rxStocks.EOF do
   begin
-    S:=Result.Stocks.CreateChild;
+    S:=Result.Stocks.AddItem;
     S.IdStock:=rxStocksid_stock.AsString;
     S.Barcode:=rxStocksbarcode.AsString;
     S.Name:=rxStocksname.AsString;
@@ -158,7 +158,7 @@ begin
     rxRoom.First;
     while not rxRoom.EOF do
     begin
-      R:=S.Rooms.CreateChild;
+      R:=S.Rooms.AddItem;
       R.IdRoom:=rxRoomid_room.AsString;
       R.Barcode:=rxRoombarcode.AsString;
       R.Name:=rxRoomname.AsString;
@@ -166,7 +166,7 @@ begin
       rxCell.First;
       while not rxCell.EOF do
       begin
-        C:=R.Cells.CreateChild;
+        C:=R.Cells.AddItem;
         C.IdCell:=rxCellid_cell.AsString;
         C.Barcode:=rxCellbarcode.AsString;
         C.Name:=rxCellname.AsString;

@@ -55,7 +55,7 @@ begin
   TSDO:=TOrders.Create;
 
   //Создадим документ обработки
-  T:=TSDO.Tasks.CreateChild;
+  T:=TSDO.Tasks.AddItem;
   T.IdDoc:='70b9a737-c224-11e8-ba50-50465d72dd18';
   T.Date:='08.10.2018 0:00:00';
   T.TaskType:='202';
@@ -63,7 +63,7 @@ begin
   T.FC:='0';
   T.IdSclad:='';
 
-  TG:=T.Goods.CreateChild;
+  TG:=T.Goods.AddItem;
   TG.IdChar:='b02e2816-720f-11df-b436-0015e92f2802';
   TG.IdGoods:='dee6e1d0-55bc-11d9-848a-00112f43529a';
   TG.GoodProperty.IdPack:=' ';
@@ -71,11 +71,11 @@ begin
   TG.GoodProperty.Serial.IdSerial:=' ';
   TG.GoodProperty.Serial.Date:=' ';
   TG.GoodProperty.Serial.Value:=' ';
-  CL:=TG.GoodProperty.Serial.Cells.CreateChild;
+  CL:=TG.GoodProperty.Serial.Cells.AddItem;
   CL.IdCell:='322718363789694194929610170602799020651';
   CL.CellAddress:='БТ-СТ5-4';
 
-  TG:=T.Goods.CreateChild;
+  TG:=T.Goods.AddItem;
   TG.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
   TG.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
   TG.GoodProperty.IdPack:=' ';
@@ -84,7 +84,7 @@ begin
   TG.GoodProperty.Serial.Date:=' ';
   TG.GoodProperty.Serial.Value:=' ';
 
-  TG:=T.Goods.CreateChild;
+  TG:=T.Goods.AddItem;
   TG.IdChar:='b02e280c-720f-11df-b436-0015e92f2802';
   TG.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
   TG.GoodProperty.IdPack:=' ';
@@ -96,7 +96,7 @@ begin
   TG.GoodProperty.Serial.Value:=' ';
 
 //  Handbooks:=THandbooks.Create;
-  NL:=TSDO.Handbooks.Nomenclatures.NomenclatureList.CreateChild;
+  NL:=TSDO.Handbooks.Nomenclatures.NomenclatureList.AddItem;
   NL.IdGoods:='1';
   NL.Name:='1';
   NL.IdMeasure:='1';
@@ -104,12 +104,12 @@ begin
   NL.Img:='1';
   NL.Bitmap:='1';
 
-  CH:=TSDO.Handbooks.Characteristics.CharacteristicList.CreateChild;
+  CH:=TSDO.Handbooks.Characteristics.CharacteristicList.AddItem;
   CH.IdGoods:='1';
   CH.IdChar:='1';
   CH.Name:='1';
 
-  BR:=TSDO.Handbooks.Barcodes.BarcodeList.CreateChild;
+  BR:=TSDO.Handbooks.Barcodes.BarcodeList.AddItem;
   BR.IdGoods:='1';
   BR.IdChar:='1';
   BR.IdPack:='1';

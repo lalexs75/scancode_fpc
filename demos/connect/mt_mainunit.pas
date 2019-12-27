@@ -523,9 +523,9 @@ begin
       Q1.LoadFromFile(FileName);
 
       PA:=TGetProdAnswer.Create;
-      PA.GoodQuantity.IdGoods:=Q1.GoodList.Item[0].IdGoods;
-      PA.GoodQuantity.IdChar:=Q1.GoodList.Item[0].IdChar;
-      PA.GoodQuantity.IdSklad:=Q1.GoodList.Item[0].IdSklad;
+      PA.GoodQuantity.IdGoods:=Q1.GoodList.Items[0].IdGoods;
+      PA.GoodQuantity.IdChar:=Q1.GoodList.Items[0].IdChar;
+      PA.GoodQuantity.IdSklad:=Q1.GoodList.Items[0].IdSklad;
       PA.GoodQuantity.Quantity:='123';
       SendAnswer('GetProd', PA);
       PA.Free;
@@ -572,7 +572,7 @@ var
   L: TUserLogin;
   R: TUserRight;
 begin
-  L:=U.Logins.Records.CreateChild;
+  L:=U.Logins.Records.AddItem;
     L.Login:='Орлов Александр Владимирович';
     L.Id:='8368e8b098294ae292bd8d4ddd658d9a';
 
@@ -583,7 +583,7 @@ begin
     L.AddProd:='1/2/3/4';
     L.CreateFreeCollect:='1/2/3/4';
 
-  L:=U.Logins.Records.CreateChild;
+  L:=U.Logins.Records.AddItem;
     L.Id:=UserIDToGUID(1);
     L.Login:='Лагунов Алексей Анатольевич';
     L.SetPassword('123');
@@ -592,7 +592,7 @@ begin
     L.AddProd:='1/2/3/4';
     L.CreateFreeCollect:='1/2/3/4';
 
-  L:=U.Logins.Records.CreateChild;
+  L:=U.Logins.Records.AddItem;
     L.Id:=UserIDToGUID(2);
     L.Login:='Харин Андрей';
     L.SetPassword('123');
@@ -601,15 +601,15 @@ begin
     L.AddProd:='1/2/3/4';
     L.CreateFreeCollect:='1/2/3/4';
 
-  R:=U.Rights.Records.CreateChild;
+  R:=U.Rights.Records.AddItem;
     R.Name:='Заказ поставщику';
     R.Id:='101';
     R.groupId:='1';
-  R:=U.Rights.Records.CreateChild;
+  R:=U.Rights.Records.AddItem;
     R.Name:='Заказ клиента';
     R.Id:='202';
     R.groupId:='2';
-  R:=U.Rights.Records.CreateChild;
+  R:=U.Rights.Records.AddItem;
     R.Name:='Инвентаризация';
     R.Id:='303';
     R.groupId:='3';
@@ -625,31 +625,31 @@ var
   M: TMeasure;
   Skld: TSclad;
 begin
-  Pck:=Dic.Packs.PackList.CreateChild;
+  Pck:=Dic.Packs.PackList.AddItem;
     Pck.IdOwner:='';
     Pck.Relation:='';
     Pck.Name:='шт.';
     Pck.IdPack:=PackIDToGUID(1);
     Pck.Koeff:='1';
-  Pck:=Dic.Packs.PackList.CreateChild;
+  Pck:=Dic.Packs.PackList.AddItem;
     Pck.IdOwner:='';
     Pck.Relation:='';
     Pck.Name:='шт.';
     Pck.IdPack:=PackIDToGUID(2);
     Pck.Koeff:='1';
 
-  VN:=Dic.NomenclatureTypes.NomenclatureTypeList.CreateChild;
+  VN:=Dic.NomenclatureTypes.NomenclatureTypeList.AddItem;
     VN.IdNomenclatureType:=NomenclatureIDToGUID(1);
     VN.Name:='Освещение и электротовары';
     VN.IsChar:='0';
     VN.IsSerial:='0';
-  VN:=Dic.NomenclatureTypes.NomenclatureTypeList.CreateChild;
+  VN:=Dic.NomenclatureTypes.NomenclatureTypeList.AddItem;
     VN.IdNomenclatureType:=NomenclatureIDToGUID(2);
     VN.Name:='Строительство и ремонт';
     VN.IsChar:='0';
     VN.IsSerial:='0';
 
-  G:=Dic.SprGoods.SprGoodLists.CreateChild;
+  G:=Dic.SprGoods.SprGoodLists.AddItem;
     G.IdGoods:=GoodsIDToGUID(1);
     G.Name:='Лампочка 1/23*ыв';
     G.Art:='130005';
@@ -658,16 +658,16 @@ begin
     G.IdNaborPack:='';
     G.Img:='';
     G.Bitmap:='';
-    Br:=Dic.Barcodes.BarcodeList.CreateChild;
+    Br:=Dic.Barcodes.BarcodeList.AddItem;
       Br.IdGoods:=G.IdGoods;
       Br.Barcode:='2000000010510';
 
-  Prc:=Dic.Prices.PriceList.CreateChild;
+  Prc:=Dic.Prices.PriceList.AddItem;
     Prc.IdGoods:=G.IdGoods;
     Prc.Price:='166.00';
     Prc.Currency:='руб';
 
-  G:=Dic.SprGoods.SprGoodLists.CreateChild;
+  G:=Dic.SprGoods.SprGoodLists.AddItem;
     G.IdGoods:=GoodsIDToGUID(2); //'SPR3-000002';
     G.Name:='Батарейка ЭРА АА 1ю3';
     G.Art:='130006';
@@ -676,15 +676,15 @@ begin
     G.IdNaborPack:='';
     G.Img:='';
     G.Bitmap:='';
-    Br:=Dic.Barcodes.BarcodeList.CreateChild;
+    Br:=Dic.Barcodes.BarcodeList.AddItem;
     Br.IdGoods:=G.IdGoods;
     Br.Barcode:='2000000010511';
-  Prc:=Dic.Prices.PriceList.CreateChild;
+  Prc:=Dic.Prices.PriceList.AddItem;
     Prc.IdGoods:=GoodsIDToGUID(2);
     Prc.Price:='200.4';
     Prc.Currency:='руб';
 
-  G:=Dic.SprGoods.SprGoodLists.CreateChild;
+  G:=Dic.SprGoods.SprGoodLists.AddItem;
     G.IdGoods:=GoodsIDToGUID(3); //'SPR3-000002';
     G.Name:='Затирка для плиточных швов "004", серая, 2 кг, Старатели, Россия';
     G.Art:='068.460.024';
@@ -693,33 +693,33 @@ begin
     G.IdNaborPack:='';
     G.Img:='';
     G.Bitmap:='';
-    Br:=Dic.Barcodes.BarcodeList.CreateChild;
+    Br:=Dic.Barcodes.BarcodeList.AddItem;
     Br.IdGoods:=G.IdGoods;
     Br.Barcode:='2000000010511';
-  Prc:=Dic.Prices.PriceList.CreateChild;
+  Prc:=Dic.Prices.PriceList.AddItem;
     Prc.IdGoods:=G.IdGoods;
     Prc.Price:='200.4';
     Prc.Currency:='руб';
 
-  M:=Dic.Measures.MeasureList.CreateChild;
+  M:=Dic.Measures.MeasureList.AddItem;
     M.IdMeasure:=MeasureIDToGUID(1);
     M.Name:='пар';
-  M:=Dic.Measures.MeasureList.CreateChild;
+  M:=Dic.Measures.MeasureList.AddItem;
     M.IdMeasure:=MeasureIDToGUID(2);
     M.Name:='шт';
-  M:=Dic.Measures.MeasureList.CreateChild;
+  M:=Dic.Measures.MeasureList.AddItem;
     M.IdMeasure:=MeasureIDToGUID(3);
     M.Name:='кг';
-  M:=Dic.Measures.MeasureList.CreateChild;
+  M:=Dic.Measures.MeasureList.AddItem;
     M.IdMeasure:=MeasureIDToGUID(4);
     M.Name:='кв.м.';
 
-  Skld:=Dic.Sclads.ScladList.CreateChild;
+  Skld:=Dic.Sclads.ScladList.AddItem;
     Skld.IdSclad:=StockIDToGUID(1);
     Skld.Name:='Домодедовская таможня';
     Skld.IsAdress:='0';
     Skld.IsOrder:='0';
-  Skld:=Dic.Sclads.ScladList.CreateChild;
+  Skld:=Dic.Sclads.ScladList.AddItem;
     Skld.IdSclad:=StockIDToGUID(2);
     Skld.Name:='Внуковская таможня';
     Skld.IsAdress:='0';
@@ -757,7 +757,7 @@ begin
       GC.CellAddress:='ОСТ3-2-1';
   *)
     //Документ продаж
-    D:=Doc.Documents.CreateChild;
+    D:=Doc.Documents.AddItem;
       D.Task.Barcode:='S100010023';
       D.Task.Date:=FormatDateTime('dd.mm.yyyy', Now);
       D.Task.UseAdress:='1';
@@ -769,26 +769,26 @@ begin
       D.Task.IdRoom:=RoomIDToGUID(1); //'R01000001';
       D.Task.IdStock:=StockIDToGUID(1);//'SKLD-000001';
 
-      G:=D.Task.Goods.CreateChild;
+      G:=D.Task.Goods.AddItem;
       G.IdGoods:=GoodsIDToGUID(1); //'SPR3-000001';
       G.Quantity:='1';
       G.GoodProperty.IdPack:='EDIZM-000001';
       G.GoodProperty.Quantity:='1';
-      GC:=G.GoodProperty.GoodSerial.GoodCells.CreateChild;
+      GC:=G.GoodProperty.GoodSerial.GoodCells.AddItem;
       GC.Cell:=CellIDToGUID(1); //'CELL-000001-000001-000001';
       GC.CellAddress:='Ул 1 Этаж 1 Яч 1';
 
-      G:=D.Task.Goods.CreateChild;
+      G:=D.Task.Goods.AddItem;
       G.IdGoods:=GoodsIDToGUID(2);//'SPR3-000002';
       G.Quantity:='2';
       G.GoodProperty.IdPack:='EDIZM-000001';
       G.GoodProperty.Quantity:='2';
-      GC:=G.GoodProperty.GoodSerial.GoodCells.CreateChild;
+      GC:=G.GoodProperty.GoodSerial.GoodCells.AddItem;
       GC.Cell:=CellIDToGUID(2); //'CELL-000001-000001-000001';
       GC.CellAddress:='Ул 1 Этаж 1 Яч 11`';
 
     //Документ инвентаризации
-    D:=Doc.Documents.CreateChild;
+    D:=Doc.Documents.AddItem;
       D.Task.Barcode:='S0010101000';
       D.Task.Date:=FormatDateTime('dd.mm.yyyy', Now);
       D.Task.UseAdress:='1';
@@ -799,12 +799,12 @@ begin
       D.Task.IdZone:='';
       D.Task.IdRoom:=RoomIDToGUID(2); //'R01000001';
       D.Task.IdStock:=StockIDToGUID(2);//'SKLD-000001';
-      G:=D.Task.Goods.CreateChild;
+      G:=D.Task.Goods.AddItem;
       G.IdGoods:=GoodsIDToGUID(3); //'SPR3-000001';
       G.Quantity:='1';
       G.GoodProperty.IdPack:='EDIZM-000001';
       G.GoodProperty.Quantity:='1';
-      GC:=G.GoodProperty.GoodSerial.GoodCells.CreateChild;
+      GC:=G.GoodProperty.GoodSerial.GoodCells.AddItem;
       GC.Cell:=CellIDToGUID(3); //'CELL-000001-000001-000001';
       GC.CellAddress:='Ул 1 Этаж 1 Яч 1';
 end;
@@ -815,37 +815,37 @@ var
   R: TRoom;
   C: TCell;
 begin
-  S:=Stocks.Stocks.CreateChild;
+  S:=Stocks.Stocks.AddItem;
     S.Barcode:='148249978';
     S.IdStock:=StockIDToGUID(1); //'6f87e83f-722c-11df-b336-0011955cba6b';
     S.Name:='Центральный склад';
-  R:=S.Rooms.CreateChild;
+  R:=S.Rooms.AddItem;
     R.Barcode:='148249978';
     R.IdRoom:=RoomIDToGUID(1); //'6f87e842-722c-11df-b336-0011955cba6b';
     R.Name:='Продукты';
-  C:=R.Cells.CreateChild;
+  C:=R.Cells.AddItem;
     C.Barcode:='262838176';
     C.IdCell:=CellIDToGUID(1); //'c5bcca8d-44ca-11e0-af0b-0015e9b8c48d';
     C.Name:='П-А2-12';
-  C:=R.Cells.CreateChild;
+  C:=R.Cells.AddItem;
     C.barcode:='262838177';
     C.IdCell:=CellIDToGUID(2); //'4dd6daf4-44ca-11e0-af0b-0015e9b8c48d';
     C.Name:='П-А3';
 
 
-  S:=Stocks.Stocks.CreateChild;
+  S:=Stocks.Stocks.AddItem;
     S.Barcode:='S01000001';
     S.IdStock:=StockIDToGUID(2); //'SKLD-000001';
     S.Name:='Склад №1';
-  R:=S.Rooms.CreateChild;
+  R:=S.Rooms.AddItem;
     R.Barcode:='R01000001';
     R.IdRoom:=RoomIDToGUID(2); //'ROOM-000001-000001';
     R.Name:='Ангар № 1';
-  C:=R.Cells.CreateChild;
+  C:=R.Cells.AddItem;
     C.Barcode:='С0101000001';
     C.IdCell:=CellIDToGUID(3); //'CELL-000001-000001-000001';
     C.Name:='Ул 1 Этаж 1 Яч 1';
-  C:=R.Cells.CreateChild;
+  C:=R.Cells.AddItem;
     C.barcode:='С0101000002';
     C.IdCell:=CellIDToGUID(4); //'CELL-000001-000001-000002';
     C.Name:='Ул 1 Этаж 1 Яч 2';

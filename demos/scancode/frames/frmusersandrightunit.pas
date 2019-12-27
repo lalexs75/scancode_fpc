@@ -110,7 +110,7 @@ begin
   rxUsers.First;
   while not rxUsers.EOF do
   begin
-    L:=Result.Logins.Records.CreateChild;
+    L:=Result.Logins.Records.AddItem;
     L.Id:=rxUsersID.AsString;
     L.Login:=rxUsersLogin.AsString;
     L.SetPassword(rxUsersPassword.AsString);
@@ -135,7 +135,7 @@ begin
   rxRight.First;
   while not rxRight.EOF do
   begin
-    R:=Result.Rights.Records.CreateChild;
+    R:=Result.Rights.Records.AddItem;
     R.Name:=rxRightName.AsString;
     R.Id:=rxRightID.AsString;
     R.groupId:=rxRightGroupId.AsString;

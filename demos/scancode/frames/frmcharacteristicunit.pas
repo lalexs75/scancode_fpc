@@ -239,7 +239,7 @@ begin
   rxGoods.First;
   while not rxGoods.EOF do
   begin
-    G:=Result.SprGoods.SprGoodLists.CreateChild;
+    G:=Result.SprGoods.SprGoodLists.AddItem;
     G.IdGoods:=rxGoodsGOODS_ID.AsString;
     G.Name:=rxGoodsGOODS_NAME.AsString;
     G.IdMeasure:=rxGoodsMeasure_ID.AsString;
@@ -285,7 +285,7 @@ begin
   rxBarcode.First;
   while not rxBarcode.EOF do
   begin
-    BR:=Result.Barcodes.BarcodeList.CreateChild;
+    BR:=Result.Barcodes.BarcodeList.AddItem;
     BR.IdGoods:=rxBarcodeGOODS_ID.AsString;
     //BR.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
     //BR.IdPack:='';
@@ -298,7 +298,7 @@ begin
   rxMeasureList.First;
   while not rxMeasureList.EOF do
   begin
-    MS:=Result.Measures.MeasureList.CreateChild;
+    MS:=Result.Measures.MeasureList.AddItem;
     MS.IdMeasure:=rxMeasureListMeasure_ID.AsString;
     MS.Name:=rxMeasureListMeasure_NAME.AsString;
     rxMeasureList.Next;
@@ -308,7 +308,7 @@ begin
   rxPriceList.First;
   while not rxPriceList.EOF do
   begin
-    PR:=Result.Prices.PriceList.CreateChild;
+    PR:=Result.Prices.PriceList.AddItem;
     PR.IdGoods:=rxPriceListGOODS_ID.AsString;
     PR.Price:=FloatToStr(rxPriceListPRICE.AsCurrency);
     PR.Currency:=rxPriceListCurrency_Name.AsString;
@@ -321,7 +321,7 @@ begin
   rxNomenclatureTypes.First;
   while not rxNomenclatureTypes.EOF do
   begin
-    NT:=Result.NomenclatureTypes.NomenclatureTypeList.CreateChild;
+    NT:=Result.NomenclatureTypes.NomenclatureTypeList.AddItem;
     NT.IdNomenclatureType:=rxNomenclatureTypesIdNomenclatureType.AsString;
     NT.Name:=rxNomenclatureTypesName.AsString;
     NT.IsChar:=BoolToStr(rxNomenclatureTypesIsChar.AsBoolean, '1', '0');
@@ -335,7 +335,7 @@ begin
   rxSklad.First;
   while not rxSklad.EOF do
   begin
-    Skld:=Result.Sclads.ScladList.CreateChild;
+    Skld:=Result.Sclads.ScladList.AddItem;
     Skld.IdSclad:=rxSkladSKLAD_ID.AsString;
     Skld.Name:=rxSkladSKLAD_NAME.AsString;
     Skld.IsAdress:=BoolToStr(rxSkladIsAdressExists.AsBoolean, '0', '1');

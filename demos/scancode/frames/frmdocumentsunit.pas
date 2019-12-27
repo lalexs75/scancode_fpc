@@ -142,7 +142,7 @@ begin
       rxTasks.Edit;
       rxTasksUSER_NAME.AsString:=AUserName;
       rxTasks.Post;
-      D:=Result.Documents.CreateChild;
+      D:=Result.Documents.AddItem;
       D.Task.Barcode:=rxTasksBarcode.AsString;
       D.Task.Date:=rxTasksDate.AsString;
       D.Task.UseAdress:=BoolToStr(rxTasksUseAdress.AsBoolean, '1', '0');
@@ -157,7 +157,7 @@ begin
       rxGoods.First;
       while not rxGoods.EOF do
       begin
-        G:=D.Task.Goods.CreateChild;
+        G:=D.Task.Goods.AddItem;
         //G.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
         G.IdGoods:=rxGoodsID_GOODS.AsString;
         G.Quantity:=rxGoodsQuantity.AsString;
