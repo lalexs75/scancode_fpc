@@ -48,10 +48,6 @@ uses
   Classes, SysUtils, xmlobject;
 
 type
-  TNomenclatureListEnumerator = class;
-  TTasksEnumerator = class;
-  TTaskGoodsEnumerator = class;
-
   { TTaskGoodMarking }
 
   TTaskGoodMarking = class(TXmlSerializationObject)
@@ -87,17 +83,7 @@ type
     property IdCell:string read FIdCell write SetIdCell;
     property CellAddress:string read FCellAddress write SetCellAddress;
   end;
-
-  { TTaskGoodPropertySerialCells }
-
-  TTaskGoodPropertySerialCells = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TTaskGoodPropertySerialCell; inline;
-  public
-    constructor Create;
-    function CreateChild:TTaskGoodPropertySerialCell;
-    property Item[AIndex:Integer]:TTaskGoodPropertySerialCell read GetItem; default;
-  end;
+  TTaskGoodPropertySerialCells = specialize GXMLSerializationObjectList<TTaskGoodPropertySerialCell>;
 
   { TTaskGoodPropertySerial }
 
@@ -162,32 +148,7 @@ type
     property GoodProperty:TTaskGoodProperty read FGoodProperty;
     property GoodMarking:TTaskGoodMarking read FGoodMarking;
   end;
-
-  { TTaskGoods }
-
-  TTaskGoods = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TTaskGood; inline;
-  public
-    constructor Create;
-    function GetEnumerator: TTaskGoodsEnumerator;
-    function CreateChild:TTaskGood;
-    property Item[AIndex:Integer]:TTaskGood read GetItem; default;
-  end;
-
-  { TTaskGoodsEnumerator }
-
-  TTaskGoodsEnumerator = class
-  private
-    FList: TTaskGoods;
-    FPosition: Integer;
-  public
-    constructor Create(AList: TTaskGoods);
-    function GetCurrent: TTaskGood;
-    function MoveNext: Boolean;
-    property Current: TTaskGood read GetCurrent;
-  end;
-
+  TTaskGoods = specialize GXMLSerializationObjectList<TTaskGood>;
 
   { TTask }
 
@@ -223,31 +184,7 @@ type
     property Goods:TTaskGoods read FGoods;
     property LastOrder:string read FLastOrder write SetLastOrder;
   end;
-
-  { TTasks }
-
-  TTasks = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TTask; inline;
-  public
-    constructor Create;
-    function CreateChild:TTask;
-    function GetEnumerator: TTasksEnumerator;
-    property Item[AIndex:Integer]:TTask read GetItem; default;
-  end;
-
-  { TTasksEnumerator }
-
-  TTasksEnumerator = class
-  private
-    FList: TTasks;
-    FPosition: Integer;
-  public
-    constructor Create(AList: TTasks);
-    function GetCurrent: TTask;
-    function MoveNext: Boolean;
-    property Current: TTask read GetCurrent;
-  end;
+  TTasks = specialize GXMLSerializationObjectList<TTask>;
 
   { TCharacteristic }
 
@@ -269,17 +206,7 @@ type
     property IdChar:string read FIdChar write SetIdChar;
     property Name:string read FName write SetName;
   end;
-
-  { TCharacteristicList }
-
-  TCharacteristicList = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TCharacteristic; inline;
-  public
-    constructor Create;
-    function CreateChild:TCharacteristic;
-    property Item[AIndex:Integer]:TCharacteristic read GetItem; default;
-  end;
+  TCharacteristicList = specialize GXMLSerializationObjectList<TCharacteristic>;
 
   { TCharacteristics }
 
@@ -325,32 +252,7 @@ type
     property Img:string read FImg write SetImg;
     property Bitmap:string read FBitmap write SetBitmap;
   end;
-
-  { TNomenclatureList }
-
-  TNomenclatureList = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TNomenclature; inline;
-  public
-    constructor Create;
-    function CreateChild:TNomenclature;
-    function GetEnumerator: TNomenclatureListEnumerator;
-    property Item[AIndex:Integer]:TNomenclature read GetItem; default;
-  end;
-
-  { TNomenclatureListEnumerator }
-
-  TNomenclatureListEnumerator = class
-  private
-    FList: TNomenclatureList;
-    FPosition: Integer;
-  public
-    constructor Create(AList: TNomenclatureList);
-    function GetCurrent: TNomenclature;
-    function MoveNext: Boolean;
-    property Current: TNomenclature read GetCurrent;
-  end;
-
+  TNomenclatureList = specialize GXMLSerializationObjectList<TNomenclature>;
 
   { TNomenclatures }
 
@@ -389,17 +291,7 @@ type
     property IdPack:string read FIdPack write SetIdPack;
     property Barcode:string read FBarcode write SetBarcode;
   end;
-
-  { TTSDBarcodeList }
-
-  TTSDBarcodeList = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TTSDBarcode; inline;
-  public
-    constructor Create;
-    function CreateChild:TTSDBarcode;
-    property Item[AIndex:Integer]:TTSDBarcode read GetItem; default;
-  end;
+  TTSDBarcodeList = specialize GXMLSerializationObjectList<TTSDBarcode>;
 
   { TTSDBarcodes }
 
@@ -453,67 +345,7 @@ type
   end;
 
 implementation
-uses {DOM, XMLWrite, } base64;
-
-type
-  THackXmlSerializationObject = class(TXmlSerializationObject);
-
-{ TTaskGoodsEnumerator }
-
-constructor TTaskGoodsEnumerator.Create(AList: TTaskGoods);
-begin
-  FList := AList;
-  FPosition := -1;
-end;
-
-function TTaskGoodsEnumerator.GetCurrent: TTaskGood;
-begin
-  Result := FList[FPosition];
-end;
-
-function TTaskGoodsEnumerator.MoveNext: Boolean;
-begin
-  Inc(FPosition);
-  Result := FPosition < FList.Count;
-end;
-
-{ TTasksEnumerator }
-
-constructor TTasksEnumerator.Create(AList: TTasks);
-begin
-  FList := AList;
-  FPosition := -1;
-end;
-
-function TTasksEnumerator.GetCurrent: TTask;
-begin
-  Result := FList[FPosition];
-end;
-
-function TTasksEnumerator.MoveNext: Boolean;
-begin
-  Inc(FPosition);
-  Result := FPosition < FList.Count;
-end;
-
-{ TNomenclatureListEnumerator }
-
-constructor TNomenclatureListEnumerator.Create(AList: TNomenclatureList);
-begin
-  FList := AList;
-  FPosition := -1;
-end;
-
-function TNomenclatureListEnumerator.GetCurrent: TNomenclature;
-begin
-  Result := FList[FPosition];
-end;
-
-function TNomenclatureListEnumerator.MoveNext: Boolean;
-begin
-  Inc(FPosition);
-  Result := FPosition < FList.Count;
-end;
+uses base64;
 
 { TBarcode }
 
@@ -561,23 +393,6 @@ end;
 destructor TTSDBarcode.Destroy;
 begin
   inherited Destroy;
-end;
-
-{ TTSDBarcodeList }
-
-function TTSDBarcodeList.GetItem(AIndex: Integer): TTSDBarcode;
-begin
-  Result:=TTSDBarcode(InternalGetItem(AIndex));
-end;
-
-constructor TTSDBarcodeList.Create;
-begin
-  inherited Create(TTSDBarcode)
-end;
-
-function TTSDBarcodeList.CreateChild: TTSDBarcode;
-begin
-  Result:=InternalAddObject as TTSDBarcode;
 end;
 
 { TTSDBarcodes }
@@ -637,23 +452,6 @@ end;
 destructor TCharacteristic.Destroy;
 begin
   inherited Destroy;
-end;
-
-{ TCharacteristicList }
-
-function TCharacteristicList.GetItem(AIndex: Integer): TCharacteristic;
-begin
-  Result:=TCharacteristic(InternalGetItem(AIndex));
-end;
-
-constructor TCharacteristicList.Create;
-begin
-  inherited Create(TCharacteristic)
-end;
-
-function TCharacteristicList.CreateChild: TCharacteristic;
-begin
-  Result:=InternalAddObject as TCharacteristic;
 end;
 
 { TCharacteristics }
@@ -791,28 +589,6 @@ begin
   end;
 end;
 
-{ TNomenclatureList }
-
-function TNomenclatureList.GetItem(AIndex: Integer): TNomenclature;
-begin
-  Result:=TNomenclature(InternalGetItem(AIndex));
-end;
-
-constructor TNomenclatureList.Create;
-begin
-  inherited Create(TNomenclature)
-end;
-
-function TNomenclatureList.CreateChild: TNomenclature;
-begin
-  Result:=InternalAddObject as TNomenclature;
-end;
-
-function TNomenclatureList.GetEnumerator: TNomenclatureListEnumerator;
-begin
-  Result:=TNomenclatureListEnumerator.Create(Self);
-end;
-
 { TTaskGoodPropertySerialCell }
 
 procedure TTaskGoodPropertySerialCell.SetCellAddress(AValue: string);
@@ -843,24 +619,6 @@ end;
 destructor TTaskGoodPropertySerialCell.Destroy;
 begin
   inherited Destroy;
-end;
-
-{ TTaskGoodPropertySerialCells }
-
-function TTaskGoodPropertySerialCells.GetItem(AIndex: Integer
-  ): TTaskGoodPropertySerialCell;
-begin
-  Result:=TTaskGoodPropertySerialCell(InternalGetItem(AIndex));
-end;
-
-constructor TTaskGoodPropertySerialCells.Create;
-begin
-  inherited Create(TTaskGoodPropertySerialCell)
-end;
-
-function TTaskGoodPropertySerialCells.CreateChild: TTaskGoodPropertySerialCell;
-begin
-  Result:=InternalAddObject as TTaskGoodPropertySerialCell;
 end;
 
 { TTaskGoodPropertySerial }
@@ -1011,28 +769,6 @@ begin
   inherited Destroy;
 end;
 
-{ TTaskGoods }
-
-function TTaskGoods.GetItem(AIndex: Integer): TTaskGood;
-begin
-  Result:=TTaskGood(InternalGetItem(AIndex));
-end;
-
-constructor TTaskGoods.Create;
-begin
-  inherited Create(TTaskGood)
-end;
-
-function TTaskGoods.GetEnumerator: TTaskGoodsEnumerator;
-begin
-  Result:=TTaskGoodsEnumerator.Create(Self);
-end;
-
-function TTaskGoods.CreateChild: TTaskGood;
-begin
-  Result:=InternalAddObject as TTaskGood;
-end;
-
 { TTask }
 
 procedure TTask.SetDate(AValue: string);
@@ -1106,28 +842,6 @@ destructor TTask.Destroy;
 begin
   FreeAndNil(FGoods);
   inherited Destroy;
-end;
-
-{ TTasks }
-
-function TTasks.GetItem(AIndex: Integer): TTask;
-begin
-  Result:=TTask(InternalGetItem(AIndex));
-end;
-
-constructor TTasks.Create;
-begin
-  inherited Create(TTask)
-end;
-
-function TTasks.CreateChild: TTask;
-begin
-  Result:=InternalAddObject as TTask;
-end;
-
-function TTasks.GetEnumerator: TTasksEnumerator;
-begin
-  Result:=TTasksEnumerator.Create(Self);
 end;
 
 { TOrders }

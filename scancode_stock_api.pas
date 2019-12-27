@@ -69,17 +69,7 @@ type
     property Barcode:string read FBarcode write SetBarcode;
     property Name:string read FName write SetName;
   end;
-
-  { TCells }
-
-  TCells = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TCell; inline;
-  public
-    constructor Create;
-    function CreateChild:TCell;
-    property Item[AIndex:Integer]:TCell read GetItem; default;
-  end;
+  TCells = specialize GXMLSerializationObjectList<TCell>;
 
   { TRoom }
 
@@ -103,17 +93,7 @@ type
     property Name:string read FName write SetName;
     property Cells:TCells read FCells;
   end;
-
-  { TRooms }
-
-  TRooms = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TRoom; inline;
-  public
-    constructor Create;
-    function CreateChild:TRoom;
-    property Item[AIndex:Integer]:TRoom read GetItem; default;
-  end;
+  TRooms = specialize GXMLSerializationObjectList<TRoom>;
 
   { TStock }
 
@@ -137,17 +117,7 @@ type
     property Name:string read FName write SetName;
     property Rooms:TRooms read FRooms;
   end;
-
-  { TStockList }
-
-  TStockList = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TStock; inline;
-  public
-    constructor Create;
-    function CreateChild:TStock;
-    property Item[AIndex:Integer]:TStock read GetItem; default;
-  end;
+  TStockList = specialize GXMLSerializationObjectList<TStock>;
 
   { TStocks }
 
@@ -204,57 +174,6 @@ end;
 destructor TCell.Destroy;
 begin
   inherited Destroy;
-end;
-
-{ TCells }
-
-function TCells.GetItem(AIndex: Integer): TCell;
-begin
-  Result:=TCell(InternalGetItem(AIndex));
-end;
-
-constructor TCells.Create;
-begin
-  inherited Create(TCell)
-end;
-
-function TCells.CreateChild: TCell;
-begin
-  Result:=InternalAddObject as TCell;
-end;
-
-{ TStockList }
-
-function TStockList.GetItem(AIndex: Integer): TStock;
-begin
-  Result:=TStock(InternalGetItem(AIndex));
-end;
-
-constructor TStockList.Create;
-begin
-  inherited Create(TStock)
-end;
-
-function TStockList.CreateChild: TStock;
-begin
-  Result:=InternalAddObject as TStock;
-end;
-
-{ TRooms }
-
-function TRooms.GetItem(AIndex: Integer): TRoom;
-begin
-  Result:=TRoom(InternalGetItem(AIndex));
-end;
-
-constructor TRooms.Create;
-begin
-  inherited Create(TRoom)
-end;
-
-function TRooms.CreateChild: TRoom;
-begin
-  Result:=InternalAddObject as TRoom;
 end;
 
 { TRoom }

@@ -71,17 +71,7 @@ type
     property ID:string read FID write SetID;
     property GroupID:string read FGroupID write SetGroupID;
   end;
-
-  { TUserRightsList }
-
-  TUserRightsList = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TUserRight; inline;
-  public
-    constructor Create;
-    function CreateChild:TUserRight;
-    property Item[AIndex:Integer]:TUserRight read GetItem; default;
-  end;
+  TUserRightsList = specialize GXMLSerializationObjectList<TUserRight>;
 
   TUserRights = class(TXmlSerializationObject)
   private
@@ -132,17 +122,7 @@ type
     property AddProd:string read FAddProd write SetAddProd;
     property CreateFreeCollect:string read FCreateFreeCollect write SetCreateFreeCollect;
   end;
-
-  { TUserLoginList }
-
-  TUserLoginList = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TUserLogin; inline;
-  public
-    constructor Create;
-    function CreateChild:TUserLogin;
-    property Item[AIndex:Integer]:TUserLogin read GetItem; default;
-  end;
+  TUserLoginList = specialize GXMLSerializationObjectList<TUserLogin>;
 
   { TUserLogins }
 
@@ -338,23 +318,6 @@ begin
   inherited Destroy;
 end;
 
-{ TUserLoginList }
-
-function TUserLoginList.GetItem(AIndex: Integer): TUserLogin;
-begin
-  Result:=TUserLogin(InternalGetItem(AIndex));
-end;
-
-constructor TUserLoginList.Create;
-begin
-  inherited Create(TUserLogin)
-end;
-
-function TUserLoginList.CreateChild: TUserLogin;
-begin
-  Result:=InternalAddObject as TUserLogin;
-end;
-
 { TUserLogin }
 
 procedure TUserLogin.SetAddProd(AValue: string);
@@ -525,23 +488,6 @@ end;
 destructor TUserRight.Destroy;
 begin
   inherited Destroy;
-end;
-
-{ TUserRightsList }
-
-function TUserRightsList.GetItem(AIndex: Integer): TUserRight;
-begin
-  Result:=TUserRight(InternalGetItem(AIndex));
-end;
-
-constructor TUserRightsList.Create;
-begin
-  inherited Create(TUserRight)
-end;
-
-function TUserRightsList.CreateChild: TUserRight;
-begin
-  Result:=InternalAddObject as TUserRight;
 end;
 
 { TUserInformation }

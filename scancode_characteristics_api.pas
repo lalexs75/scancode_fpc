@@ -193,17 +193,7 @@ type
     property IdMeasure:string read FIdMeasure write SetIdMeasure;
     property Name:string read FName write SetName;
   end;
-
-  { TMeasureList }
-
-  TMeasureList = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TMeasure; inline;
-  public
-    constructor Create;
-    function CreateChild:TMeasure;
-    property Item[AIndex:Integer]:TMeasure read GetItem; default;
-  end;
+  TMeasureList = specialize GXMLSerializationObjectList<TMeasure>;
 
   { TMeasures }
 
@@ -242,17 +232,7 @@ type
     property IdChar:string read FIdChar write SetIdChar;
     property IdPack:string read FIdPack write SetIdPack;
   end;
-
-  { TBarcodeList }
-
-  TBarcodeList = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TBarcode; inline;
-  public
-    constructor Create;
-    function CreateChild:TBarcode;
-    property Item[AIndex:Integer]:TBarcode read GetItem; default;
-  end;
+  TBarcodeList = specialize GXMLSerializationObjectList<TBarcode>;
 
   { TBarcodes }
 
@@ -297,17 +277,7 @@ type
     property IdOwner:string read FIdOwner write SetIdOwner;
     property Relation:string read FRelation write SetRelation;
   end;
-
-  { TSerialList }
-
-  TSerialList = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TSerial; inline;
-  public
-    constructor Create;
-    function CreateChild:TSerial;
-    property Item[AIndex:Integer]:TSerial read GetItem; default;
-  end;
+  TSerialList = specialize GXMLSerializationObjectList<TSerial>;
 
   { TSerials }
 
@@ -349,17 +319,7 @@ type
     property IdOwner:string read FIdOwner write SetIdOwner;
     property Relation:string read FRelation write SetRelation;
   end;
-
-  { TPackList }
-
-  TPackList = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TPack; inline;
-  public
-    constructor Create;
-    function CreateChild:TPack;
-    property Item[AIndex:Integer]:TPack read GetItem; default;
-  end;
+  TPackList = specialize GXMLSerializationObjectList<TPack>;
 
   { TPacks }
 
@@ -374,6 +334,7 @@ type
   published
     property PackList:TPackList read FPackList;
   end;
+
   { TCharacteristic }
 
   TCharacteristic = class(TXmlSerializationObject)
@@ -397,17 +358,7 @@ type
     property IdOwner:string read FIdOwner write SetIdOwner;
     property Relation:string read FRelation write SetRelation;
   end;
-
-  { TCharacteristicList }
-
-  TCharacteristicList = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TCharacteristic; inline;
-  public
-    constructor Create;
-    function CreateChild:TCharacteristic;
-    property Item[AIndex:Integer]:TCharacteristic read GetItem; default;
-  end;
+  TCharacteristicList = specialize GXMLSerializationObjectList<TCharacteristic>;
 
   { TCharacteristics }
 
@@ -462,17 +413,7 @@ type
     property Img:string read FImg write SetImg;
     property Bitmap:string read FBitmap write SetBitmap;
   end;
-
-  { TSprGoodLists }
-
-  TSprGoodLists = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TSprGood; inline;
-  public
-    constructor Create;
-    function CreateChild:TSprGood;
-    property Item[AIndex:Integer]:TSprGood read GetItem; default;
-  end;
+  TSprGoodLists = specialize GXMLSerializationObjectList<TSprGood>;
 
   { TSprGoods }
 
@@ -540,17 +481,7 @@ type
     property IdSklad:string read FIdSklad write SetIdSklad;
     property IdChar:string read FIdChar write SetIdChar;
   end;
-
-  { TQueryGoodList1 }
-
-  TQueryGoodList1 = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TQueryGood1; inline;
-  public
-    constructor Create;
-    function CreateChild:TQueryGood1;
-    property Item[AIndex:Integer]:TQueryGood1 read GetItem; default;
-  end;
+  TQueryGoodList1 = specialize GXMLSerializationObjectList<TQueryGood1>;
 
   { TQueryGoods1 }
   TQueryGoods1 = class(TXmlSerializationObject)
@@ -768,23 +699,6 @@ destructor TQueryGoods0.Destroy;
 begin
   FreeAndNil(FQueryGood);
   inherited Destroy;
-end;
-
-{ TQueryGoodList }
-
-function TQueryGoodList1.GetItem(AIndex: Integer): TQueryGood1;
-begin
-  Result:=TQueryGood1(InternalGetItem(AIndex));
-end;
-
-constructor TQueryGoodList1.Create;
-begin
-  inherited Create(TQueryGood1)
-end;
-
-function TQueryGoodList1.CreateChild: TQueryGood1;
-begin
-  Result:=InternalAddObject as TQueryGood1;
 end;
 
 { TQueryGood }
@@ -1108,23 +1022,6 @@ begin
   inherited Destroy;
 end;
 
-{ TMeasureList }
-
-function TMeasureList.GetItem(AIndex: Integer): TMeasure;
-begin
-  Result:=TMeasure(InternalGetItem(AIndex));
-end;
-
-constructor TMeasureList.Create;
-begin
-  inherited Create(TMeasure)
-end;
-
-function TMeasureList.CreateChild: TMeasure;
-begin
-  Result:=InternalAddObject as TMeasure;
-end;
-
 { TMeasures }
 
 procedure TMeasures.InternalRegisterPropertys;
@@ -1190,23 +1087,6 @@ end;
 destructor TBarcode.Destroy;
 begin
   inherited Destroy;
-end;
-
-{ TBarcodeList }
-
-function TBarcodeList.GetItem(AIndex: Integer): TBarcode;
-begin
-  Result:=TBarcode(InternalGetItem(AIndex));
-end;
-
-constructor TBarcodeList.Create;
-begin
-  inherited Create(TBarcode)
-end;
-
-function TBarcodeList.CreateChild: TBarcode;
-begin
-  Result:=InternalAddObject as TBarcode;
 end;
 
 { TBarcodes }
@@ -1292,23 +1172,6 @@ begin
   inherited Destroy;
 end;
 
-{ TSerialList }
-
-function TSerialList.GetItem(AIndex: Integer): TSerial;
-begin
-  Result:=TSerial(InternalGetItem(AIndex));
-end;
-
-constructor TSerialList.Create;
-begin
-  inherited Create(TSerial)
-end;
-
-function TSerialList.CreateChild: TSerial;
-begin
-  Result:=InternalAddObject as TSerial;
-end;
-
 { TSerials }
 
 procedure TSerials.InternalRegisterPropertys;
@@ -1384,23 +1247,6 @@ begin
   inherited Destroy;
 end;
 
-{ TPackList }
-
-function TPackList.GetItem(AIndex: Integer): TPack;
-begin
-  Result:=TPack(InternalGetItem(AIndex));
-end;
-
-constructor TPackList.Create;
-begin
-  inherited Create(TPack)
-end;
-
-function TPackList.CreateChild: TPack;
-begin
-  Result:=InternalAddObject as TPack;
-end;
-
 { TPacks }
 
 procedure TPacks.InternalRegisterPropertys;
@@ -1466,23 +1312,6 @@ end;
 destructor TCharacteristic.Destroy;
 begin
   inherited Destroy;
-end;
-
-{ TCharacteristicList }
-
-function TCharacteristicList.GetItem(AIndex: Integer): TCharacteristic;
-begin
-  Result:=TCharacteristic(InternalGetItem(AIndex));
-end;
-
-constructor TCharacteristicList.Create;
-begin
-  inherited Create(TCharacteristic)
-end;
-
-function TCharacteristicList.CreateChild: TCharacteristic;
-begin
-  Result:=InternalAddObject as TCharacteristic;
 end;
 
 { TCharacteristics }
@@ -1613,23 +1442,6 @@ begin
     F.Free;
     FS.Free;
   end;
-end;
-
-{ TSprGoodLists }
-
-function TSprGoodLists.GetItem(AIndex: Integer): TSprGood;
-begin
-  Result:=TSprGood(InternalGetItem(AIndex));
-end;
-
-constructor TSprGoodLists.Create;
-begin
-  inherited Create(TSprGood)
-end;
-
-function TSprGoodLists.CreateChild: TSprGood;
-begin
-  Result:=InternalAddObject as TSprGood;
 end;
 
 { TSprGoods }

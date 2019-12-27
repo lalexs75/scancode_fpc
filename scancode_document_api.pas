@@ -48,7 +48,6 @@ uses
   Classes, SysUtils, xmlobject;
 
 type
-  TGoodsEnumerator = class;
   { TGoodCell }
 
   TGoodCell = class(TXmlSerializationObject)
@@ -66,17 +65,7 @@ type
     property Cell:string read FCell write SetCell;
     property CellAddress:string read FCellAddress write SetCellAddress;
   end;
-
-  { TGoodCells }
-
-  TGoodCells = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TGoodCell; inline;
-  public
-    constructor Create;
-    function CreateChild:TGoodCell;
-    property Item[AIndex:Integer]:TGoodCell read GetItem; default;
-  end;
+  TGoodCells = specialize GXMLSerializationObjectList<TGoodCell>;
 
   { TGoodSerial }
 
@@ -143,31 +132,7 @@ type
     property Quantity:string read FQuantity write SetQuantity;
     property GoodProperty:TGoodProperty read FGoodProperty;
   end;
-
-  { TGoods }
-
-  TGoods = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TGood; inline;
-  public
-    constructor Create;
-    function CreateChild:TGood;
-    function GetEnumerator: TGoodsEnumerator;
-    property Item[AIndex:Integer]:TGood read GetItem; default;
-  end;
-
-  { TGoodsEnumerator }
-
-  TGoodsEnumerator = class
-  private
-    FList: TGoods;
-    FPosition: Integer;
-  public
-    constructor Create(AList: TGoods);
-    function GetCurrent: TGood;
-    function MoveNext: Boolean;
-    property Current: TGood read GetCurrent;
-  end;
+  TGoods = specialize GXMLSerializationObjectList<TGood>;
 
 
   { TTask }
@@ -227,17 +192,7 @@ type
   published
     property Task:TTask read FTask;
   end;
-
-  { TDocumentsList }
-
-  TDocumentsList = class(TXmlSerializationObjectList)
-  private
-    function GetItem(AIndex: Integer): TDocument; inline;
-  public
-    constructor Create;
-    function CreateChild:TDocument;
-    property Item[AIndex:Integer]:TDocument read GetItem; default;
-  end;
+  TDocumentsList = specialize GXMLSerializationObjectList<TDocument>;
 
   { TDocuments }
 
@@ -255,25 +210,6 @@ type
   end;
 
 implementation
-
-{ TGoodsEnumerator }
-
-constructor TGoodsEnumerator.Create(AList: TGoods);
-begin
-  FList := AList;
-  FPosition := -1;
-end;
-
-function TGoodsEnumerator.GetCurrent: TGood;
-begin
-  Result := FList[FPosition];
-end;
-
-function TGoodsEnumerator.MoveNext: Boolean;
-begin
-  Inc(FPosition);
-  Result := FPosition < FList.Count;
-end;
 
 { TGoodCell }
 
@@ -305,23 +241,6 @@ end;
 destructor TGoodCell.Destroy;
 begin
   inherited Destroy;
-end;
-
-{ TGoodCells }
-
-function TGoodCells.GetItem(AIndex: Integer): TGoodCell;
-begin
-  Result:=TGoodCell(InternalGetItem(AIndex));
-end;
-
-constructor TGoodCells.Create;
-begin
-  inherited Create(TGoodCell)
-end;
-
-function TGoodCells.CreateChild: TGoodCell;
-begin
-  Result:=InternalAddObject as TGoodCell;
 end;
 
 { TGoodSerial }
@@ -445,28 +364,6 @@ begin
   inherited Destroy;
 end;
 
-{ TGoods }
-
-function TGoods.GetItem(AIndex: Integer): TGood;
-begin
-  Result:=TGood(InternalGetItem(AIndex));
-end;
-
-constructor TGoods.Create;
-begin
-  inherited Create(TGood)
-end;
-
-function TGoods.CreateChild: TGood;
-begin
-  Result:=InternalAddObject as TGood;
-end;
-
-function TGoods.GetEnumerator: TGoodsEnumerator;
-begin
-  Result:=TGoodsEnumerator.Create(Self);
-end;
-
 { TTask }
 
 procedure TTask.SetBarcode(AValue: string);
@@ -583,23 +480,6 @@ destructor TDocument.Destroy;
 begin
   FreeAndNil(FTask);
   inherited Destroy;
-end;
-
-{ TDocumentsList }
-
-function TDocumentsList.GetItem(AIndex: Integer): TDocument;
-begin
-  Result:=TDocument(InternalGetItem(AIndex));
-end;
-
-constructor TDocumentsList.Create;
-begin
-  inherited Create(TDocument)
-end;
-
-function TDocumentsList.CreateChild: TDocument;
-begin
-  Result:=InternalAddObject as TDocument;
 end;
 
 { TDocuments }
