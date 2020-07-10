@@ -1,5 +1,5 @@
 { interface library for FPC and Lazarus
-  Copyright (C) 2019 Lagunov Aleksey alexs75@yandex.ru
+  Copyright (C) 2019-2020 Lagunov Aleksey alexs75@yandex.ru
 
   Генерация xml файлов в формате обеман данными для СКАНКОД.Мобильный Терминал (SCANCODE.MobileTerminal)
 
@@ -162,7 +162,7 @@ end;
 procedure TCell.InternalRegisterPropertys;
 begin
   RegisterProperty('IdCell', 'id_cell', [xsaRequared], 'guid идентификатор ячейки склада', 0, 250);
-  RegisterProperty('Barcode', 'barcode', [xsaRequared], 'ШК ячейки', 0, 250);
+  RegisterProperty('Barcode', 'barcode', [], 'ШК ячейки', 0, 250);
   RegisterProperty('Name', 'name', [xsaRequared], 'наименование ячейки', 0, 250);
 end;
 
@@ -202,7 +202,7 @@ end;
 procedure TRoom.InternalRegisterPropertys;
 begin
   RegisterProperty('IdRoom', 'id_room', [xsaRequared], 'guid идентификатор помещения склада', 0, 250);
-  RegisterProperty('Barcode', 'barcode', [xsaRequared], 'ШК помещения', 0, 250);
+  RegisterProperty('Barcode', 'barcode', [], 'ШК помещения', 0, 250);
   RegisterProperty('Name', 'name', [xsaRequared], 'наименование помещения', 0, 250);
   RegisterProperty('Cells', 'Сell', [xsaRequared], 'складская ячейка', -1, -1);
 end;
@@ -269,7 +269,7 @@ end;
 procedure TStock.InternalRegisterPropertys;
 begin
   RegisterProperty('IdStock', 'id_stock', [xsaRequared], 'guid идентификатор склада', 0, 255);
-  RegisterProperty('Barcode', 'barcode', [xsaRequared], 'ШК склада', 0, 255);
+  RegisterProperty('Barcode', 'barcode', [], 'ШК склада', 0, 255);
   RegisterProperty('Name', 'name', [xsaRequared], 'наименование склада', 0, 255);
   RegisterProperty('Rooms', 'Room', [xsaRequared], 'помещение внутри склада (может быть несколько, а может и не быть вообще)', -1, -1);
 end;

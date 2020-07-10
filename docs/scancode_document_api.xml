@@ -40,6 +40,15 @@
           </li>
         </descr>
       </element>
+    <element name="TGood.MarkedCodes"><short>marked_codes – список кодов маркировки</short>
+      </element><element name="TMarkedCodes"><short>marked_codes – список кодов маркировки</short>
+      </element><element name="TMarkedToken.GS1Code"><short>GS1_DATAMATRIX – значение кода маркировки отдельного товара</short>
+      </element><element name="TMarkedToken.GS1Pack"><short>pack – код логистической упаковки</short><descr>(не обязательно), если коды были агрегированны
+</descr>
+      </element><element name="TMarkedToken"><short>Код маркировки GS1</short><descr>token – уникальный код маркировки
+</descr>
+      </element><element name="TMarkedCodes.MarkedTokens"><short>уникальный код маркировки</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

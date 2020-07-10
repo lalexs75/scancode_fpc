@@ -1,5 +1,5 @@
 { interface library for FPC and Lazarus
-  Copyright (C) 2019 Lagunov Aleksey alexs75@yandex.ru
+  Copyright (C) 2019-2020 Lagunov Aleksey alexs75@yandex.ru
 
   Генерация xml файлов в формате обеман данными для СКАНКОД.Мобильный Терминал (SCANCODE.MobileTerminal)
 
@@ -110,6 +110,39 @@ type
     property GoodSerial:TGoodSerial read FGoodSerial;
   end;
 
+  { TMarkedToken }
+
+  TMarkedToken = class(TXmlSerializationObject)
+  private
+    FGS1Code: string;
+    FGS1Pack: string;
+    procedure SetGS1Code(AValue: string);
+    procedure SetGS1Pack(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property GS1Code:string read FGS1Code write SetGS1Code;
+    property GS1Pack:string read FGS1Pack write SetGS1Pack;
+  end;
+  TMarkedTokens = specialize GXMLSerializationObjectList<TMarkedToken>;
+
+  { TMarkedCodes }
+
+  TMarkedCodes = class(TXmlSerializationObject)
+  private
+    FMarkedTokens: TMarkedTokens;
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property MarkedTokens:TMarkedTokens read FMarkedTokens;
+  end;
+
   { TGood }
 
   TGood = class(TXmlSerializationObject)
@@ -117,6 +150,7 @@ type
     FGoodProperty: TGoodProperty;
     FIdChar: string;
     FIdGoods: string;
+    FMarkedCodes: TMarkedCodes;
     FQuantity: string;
     procedure SetIdChar(AValue: string);
     procedure SetIdGoods(AValue: string);
@@ -131,6 +165,7 @@ type
     property IdChar:string read FIdChar write SetIdChar;
     property Quantity:string read FQuantity write SetQuantity;
     property GoodProperty:TGoodProperty read FGoodProperty;
+    property MarkedCodes:TMarkedCodes read FMarkedCodes;
   end;
   TGoods = specialize GXMLSerializationObjectList<TGood>;
 
@@ -211,6 +246,59 @@ type
 
 implementation
 
+{ TMarkedCodes }
+
+procedure TMarkedCodes.InternalRegisterPropertys;
+begin
+  inherited InternalRegisterPropertys;
+  RegisterProperty('MarkedTokens', 'token', [], 'уникальный код маркировки', -1, -1);
+end;
+
+procedure TMarkedCodes.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FMarkedTokens:=TMarkedTokens.Create;
+end;
+
+destructor TMarkedCodes.Destroy;
+begin
+  FreeAndNil(FMarkedTokens);
+  inherited Destroy;
+end;
+
+{ TMarkedToken }
+
+procedure TMarkedToken.SetGS1Code(AValue: string);
+begin
+  if FGS1Code=AValue then Exit;
+  FGS1Code:=AValue;
+  ModifiedProperty('GS1Code');
+end;
+
+procedure TMarkedToken.SetGS1Pack(AValue: string);
+begin
+  if FGS1Pack=AValue then Exit;
+  FGS1Pack:=AValue;
+  ModifiedProperty('GS1Pack');
+end;
+
+procedure TMarkedToken.InternalRegisterPropertys;
+begin
+  inherited InternalRegisterPropertys;
+  RegisterProperty('GS1Code', 'GS1_DATAMATRIX', [xsaRequared], 'GS1_DATAMATRIX – значение кода маркировки отдельного товара', 0, 250);
+  RegisterProperty('GS1Pack', 'pack', [], 'guid идентификатор упаковки', 0, 250);
+end;
+
+procedure TMarkedToken.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TMarkedToken.Destroy;
+begin
+  inherited Destroy;
+end;
+
 { TGoodCell }
 
 procedure TGoodCell.SetCell(AValue: string);
@@ -230,7 +318,7 @@ end;
 procedure TGoodCell.InternalRegisterPropertys;
 begin
   RegisterProperty('Cell', 'cell', [xsaRequared], '', 0, 250);
-  RegisterProperty('CellAddress', 'celladdress', [xsaRequared], '', 0, 250);
+  RegisterProperty('CellAddress', 'celladdress', [], '', 0, 250);
 end;
 
 procedure TGoodCell.InternalInitChilds;
@@ -263,7 +351,7 @@ procedure TGoodSerial.InternalRegisterPropertys;
 begin
   RegisterProperty('Quantity', 'quantity', [xsaRequared], 'требуемое количество (в разрезе серии)', 0, 250);
   RegisterProperty('IdSerial', 'id_serial', [xsaRequared], 'guid идентификатор серии', 0, 250);
-  RegisterProperty('GoodCells', 'cells', [xsaRequared], '', -1, -1);
+  RegisterProperty('GoodCells', 'cells', [], '', -1, -1);
 end;
 
 procedure TGoodSerial.InternalInitChilds;
@@ -305,8 +393,8 @@ procedure TGoodProperty.InternalRegisterPropertys;
 begin
   RegisterProperty('IdPack', 'id_pack', [xsaRequared], 'guid идентификатор упаковки', 0, 250);
   RegisterProperty('Quantity', 'quantity', [xsaRequared], 'требуемое количество (в разрезе упаковки)', 0, 250);
-  RegisterProperty('SerialVar', 'serial_var', [xsaRequared], 'способ выбора/ввода серий', 0, 250);
-  RegisterProperty('GoodSerial', 'serial', [xsaRequared], 'информация о серии товара', -1, -1);
+  RegisterProperty('SerialVar', 'serial_var', [], 'способ выбора/ввода серий', 0, 250);
+  RegisterProperty('GoodSerial', 'serial', [], 'информация о серии товара', -1, -1);
 end;
 
 procedure TGoodProperty.InternalInitChilds;
@@ -349,17 +437,20 @@ begin
   RegisterProperty('IdGoods', 'id_goods', [xsaRequared], 'уникальный идентификатор товара', 0, 250);
   RegisterProperty('IdChar', 'id_char', [xsaRequared], 'уникальный идентификатор характеристики товара', 0, 250);
   RegisterProperty('Quantity', 'quantity', [xsaRequared], 'требуемое количество (общее)', 0, 250);
-  RegisterProperty('GoodProperty', 'property', [xsaRequared], 'свойства товара', -1, -1);
+  RegisterProperty('GoodProperty', 'property', [], 'свойства товара', -1, -1);
+  RegisterProperty('MarkedCodes', 'marked_codes', [], 'список кодов маркировки', -1, -1);
 end;
 
 procedure TGood.InternalInitChilds;
 begin
   inherited InternalInitChilds;
   FGoodProperty:=TGoodProperty.Create;
+  FMarkedCodes:=TMarkedCodes.Create;
 end;
 
 destructor TGood.Destroy;
 begin
+  FreeAndNil(FMarkedCodes);
   FreeAndNil(FGoodProperty);
   inherited Destroy;
 end;
@@ -441,13 +532,13 @@ begin
   RegisterProperty('Nomer', 'nomer', [xsaRequared], 'наименование документа', 0, 250);
   RegisterProperty('IdDoc', 'id_doc', [xsaRequared], 'guid идентификатор документа', 0, 250);
   RegisterProperty('TypeDoc', 'type', [xsaRequared], 'код типа группы документов', 0, 150);
-  RegisterProperty('UseAdress', 'as_', [xsaRequared], 'признак использования адресного хранения', 0, 150);
-  RegisterProperty('Date', 'date', [xsaRequared], 'дата создания документа', 0, 150);
-  RegisterProperty('Control', 'control', [xsaRequared], 'признак строгого учета кол-ва товаров', 0, 150);
-  RegisterProperty('Barcode', 'barcode', [xsaRequared], 'ШК документа', 0, 150);
-  RegisterProperty('IdZone', 'id_zone', [xsaRequared], 'guid идентификатор зоны склада', 0, 150);
+  RegisterProperty('UseAdress', 'as_', [], 'признак использования адресного хранения', 0, 150);
+  RegisterProperty('Date', 'date', [], 'дата создания документа', 0, 150);
+  RegisterProperty('Control', 'control', [], 'признак строгого учета кол-ва товаров', 0, 1);
+  RegisterProperty('Barcode', 'barcode', [], 'ШК документа', 0, 150);
+  RegisterProperty('IdZone', 'id_zone', [], 'guid идентификатор зоны склада', 0, 150);
   RegisterProperty('IdStock', 'id_stock', [xsaRequared], 'guid идентификатор склад', 0, 150);
-  RegisterProperty('IdRoom', 'id_room', [xsaRequared], 'guid идентификатор помещения', 0, 150);
+  RegisterProperty('IdRoom', 'id_room', [], 'guid идентификатор помещения', 0, 150);
   RegisterProperty('Goods', 'record', [xsaRequared], 'товар', -1, -1);
 end;
 

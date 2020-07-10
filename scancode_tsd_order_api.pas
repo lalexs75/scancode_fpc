@@ -1,5 +1,5 @@
 { interface library for FPC and Lazarus
-  Copyright (C) 2019 Lagunov Aleksey alexs75@yandex.ru
+  Copyright (C) 2019-2020 Lagunov Aleksey alexs75@yandex.ru
 
   Генерация xml файлов в формате обеман данными для СКАНКОД.Мобильный Терминал (SCANCODE.MobileTerminal)
 
@@ -380,8 +380,8 @@ end;
 procedure TTSDBarcode.InternalRegisterPropertys;
 begin
   RegisterProperty('IdGoods', 'id_goods', [xsaRequared], '', 0, 250);
-  RegisterProperty('IdChar', 'id_char', [xsaRequared], '', 0, 250);
-  RegisterProperty('IdPack', 'id_pack', [xsaRequared], '', 0, 250);
+  RegisterProperty('IdChar', 'id_char', [], '', 0, 250);
+  RegisterProperty('IdPack', 'id_pack', [], '', 0, 250);
   RegisterProperty('Barcode', 'barcode', [xsaRequared], '', 0, 250);
 end;
 
@@ -439,9 +439,9 @@ end;
 
 procedure TCharacteristic.InternalRegisterPropertys;
 begin
-  RegisterProperty('IdGoods', 'id_goods', [xsaRequared], '', 0, 250);
-  RegisterProperty('IdChar', 'id_char', [xsaRequared], '', 0, 250);
-  RegisterProperty('Name', 'name', [xsaRequared], '', 0, 250);
+  RegisterProperty('IdGoods', 'id_goods', [], '', 0, 250);
+  RegisterProperty('IdChar', 'id_char', [], '', 0, 250);
+  RegisterProperty('Name', 'name', [], '', 0, 250);
 end;
 
 procedure TCharacteristic.InternalInitChilds;
@@ -540,10 +540,10 @@ procedure TNomenclature.InternalRegisterPropertys;
 begin
   RegisterProperty('IdGoods', 'id_goods', [xsaRequared], '', 0, 250);
   RegisterProperty('Name', 'name', [xsaRequared], '', 0, 250);
-  RegisterProperty('IdMeasure', 'id_measure', [xsaRequared], '', 0, 250);
-  RegisterProperty('IdVidnomencl', 'id_vidnomencl', [xsaRequared], '', 0, 250);
-  RegisterProperty('Img', 'img', [xsaRequared], '', 0, 250);
-  RegisterProperty('Bitmap', 'bitmap', [xsaRequared], '', 0, -1);
+  RegisterProperty('IdMeasure', 'id_measure', [], '', 0, 250);
+  RegisterProperty('IdVidnomencl', 'id_vidnomencl', [], '', 0, 250);
+  RegisterProperty('Img', 'img', [], '', 0, 250);
+  RegisterProperty('Bitmap', 'bitmap', [], '', 0, -1);
 end;
 
 procedure TNomenclature.InternalInitChilds;
@@ -608,7 +608,7 @@ end;
 procedure TTaskGoodPropertySerialCell.InternalRegisterPropertys;
 begin
   RegisterProperty('IdCell', 'id_cell', [xsaRequared], 'идентификатор ячейки', 0, 250);
-  RegisterProperty('CellAddress', 'celladdress', [xsaRequared], 'наименование ячейки', 0, 250);
+  RegisterProperty('CellAddress', 'celladdress', [], 'наименование ячейки', 0, 250);
 end;
 
 procedure TTaskGoodPropertySerialCell.InternalInitChilds;
@@ -654,10 +654,10 @@ end;
 procedure TTaskGoodPropertySerial.InternalRegisterPropertys;
 begin
   RegisterProperty('Quantity', 'quantity', [xsaRequared], 'оличество собранного товара в единицах измерения упаковки', 0, 250);
-  RegisterProperty('IdSerial', 'id_serial', [xsaRequared], 'идентификатор серии', 0, 250);
-  RegisterProperty('Value', 'value', [xsaRequared], 'серия (произвольное значение) введенное пользователем на ТСД', 0, 250);
-  RegisterProperty('Date', 'date', [xsaRequared], 'указанная пользователем дата срока годности (если требуется)', 0, 250);
-  RegisterProperty('Cells', 'сells', [xsaRequared], 'информация о ячейках товара', -1, -1);
+  RegisterProperty('IdSerial', 'id_serial', [], 'идентификатор серии', 0, 250);
+  RegisterProperty('Value', 'value', [], 'серия (произвольное значение) введенное пользователем на ТСД', 0, 250);
+  RegisterProperty('Date', 'date', [], 'указанная пользователем дата срока годности (если требуется)', 0, 250);
+  RegisterProperty('Cells', 'сells', [], 'информация о ячейках товара', -1, -1);
 end;
 
 procedure TTaskGoodPropertySerial.InternalInitChilds;
@@ -690,8 +690,8 @@ end;
 
 procedure TTaskGoodMarking.InternalRegisterPropertys;
 begin
-  RegisterProperty('PDF417', 'PDF417', [xsaRequared], '', 0, 250);
-  RegisterProperty('DATAMATRIX', 'DATAMATRIX', [xsaRequared], '', 0, 250);
+  RegisterProperty('PDF417', 'PDF417', [], '', 0, 250);
+  RegisterProperty('DATAMATRIX', 'DATAMATRIX', [], '', 0, 250);
 end;
 
 procedure TTaskGoodMarking.InternalInitChilds;
@@ -715,8 +715,8 @@ end;
 
 procedure TTaskGoodProperty.InternalRegisterPropertys;
 begin
-  RegisterProperty('IdPack', 'id_pack', [xsaRequared], 'идентификатор упаковки', 0, 250);
-  RegisterProperty('Serial', 'serial', [xsaRequared], 'серии товаров', -1, -1);
+  RegisterProperty('IdPack', 'id_pack', [], 'идентификатор упаковки', 0, 250);
+  RegisterProperty('Serial', 'serial', [], 'серии товаров', -1, -1);
 end;
 
 procedure TTaskGoodProperty.InternalInitChilds;
@@ -749,10 +749,10 @@ end;
 
 procedure TTaskGood.InternalRegisterPropertys;
 begin
-  RegisterProperty('IdChar', 'id_char', [xsaRequared], 'идентификатор характеристик', 0, 250);
+  RegisterProperty('IdChar', 'id_char', [], 'идентификатор характеристик', 0, 250);
   RegisterProperty('IdGoods', 'id_goods', [xsaRequared], 'идентификатор товара', 0, 250);
-  RegisterProperty('GoodProperty', 'property', [xsaRequared], 'описание свойств', -1, -1);
-  RegisterProperty('GoodMarking', 'alco', [xsaRequared], 'коды акцизных марок', -1, -1);
+  RegisterProperty('GoodProperty', 'property', [], 'описание свойств', -1, -1);
+  RegisterProperty('GoodMarking', 'alco', [], 'коды акцизных марок', -1, -1);
 end;
 
 procedure TTaskGood.InternalInitChilds;
@@ -823,13 +823,13 @@ end;
 procedure TTask.InternalRegisterPropertys;
 begin
   RegisterProperty('IdDoc', 'id_doc', [xsaRequared], 'уникальный идентификатор документа', 0, 250);
-  RegisterProperty('Date', 'date', [xsaRequared], 'дата создания документа (во внешней учетной системе)', 0, 250);
+  RegisterProperty('Date', 'date', [], 'дата создания документа (во внешней учетной системе)', 0, 250);
   RegisterProperty('TaskType', 'type', [xsaRequared], 'тип группы документа', 0, 250);
-  RegisterProperty('DateOrder', 'date_order', [xsaRequared], 'дата создания ордера', 0, 250);
-  RegisterProperty('FC', 'fc', [xsaRequared], 'признак «свободный набор» (значение: 1 или 0)', 0, 250);
-  RegisterProperty('IdSclad', 'id_sclad', [xsaRequared], 'guid идентификатор склада', 0, 250);
+  RegisterProperty('DateOrder', 'date_order', [], 'дата создания ордера', 0, 250);
+  RegisterProperty('FC', 'fc', [xsaRequared], 'признак «свободный набор» (значение: 1 или 0)', 1, 1);
+  RegisterProperty('IdSclad', 'id_sclad', [], 'guid идентификатор склада', 0, 250);
   RegisterProperty('Goods', 'record', [xsaRequared], 'товар', -1, -1);
-  RegisterProperty('LastOrder', 'last_order', [xsaRequared], '', 0, 250);
+  RegisterProperty('LastOrder', 'last_order', [], '', 0, 1);
 end;
 
 procedure TTask.InternalInitChilds;

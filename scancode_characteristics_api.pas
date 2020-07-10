@@ -1,5 +1,5 @@
 { interface library for FPC and Lazarus
-  Copyright (C) 2019 Lagunov Aleksey alexs75@yandex.ru
+  Copyright (C) 2019-2020 Lagunov Aleksey alexs75@yandex.ru
 
   Генерация xml файлов в формате обеман данными для СКАНКОД.Мобильный Терминал (SCANCODE.MobileTerminal)
 
@@ -633,7 +633,7 @@ end;
 
 procedure TGetProdAnswer.InternalRegisterPropertys;
 begin
-  RegisterProperty('GoodQuantity', 'Record', [xsaRequared], 'Кол-во товара', -1, -1);
+  RegisterProperty('GoodQuantity', 'Record', [], 'Кол-во товара', -1, -1);
 end;
 
 procedure TGetProdAnswer.InternalInitChilds;
@@ -664,7 +664,7 @@ end;
 
 procedure TQueryGood0.InternalRegisterPropertys;
 begin
-  RegisterProperty('Barcode', 'barcode', [xsaRequared], 'Штрих код товара', 1, 20);
+  RegisterProperty('Barcode', 'barcode', [], 'Штрих код товара', 1, 20);
 end;
 
 procedure TQueryGood0.InternalInitChilds;
@@ -727,8 +727,8 @@ end;
 procedure TQueryGood1.InternalRegisterPropertys;
 begin
   RegisterProperty('IdGoods', 'id_goods', [xsaRequared], '', 1, 255);
-  RegisterProperty('IdSklad', 'id_sklad', [xsaRequared], '', 1, 255);
-  RegisterProperty('IdChar', 'id_char', [xsaRequared], '', 1, 255);
+  RegisterProperty('IdSklad', 'id_sklad', [], '', 1, 255);
+  RegisterProperty('IdChar', 'id_char', [], '', 1, 255);
 end;
 
 procedure TQueryGood1.InternalInitChilds;
@@ -799,8 +799,8 @@ procedure TSclad.InternalRegisterPropertys;
 begin
   RegisterProperty('IdSclad', 'id_sclad', [xsaRequared], 'guid склада', 0, 250);
   RegisterProperty('Name', 'name', [xsaRequared], 'наименование склада', 0, 250);
-  RegisterProperty('IsAdress', 'is_adress', [xsaRequared], 'признак использования адресного хранения', 0, 250);
-  RegisterProperty('IsOrder', 'is_order', [xsaRequared], 'признак использования ордерной схемы', 0, 250);
+  RegisterProperty('IsAdress', 'is_adress', [], 'признак использования адресного хранения', 0, 250);
+  RegisterProperty('IsOrder', 'is_order', [], 'признак использования ордерной схемы', 0, 250);
 end;
 
 procedure TSclad.InternalInitChilds;
@@ -880,10 +880,10 @@ procedure TNomenclatureType.InternalRegisterPropertys;
 begin
   RegisterProperty('IdNomenclatureType', 'id_vidnomencl', [xsaRequared], 'guid вида номенклатуры', 0, 250);
   RegisterProperty('Name', 'name', [xsaRequared], 'наименование вида номенклатуры', 0, 250);
-  RegisterProperty('IsChar', 'is_char', [xsaRequared], 'признак если ли характеристика', 0, 250);
-  RegisterProperty('IsSerial', 'is_serial', [xsaRequared], 'признак есть ли серии', 0, 250);
-  RegisterProperty('IsNomerSerial', 'is_nomer_serial', [xsaRequared], 'серии в виде номера (последовательности символов)', 0, 250);
-  RegisterProperty('IsDateSerial', 'is_date_serial', [xsaRequared], 'серии в виде срока годности', 0, 250);
+  RegisterProperty('IsChar', 'is_char', [], 'признак если ли характеристика', 0, 1);
+  RegisterProperty('IsSerial', 'is_serial', [], 'признак есть ли серии', 0, 1);
+  RegisterProperty('IsNomerSerial', 'is_nomer_serial', [], 'серии в виде номера (последовательности символов)', 0, 1);
+  RegisterProperty('IsDateSerial', 'is_date_serial', [], 'серии в виде срока годности', 0, 1);
 end;
 
 procedure TNomenclatureType.InternalInitChilds;
@@ -954,11 +954,11 @@ end;
 
 procedure TPrice.InternalRegisterPropertys;
 begin
-  RegisterProperty('Price', 'price', [xsaRequared], 'числовое представление цены', 0, 250);
+  RegisterProperty('Price', 'price', [xsaRequared], 'числовое представление цены', 0, 20);
   RegisterProperty('Currency', 'currency', [xsaRequared], 'валюта', 0, 250);
   RegisterProperty('IdGoods', 'id_goods', [xsaRequared], 'guid идентификатор товара', 0, 250);
-  RegisterProperty('IdChar', 'id_char', [xsaRequared], 'guid идентификатор характеристики', 0, 250);
-  RegisterProperty('IdPack', 'id_pack', [xsaRequared], 'guid идентификатор упаковки', 0, 250);
+  RegisterProperty('IdChar', 'id_char', [], 'guid идентификатор характеристики', 0, 250);
+  RegisterProperty('IdPack', 'id_pack', [], 'guid идентификатор упаковки', 0, 250);
 end;
 
 procedure TPrice.InternalInitChilds;
@@ -1075,8 +1075,8 @@ procedure TBarcode.InternalRegisterPropertys;
 begin
   RegisterProperty('Barcode', 'barcode', [xsaRequared], 'строковое значение штрихкода', 0, 250);
   RegisterProperty('IdGoods', 'id_goods', [xsaRequared], 'guid идентификатор товара', 0, 250);
-  RegisterProperty('IdChar', 'id_char', [xsaRequared], 'guid идентификатор характеристики', 0, 250);
-  RegisterProperty('IdPack', 'id_pack', [xsaRequared], 'guid идентификатор упаковки', 0, 250);
+  RegisterProperty('IdChar', 'id_char', [], 'guid идентификатор характеристики', 0, 250);
+  RegisterProperty('IdPack', 'id_pack', [], 'guid идентификатор упаковки', 0, 250);
 end;
 
 procedure TBarcode.InternalInitChilds;
@@ -1156,9 +1156,9 @@ procedure TSerial.InternalRegisterPropertys;
 begin
   RegisterProperty('Name', 'name', [xsaRequared], 'наименование серии', 0, 250);
   RegisterProperty('IdSerial', 'id_serial', [xsaRequared], 'идентификатор серии', 0, 250);
-  RegisterProperty('Num', 'num', [xsaRequared], 'номер серии', 0, 250);
-  RegisterProperty('Date', 'date', [xsaRequared], 'дата окончания срока годности товара', 0, 250);
-  RegisterProperty('IdOwner', 'id_owner', [xsaRequared], 'guid идентификатор владельца', 0, 250);
+  RegisterProperty('Num', 'num', [], 'номер серии', 0, 1000);
+  RegisterProperty('Date', 'date', [], 'дата окончания срока годности товара', 0, 250);
+  RegisterProperty('IdOwner', 'id_owner', [xsaRequared], 'guid идентификатор владельца', 0, 10);
   RegisterProperty('Relation', 'relation', [xsaRequared], 'указывает на объект владельца ', 0, 250);
 end;
 
@@ -1403,12 +1403,12 @@ begin
   RegisterProperty('IdGoods', 'id_goods', [xsaRequared], 'идентификатор товара', 0, 250);
   RegisterProperty('Name', 'name', [xsaRequared], 'наименование товара', 0, 250);
   RegisterProperty('IdMeasure', 'id_measure', [xsaRequared], 'идентификатор базовой ед. измерения', 0, 250);
-  RegisterProperty('Art', 'art', [xsaRequared], 'артикул', 0, 250);
-  RegisterProperty('Alco', 'alco', [xsaRequared], 'признак алкогольной продукции (значение: 1 или 0)', 1, 1);
-  RegisterProperty('IdVidnomencl', 'id_vidnomencl', [xsaRequared], 'наименование файла изображения товара', 0, 250);
-  RegisterProperty('IdNaborPack', 'id_nabor_pack', [xsaRequared], 'наименование файла изображения товара', 0, 250);
-  RegisterProperty('Img', 'img', [xsaRequared], 'наименование файла изображения товара', 0, 250);
-  RegisterProperty('Bitmap', 'bitmap', [xsaRequared], 'бинарный блок данных — изображение товара в кодировке Base64', 0, -1);
+  RegisterProperty('Art', 'art', [], 'артикул', 0, 250);
+  RegisterProperty('Alco', 'alco', [], 'признак алкогольной продукции (значение: 1 или 0)', 1, 1);
+  RegisterProperty('IdVidnomencl', 'id_vidnomencl', [], 'наименование файла изображения товара', 0, 250);
+  RegisterProperty('IdNaborPack', 'id_nabor_pack', [], 'наименование файла изображения товара', 0, 250);
+  RegisterProperty('Img', 'img', [], 'наименование файла изображения товара', 0, 250);
+  RegisterProperty('Bitmap', 'bitmap', [], 'бинарный блок данных — изображение товара в кодировке Base64', 0, -1);
 end;
 
 procedure TSprGood.InternalInitChilds;
@@ -1467,15 +1467,15 @@ end;
 
 procedure TDictionary.InternalRegisterPropertys;
 begin
-  RegisterProperty('SprGoods', 'table', [xsaRequared], '', -1, -1);
-  RegisterProperty('Characteristics', 'characteristics', [xsaRequared], 'справочник характеристик', -1, -1);
-  RegisterProperty('Packs', 'packs', [xsaRequared], 'справочник упаковок', -1, -1);
-  RegisterProperty('Serials', 'serials', [xsaRequared], 'справочник серий', -1, -1);
-  RegisterProperty('Barcodes', 'barcodes', [xsaRequared], 'справочник штрихкодов', -1, -1);
-  RegisterProperty('Measures', 'measures', [xsaRequared], 'справочник единиц измерения', -1, -1);
-  RegisterProperty('Prices', 'prices', [xsaRequared], 'справочник ценн', -1, -1);
-  RegisterProperty('NomenclatureTypes', 'vidnomencls', [xsaRequared], 'виды номенклатуры', -1, -1);
-  RegisterProperty('Sclads', 'sclads', [xsaRequared], 'склады', -1, -1);
+  RegisterProperty('SprGoods', 'table', [], '', -1, -1);
+  RegisterProperty('Characteristics', 'characteristics', [], 'справочник характеристик', -1, -1);
+  RegisterProperty('Packs', 'packs', [], 'справочник упаковок', -1, -1);
+  RegisterProperty('Serials', 'serials', [], 'справочник серий', -1, -1);
+  RegisterProperty('Barcodes', 'barcodes', [], 'справочник штрихкодов', -1, -1);
+  RegisterProperty('Measures', 'measures', [], 'справочник единиц измерения', -1, -1);
+  RegisterProperty('Prices', 'prices', [], 'справочник ценн', -1, -1);
+  RegisterProperty('NomenclatureTypes', 'vidnomencls', [], 'виды номенклатуры', -1, -1);
+  RegisterProperty('Sclads', 'sclads', [], 'склады', -1, -1);
 end;
 
 procedure TDictionary.InternalInitChilds;

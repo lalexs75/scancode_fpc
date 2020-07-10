@@ -1,5 +1,5 @@
 { interface library for FPC and Lazarus
-  Copyright (C) 2019 Lagunov Aleksey alexs75@yandex.ru
+  Copyright (C) 2019-2020 Lagunov Aleksey alexs75@yandex.ru
 
   Генерация xml файлов в формате обеман данными для СКАНКОД.Мобильный Терминал (SCANCODE.MobileTerminal)
 
@@ -284,7 +284,7 @@ end;
 
 procedure TUserRights.InternalRegisterPropertys;
 begin
-  RegisterProperty('Records', 'Record', [xsaRequared], 'Строки', -1, -1);
+  RegisterProperty('Records', 'Record', [], 'Строки', -1, -1);
 end;
 
 procedure TUserRights.InternalInitChilds;
@@ -373,11 +373,11 @@ procedure TUserLogin.InternalRegisterPropertys;
 begin
   RegisterProperty('Login', 'Login', [xsaRequared], 'псевдоним типа документа', 1, 50);
   RegisterProperty('Id', 'Id', [xsaRequared], 'псевдоним типа документа', 1, 50);
-  RegisterProperty('Pass', 'Pass', [xsaRequared], 'псевдоним типа документа', 1, 250);
+  RegisterProperty('Pass', 'Pass', [], 'псевдоним типа документа', 1, 250);
   RegisterProperty('Rights', 'Rights', [xsaRequared], 'псевдоним типа документа', 1, 50);
-  RegisterProperty('CreateProd', 'CreateProd', [xsaRequared], 'псевдоним типа документа', 1, 50);
-  RegisterProperty('AddProd', 'AddProd', [xsaRequared], 'псевдоним типа документа', 1, 50);
-  RegisterProperty('CreateFreeCollect', 'CreateFreeCollect', [xsaRequared], 'псевдоним типа документа', 1, 50);
+  RegisterProperty('CreateProd', 'CreateProd', [], 'псевдоним типа документа', 1, 50);
+  RegisterProperty('AddProd', 'AddProd', [], 'псевдоним типа документа', 1, 50);
+  RegisterProperty('CreateFreeCollect', 'CreateFreeCollect', [], 'псевдоним типа документа', 1, 50);
 end;
 
 procedure TUserLogin.InternalInitChilds;
@@ -475,9 +475,9 @@ end;
 
 procedure TUserRight.InternalRegisterPropertys;
 begin
-  RegisterProperty('Name', 'Name', [xsaRequared], 'псевдоним типа документа', 1, 50);
-  RegisterProperty('ID', 'ID', [xsaRequared], 'код типа документа внутри группы', 1, 50);
-  RegisterProperty('GroupID', 'GroupID', [xsaRequared], 'код группы документов, с которыми пользователь может работать', 1, 150);
+  RegisterProperty('Name', 'Name', [], 'псевдоним типа документа', 1, 50);
+  RegisterProperty('ID', 'ID', [], 'код типа документа внутри группы', 1, 50);
+  RegisterProperty('GroupID', 'GroupID', [], 'код группы документов, с которыми пользователь может работать', 1, 150);
 end;
 
 procedure TUserRight.InternalInitChilds;
@@ -494,8 +494,8 @@ end;
 
 procedure TUserInformation.InternalRegisterPropertys;
 begin
-  RegisterProperty('Logins', 'Login', [xsaRequared], 'учетные данные пользователя', -1, -1);
-  RegisterProperty('Rights', 'Right', [xsaRequared], 'описание набора доступных прав пользователя', -1, -1);
+  RegisterProperty('Logins', 'Login', [], 'учетные данные пользователя', -1, -1);
+  RegisterProperty('Rights', 'Right', [], 'описание набора доступных прав пользователя', -1, -1);
 end;
 
 procedure TUserInformation.InternalInitChilds;
