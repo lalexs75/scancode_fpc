@@ -45,7 +45,7 @@ unit scancode_user_api;
 interface
 
 uses
-  Classes, SysUtils, xmlobject;
+  Classes, SysUtils, xmlobject, AbstractSerializationObjects;
 
 type
   TUserRightDoc = (urdAcceptance = 1, urdShipment = 2, urdInventory = 3, urdMoving = 4);

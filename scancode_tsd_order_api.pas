@@ -45,7 +45,7 @@ unit scancode_tsd_order_api;
 interface
 
 uses
-  Classes, SysUtils, xmlobject;
+  Classes, SysUtils, xmlobject, AbstractSerializationObjects;
 
 type
   { TTaskGoodMarking }
