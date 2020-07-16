@@ -254,6 +254,7 @@ begin
   begin
     FTmpFileName:=GetTempFileName;
     Data.SaveToFile(FTmpFileName);
+    Data.SaveToFile(IncludeTrailingPathDelimiter(GetTempDir) + Data.ClassName+'.xml');
   end
   else
     FTmpFileName:='';

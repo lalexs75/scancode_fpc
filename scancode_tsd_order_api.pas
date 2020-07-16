@@ -127,6 +127,36 @@ type
     property Serial:TTaskGoodPropertySerial read FSerial;
   end;
 
+  { TMarkedCode }
+
+  TMarkedCode = class(TXmlSerializationObject)
+  private
+    FGS1_DATAMATRIX: string;
+    procedure SetGS1_DATAMATRIX(AValue: string);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property GS1_DATAMATRIX:string read FGS1_DATAMATRIX write SetGS1_DATAMATRIX;
+  end;
+  TMarkedCodes = specialize GXMLSerializationObjectList<TMarkedCode>;
+
+  { TMarkedCodeList }
+
+  TMarkedCodeList = class(TXmlSerializationObject)
+  private
+    FTokens: TMarkedCodes;
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    destructor Destroy; override;
+  published
+    property Tokens:TMarkedCodes read FTokens;
+  end;
+
   { TTaskGood }
 
   TTaskGood = class(TXmlSerializationObject)
@@ -135,6 +165,7 @@ type
     FGoodProperty: TTaskGoodProperty;
     FIdChar: string;
     FIdGoods: string;
+    FMarkedCodes: TMarkedCodeList;
     procedure SetIdChar(AValue: string);
     procedure SetIdGoods(AValue: string);
   protected
@@ -147,6 +178,7 @@ type
     property IdGoods:string read FIdGoods write SetIdGoods;
     property GoodProperty:TTaskGoodProperty read FGoodProperty;
     property GoodMarking:TTaskGoodMarking read FGoodMarking;
+    property MarkedCodes:TMarkedCodeList read FMarkedCodes;
   end;
   TTaskGoods = specialize GXMLSerializationObjectList<TTaskGood>;
 
@@ -346,6 +378,51 @@ type
 
 implementation
 uses base64;
+
+{ TMarkedCodeList }
+
+procedure TMarkedCodeList.InternalRegisterPropertys;
+begin
+  inherited InternalRegisterPropertys;
+  RegisterProperty('Tokens', 'token', [], '', -1, -1);
+end;
+
+procedure TMarkedCodeList.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+  FTokens:=TMarkedCodes.Create;
+end;
+
+destructor TMarkedCodeList.Destroy;
+begin
+  FreeAndNil(FTokens);
+  inherited Destroy;
+end;
+
+{ TMarkedCode }
+
+procedure TMarkedCode.SetGS1_DATAMATRIX(AValue: string);
+begin
+  if FGS1_DATAMATRIX=AValue then Exit;
+  FGS1_DATAMATRIX:=AValue;
+  ModifiedProperty('GS1_DATAMATRIX');
+end;
+
+procedure TMarkedCode.InternalRegisterPropertys;
+begin
+  inherited InternalRegisterPropertys;
+  RegisterProperty('GS1_DATAMATRIX', 'GS1_DATAMATRIX', [], 'значение кода марки, считанный с этикетки сканером', -1, -1);
+end;
+
+procedure TMarkedCode.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor TMarkedCode.Destroy;
+begin
+  inherited Destroy;
+end;
 
 { TBarcode }
 
@@ -753,6 +830,7 @@ begin
   RegisterProperty('IdGoods', 'id_goods', [xsaRequared], 'идентификатор товара', 0, 250);
   RegisterProperty('GoodProperty', 'property', [], 'описание свойств', -1, -1);
   RegisterProperty('GoodMarking', 'alco', [], 'коды акцизных марок', -1, -1);
+  RegisterProperty('MarkedCodes', 'marked_codes', [], 'коды маркировок', -1, -1);
 end;
 
 procedure TTaskGood.InternalInitChilds;
@@ -760,12 +838,14 @@ begin
   inherited InternalInitChilds;
   FGoodProperty:=TTaskGoodProperty.Create;
   FGoodMarking:=TTaskGoodMarking.Create;
+  FMarkedCodes:=TMarkedCodeList.Create;
 end;
 
 destructor TTaskGood.Destroy;
 begin
   FreeAndNil(FGoodProperty);
   FreeAndNil(FGoodMarking);
+  FreeAndNil(FMarkedCodes);
   inherited Destroy;
 end;
 

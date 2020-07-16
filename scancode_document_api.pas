@@ -435,7 +435,7 @@ end;
 procedure TGood.InternalRegisterPropertys;
 begin
   RegisterProperty('IdGoods', 'id_goods', [xsaRequared], 'уникальный идентификатор товара', 0, 250);
-  RegisterProperty('IdChar', 'id_char', [xsaRequared], 'уникальный идентификатор характеристики товара', 0, 250);
+  RegisterProperty('IdChar', 'id_char', [{xsaRequared}], 'уникальный идентификатор характеристики товара', 0, 250);
   RegisterProperty('Quantity', 'quantity', [xsaRequared], 'требуемое количество (общее)', 0, 250);
   RegisterProperty('GoodProperty', 'property', [], 'свойства товара', -1, -1);
   RegisterProperty('MarkedCodes', 'marked_codes', [], 'список кодов маркировки', -1, -1);
