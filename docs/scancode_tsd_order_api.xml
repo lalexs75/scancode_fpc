@@ -45,6 +45,12 @@
       </element><element name="TNomenclature.Img"><short>Имя файла изображения товара</short>
       </element><element name="TNomenclature.Bitmap"><short>Изображение товара, закодированное кодом BASE64</short>
       </element>
+    <element name="TTaskGood.MarkedCodes"><short>marked_codes – коды маркировок</short>
+      </element><element name="TMarkedCodeList.Tokens"><short>token – код маркировки</short>
+      </element><element name="TMarkedCodeList"><short>marked_codes – коды маркировок</short>
+      </element><element name="TMarkedCode"><short>token – код маркировки</short>
+      </element><element name="TMarkedCode.GS1_DATAMATRIX"><short>GS1_DATAMATRIX – значение кода марки, считанный с этикетки сканером</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
