@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<Orders>
+  <Task id_sclad="" type="" fc="0" id_doc="FFFFFFFF-FFFF-FFFF-FFFB-000000005515" date="16.07.2020 15:05:00" date_order="16.07.2020 15:08:49" last_order="0">
+    <record id_char="" id_goods="FFFFFFFF-FFFF-FFFF-FFFA-000000001084">
+      <property id_pack="">
+        <serial quantity="2" />
+      </property>
+      <marked_codes>
+        <token GS1_DATAMATRIX="MDEwMjkwMDAwMDM3NzU3ODIxQnVLLkpyTmxQbXMtdB05MTgwMzkdOTIva1ZpMWdsQXdvYzhMNklz&#10;bEgranorVE1OV2J0NmN6ZXdqLzFGWGVTbjgxaTdjZHk3VUk2VnlkbEc1TnB1bzEvekFQellqS0Y1&#10;WW9YdXJvamg4RWJSQT09" />
+        <token GS1_DATAMATRIX="MDEwMjkwMDAwMDM3NzU3ODIxJnJ3Y1FRSlZNV2lYYh05MTgwMzkdOTJUOE10VjNYTDlpRDg4UnFn&#10;MHBEdGpSeTNkc3VZQlU4TzdwM01ONVVETnpUNmRzRDBodjRQUnVKTEs1cUNtd2RkL2xlMkFvZ1BB&#10;UzFab1RzeENCd3hTZz09" />
+      </marked_codes>
+    </record>
+  </Task>
+</Orders>

@@ -38,6 +38,9 @@ begin
   Application.Title:='MT complex demo';
   Application.Scaled:=True;
   Application.Initialize;
+  Application.{%H-}UpdateFormatSettings:=false;
+  InitDemoFolders;
+  InitLocale;
   Application.CreateForm(TmtMainForm, mtMainForm);
   Application.Run;
 end.

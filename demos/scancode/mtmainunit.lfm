@@ -15,9 +15,9 @@ object mtMainForm: TmtMainForm
     Height = 775
     Top = 0
     Width = 1190
-    ActivePage = TabSheet8
+    ActivePage = TabSheet1
     Align = alClient
-    TabIndex = 1
+    TabIndex = 0
     TabOrder = 0
     object TabSheet1: TTabSheet
       Caption = 'Данные'
@@ -28,9 +28,9 @@ object mtMainForm: TmtMainForm
         Height = 744
         Top = 0
         Width = 1180
-        ActivePage = TabSheet5
+        ActivePage = TabSheet4
         Align = alClient
-        TabIndex = 3
+        TabIndex = 1
         TabOrder = 0
         object TabSheet3: TTabSheet
           Caption = 'Список пользователей и их прав'
@@ -55,12 +55,12 @@ object mtMainForm: TmtMainForm
       ClientWidth = 1180
       object Panel1: TPanel
         Left = 0
-        Height = 179
+        Height = 178
         Top = 0
         Width = 1180
         Align = alTop
         AutoSize = True
-        ClientHeight = 179
+        ClientHeight = 178
         ClientWidth = 1180
         TabOrder = 0
         object Button1: TButton
@@ -69,7 +69,7 @@ object mtMainForm: TmtMainForm
           AnchorSideRight.Control = CLabel
           Left = 473
           Height = 33
-          Top = 139
+          Top = 138
           Width = 111
           Anchors = [akTop, akRight]
           AutoSize = True
@@ -85,7 +85,7 @@ object mtMainForm: TmtMainForm
           AnchorSideTop.Side = asrBottom
           Left = 597
           Height = 33
-          Top = 139
+          Top = 138
           Width = 135
           AutoSize = True
           BorderSpacing.Around = 6
@@ -110,7 +110,7 @@ object mtMainForm: TmtMainForm
           Left = 7
           Height = 17
           Top = 24
-          Width = 368
+          Width = 365
           BorderSpacing.Around = 6
           Caption = 'Укажите путь к библиотеке Сканкод.МобильныйТерминал'
           ParentColor = False
@@ -122,7 +122,7 @@ object mtMainForm: TmtMainForm
           AnchorSideRight.Control = Panel1
           AnchorSideRight.Side = asrBottom
           Left = 13
-          Height = 34
+          Height = 33
           Top = 47
           Width = 1160
           FilterIndex = 0
@@ -156,7 +156,7 @@ object mtMainForm: TmtMainForm
           AnchorSideRight.Side = asrBottom
           Left = 1
           Height = 17
-          Top = 116
+          Top = 115
           Width = 1178
           Caption = 'Управление сервером'
           Anchors = [akTop, akLeft, akRight]
@@ -169,8 +169,8 @@ object mtMainForm: TmtMainForm
           AnchorSideTop.Side = asrBottom
           Left = 7
           Height = 23
-          Top = 87
-          Width = 333
+          Top = 86
+          Width = 330
           BorderSpacing.Around = 6
           Caption = 'После документа задания отправить справочник'
           TabOrder = 3
@@ -178,8 +178,8 @@ object mtMainForm: TmtMainForm
       end
       object Memo1: TMemo
         Left = 0
-        Height = 565
-        Top = 179
+        Height = 566
+        Top = 178
         Width = 1180
         Align = alClient
         Lines.Strings = (

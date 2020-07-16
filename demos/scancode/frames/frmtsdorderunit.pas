@@ -133,7 +133,7 @@ var
 begin
   rxGoods.CloseOpen;
   O:=TOrders.Create;
-  O.LoadFromFile('/home/alexs/8/18500f45c81b8f43f42ecec.tmp');
+  O.LoadFromFile(DemoDataFolder + 'orders.xml');
   for NM in O.Handbooks.Nomenclatures.NomenclatureList do
   begin
     rxGoods.Append;

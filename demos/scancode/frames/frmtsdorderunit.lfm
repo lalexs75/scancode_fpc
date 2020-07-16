@@ -142,7 +142,7 @@ object frmTSDOrderFrame: TfrmTSDOrderFrame
     Left = 544
     Height = 23
     Top = 14
-    Width = 92
+    Width = 91
     Caption = 'CheckBox1'
     TabOrder = 3
   end
