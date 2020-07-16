@@ -5,7 +5,8 @@ unit frmTSDOrderUnit;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, StdCtrls, DBCtrls, DB, rxdbgrid, rxmemds;
+  Classes, SysUtils, Forms, Controls, StdCtrls, DBCtrls, ComCtrls, ExtCtrls, DB,
+  rxdbgrid, rxmemds;
 
 type
 
@@ -16,9 +17,17 @@ type
     Button2: TButton;
     CheckBox1: TCheckBox;
     CLabel: TLabel;
+    dsTaskGoods: TDataSource;
+    dsMarcCodes: TDataSource;
+    dsOrders: TDataSource;
     DBImage1: TDBImage;
     dsGoods: TDataSource;
+    PageControl1: TPageControl;
+    Panel1: TPanel;
     RxDBGrid1: TRxDBGrid;
+    RxDBGrid2: TRxDBGrid;
+    RxDBGrid3: TRxDBGrid;
+    RxDBGrid4: TRxDBGrid;
     rxGoods: TRxMemoryData;
     rxGoodsBmp: TBlobField;
     rxGoodsIdGoods: TStringField;
@@ -26,8 +35,32 @@ type
     rxGoodsIdVidnomencl: TStringField;
     rxGoodsImg: TStringField;
     rxGoodsName: TStringField;
+    rxMarcCodesGS1_DATAMATRIX: TStringField;
+    rxMarcCodesOinID: TLongintField;
+    rxTaskGoods: TRxMemoryData;
+    rxMarcCodes: TRxMemoryData;
+    rxOrders: TRxMemoryData;
+    rxOrdersDate: TDateTimeField;
+    rxOrdersDateOrder: TDateTimeField;
+    rxOrdersFC: TStringField;
+    rxOrdersIdDoc: TStringField;
+    rxOrdersIdSclad: TStringField;
+    rxOrdersLastOrder: TStringField;
+    rxOrdersTaskType: TStringField;
+    rxTaskGoodsIdChar: TStringField;
+    rxTaskGoodsIdDoc: TStringField;
+    rxTaskGoodsIdGoods: TStringField;
+    rxTaskGoodsintID: TAutoIncField;
+    rxTaskGoodsQuantity: TStringField;
+    Splitter1: TSplitter;
+    TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure rxMarcCodesFilterRecord(DataSet: TDataSet; var Accept: Boolean);
+    procedure rxOrdersAfterOpen(DataSet: TDataSet);
+    procedure rxTaskGoodsAfterClose(DataSet: TDataSet);
+    procedure rxTaskGoodsFilterRecord(DataSet: TDataSet; var Accept: Boolean);
   private
 
   public
@@ -130,8 +163,17 @@ var
   St1: TStringStream;
   Decoder: TBase64DecodingStream;
   St2: TMemoryStream;
+  T:TTask;
+  G:TTaskGood;
+  M:TMarkedCode;
 begin
   rxGoods.CloseOpen;
+  rxOrders.CloseOpen;
+  rxMarcCodes.CloseOpen;
+
+  rxTaskGoods.Filtered:=false;
+  rxMarcCodes.Filtered:=false;
+
   O:=TOrders.Create;
   O.LoadFromFile(DemoDataFolder + 'orders.xml');
   for NM in O.Handbooks.Nomenclatures.NomenclatureList do
@@ -158,8 +200,65 @@ begin
     end;
     rxGoods.Post;
   end;
+
+  for T in O.Tasks do
+  begin
+    rxOrders.Append;
+    rxOrdersIdDoc.AsString:=T.IdDoc;
+    rxOrdersDate.AsDateTime:=StrToDateTime(T.Date);
+    rxOrdersTaskType.AsString:=T.TaskType;
+    rxOrdersDateOrder.AsDateTime:=StrToDateTime(T.DateOrder);
+    rxOrdersFC.AsString:=T.FC;
+    rxOrdersIdSclad.AsString:=T.IdSclad;
+    //rxOrdersIdDoc.AsString:=T.Goods:TTaskGoods read FGoods;
+    rxOrdersLastOrder.AsString:=T.LastOrder;
+    rxOrders.Post;
+
+    for G in T.Goods do
+    begin
+      rxTaskGoods.Append;
+      rxTaskGoodsIdDoc.AsString:=T.IdDoc;
+      rxTaskGoodsIdChar.AsString:=G.IdChar;
+      rxTaskGoodsIdGoods.AsString:=G.IdGoods;
+      rxTaskGoodsQuantity.AsString:=G.GoodProperty.Serial.Quantity;
+      rxTaskGoods.Post;
+
+      for M in G.MarkedCodes.Tokens do
+      begin
+        rxMarcCodes.Append;
+        rxMarcCodesOinID.AsInteger:=rxTaskGoodsintID.AsInteger;
+        rxMarcCodesGS1_DATAMATRIX.AsString:=DecodeStringBase64(M.GS1_DATAMATRIX);
+        rxMarcCodes.Post;
+      end;
+    end;
+  end;
   O.Free;
   rxGoods.First;
+  rxTaskGoods.Filtered:=true;
+  rxMarcCodes.Filtered:=true;
+  rxOrders.First;
+end;
+
+procedure TfrmTSDOrderFrame.rxMarcCodesFilterRecord(DataSet: TDataSet;
+  var Accept: Boolean);
+begin
+  Accept:=rxMarcCodesOinID.AsInteger =  rxTaskGoodsintID.AsInteger;
+end;
+
+procedure TfrmTSDOrderFrame.rxOrdersAfterOpen(DataSet: TDataSet);
+begin
+  rxTaskGoods.Active:=rxOrders.Active;
+end;
+
+procedure TfrmTSDOrderFrame.rxTaskGoodsAfterClose(DataSet: TDataSet);
+begin
+  rxMarcCodes.Active:=rxTaskGoods.Active;
+end;
+
+procedure TfrmTSDOrderFrame.rxTaskGoodsFilterRecord(DataSet: TDataSet;
+  var Accept: Boolean);
+begin
+  Accept:=rxTaskGoodsIdDoc.AsString = rxOrdersIdDoc.AsString;
 end;
 
 procedure TfrmTSDOrderFrame.GenerateData;

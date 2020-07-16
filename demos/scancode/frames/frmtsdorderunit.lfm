@@ -1,22 +1,21 @@
 object frmTSDOrderFrame: TfrmTSDOrderFrame
   Left = 0
-  Height = 362
+  Height = 458
   Top = 0
   Width = 1033
-  ClientHeight = 362
+  ClientHeight = 458
   ClientWidth = 1033
   TabOrder = 0
   DesignLeft = 463
   DesignTop = 307
   object Button1: TButton
     AnchorSideLeft.Side = asrCenter
-    AnchorSideRight.Control = CLabel
-    AnchorSideRight.Side = asrBottom
+    AnchorSideRight.Control = Button2
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 399
+    Left = 359
     Height = 33
-    Top = 323
+    Top = 419
     Width = 112
     Anchors = [akRight, akBottom]
     AutoSize = True
@@ -25,24 +24,14 @@ object frmTSDOrderFrame: TfrmTSDOrderFrame
     OnClick = Button1Click
     TabOrder = 0
   end
-  object CLabel: TLabel
+  object Button2: TButton
     AnchorSideLeft.Control = Owner
     AnchorSideLeft.Side = asrCenter
-    AnchorSideTop.Control = Owner
-    Left = 516
-    Height = 1
-    Top = 0
-    Width = 1
-    ParentColor = False
-  end
-  object Button2: TButton
-    AnchorSideLeft.Control = CLabel
-    AnchorSideLeft.Side = asrBottom
     AnchorSideBottom.Control = Owner
     AnchorSideBottom.Side = asrBottom
-    Left = 523
+    Left = 477
     Height = 33
-    Top = 323
+    Top = 419
     Width = 78
     Anchors = [akLeft, akBottom]
     AutoSize = True
@@ -51,100 +40,600 @@ object frmTSDOrderFrame: TfrmTSDOrderFrame
     OnClick = Button2Click
     TabOrder = 1
   end
-  object RxDBGrid1: TRxDBGrid
-    Left = 26
-    Height = 294
-    Top = 10
-    Width = 496
-    ColumnDefValues.BlobText = '(данные)'
-    TitleButtons = False
-    AutoSort = True
-    KeyStrokes = <    
-      item
-        Command = rxgcShowFindDlg
-        ShortCut = 16454
-        Enabled = True
-      end    
-      item
-        Command = rxgcShowColumnsDlg
-        ShortCut = 16471
-        Enabled = True
-      end    
-      item
-        Command = rxgcShowFilterDlg
-        ShortCut = 16468
-        Enabled = True
-      end    
-      item
-        Command = rxgcShowSortDlg
-        ShortCut = 16467
-        Enabled = True
-      end    
-      item
-        Command = rxgcShowQuickFilter
-        ShortCut = 16465
-        Enabled = True
-      end    
-      item
-        Command = rxgcHideQuickFilter
-        ShortCut = 16456
-        Enabled = True
-      end    
-      item
-        Command = rxgcSelectAll
-        ShortCut = 16449
-        Enabled = True
-      end    
-      item
-        Command = rxgcDeSelectAll
-        ShortCut = 16429
-        Enabled = True
-      end    
-      item
-        Command = rxgcInvertSelection
-        ShortCut = 16426
-        Enabled = True
-      end    
-      item
-        Command = rxgcOptimizeColumnsWidth
-        ShortCut = 16427
-        Enabled = True
-      end    
-      item
-        Command = rxgcCopyCellValue
-        ShortCut = 16451
-        Enabled = True
-      end>
-    FooterOptions.DrawFullLine = False
-    SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
-    SearchOptions.FromStart = False
-    OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
-    Color = clWindow
-    DrawFullLine = False
-    FocusColor = clRed
-    SelectedColor = clHighlight
-    GridLineStyle = psSolid
-    DataSource = dsGoods
-    Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+  object PageControl1: TPageControl
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    AnchorSideBottom.Control = Button1
+    Left = 0
+    Height = 413
+    Top = 0
+    Width = 1033
+    ActivePage = TabSheet2
+    Anchors = [akTop, akLeft, akRight, akBottom]
+    TabIndex = 1
     TabOrder = 2
-  end
-  object DBImage1: TDBImage
-    Left = 536
-    Height = 262
-    Top = 40
-    Width = 416
-    Center = True
-    DataField = 'Bmp'
-    DataSource = dsGoods
-    Stretch = True
-  end
-  object CheckBox1: TCheckBox
-    Left = 544
-    Height = 23
-    Top = 14
-    Width = 91
-    Caption = 'CheckBox1'
-    TabOrder = 3
+    object TabSheet1: TTabSheet
+      Caption = 'Список товаров'
+      ClientHeight = 382
+      ClientWidth = 1023
+      object DBImage1: TDBImage
+        Left = 536
+        Height = 262
+        Top = 40
+        Width = 416
+        Center = True
+        DataField = 'Bmp'
+        DataSource = dsGoods
+        Stretch = True
+      end
+      object CheckBox1: TCheckBox
+        Left = 544
+        Height = 23
+        Top = 14
+        Width = 91
+        Caption = 'CheckBox1'
+        TabOrder = 0
+      end
+      object RxDBGrid1: TRxDBGrid
+        Left = 26
+        Height = 294
+        Top = 10
+        Width = 496
+        ColumnDefValues.BlobText = '(данные)'
+        TitleButtons = False
+        AutoSort = True
+        KeyStrokes = <        
+          item
+            Command = rxgcShowFindDlg
+            ShortCut = 16454
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowColumnsDlg
+            ShortCut = 16471
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowFilterDlg
+            ShortCut = 16468
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowSortDlg
+            ShortCut = 16467
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowQuickFilter
+            ShortCut = 16465
+            Enabled = True
+          end        
+          item
+            Command = rxgcHideQuickFilter
+            ShortCut = 16456
+            Enabled = True
+          end        
+          item
+            Command = rxgcSelectAll
+            ShortCut = 16449
+            Enabled = True
+          end        
+          item
+            Command = rxgcDeSelectAll
+            ShortCut = 16429
+            Enabled = True
+          end        
+          item
+            Command = rxgcInvertSelection
+            ShortCut = 16426
+            Enabled = True
+          end        
+          item
+            Command = rxgcOptimizeColumnsWidth
+            ShortCut = 16427
+            Enabled = True
+          end        
+          item
+            Command = rxgcCopyCellValue
+            ShortCut = 16451
+            Enabled = True
+          end>
+        FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
+        OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+        Color = clWindow
+        DrawFullLine = False
+        FocusColor = clRed
+        SelectedColor = clHighlight
+        GridLineStyle = psSolid
+        DataSource = dsGoods
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+        TabOrder = 1
+      end
+      object CLabel: TLabel
+        AnchorSideLeft.Control = Owner
+        AnchorSideLeft.Side = asrCenter
+        AnchorSideTop.Control = Owner
+        Left = 516
+        Height = 1
+        Top = 0
+        Width = 1
+        ParentColor = False
+      end
+    end
+    object TabSheet2: TTabSheet
+      Caption = 'Документ сканирования'
+      ClientHeight = 382
+      ClientWidth = 1023
+      object RxDBGrid2: TRxDBGrid
+        Left = 0
+        Height = 382
+        Top = 0
+        Width = 504
+        ColumnDefValues.BlobText = '(данные)'
+        TitleButtons = False
+        AutoSort = True
+        Columns = <        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'IdDoc'
+            Width = 90
+            FieldName = 'IdDoc'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'Date'
+            Width = 90
+            FieldName = 'Date'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'TaskType'
+            Width = 60
+            FieldName = 'TaskType'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'DateOrder'
+            Width = 90
+            FieldName = 'DateOrder'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'FC'
+            Width = 0
+            FieldName = 'FC'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'IdSclad'
+            Width = 120
+            FieldName = 'IdSclad'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end        
+          item
+            Title.Alignment = taCenter
+            Title.Orientation = toHorizontal
+            Title.Caption = 'LastOrder'
+            Width = 120
+            FieldName = 'LastOrder'
+            EditButtons = <>
+            Filter.DropDownRows = 0
+            Filter.EmptyValue = '(Пусто)'
+            Filter.NotEmptyValue = '(Не пусто)'
+            Filter.AllValue = '(Все значения)'
+            Filter.EmptyFont.Style = [fsItalic]
+            Filter.ItemIndex = -1
+            Footers = <>
+          end>
+        KeyStrokes = <        
+          item
+            Command = rxgcShowFindDlg
+            ShortCut = 16454
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowColumnsDlg
+            ShortCut = 16471
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowFilterDlg
+            ShortCut = 16468
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowSortDlg
+            ShortCut = 16467
+            Enabled = True
+          end        
+          item
+            Command = rxgcShowQuickFilter
+            ShortCut = 16465
+            Enabled = True
+          end        
+          item
+            Command = rxgcHideQuickFilter
+            ShortCut = 16456
+            Enabled = True
+          end        
+          item
+            Command = rxgcSelectAll
+            ShortCut = 16449
+            Enabled = True
+          end        
+          item
+            Command = rxgcDeSelectAll
+            ShortCut = 16429
+            Enabled = True
+          end        
+          item
+            Command = rxgcInvertSelection
+            ShortCut = 16426
+            Enabled = True
+          end        
+          item
+            Command = rxgcOptimizeColumnsWidth
+            ShortCut = 16427
+            Enabled = True
+          end        
+          item
+            Command = rxgcCopyCellValue
+            ShortCut = 16451
+            Enabled = True
+          end>
+        FooterOptions.DrawFullLine = False
+        SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+        SearchOptions.FromStart = False
+        OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+        Align = alLeft
+        Color = clWindow
+        DrawFullLine = False
+        FocusColor = clRed
+        SelectedColor = clHighlight
+        GridLineStyle = psSolid
+        DataSource = dsOrders
+        Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+        TabOrder = 0
+      end
+      object Panel1: TPanel
+        Left = 504
+        Height = 382
+        Top = 0
+        Width = 519
+        Align = alClient
+        ClientHeight = 382
+        ClientWidth = 519
+        TabOrder = 1
+        object RxDBGrid3: TRxDBGrid
+          Left = 1
+          Height = 236
+          Top = 1
+          Width = 517
+          ColumnDefValues.BlobText = '(данные)'
+          TitleButtons = False
+          AutoSort = True
+          Columns = <          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'IdDoc'
+              Width = 100
+              FieldName = 'IdDoc'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'IdChar'
+              Width = 100
+              FieldName = 'IdChar'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'IdGoods'
+              Width = 100
+              FieldName = 'IdGoods'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'Quantity'
+              Width = 90
+              FieldName = 'Quantity'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'intID'
+              FieldName = 'intID'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end>
+          KeyStrokes = <          
+            item
+              Command = rxgcShowFindDlg
+              ShortCut = 16454
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowColumnsDlg
+              ShortCut = 16471
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowFilterDlg
+              ShortCut = 16468
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowSortDlg
+              ShortCut = 16467
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowQuickFilter
+              ShortCut = 16465
+              Enabled = True
+            end          
+            item
+              Command = rxgcHideQuickFilter
+              ShortCut = 16456
+              Enabled = True
+            end          
+            item
+              Command = rxgcSelectAll
+              ShortCut = 16449
+              Enabled = True
+            end          
+            item
+              Command = rxgcDeSelectAll
+              ShortCut = 16429
+              Enabled = True
+            end          
+            item
+              Command = rxgcInvertSelection
+              ShortCut = 16426
+              Enabled = True
+            end          
+            item
+              Command = rxgcOptimizeColumnsWidth
+              ShortCut = 16427
+              Enabled = True
+            end          
+            item
+              Command = rxgcCopyCellValue
+              ShortCut = 16451
+              Enabled = True
+            end>
+          FooterOptions.DrawFullLine = False
+          SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+          SearchOptions.FromStart = False
+          OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+          Align = alTop
+          Color = clWindow
+          DrawFullLine = False
+          FocusColor = clRed
+          SelectedColor = clHighlight
+          GridLineStyle = psSolid
+          DataSource = dsTaskGoods
+          Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+          TabOrder = 0
+        end
+        object RxDBGrid4: TRxDBGrid
+          Left = 1
+          Height = 139
+          Top = 242
+          Width = 517
+          ColumnDefValues.BlobText = '(данные)'
+          TitleButtons = False
+          AutoSort = True
+          Columns = <          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'OinID'
+              Width = 40
+              FieldName = 'OinID'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end          
+            item
+              Title.Alignment = taCenter
+              Title.Orientation = toHorizontal
+              Title.Caption = 'GS1_DATAMATRIX'
+              Width = 500
+              FieldName = 'GS1_DATAMATRIX'
+              EditButtons = <>
+              Filter.DropDownRows = 0
+              Filter.EmptyValue = '(Пусто)'
+              Filter.NotEmptyValue = '(Не пусто)'
+              Filter.AllValue = '(Все значения)'
+              Filter.EmptyFont.Style = [fsItalic]
+              Filter.ItemIndex = -1
+              Footers = <>
+            end>
+          KeyStrokes = <          
+            item
+              Command = rxgcShowFindDlg
+              ShortCut = 16454
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowColumnsDlg
+              ShortCut = 16471
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowFilterDlg
+              ShortCut = 16468
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowSortDlg
+              ShortCut = 16467
+              Enabled = True
+            end          
+            item
+              Command = rxgcShowQuickFilter
+              ShortCut = 16465
+              Enabled = True
+            end          
+            item
+              Command = rxgcHideQuickFilter
+              ShortCut = 16456
+              Enabled = True
+            end          
+            item
+              Command = rxgcSelectAll
+              ShortCut = 16449
+              Enabled = True
+            end          
+            item
+              Command = rxgcDeSelectAll
+              ShortCut = 16429
+              Enabled = True
+            end          
+            item
+              Command = rxgcInvertSelection
+              ShortCut = 16426
+              Enabled = True
+            end          
+            item
+              Command = rxgcOptimizeColumnsWidth
+              ShortCut = 16427
+              Enabled = True
+            end          
+            item
+              Command = rxgcCopyCellValue
+              ShortCut = 16451
+              Enabled = True
+            end>
+          FooterOptions.DrawFullLine = False
+          SearchOptions.QuickSearchOptions = [loCaseInsensitive, loPartialKey]
+          SearchOptions.FromStart = False
+          OptionsRx = [rdgAllowColumnsForm, rdgAllowDialogFind, rdgAllowQuickFilter]
+          Align = alClient
+          Color = clWindow
+          DrawFullLine = False
+          FocusColor = clRed
+          SelectedColor = clHighlight
+          GridLineStyle = psSolid
+          DataSource = dsMarcCodes
+          Options = [dgEditing, dgTitles, dgIndicator, dgColumnResize, dgColumnMove, dgColLines, dgRowLines, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+          TabOrder = 1
+        end
+        object Splitter1: TSplitter
+          Cursor = crVSplit
+          Left = 1
+          Height = 5
+          Top = 237
+          Width = 517
+          Align = alTop
+          ResizeAnchor = akTop
+        end
+      end
+    end
   end
   object rxGoods: TRxMemoryData
     FieldDefs = <    
@@ -244,5 +733,245 @@ object frmTSDOrderFrame: TfrmTSDOrderFrame
     DataSet = rxGoods
     Left = 120
     Top = 46
+  end
+  object rxOrders: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'IdDoc'
+        DataType = ftString
+        Size = 100
+      end    
+      item
+        Name = 'Date'
+        DataType = ftDateTime
+      end    
+      item
+        Name = 'TaskType'
+        DataType = ftString
+        Size = 100
+      end    
+      item
+        Name = 'DateOrder'
+        DataType = ftDateTime
+      end    
+      item
+        Name = 'FC'
+        DataType = ftString
+        Size = 10
+      end    
+      item
+        Name = 'IdSclad'
+        DataType = ftString
+        Size = 100
+      end    
+      item
+        Name = 'LastOrder'
+        DataType = ftString
+        Size = 100
+      end>
+    AfterOpen = rxOrdersAfterOpen
+    AfterClose = rxOrdersAfterOpen
+    PacketRecords = 0
+    Left = 264
+    Top = 172
+    object rxOrdersIdDoc: TStringField
+      FieldKind = fkData
+      FieldName = 'IdDoc'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object rxOrdersDate: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'Date'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object rxOrdersTaskType: TStringField
+      FieldKind = fkData
+      FieldName = 'TaskType'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object rxOrdersDateOrder: TDateTimeField
+      FieldKind = fkData
+      FieldName = 'DateOrder'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object rxOrdersFC: TStringField
+      FieldKind = fkData
+      FieldName = 'FC'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 10
+    end
+    object rxOrdersIdSclad: TStringField
+      FieldKind = fkData
+      FieldName = 'IdSclad'
+      Index = 5
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object rxOrdersLastOrder: TStringField
+      FieldKind = fkData
+      FieldName = 'LastOrder'
+      Index = 6
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+  end
+  object dsOrders: TDataSource
+    DataSet = rxOrders
+    Left = 224
+    Top = 172
+  end
+  object rxTaskGoods: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'IdDoc'
+        DataType = ftString
+        Size = 100
+      end    
+      item
+        Name = 'IdChar'
+        DataType = ftString
+        Size = 100
+      end    
+      item
+        Name = 'IdGoods'
+        DataType = ftString
+        Size = 100
+      end    
+      item
+        Name = 'Quantity'
+        DataType = ftString
+        Size = 20
+      end    
+      item
+        Name = 'intID'
+        DataType = ftAutoInc
+      end>
+    AfterOpen = rxTaskGoodsAfterClose
+    AfterClose = rxTaskGoodsAfterClose
+    OnFilterRecord = rxTaskGoodsFilterRecord
+    PacketRecords = 0
+    Left = 814
+    Top = 77
+    object rxTaskGoodsIdDoc: TStringField
+      FieldKind = fkData
+      FieldName = 'IdDoc'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object rxTaskGoodsIdChar: TStringField
+      FieldKind = fkData
+      FieldName = 'IdChar'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object rxTaskGoodsIdGoods: TStringField
+      FieldKind = fkData
+      FieldName = 'IdGoods'
+      Index = 2
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 100
+    end
+    object rxTaskGoodsQuantity: TStringField
+      FieldKind = fkData
+      FieldName = 'Quantity'
+      Index = 3
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object rxTaskGoodsintID: TAutoIncField
+      FieldKind = fkData
+      FieldName = 'intID'
+      Index = 4
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+  end
+  object rxMarcCodes: TRxMemoryData
+    FieldDefs = <    
+      item
+        Name = 'OinID'
+        DataType = ftInteger
+      end    
+      item
+        Name = 'GS1_DATAMATRIX'
+        DataType = ftString
+        Size = 500
+      end>
+    OnFilterRecord = rxMarcCodesFilterRecord
+    PacketRecords = 0
+    Left = 808
+    Top = 312
+    object rxMarcCodesOinID: TLongintField
+      FieldKind = fkData
+      FieldName = 'OinID'
+      Index = 0
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+    end
+    object rxMarcCodesGS1_DATAMATRIX: TStringField
+      FieldKind = fkData
+      FieldName = 'GS1_DATAMATRIX'
+      Index = 1
+      LookupCache = False
+      ProviderFlags = [pfInUpdate, pfInWhere]
+      ReadOnly = False
+      Required = False
+      Size = 500
+    end
+  end
+  object dsTaskGoods: TDataSource
+    DataSet = rxTaskGoods
+    Left = 776
+    Top = 77
+  end
+  object dsMarcCodes: TDataSource
+    DataSet = rxMarcCodes
+    Left = 744
+    Top = 312
   end
 end
