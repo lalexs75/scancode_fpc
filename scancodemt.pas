@@ -154,6 +154,7 @@ type
     procedure StartServer;
     procedure StopServer;
     procedure ProcessMTQueue;
+    procedure SendConfirmOrder(const Rec: TMTQueueRecord; ABlock:string);
 
     property MTLibrary:TScancodeMTLibrary read FMTLibrary;
     property Active:boolean read FActive write SetActive;
@@ -503,6 +504,18 @@ begin
     InternalProcessMessage(Rec);
     Rec.Free;
   end;
+end;
+
+procedure TScancodeMT.SendConfirmOrder(const Rec: TMTQueueRecord; ABlock: string
+  );
+var
+  C: TOredrConfirm;
+begin
+  C:=TOredrConfirm.Create;
+  C.Confirm:=1;
+  C.Block:=ABlock;
+  SendAnswer('PutDocum', Rec, C);
+  C.Free;
 end;
 
 { TScancodeMTLibrary }

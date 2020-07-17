@@ -376,8 +376,65 @@ type
     property Tasks:TTasks read FTasks;
   end;
 
+  { TOredrConfirm }
+
+  TOredrConfirm = class(TXmlSerializationObject)
+  private
+    FBlock: string;
+    FConfirm: Integer;
+    procedure SetBlock(AValue: string);
+    procedure SetConfirm(AValue: Integer);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+    function RootNodeName:string; override;
+  public
+    destructor Destroy; override;
+  published
+    property Confirm:Integer read FConfirm write SetConfirm;
+    property Block:string read FBlock write SetBlock;
+  end;
+
 implementation
 uses base64;
+
+{ TOredrConfirm }
+
+procedure TOredrConfirm.SetBlock(AValue: string);
+begin
+  if FBlock=AValue then Exit;
+  FBlock:=AValue;
+  ModifiedProperty('Block');
+end;
+
+procedure TOredrConfirm.SetConfirm(AValue: Integer);
+begin
+  if FConfirm=AValue then Exit;
+  FConfirm:=AValue;
+  ModifiedProperty('Confirm');
+end;
+
+procedure TOredrConfirm.InternalRegisterPropertys;
+begin
+  inherited InternalRegisterPropertys;
+  RegisterProperty('Confirm', 'confirm', [xsaRequared], '', -1, -1);
+  RegisterProperty('Block', 'block', [xsaRequared], '', -1, -1);
+end;
+
+procedure TOredrConfirm.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+function TOredrConfirm.RootNodeName: string;
+begin
+  Result:='Verify';
+end;
+
+destructor TOredrConfirm.Destroy;
+begin
+  inherited Destroy;
+end;
 
 { TMarkedCodeList }
 

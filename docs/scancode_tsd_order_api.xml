@@ -51,6 +51,12 @@
       </element><element name="TMarkedCode"><short>token – код маркировки</short>
       </element><element name="TMarkedCode.GS1_DATAMATRIX"><short>GS1_DATAMATRIX – значение кода марки, считанный с этикетки сканером</short>
       </element>
+    <element name="TOredrConfirm"><short>подтверждения отправленных ордеров</short><descr>Ответ на команду 6 (PutDocum
+</descr>
+      </element><element name="TOredrConfirm.Confirm"><short>confirm – признак что данных приняты (распознан заголовок пакета) и XMLпринята ТУП.</short><descr>(значения: 1 или 0)
+</descr>
+      </element><element name="TOredrConfirm.Block"><short>block – номер посылки (из заголовка пакета данных, в котором были отправлены ордера)</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>
