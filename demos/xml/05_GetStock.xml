@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Stocks>
+  <Stock barcode="148249978" id_sclad="6f87e83f-722c-11df-b336-0011955cba6b" name="Центральный склад">
+    <Room barcode="148249978" id_room="6f87e842-722c-11df-b336-0011955cba6b" name="Продукты">
+      <Cell barcode="262838176" id_cell="c5bcca8d-44ca-11e0-af0b-0015e9b8c48d" name="П-А2-12"/>
+      <Cell barcode="262838177" id_cell="4dd6daf4-44ca-11e0-af0b-0015e9b8c48d" name="П-А3"/>
+    </Room>
+  </Stock>
+</Stocks>

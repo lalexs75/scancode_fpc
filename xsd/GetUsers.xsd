@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Information">
+    <xs:annotation><xs:documentation>Корневой элемент, может быть только один в файле</xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:sequence minOccurs="1" maxOccurs="1">
+        <xs:element name="Rights">
+          <xs:annotation><xs:documentation>Описание набора доступных прав пользователя</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:sequence >
+              <xs:element name="Record"  minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="Name" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>Псевдоним типа документа</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="Id" type="xs:integer" use="required">
+                    <xs:annotation><xs:documentation>Код типа документа внутри группы</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="groupId" type="xs:integer" use="required">
+                    <xs:annotation><xs:documentation>Код группы документов, с которыми пользователь может работать. Обычно совпадает с первой цифрой (символом) значения атрибута Id.</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+
+        <xs:element name="Login">
+          <xs:annotation><xs:documentation>Учетные данные пользователей (список)</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:sequence >
+              <xs:element name="Record"  minOccurs="0" maxOccurs="unbounded">
+                <xs:complexType>
+                  <xs:attribute name="Login" type="xs:string" use="required">
+                      <xs:annotation><xs:documentation>Строковой идентификатор пользователя (имя)</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="Id" type="String32" use="required">
+                      <xs:annotation><xs:documentation>УИ пользователя во внешней БД. используется в заголовке пакетов данных при обмене с ТУП (не более 32 символов).</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="Pass" type="xs:string" use="required">
+                      <xs:annotation><xs:documentation>пароль пользователя в кодировке Base64.&#10;Cостоит из 2х частей, разделенных запятой:&#10;* контрольная сумма SHA1 пароля, закодированная в Base64&#10;* контрольная сумма SHA1 пароля В ВЕРХНЕМ РЕГИСТРЕ,&#10;закодированная в Base64&#10;ПРИМЕР:&#10;"qUqP5cyxm6YcTAhz05Hph5gvu9M=,mEgW/TKWIoduFJB2NCZObzMun7M=</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="Rights" type="xs:string" use="required">
+                      <xs:annotation><xs:documentation>список кодов групп документов через разделитель, с которымиможет работать пользователь, т. е. документы только этих групп и их подгрупп пользователь увидит в ТСД.&#10;При отсутствии пользователю будет недоступен интерфейс главного окна программы.</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="createprod" type="xs:string">
+                      <xs:annotation><xs:documentation>список кодов групп документов, в которых пользователь может создавать товар</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="addprod" type="xs:string">
+                      <xs:annotation><xs:documentation>список кодов групп документов, в которые пользователь может добавлять товары из локальной или удаленной БД</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="create_free_collect" type="xs:string">
+                      <xs:annotation><xs:documentation>список кодов групп документов, для которых пользователь может создавать документы «Свободный набор»</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    
+          </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+    <xs:simpleType name="String32">
+    <xs:restriction base="xs:string">
+      <xs:maxLength value="32" />
+      <xs:minLength value="1" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

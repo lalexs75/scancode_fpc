@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Stocks">
+    <xs:annotation><xs:documentation>корневой элемент файла (может быть только один)</xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Stock" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation><xs:documentation>склад</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Room" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation><xs:documentation>Room – помещение внутри склада (может быть несколько, а может и не быть вообще)</xs:documentation></xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="Cell" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation><xs:documentation>складская ячейка</xs:documentation></xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="id_cell" type="xs:string" use="required">
+                          <xs:annotation><xs:documentation>УИ ячейки склада</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="name" type="xs:string" use="required">
+                          <xs:annotation><xs:documentation>наименование ячейки</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="barcode" type="xs:string">
+                          <xs:annotation><xs:documentation>ШК ячейки</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="id_room" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>УИ помещения склада</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>наименование помещения</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="barcode" type="xs:string">
+                    <xs:annotation><xs:documentation>ШК помещения</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id_sclad" type="xs:string" use="required">
+              <xs:annotation><xs:documentation>УИ идентификатор склада</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="name" type="xs:string" use="required">
+              <xs:annotation><xs:documentation>наименование склада</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="barcode" type="xs:string">
+              <xs:annotation><xs:documentation>ШК склада</xs:documentation></xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

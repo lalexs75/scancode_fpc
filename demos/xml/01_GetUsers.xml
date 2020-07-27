@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Information>
+  <Rights>
+    <Record Name="Заказ поставщику" Id="101" groupId="1"/>
+    <Record Name="Заказ клиента" Id="202" groupId="2"/>
+    <Record Name="Инвентаризация" Id="303" groupId="3"/>
+  </Rights>
+  <Login>
+    <Record Login="Орлов Александр Владимирович" Id="8368e8b098294ae292bd8d4ddd658d9a" Pass="" Rights="1/2/3/4/5" createprod="1/2/3/4" addprod="1/2/3/4" create_free_collect="1/2/3/4"/>
+  </Login>
+</Information>
