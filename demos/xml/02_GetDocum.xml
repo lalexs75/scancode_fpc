@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Documents>
+  <Task barcode="24088173807114864056976259793525333272" date="18.09.2018 0:00:00" as_="1" control="0" type="103" nomer="00-00000001" id_doc="121f36a9-837d-11e8-ba4d-50465d72dd18" id_zone="" id_room="148249978629133692556415878208956447339" id_sclad="148249978153764717470829852647692745323">
+    <record id_char="b02e2809-720f-11df-b436-0015e92f2802" id_goods="bd72d913-55bc-11d9-848a-00112f43529a" quantity="1">
+      <property id_pack="dff7f708-7a0b-11df-b33a-0011955cba6b" quantity="1">
+        <serial quantity="1" id_serial="">
+          <cells cell="305982541796071806599496327226965408363" celladdress="ОСТ3-2-1"/>
+        </serial>
+      </property>
+      <marked_codes>
+        <token GS1_DATAMATRIX="KDAxKTAyOTAwMDAwMDQy=" pack="KDAwKTA0NjAxMjM0N=="/>
+        <token GS1_DATAMATRIX="KDAxKTAyOTAwMDAwMDQ=" pack="KDAwKTA0NjAxMjM0=="/>
+      </marked_codes>
+    </record>
+  </Task>
+</Documents>
