@@ -5,7 +5,8 @@ unit frmUsersAndRightUnit;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, StdCtrls, ExtCtrls, DB, rxdbgrid, rxmemds, scancode_user_api;
+  Classes, SysUtils, Forms, Controls, StdCtrls, ExtCtrls, DB, rxdbgrid, rxmemds,
+  scancode_user_api, AbstractSerializationObjects;
 
 type
 
@@ -48,7 +49,7 @@ type
   end;
 
 implementation
-uses scGlobal, ScancodeMT_utils;
+uses scGlobal, ScancodeMT_utils, GetUsers;
 
 {$R *.lfm}
 
@@ -101,19 +102,28 @@ var
   S: String;
   i: Integer;
   R: TUserRight;
+  LUI: TInformation;
+  L1: TInformation_Login_Record;
 begin
   if Assigned(UI) then
     Result:=UI
   else
     Result:=TUserInformation.Create;
 
+  LUI:=TInformation.Create;
   rxUsers.First;
   while not rxUsers.EOF do
   begin
     L:=Result.Logins.Records.AddItem;
+    L1:=LUI.Login.Record1.AddItem;
+
     L.Id:=rxUsersID.AsString;
     L.Login:=rxUsersLogin.AsString;
     L.SetPassword(rxUsersPassword.AsString);
+
+    L1.Id:=rxUsersID.AsString;
+    L1.Login:=rxUsersLogin.AsString;
+    L1.Pass:=L.Pass;
 
     S:='';
     for i:=1 to 7 do
@@ -127,6 +137,11 @@ begin
     L.CreateProd:=rxUsersCreateProd.AsString;
     L.AddProd:=rxUsersAddProd.AsString;
     L.CreateFreeCollect:=rxUsersCreateFreeCollect.AsString;
+
+    L1.Rights:=S;
+    L1.createprod:=rxUsersCreateProd.AsString;
+    L1.addprod:=rxUsersAddProd.AsString;
+    L1.create_free_collect:=rxUsersCreateFreeCollect.AsString;
     rxUsers.Next;
   end;
   rxUsers.First;
@@ -142,6 +157,9 @@ begin
     rxRight.Next;
   end;
   rxRight.First;
+
+  LUI.SaveToFile(ExportFolder + 'sc_ui_11.xml');
+  LUI.Free;
 end;
 
 function TfrmUsersAndRightFrame.GetUserName(AUserGUID: string): string;

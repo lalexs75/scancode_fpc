@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, ExtCtrls, DB,
-  scancode_document_api, rxmemds, rxdbgrid, Graphics;
+  scancode_document_api, AbstractSerializationObjects, rxmemds, rxdbgrid,
+  Graphics;
 
 type
 
@@ -50,11 +51,11 @@ type
 //    procedure DisableTaskScroll;
 //    procedure DisableTaskScroll;
     procedure GenerateData;
-    function CreateDocsList(Docs: TDocuments; AUserName:string; ACountDoc:Integer): TDocuments;
+    function CreateDocsList(Docs: scancode_document_api.TDocuments; AUserName:string; ACountDoc:Integer): scancode_document_api.TDocuments;
   end;
 
 implementation
-uses scGlobal, ScancodeMT_utils;
+uses scGlobal, ScancodeMT_utils, GetDocum;
 
 {$R *.lfm}
 
@@ -62,7 +63,7 @@ uses scGlobal, ScancodeMT_utils;
 
 procedure TfrmDocumentsFrame.Button1Click(Sender: TObject);
 var
-  Docs: TDocuments;
+  Docs: scancode_document_api.TDocuments;
 begin
   Docs:=CreateDocsList(nil, '', 0);
   Docs.SaveToFile(ExportFolder + 'Documents.xml');
@@ -121,18 +122,23 @@ begin
   rxGoods.First;
 end;
 
-function TfrmDocumentsFrame.CreateDocsList(Docs: TDocuments; AUserName: string;
-  ACountDoc: Integer): TDocuments;
+function TfrmDocumentsFrame.CreateDocsList(Docs: scancode_document_api.TDocuments; AUserName: string;
+  ACountDoc: Integer): scancode_document_api.TDocuments;
 var
   D: TDocument;
   G: TGood;
   GC: TGoodCell;
+
+  DD:GetDocum.TDocuments;
+  D1: TDocuments_Task;
+  G1: TDocuments_Task_record;
 begin
   if Assigned(Docs) then
     Result:=Docs
   else
-    Result:=TDocuments.Create;
+    Result:=scancode_document_api.TDocuments.Create;
 
+  DD:=GetDocum.TDocuments.Create;
   //Загрузим документы
   rxTasks.First;
   while not rxTasks.EOF do
@@ -154,6 +160,18 @@ begin
       D.Task.IdRoom:=rxTasksIdRoom.AsString;
       D.Task.IdStock:=rxTasksIdStock.AsString;
 
+      D1:=DD.Task.AddItem;
+      D1.barcode:=rxTasksBarcode.AsString;
+      D1.Date:=rxTasksDate.AsString;
+      D1.as_:=Ord(rxTasksUseAdress.AsBoolean);
+      D1.Control:=Ord(rxTasksControl.AsBoolean);
+      D1.type1:=rxTasksTypeDoc.AsString;
+      D1.Nomer:=rxTasksNomer.AsString;
+      D1.id_doc:=rxTasksIdDoc.AsString;
+      D1.id_zone:=rxTasksIdZone.AsString;
+      D1.id_room:=rxTasksIdRoom.AsString;
+      D1.id_sclad:=rxTasksIdStock.AsString;
+
       rxGoods.First;
       while not rxGoods.EOF do
       begin
@@ -161,6 +179,11 @@ begin
         //G.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
         G.IdGoods:=rxGoodsID_GOODS.AsString;
         G.Quantity:=rxGoodsQuantity.AsString;
+
+        G1:=D1.record1.AddItem;
+        //G.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
+        G1.id_goods:=rxGoodsID_GOODS.AsString;
+        G1.quantity:=rxGoodsQuantity.AsString;
 
         //G.GoodProperty.Quantity:='1';
         //G.GoodProperty.IdPack:='dff7f708-7a0b-11df-b33a-0011955cba6b';
@@ -183,6 +206,8 @@ begin
 
 
   rxTasks.First;
+  DD.SaveToFile(ExportFolder + 'Documents_1.xml');
+  DD.Free;
 end;
 
 end.

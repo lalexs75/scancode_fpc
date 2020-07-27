@@ -7,6 +7,7 @@
     <CompilerOptions>
       <Version Value="11"/>
       <SearchPaths>
+        <OtherUnitFiles Value="api"/>
         <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
       </SearchPaths>
     </CompilerOptions>
@@ -46,6 +47,22 @@
       <Item>
         <Filename Value="scancodemt_utils.pas"/>
         <UnitName Value="ScancodeMT_utils"/>
+      </Item>
+      <Item>
+        <Filename Value="api/GetUsers.pas"/>
+        <UnitName Value="GetUsers"/>
+      </Item>
+      <Item>
+        <Filename Value="api/GetStock.pas"/>
+        <UnitName Value="GetStock"/>
+      </Item>
+      <Item>
+        <Filename Value="api/GetDocum.pas"/>
+        <UnitName Value="GetDocum"/>
+      </Item>
+      <Item>
+        <Filename Value="api/GetData.pas"/>
+        <UnitName Value="GetData"/>
       </Item>
     </Files>
     <LazDoc Paths="docs"/>

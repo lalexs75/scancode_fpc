@@ -295,10 +295,10 @@ begin
   if Rec.Command = 'GetUsers' then //Получить список пользователей
     InternalSendUserInfo(Rec)
   else
-  if Rec.Command = 'GetDocum' then // Получить документы
+  if Rec.Command = 'GetDocum' then // 2 - Получить документы
     InternalSendDocsList(Rec)
   else
-  if Rec.Command = 'GetData' then // 3 - Получить список всех товаров
+  if Rec.Command = 'GetData' then  // 3 - Получить список всех товаров
     InternalSendGetData(Rec)
   else
   if Rec.Command = 'PutDocum' then // Передача ордеров
@@ -387,11 +387,12 @@ begin
 
   if Rec.DocType = '0' then
   begin
+    FQuery1:=nil;
 (*  Orders:=TOrders.Create;
-  if Assigned(FOnOrdersList) then
+{  if Assigned(FOnOrdersList) then
     FOnOrdersList(Self, Rec, Orders);
-  SendAnswer('PutDocum', Rec, nil);
-  Orders.Free;*)
+  SendAnswer('PutDocum', Rec, nil);}
+  Orders.Free; *)
   end
   else
   begin

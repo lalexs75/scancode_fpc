@@ -5,7 +5,8 @@ unit frmStocksUnit;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, ExtCtrls, StdCtrls, DB, rxdbgrid, rxmemds, scancode_stock_api;
+  Classes, SysUtils, Forms, Controls, ExtCtrls, StdCtrls, DB, rxdbgrid, rxmemds,
+  scancode_stock_api, AbstractSerializationObjects;
 
 type
 
@@ -50,11 +51,11 @@ type
 
   public
     procedure GenerateData;
-    function CreateStocksInfo(SI:TStocks):TStocks;
+    function CreateStocksInfo(SI:TStocks):scancode_stock_api.TStocks;
   end;
 
 implementation
-uses scGlobal;
+uses scGlobal, GetStock;
 
 {$R *.lfm}
 
@@ -90,7 +91,7 @@ end;
 
 procedure TfrmStocksFrame.Button1Click(Sender: TObject);
 var
-  FStocks: TStocks;
+  FStocks: scancode_stock_api.TStocks;
 begin
   FStocks:=CreateStocksInfo(nil);
   FStocks.SaveToFile(ExportFolder + 'Stocks.xml');
@@ -137,16 +138,22 @@ begin
   rxStocks.First;
 end;
 
-function TfrmStocksFrame.CreateStocksInfo(SI: TStocks): TStocks;
+function TfrmStocksFrame.CreateStocksInfo(SI: scancode_stock_api.TStocks): scancode_stock_api.TStocks;
 var
   S: TStock;
-  R: TRoom;
-  C: TCell;
+  R: scancode_stock_api.TRoom;
+  C: scancode_stock_api.TCell;
+
+  SS:GetStock.TStocks;
+  S1: TStocks_Stock;
+  R1: TStocks_Stock_Room;
+  C1: TStocks_Stock_Room_Cell;
 begin
   if Assigned(SI) then
     Result:=SI
   else
-    Result:=TStocks.Create;
+    Result:=scancode_stock_api.TStocks.Create;
+  SS:=GetStock.TStocks.Create;
   rxStocks.First;
   while not rxStocks.EOF do
   begin
@@ -154,6 +161,11 @@ begin
     S.IdStock:=rxStocksid_stock.AsString;
     S.Barcode:=rxStocksbarcode.AsString;
     S.Name:=rxStocksname.AsString;
+
+    S1:=SS.Stock.AddItem;
+    S1.id_sclad:=rxStocksid_stock.AsString;
+    S1.barcode:=rxStocksbarcode.AsString;
+    S1.name:=rxStocksname.AsString;
 
     rxRoom.First;
     while not rxRoom.EOF do
@@ -163,6 +175,11 @@ begin
       R.Barcode:=rxRoombarcode.AsString;
       R.Name:=rxRoomname.AsString;
 
+      R1:=S1.Room.AddItem;
+      R1.id_room:=rxRoomid_room.AsString;
+      R1.barcode:=rxRoombarcode.AsString;
+      R1.name:=rxRoomname.AsString;
+
       rxCell.First;
       while not rxCell.EOF do
       begin
@@ -170,6 +187,11 @@ begin
         C.IdCell:=rxCellid_cell.AsString;
         C.Barcode:=rxCellbarcode.AsString;
         C.Name:=rxCellname.AsString;
+
+        C1:=R1.Cell.AddItem;
+        C1.id_cell:=rxCellid_cell.AsString;
+        C1.barcode:=rxCellbarcode.AsString;
+        C1.name:=rxCellname.AsString;
         rxCell.Next;
       end;
 
@@ -178,6 +200,9 @@ begin
     rxStocks.Next;
   end;
   rxStocks.First;
+
+  SS.SaveToFile(ExportFolder + 'Stocks_1.xml');
+  SS.Free;
 end;
 
 end.

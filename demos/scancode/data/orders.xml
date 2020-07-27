@@ -1,14 +1,2 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<Orders>
-  <Task id_sclad="" type="" fc="0" id_doc="FFFFFFFF-FFFF-FFFF-FFFB-000000005515" date="16.07.2020 15:05:00" date_order="16.07.2020 15:08:49" last_order="0">
-    <record id_char="" id_goods="FFFFFFFF-FFFF-FFFF-FFFA-000000001084">
-      <property id_pack="">
-        <serial quantity="2" />
-      </property>
-      <marked_codes>
-        <token GS1_DATAMATRIX="MDEwMjkwMDAwMDM3NzU3ODIxQnVLLkpyTmxQbXMtdB05MTgwMzkdOTIva1ZpMWdsQXdvYzhMNklz&#10;bEgranorVE1OV2J0NmN6ZXdqLzFGWGVTbjgxaTdjZHk3VUk2VnlkbEc1TnB1bzEvekFQellqS0Y1&#10;WW9YdXJvamg4RWJSQT09" />
-        <token GS1_DATAMATRIX="MDEwMjkwMDAwMDM3NzU3ODIxJnJ3Y1FRSlZNV2lYYh05MTgwMzkdOTJUOE10VjNYTDlpRDg4UnFn&#10;MHBEdGpSeTNkc3VZQlU4TzdwM01ONVVETnpUNmRzRDBodjRQUnVKTEs1cUNtd2RkL2xlMkFvZ1BB&#10;UzFab1RzeENCd3hTZz09" />
-      </marked_codes>
-    </record>
-  </Task>
-</Orders>
+<?xml version='1.0' encoding='UTF-8' ?><Orders>
+<Task id_sclad="" type="" fc="0" id_doc="FFFFFFFF-FFFF-FFFF-FFFB-000000005548" date="22.07.2020 08:53:03" date_order="22.07.2020 08:55:35" last_order="0"><record id_char="" id_goods="FFFFFFFF-FFFF-FFFF-FFFA-000000001084"><property id_pack=""><serial quantity="7" /></property><marked_codes><token GS1_DATAMATRIX="MDEwMjkwMDAwMDM3NzU3ODIxTHA4VHo4LTBlP1VwTB05MTAwMkEdOTJhekU3UjM0bjJoQldZSXdq&#10;WSt3REFXUkUyNnczN0tNSjF4MjFoMTNsY1VSMVFTRzJKUndYeUtxNFVlQkErN1lUYlBSKzBoci9X&#10;QTVQM3ZVNFd5Qll4dz09" /><token GS1_DATAMATRIX="MDEwMjkwMDAwMDM3NzU3ODIxVmtlZ0M2bjJZU0ZhVB05MTAwMkEdOTJybjZEdTJOZ3MxNWcvN1FW&#10;MXhvSGtGN3NvNnoyOGd0UVkvbnM5ZzExNytDejAvc2ZWZjJqdXZTNU1kNXh6MHpXcytTa0VWQXFh&#10;QmxkdDBheWtVaFMzUT09" /><token GS1_DATAMATRIX="MDEwMjkwMDAwMDM3NzU3ODIxJ01sQXVnO1VGYSh6KB05MTAwMkEdOTJwSExOMkJaQ0dBclZSenA0&#10;QUxwellkc2g4cG1ZWlRQYVd0YWMxUEdpb21mbHBDeDhYT3hyZGVIcjQ5cUZ4T1RtT0ZjeEltT3Bo&#10;SVFrK3ZYN2RDckNMdz09" /><token GS1_DATAMATRIX="MDEwMjkwMDAwMDM3NzU3ODIxZj5fKTZxQj5kO0tqRB05MTAwMkEdOTJTOFZXWWdmalpyV3laRmpK&#10;b1dyWnZ5MVVqbjZDTVJDQkhCd0tHMURIQnBWT0lFSmwzc0JkOEY2TmFOV0RrSFJFNWVHUG1aayt2&#10;c3VBbkRyWnFXdVpGdz09" /><token GS1_DATAMATRIX="MDEwMjkwMDAwMDM3NzU3ODIxczFvSFpvV1NEcHpESx05MTAwMkEdOTJpVHMvTnBJa1M2QlRqZVZv&#10;clBpUW8xK01TTjQxYlVQN3JaL3dOQTBzc0FHVDdiN0FaQjRuVXgrQ0QwQWJ5NlVsb2JWejhmUWFR&#10;dGsrcDFOZGkwZ2RCUT09" /><token GS1_DATAMATRIX="MDEwMjkwMDAwMDM3NzU3ODIxNidVQiVSeFRMbWhPUB05MTAwMkEdOTJiUjdXYkY4WXJOaUpLdXFR&#10;dS9BcXAyb09BZElIMXluUU9kTG0xRTJQYlBNOWNBQWIzb2V1bWRoeEViSmk0MlRtaTF0MzNyUmkr&#10;dXNQRXlRYzkzaVYwUT09" /><token GS1_DATAMATRIX="MDEwMjkwMDAwMDM3NzU3ODIxaXhkQkdTMS9LVztFQx05MTAwMkEdOTJSK3NMU1pMWndMenVqcHBF&#10;eENvNmpwdlpXb0dQZWJHVUtnbGdtdktGQzBlcm5nSkIyeXZ3eG5LZ3U2M2o0QVhETG5pc2p2dWJu&#10;dWhqYTNLeDRyNncrUT09" /></marked_codes></record></Task></Orders>
