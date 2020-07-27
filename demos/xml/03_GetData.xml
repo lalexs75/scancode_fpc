@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Document>
+  <table>
+    <record id_goods="bd72d913-55bc-11d9-848a-00112f43529a" name="Наименование товара" id_measure="bd72d90f-55bc-11d9-848a-00112f43529a" art="Б- 130005" alco="0" id_vidnomencl="" id_nabor_pack="" img="" bitmap=""/>
+  </table>
+  <characteristics>
+    <record id_owner="bd72d913-55bc-11d9-848a-00112f43529a" relation="видыноменклатуры" name="38,Бежевый, 6, натуральная кожа" id_char="b02e2809-720f-11df-b436-0015e92f2802"/>
+  </characteristics>
+  <packs>
+    <record id_owner="bd72d913-55bc-11d9-848a-00112f43529a" relation="" name="пар" id_pack="bd72d90f-55bc-11d9-848a-00112f43529a" koeff="1"/>
+  </packs>
+  <serials>
+    <record id_owner="e8a71fbf-55bc-11d9-848a-00112f43529a" relation="" name="до 20.12.16" id_serial="0ed9fc88-d9fe-11e4-92f1-0050568b35ac" num="" date="2016-12-20T00:00:00"/>
+  </serials>
+  <barcodes>
+    <record id_goods="bd72d913-55bc-11d9-848a-00112f43529a" id_char="b02e2809-720f-11df-b436-0015e92f2802" id_pack="" barcode="2000000000480"/>
+    <record id_goods="bd72d913-55bc-11d9-848a-00112f43529a" id_char="b02e2809-720f-11df-b436-0015e92f2802" id_pack="f0e40f7b-7390-11df-b338-0011955cba6b" barcode="2000000000497"/>
+    <record id_goods="bd72d913-55bc-11d9-848a-00112f43529a" id_char="b02e2809-720f-11df-b436-0015e92f2802" id_pack="f0e40f7d-7390-11df-b338-0011955cba6b" barcode="2000000000503"/>
+    <record id_goods="bd72d913-55bc-11d9-848a-00112f43529a" id_char="b02e2809-720f-11df-b436-0015e92f2802" id_pack="dff7f708-7a0b-11df-b33a-0011955cba6b" barcode="2000000000510"/>
+  </barcodes>
+  <measures>
+    <record id_measure="bd72d90f-55bc-11d9-848a-00112f43529a" name="пар"/>
+  </measures>
+  <prices>
+    <record id_goods="bd72d913-55bc-11d9-848a-00112f43529a" id_char="b02e2809-720f-11df-b436-0015e92f2802" id_pack="dff7f708-7a0b-11df-b33a-0011955cba6b" price="8166.4" currency="руб"/>
+  </prices>
+  <vidnomencls>
+    <record id_vidnomencl="9c556d55-720f-11df-b436-0015e92f2802" name="Холодильники" is_char="0"  is_serial="0" is_nomer_serial="0" is_date_serial="0"/>
+    <record id_vidnomencl="9c556d52-720f-11df-b436-0015e92f2802" name="Электротовары" is_char="0" is_serial="0" is_nomer_serial="0" is_date_serial="0"/>
+  </vidnomencls>
+  <sclads>
+    <record id_sclad="abf5870d-f5c8-11e2-802f-0015e9b8c48d" name="Домодедовская таможня" is_adress="0" is_order="0"/>
+    <record id_sclad="abf58710-f5c8-11e2-802f-0015e9b8c48d" name="Внуковская таможня" is_adress="0" is_order="0"/>
+  </sclads>
+</Document>

@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Document">
+    <xs:annotation><xs:documentation>корневой элемент (одни на весь файл)</xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="table">
+          <xs:annotation><xs:documentation>список товаров (номенклатуры)</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="record" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation><xs:documentation>запись в справочнике</xs:documentation></xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="id_goods" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>УИ товара</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>наименование товара</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="id_measure" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>УИ базовой ед. измерения</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="art" type="xs:string">
+                    <xs:annotation><xs:documentation>артикул</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="alco" type="xs:integer">
+                    <xs:annotation><xs:documentation>признак алкогольной продукции (значение: 1 или 0)</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="id_vidnomencl" type="xs:string">
+                    <xs:annotation><xs:documentation>УИ вида номенклатуры, ссылка на поле id_owner других справочников с relation=”видыноменклатуры” (т. е. реализуется отношение: один-ко-многим)</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="id_nabor_pack" type="xs:string">
+                    <xs:annotation><xs:documentation>УИ наборов упаковок, ссылка на поле id_owner блока packs (см. ниже) с relation= “наборупаковок”</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="img" type="xs:string">
+                    <xs:annotation><xs:documentation>наименование файла изображения товара</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="bitmap" type="xs:string">
+                    <xs:annotation><xs:documentation>бинарный блок данных — файл изображения товара в кодировке Base64</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="characteristics">
+          <xs:annotation><xs:documentation>справочник характеристик (может быть пустым или отсутствовать, если нет характеристик)</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="record" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation><xs:documentation>запись в справочнике</xs:documentation></xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="id_owner" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>УИ владельца</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="relation" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>указывает на объект владельца</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>характеристика товара</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="id_char" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>УИ характеристики</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="packs">
+          <xs:annotation><xs:documentation>справочник упаковок (может быть пустым или отсутствовать, если нет упаковок)</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="record" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation><xs:documentation>запись в справочнике</xs:documentation></xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="id_owner" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>УИ владельца</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="relation" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>указывает на объект владельца</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>наименование упаковки</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="id_pack" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>УИ упаковки</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="koeff" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>коэффициент пересчета в базовые единицы измерения</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="serials">
+          <xs:annotation><xs:documentation>справочник серий (может быть пустым или отсутствовать, если нет серий)</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="record" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation><xs:documentation>запись в справочнике</xs:documentation></xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="id_owner" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="relation" type="xs:string">
+                    <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>наименование серии</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="id_serial" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>УИ серии</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="num" type="xs:string">
+                    <xs:annotation><xs:documentation>номер серии (последовательность символов, теоретически может быть 255 и более)</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="date" type="xs:dateTime">
+                    <xs:annotation><xs:documentation>дата окончания срока годности товара (в формате: «dd:mm:yyy»)</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="barcodes">
+          <xs:annotation><xs:documentation>справочник штрих кодов (может и отсутствовать, в программе предусмотрен режим работы без штрих кодов, но это бессмысленно на ТСД)</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="record" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation><xs:documentation>запись в справочнике</xs:documentation></xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="id_goods" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>УИ товара</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="id_char" type="xs:string">
+                    <xs:annotation><xs:documentation>УИ характеристики (может отсутствовать или быть пустым )</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="id_pack" type="xs:string">
+                    <xs:annotation><xs:documentation>УИ упаковки (может отсутствовать или быть пустым, тогда этот штрих код для базовой ед. товара)</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="barcode" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>строковое значение штрих кода</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="measures">
+          <xs:annotation><xs:documentation>справочник цен (может отсутствовать или быть пустым )</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="record" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation><xs:documentation>запись в справочнике</xs:documentation></xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="id_measure" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>УИ ед. измерения</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>наименование ед. измерения</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="prices">
+          <xs:annotation><xs:documentation>справочник цен (может отсутствовать или быть пустым )</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="record" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation><xs:documentation>запись в справочнике</xs:documentation></xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="id_goods" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>УИ товара</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="id_char" type="xs:string">
+                    <xs:annotation><xs:documentation>УИ характеристики</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="id_pack" type="xs:string">
+                    <xs:annotation><xs:documentation>УИ упаковки</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="price" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>числовое представление цены</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="currency" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>валюта</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vidnomencls">
+          <xs:annotation><xs:documentation>виды номенклатуры</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="record" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation><xs:documentation>запись в справочнике</xs:documentation></xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="id_vidnomencl" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>УИ вида номенклатуры</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>наименование вида номенклатуры</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="is_char" type="xs:integer">
+                    <xs:annotation><xs:documentation>есть характеристика (1 — да, 0 — нет, по умолчанию 0)</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="is_serial" type="xs:integer">
+                    <xs:annotation><xs:documentation>есть серия (1 — да, 0 - нет, по умолчанию 0)</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="is_nomer_serial" type="xs:integer">
+                    <xs:annotation><xs:documentation>серии в виде номера (последовательности символов) (1 — да, 0 - нет, по умолчанию 0)</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="is_date_serial" type="xs:integer">
+                    <xs:annotation><xs:documentation>серии в виде срока годности (1 — да, 0 - нет, по умолчанию 0)</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="sclads">
+          <xs:annotation><xs:documentation>склады (если используется адресное хранения, то обязательно должен присутсвовать)</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="record" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation><xs:documentation>запись в справочнике</xs:documentation></xs:annotation>
+                <xs:complexType>
+                  <xs:attribute name="id_sclad" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>УИ склада</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="name" type="xs:string" use="required">
+                    <xs:annotation><xs:documentation>наименование склада</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="is_adress" type="xs:integer">
+                    <xs:annotation><xs:documentation>признак использования адресного хранения (1- да, 0 - нет, по умолчанию 0)</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="is_order" type="xs:integer">
+                    <xs:annotation><xs:documentation>признак использования ордерной схемы (1- да, 0 — нет, по умолчанию 0)</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
