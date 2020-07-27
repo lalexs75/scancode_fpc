@@ -1,0 +1,201 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Orders">
+    <xs:annotation><xs:documentation>список ордеров (корневой элемент, может быть только один)</xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="handbooks">
+          <xs:annotation><xs:documentation>– справочник товаров и сопутствующих списков для новых (созданных пользователем и/или добавленных пользователем в ордер/документ)</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="nomencls">
+                <xs:annotation><xs:documentation>список товаров, созданных пользователем на ТСД или загруженных отдельно (по запросу) из ТУП.</xs:documentation></xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="record" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                        <xs:complexType>
+                          <xs:attribute name="id_goods" type="xs:string">
+                            <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                          </xs:attribute>
+                          <xs:attribute name="name" type="xs:string">
+                            <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                          </xs:attribute>
+                          <xs:attribute name="id_measure" type="xs:string">
+                            <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                          </xs:attribute>
+                          <xs:attribute name="id_vidnomencl" type="xs:string">
+                            <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                          </xs:attribute>
+                          <xs:attribute name="img" type="xs:string">
+                            <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                          </xs:attribute>
+                          <xs:attribute name="bitmap" type="xs:string">
+                            <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                          </xs:attribute>
+                        </xs:complexType>
+                      </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="characteristics">
+                <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="record" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation><xs:documentation>список характеристик</xs:documentation></xs:annotation>
+                        <xs:complexType>
+                          <xs:attribute name="id_goods" type="xs:string">
+                            <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                          </xs:attribute>
+                          <xs:attribute name="id_char" type="xs:string">
+                            <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                          </xs:attribute>
+                          <xs:attribute name="name" type="xs:string">
+                            <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                          </xs:attribute>
+                        </xs:complexType>
+                      </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="barcodes">
+                <xs:annotation><xs:documentation>список штрих кодов</xs:documentation></xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="record" minOccurs="0" maxOccurs="unbounded">
+                      <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="id_goods" type="xs:string">
+                          <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="id_char" type="xs:string">
+                          <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="id_pack" type="xs:string">
+                          <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="barcode" type="xs:string">
+                          <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Task" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation><xs:documentation>реквизиты документа, на основании которого создан ордер</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="record" minOccurs="0" maxOccurs="unbounded">
+                <xs:annotation><xs:documentation>товар</xs:documentation></xs:annotation>
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element name="property">
+                      <xs:annotation><xs:documentation>описание свойств</xs:documentation></xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="serial">
+                            <xs:annotation><xs:documentation>серии товаров</xs:documentation></xs:annotation>
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element name="cells" minOccurs="0" maxOccurs="unbounded">
+                                  <xs:annotation><xs:documentation>информация о ячейках товара (может отсутствовать, если не используется адресное хранение)</xs:documentation></xs:annotation>
+                                  <xs:complexType>
+                                    <xs:attribute name="id_cell" type="xs:string">
+                                      <xs:annotation><xs:documentation>УИ ячейки</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                    <xs:attribute name="celladdress" type="xs:string">
+                                      <xs:annotation><xs:documentation>наименование ячейки</xs:documentation></xs:annotation>
+                                    </xs:attribute>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                              <xs:attribute name="quantity" type="xs:string">
+                                <xs:annotation><xs:documentation>количество собранного товара в единицах измерения упаковки (если упаковки нет, т. е. id_pack – пустое значение, то в базовых ед. измерения товара)</xs:documentation></xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="id_serial" type="xs:string">
+                                <xs:annotation><xs:documentation>УИ серии (если выбрана из списка загруженных из ТУП)</xs:documentation></xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="date" type="xs:string">
+                                <xs:annotation><xs:documentation>указанная пользователем дата срока годности (если требуется)</xs:documentation></xs:annotation>
+                              </xs:attribute>
+                              <xs:attribute name="value" type="xs:string">
+                                <xs:annotation><xs:documentation>серия (произвольное значение) введенное пользователем на ТСД (если требуется)</xs:documentation></xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="id_pack" type="xs:string">
+                          <xs:annotation><xs:documentation>УИ упаковки</xs:documentation></xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    
+                    <xs:element name="alco" minOccurs="0">
+                      <xs:annotation><xs:documentation>коды акцизных марок (может отсутствовать)</xs:documentation></xs:annotation>
+                      <xs:complexType>
+                        <xs:attribute name="PDF417" type="xs:string">
+                          <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                        </xs:attribute>
+                        <xs:attribute name="DATAMATRIX" type="xs:string">
+                          <xs:annotation><xs:documentation></xs:documentation></xs:annotation>
+                        </xs:attribute>
+                      </xs:complexType>
+                    </xs:element>
+                    
+                    <xs:element name="marked_codes" minOccurs="0" >
+                      <xs:annotation><xs:documentation>коды маркировок</xs:documentation></xs:annotation>
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="token" minOccurs="0" maxOccurs="unbounded">
+                            <xs:annotation><xs:documentation>код маркировки</xs:documentation></xs:annotation>
+                            <xs:complexType>
+                              <xs:attribute name="GS1_DATAMATRIX" type="xs:string" use="required">
+                                <xs:annotation><xs:documentation>значение кода марки, считанный с этикетки сканером</xs:documentation></xs:annotation>
+                              </xs:attribute>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                  <xs:attribute name="id_goods" type="xs:string">
+                    <xs:annotation><xs:documentation>УИ товара</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                  <xs:attribute name="id_char" type="xs:string">
+                    <xs:annotation><xs:documentation>УИ характеристик</xs:documentation></xs:annotation>
+                  </xs:attribute>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id_doc" type="xs:string">
+              <xs:annotation><xs:documentation>УИ документа</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="date" type="xs:string">
+              <xs:annotation><xs:documentation>дата создания документа (во внешней учетной системе)</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="type" type="xs:string">
+              <xs:annotation><xs:documentation>тип группы документа</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="date_order" type="xs:string">
+              <xs:annotation><xs:documentation>дата создания ордера</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="fc" type="xs:string">
+              <xs:annotation><xs:documentation>признак «свободный набор» (значение: 1 или 0, по умолчанию 0)</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="id_sсlad" type="xs:string">
+              <xs:annotation><xs:documentation>УИ склада</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="last_order" type="xs:integer">
+              <xs:annotation><xs:documentation>признак «завершающий ордер» (значение: 1 или 0, по умолчанию 0). Используется при типе документа «Инвентаризация», последним является ордер, которых завершает процесс инвентаризации на складе. При получении такого ордера ТУП, проводит документ «Инвентаризация» и более не принимает движений (ордеров) по нему.</xs:documentation></xs:annotation>
+            </xs:attribute>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
