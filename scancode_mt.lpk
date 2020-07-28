@@ -13,7 +13,7 @@
     </CompilerOptions>
     <Description Value="Интерфейс библиотеки взаимодействия с ПО СКАНКОД.Мобильный Терминал (SCANCODE.MobileTerminal)"/>
     <License Value="LGPL"/>
-    <Version Major="1" Release="2" Build="13"/>
+    <Version Major="1" Release="2" Build="14"/>
     <Files>
       <Item>
         <Filename Value="scancode_user_api.pas"/>
@@ -67,6 +67,22 @@
       <Item>
         <Filename Value="api/PutDocum.pas"/>
         <UnitName Value="PutDocum"/>
+      </Item>
+      <Item>
+        <Filename Value="api/GetProd_0.pas"/>
+        <UnitName Value="GetProd_0"/>
+      </Item>
+      <Item>
+        <Filename Value="api/GetProd_1.pas"/>
+        <UnitName Value="GetProd_1"/>
+      </Item>
+      <Item>
+        <Filename Value="api/GetProd_1_answer.pas"/>
+        <UnitName Value="GetProd_1_answer"/>
+      </Item>
+      <Item>
+        <Filename Value="api/GetProd_2_answer.pas"/>
+        <UnitName Value="GetProd_2_answer"/>
       </Item>
     </Files>
     <LazDoc Paths="docs"/>
