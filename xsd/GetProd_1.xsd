@@ -4,7 +4,7 @@
     <xs:annotation><xs:documentation>запрос остатков товара по складу</xs:documentation></xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="Record" >
+        <xs:element name="Record" minOccurs="1" maxOccurs="unbounded">
           <xs:annotation><xs:documentation>запрос остатков товара по складу</xs:documentation></xs:annotation>
           <xs:complexType>
             <xs:attribute name="id_goods" type="xs:string" use="required">

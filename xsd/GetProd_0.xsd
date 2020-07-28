@@ -4,7 +4,7 @@
     <xs:annotation><xs:documentation>запрос данных о товаре из ТУП по штрих коду</xs:documentation></xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="Record" >
+        <xs:element name="Record" minOccurs="1" maxOccurs="unbounded">
           <xs:annotation><xs:documentation>Информация о штрихкоде</xs:documentation></xs:annotation>
           <xs:complexType>
             <xs:attribute name="barcode" type="xs:string">

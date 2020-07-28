@@ -63,7 +63,7 @@
   </xs:element>
     <xs:simpleType name="String32">
     <xs:restriction base="xs:string">
-      <xs:maxLength value="32" />
+<!--      <xs:maxLength value="37" /> -->
       <xs:minLength value="1" />
     </xs:restriction>
   </xs:simpleType>
