@@ -10,7 +10,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="10"/>
         <CursorPos Y="42"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="82"/>
       </Unit>
       <Unit>
         <Filename Value="mtmainunit.pas"/>
@@ -20,8 +20,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="mtMainUnit"/>
         <TopLine Value="89"/>
-        <CursorPos X="9" Y="94"/>
-        <UsageCount Value="77"/>
+        <CursorPos X="5" Y="106"/>
+        <UsageCount Value="82"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -32,12 +32,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmUsersAndRightUnit"/>
-        <EditorIndex Value="6"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="140"/>
         <CursorPos X="43" Y="161"/>
-        <UsageCount Value="77"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <UsageCount Value="82"/>
       </Unit>
       <Unit>
         <Filename Value="scglobal.pas"/>
@@ -45,7 +43,7 @@
         <UnitName Value="scGlobal"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="20"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="82"/>
       </Unit>
       <Unit>
         <Filename Value="frames/frmstocksunit.pas"/>
@@ -57,7 +55,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="171"/>
         <CursorPos X="16" Y="194"/>
-        <UsageCount Value="77"/>
+        <UsageCount Value="82"/>
       </Unit>
       <Unit>
         <Filename Value="frames/frmdocumentsunit.pas"/>
@@ -66,12 +64,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmDocumentsUnit"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="168"/>
-        <CursorPos X="20" Y="186"/>
-        <UsageCount Value="77"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="19"/>
+        <CursorPos X="3" Y="68"/>
+        <UsageCount Value="82"/>
       </Unit>
       <Unit>
         <Filename Value="frames/frmcharacteristicunit.pas"/>
@@ -80,12 +76,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmCharacteristicUnit"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="373"/>
-        <CursorPos X="57" Y="399"/>
-        <UsageCount Value="75"/>
-        <Loaded Value="True"/>
+        <CursorPos Y="392"/>
+        <UsageCount Value="80"/>
       </Unit>
       <Unit>
         <Filename Value="frames/frmtsdorderunit.pas"/>
@@ -94,20 +88,20 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmTSDOrderUnit"/>
-        <EditorIndex Value="7"/>
-        <TopLine Value="218"/>
-        <CursorPos X="81" Y="230"/>
-        <UsageCount Value="66"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="211"/>
+        <CursorPos X="3" Y="227"/>
+        <UsageCount Value="71"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../scancode_document_api.pas"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="147"/>
         <CursorPos X="14" Y="164"/>
-        <UsageCount Value="21"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="20"/>
       </Unit>
       <Unit>
         <Filename Value="../../scancode_characteristics_api.pas"/>
@@ -174,7 +168,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="96"/>
         <CursorPos X="15" Y="112"/>
-        <UsageCount Value="22"/>
+        <UsageCount Value="21"/>
       </Unit>
       <Unit>
         <Filename Value="/home/install/source/fpcsrc/packages/rtl-objpas/src/inc/cvarutil.inc"/>
@@ -292,11 +286,10 @@
       </Unit>
       <Unit>
         <Filename Value="../../api/GetDocum.pas"/>
-        <EditorIndex Value="5"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="106"/>
         <CursorPos X="14" Y="121"/>
         <UsageCount Value="13"/>
-        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../protobuf-fpc/xmlobject/abstractserializationobjects.pas"/>
@@ -304,137 +297,28 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="289"/>
         <CursorPos Y="307"/>
-        <UsageCount Value="10"/>
+        <UsageCount Value="9"/>
       </Unit>
       <Unit>
         <Filename Value="../../api/GetData.pas"/>
-        <EditorIndex Value="2"/>
+        <EditorIndex Value="-1"/>
         <TopLine Value="76"/>
         <CursorPos X="95" Y="93"/>
-        <UsageCount Value="11"/>
-        <Loaded Value="True"/>
+        <UsageCount Value="10"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
+    <JumpHistory HistoryIndex="2">
       <Position>
-        <Filename Value="frames/frmdocumentsunit.pas"/>
-        <Caret Line="196" TopLine="170"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmdocumentsunit.pas"/>
-        <Caret Line="186" Column="26" TopLine="170"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmdocumentsunit.pas"/>
-        <Caret Line="185" TopLine="170"/>
-      </Position>
-      <Position>
-        <Filename Value="../../scancode_document_api.pas"/>
-        <Caret Line="159" Column="26" TopLine="147"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmdocumentsunit.pas"/>
-        <Caret Line="185" TopLine="170"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmdocumentsunit.pas"/>
-        <Caret Line="186" Column="11" TopLine="170"/>
+        <Filename Value="mtmainunit.pas"/>
+        <Caret Line="106" Column="20" TopLine="89"/>
       </Position>
       <Position>
         <Filename Value="mtmainunit.pas"/>
-        <Caret Line="94" Column="9" TopLine="89"/>
+        <Caret Line="106" Column="5" TopLine="89"/>
       </Position>
       <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="88" Column="41" TopLine="67"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="234" Column="3" TopLine="201"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="97" Column="14" TopLine="84"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="330" TopLine="297"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="101" TopLine="85"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="263" Column="5" TopLine="234"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="277" Column="9" TopLine="245"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="270" Column="21" TopLine="247"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="316" Column="5" TopLine="290"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="316" Column="5" TopLine="299"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="334" Column="37" TopLine="321"/>
-      </Position>
-      <Position>
-        <Filename Value="../../api/GetData.pas"/>
-        <Caret Line="392" Column="14" TopLine="375"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="335" Column="5" TopLine="321"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="352" Column="5" TopLine="322"/>
-      </Position>
-      <Position>
-        <Filename Value="../../api/GetData.pas"/>
-        <Caret Line="427" Column="14" TopLine="410"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="352" Column="5" TopLine="322"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="375" Column="5" TopLine="358"/>
-      </Position>
-      <Position>
-        <Filename Value="../../api/GetData.pas"/>
-        <Caret Line="474" Column="14" TopLine="457"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="375" Column="41" TopLine="358"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="396" Column="5" TopLine="373"/>
-      </Position>
-      <Position>
-        <Filename Value="../../api/GetData.pas"/>
-        <Caret Line="525" Column="14" TopLine="508"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="396" Column="5" TopLine="373"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="234" Column="33" TopLine="217"/>
+        <Filename Value="frames/frmtsdorderunit.pas"/>
+        <Caret Line="6" Column="21"/>
       </Position>
     </JumpHistory>
     <RunParams>

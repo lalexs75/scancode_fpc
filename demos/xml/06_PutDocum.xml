@@ -11,7 +11,7 @@
       <record id_goods="" id_char="" id_pack="" barcode=""/>
     </barcodes>
   </handbooks>
-  <Task id_doc="70b9a737-c224-11e8-ba50-50465d72dd18" date="08.10.2018 0:00:00" type="202" date_order="11.10.2018 17:18:48" fc="0" id_sсlad="">
+  <Task id_doc="70b9a737-c224-11e8-ba50-50465d72dd18" date="08.10.2018 0:00:00" type="202" date_order="11.10.2018 17:18:48" fc="0" id_sclad="">
     <record id_char="b02e2816-720f-11df-b436-0015e92f2802" id_goods="dee6e1d0-55bc-11d9-848a-00112f43529a">
       <property id_pack="">
         <serial quantity="1" id_serial="" date="" value="">

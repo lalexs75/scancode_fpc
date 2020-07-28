@@ -4,7 +4,7 @@
     <xs:annotation><xs:documentation>список ордеров (корневой элемент, может быть только один)</xs:documentation></xs:annotation>
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="handbooks">
+        <xs:element name="handbooks" minOccurs="0">
           <xs:annotation><xs:documentation>– справочник товаров и сопутствующих списков для новых (созданных пользователем и/или добавленных пользователем в ордер/документ)</xs:documentation></xs:annotation>
           <xs:complexType>
             <xs:sequence>
@@ -187,7 +187,7 @@
             <xs:attribute name="fc" type="xs:string">
               <xs:annotation><xs:documentation>признак «свободный набор» (значение: 1 или 0, по умолчанию 0)</xs:documentation></xs:annotation>
             </xs:attribute>
-            <xs:attribute name="id_sсlad" type="xs:string">
+            <xs:attribute name="id_sclad" type="xs:string">
               <xs:annotation><xs:documentation>УИ склада</xs:documentation></xs:annotation>
             </xs:attribute>
             <xs:attribute name="last_order" type="xs:integer">
