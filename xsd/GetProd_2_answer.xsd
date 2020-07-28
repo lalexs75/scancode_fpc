@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Table">
+    <xs:annotation><xs:documentation>Содержит информацию о коде маркировки товара</xs:documentation></xs:annotation>
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="Record" >
+          <xs:annotation><xs:documentation>Содержит информацию о коде маркировки товара</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="token" type="xs:string">
+                <xs:annotation><xs:documentation>код маркировки в формате base64 (полный GS1 код из ИС МП)</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="id_char" type="xs:string">
+                <xs:annotation><xs:documentation>УИ характеристики</xs:documentation></xs:annotation>
+            </xs:attribute>
+            <xs:attribute name="id_goods" type="xs:string" use="required">
+                <xs:annotation><xs:documentation>УИ товара</xs:documentation></xs:annotation>
+            </xs:attribute>
+          </xs:complexType>        
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
