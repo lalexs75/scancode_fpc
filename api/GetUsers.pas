@@ -326,7 +326,6 @@ end;
 procedure TInformation_Login_Record.SetId(AValue: TString32);
 begin
   CheckStrMinSize('Id', AValue);
-  CheckStrMaxSize('Id', AValue);
   FId:=AValue;
   ModifiedProperty('Id');
 end;
@@ -367,7 +366,7 @@ var
 begin
   inherited InternalRegisterPropertys;
   P:=RegisterProperty('Login', 'Login', [xsaRequared], '', -1, -1);
-  P:=RegisterProperty('Id', 'Id', [xsaRequared], '', 1, 32);
+  P:=RegisterProperty('Id', 'Id', [xsaRequared], '', 1, -1);
   P:=RegisterProperty('Pass', 'Pass', [xsaRequared], '', -1, -1);
   P:=RegisterProperty('Rights', 'Rights', [xsaRequared], '', -1, -1);
   P:=RegisterProperty('createprod', 'createprod', [], '', -1, -1);

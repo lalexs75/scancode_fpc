@@ -61,7 +61,7 @@ type
   {  TTable  }
   TTable = class(TXmlSerializationObject)
   private
-    FRecord1:TTable_Record;
+    FRecord1:TTable_RecordList;
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -71,7 +71,7 @@ type
     destructor Destroy; override;
   published
     //Информация о штрихкоде
-    property Record1:TTable_Record read FRecord1;
+    property Record1:TTable_RecordList read FRecord1;
   end;
 
   {  TTable_Record  }
@@ -104,7 +104,7 @@ end;
 procedure TTable.InternalInitChilds;
 begin
   inherited InternalInitChilds;
-  FRecord1:=TTable_Record.Create;
+  FRecord1:=TTable_RecordList.Create;
 end;
 
 destructor TTable.Destroy;
