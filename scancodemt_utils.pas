@@ -38,6 +38,9 @@ interface
 
 uses
   Classes, SysUtils;
+type
+  TUserRightDoc = (urdAcceptance = 1, urdShipment = 2, urdInventory = 3, urdMoving = 4);
+  TUserRightDocs = set of TUserRightDoc;
 
 function UserIDToGUID(AId:Integer):string;
 function GUIDToUserID(AGUID:string):Integer;
@@ -68,10 +71,13 @@ function GUIDToPackID(AGUID:string):Integer;
 
 function NormalaizeGUID(AGUID:string):string;
 
+function EncodePassword(APasswordStr:string):string;
+function EncodeUserRight(ARight: TUserRightDocs):string;
 implementation
+uses base64, sha1;
 
 const
-  sUserGUIDBase          = 'FFFFFFFF-FFFF-FFFF-FFFF-';
+  //sUserGUIDBase          = 'FFFFFFFF-FFFF-FFFF-FFFF-';
   sStockGUIDBase         = 'FFFFFFFF-FFFF-FFFF-FFFE-';
   sRoomGUIDBase          = 'FFFFFFFF-FFFF-FFFF-FFFD-';
   sCellGUIDBase          = 'FFFFFFFF-FFFF-FFFF-FFFC-';
@@ -80,6 +86,15 @@ const
   sMeasureGUIDBase       = 'FFFFFFFF-FFFF-FFFF-FFF9-';
   sNomenclatureGUIDBase  = 'FFFFFFFF-FFFF-FFFF-FFF8-';
   sPackGUIDBase          = 'FFFFFFFF-FFFF-FFFF-FFF7-';
+  sUserGUIDBase          = 'FFFFFFFFFFFFFFFFFFFF';
+  //sStockGUIDBase         = 'FFFFFFFFFFFFFFFFFFFE';
+  //sRoomGUIDBase          = 'FFFFFFFFFFFFFFFFFFFD';
+  //sCellGUIDBase          = 'FFFFFFFFFFFFFFFFFFFC';
+  //sDocGUIDBase           = 'FFFFFFFFFFFFFFFFFFFB';
+  //sGoodsGUIDBase         = 'FFFFFFFFFFFFFFFFFFFA';
+  //sMeasureGUIDBase       = 'FFFFFFFFFFFFFFFFFFF9';
+  //sNomenclatureGUIDBase  = 'FFFFFFFFFFFFFFFFFFF8';
+  //sPackGUIDBase          = 'FFFFFFFFFFFFFFFFFFF7';
 
 function UserIDToGUID(AId:Integer):string;
 begin
@@ -209,6 +224,32 @@ begin
 //FFFFFFFF-FFFF-FFFF-FFFF-F000000000001
 //FFFFFFFFFFFFFFFFFFFFF000000000001
 //ffffffffffffffffffff000000000001
+end;
+
+function EncodePassword(APasswordStr:string): string;
+var
+  FSha1: TSHA1Digest;
+  S1, S2:string;
+begin
+  FSha1:=SHA1String(APasswordStr);
+  SetLength(S1, SizeOf(FSha1));
+  Move(FSha1, S1[1], SizeOf(FSha1));
+
+  FSha1:=SHA1String(UpperCase(APasswordStr));
+  SetLength(S2, SizeOf(FSha1));
+  Move(FSha1, S2[1], SizeOf(FSha1));
+
+  Result:=EncodeStringBase64(S1)+','+EncodeStringBase64(S2);
+end;
+
+function EncodeUserRight(ARight: TUserRightDocs): string;
+var
+  R: TUserRightDoc;
+begin
+  Result:='';
+  for R in ARight do
+    Result:=Result + IntToStr(Ord(R)) + '/';
+  Result:=Copy(Result, 1, Length(Result)-1);
 end;
 
 end.

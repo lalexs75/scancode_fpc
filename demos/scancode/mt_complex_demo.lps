@@ -88,7 +88,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmTSDOrderUnit"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
         <TopLine Value="211"/>
         <CursorPos X="3" Y="227"/>
@@ -165,10 +164,12 @@
       </Unit>
       <Unit>
         <Filename Value="../../scancode_user_api.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="96"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="47"/>
         <CursorPos X="15" Y="112"/>
         <UsageCount Value="21"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="/home/install/source/fpcsrc/packages/rtl-objpas/src/inc/cvarutil.inc"/>
@@ -196,7 +197,7 @@
         <Filename Value="../../scancodemt_utils.pas"/>
         <UnitName Value="ScancodeMT_utils"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="183"/>
+        <TopLine Value="169"/>
         <CursorPos Y="204"/>
         <UsageCount Value="13"/>
       </Unit>
@@ -304,6 +305,13 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="76"/>
         <CursorPos X="95" Y="93"/>
+        <UsageCount Value="10"/>
+      </Unit>
+      <Unit>
+        <Filename Value="../../scancodemt_api.pas"/>
+        <UnitName Value="ScancodeMT_API"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="76"/>
         <UsageCount Value="10"/>
       </Unit>
     </Units>

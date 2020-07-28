@@ -44,7 +44,7 @@ interface
 
 uses
   Classes, SysUtils, CustomTimer, xmlobject,
-  ScancodeMT_API, scancode_user_api, scancode_characteristics_api, scancode_document_api,
+  ScancodeMT_API, protocol1C, GetUsers, scancode_characteristics_api, scancode_document_api,
   scancode_stock_api, scancode_tsd_order_api
   {$if FPC_FULLVERSION<30006}
   , dynlibs
@@ -107,7 +107,7 @@ type
     Version: String;
   end;
 
-  TMTUserListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const UserInfo:TUserInformation) of object;
+  TMTUserListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const UserInfo:TInformation) of object;
   TMTDictionaryListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Dictionary:TDictionary) of object;
   TMTDocumentsListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Documents:TDocuments) of object;
   TMTStocksListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Stocks:TStocks) of object;
@@ -205,12 +205,12 @@ end;
 procedure TScancodeMT.AddMTMessage(const ACommand, AInfo: PChar);
 var
   Rec: TMTQueueRecord;
-  Ex: TExtendedInformation;
+  Ex: Tprotocol1C;
 begin
   Rec:=TMTQueueRecord.Create;
   Rec.Command:=ACommand;
 
-  Ex:=TExtendedInformation.Create;
+  Ex:=Tprotocol1C.Create;
   Ex.LoadFromStr(AInfo);
 
   Rec.Confirm:=Ex.Confirm;
@@ -249,7 +249,7 @@ procedure TScancodeMT.SendAnswer(const Command: string;
   const Rec: TMTQueueRecord; const Data: TXmlSerializationObject);
 var
   FTmpFileName, S: String;
-  Ex: TExtendedInformation;
+  Ex: Tprotocol1C;
 begin
   if Assigned(Data) then
   begin
@@ -260,7 +260,7 @@ begin
   else
     FTmpFileName:='';
 
-  Ex:=TExtendedInformation.Create;
+  Ex:=Tprotocol1C.Create;
 
   Ex.Confirm:=Rec.Confirm;
   Ex.DocType:=Rec.DocType;
@@ -278,10 +278,10 @@ end;
 
 procedure TScancodeMT.InternalSendUserInfo;
 var
-  U: TUserInformation;
+  U: TInformation;
   S: String;
 begin
-  U:=TUserInformation.Create;
+  U:=TInformation.Create;
   if Assigned(FOnUserList) then;
   S:=U.SaveToStr;
   U.Free;
@@ -321,9 +321,9 @@ end;
 
 procedure TScancodeMT.InternalSendUserInfo(const Rec: TMTQueueRecord);
 var
-  U: TUserInformation;
+  U: TInformation;
 begin
-  U:=TUserInformation.Create;
+  U:=TInformation.Create;
   if Assigned(FOnUserList) then
     FOnUserList(Self, Rec, U);
   SendAnswer('GetUsers',  Rec, U);
