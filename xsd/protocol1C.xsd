@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="protocol1C">
+    <xs:complexType>
+      <xs:attribute name="confirm" type="xs:string">
+        <xs:annotation><xs:documentation>Статус подтверждения ордера</xs:documentation></xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="docType" type="xs:string">
+        <xs:annotation><xs:documentation>Тип документа</xs:documentation></xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="fileName" type="xs:string">
+        <xs:annotation><xs:documentation>Имя файла</xs:documentation></xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="packgeNumber" type="xs:string">
+        <xs:annotation><xs:documentation>Номер посылки</xs:documentation></xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="serial" type="xs:string">
+        <xs:annotation><xs:documentation>Серийный номер ТСД</xs:documentation></xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="userID" type="xs:string">
+        <xs:annotation><xs:documentation>Идентификатор</xs:documentation></xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="userIP" type="xs:string">
+        <xs:annotation><xs:documentation>IP адрес терминала</xs:documentation></xs:annotation>
+      </xs:attribute>
+      <xs:attribute name="version" type="xs:string">
+        <xs:annotation><xs:documentation>Версия протокола</xs:documentation></xs:annotation>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -8,3 +8,4 @@ xmllint --schema ../../xsd/GetProd_0.xsd 10_GetProd_0.xml --noout
 xmllint --schema ../../xsd/GetProd_1.xsd 10_GetProd_1.xml --noout
 xmllint --schema ../../xsd/GetProd_1_answer.xsd 10_GetProd_1_answer.xml --noout
 xmllint --schema ../../xsd/GetProd_2_answer.xsd 10_GetProd_2_answer.xml --noout
+xmllint --schema ../../xsd/protocol1C.xsd protocol1C.xml --noout
