@@ -1,5 +1,5 @@
 { interface library for FPC and Lazarus
-  Copyright (C) 2019 Lagunov Aleksey alexs75@yandex.ru
+  Copyright (C) 2019-2020 Lagunov Aleksey alexs75@yandex.ru
 
   Вспомогательные функции
 
@@ -77,7 +77,7 @@ implementation
 uses base64, sha1;
 
 const
-  //sUserGUIDBase          = 'FFFFFFFF-FFFF-FFFF-FFFF-';
+  sUserGUIDBase          = 'FFFFFFFF-FFFF-FFFF-FFFF-';
   sStockGUIDBase         = 'FFFFFFFF-FFFF-FFFF-FFFE-';
   sRoomGUIDBase          = 'FFFFFFFF-FFFF-FFFF-FFFD-';
   sCellGUIDBase          = 'FFFFFFFF-FFFF-FFFF-FFFC-';
@@ -86,7 +86,7 @@ const
   sMeasureGUIDBase       = 'FFFFFFFF-FFFF-FFFF-FFF9-';
   sNomenclatureGUIDBase  = 'FFFFFFFF-FFFF-FFFF-FFF8-';
   sPackGUIDBase          = 'FFFFFFFF-FFFF-FFFF-FFF7-';
-  sUserGUIDBase          = 'FFFFFFFFFFFFFFFFFFFF';
+  //sUserGUIDBase          = 'FFFFFFFFFFFFFFFFFFFF';
   //sStockGUIDBase         = 'FFFFFFFFFFFFFFFFFFFE';
   //sRoomGUIDBase          = 'FFFFFFFFFFFFFFFFFFFD';
   //sCellGUIDBase          = 'FFFFFFFFFFFFFFFFFFFC';

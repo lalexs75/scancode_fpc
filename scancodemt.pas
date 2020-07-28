@@ -1,5 +1,5 @@
 { interface library for FPC and Lazarus
-  Copyright (C) 2019 Lagunov Aleksey alexs75@yandex.ru
+  Copyright (C) 2019-2020 Lagunov Aleksey alexs75@yandex.ru
 
   Генерация xml файлов в формате обеман данными для СКАНКОД.Мобильный Терминал (SCANCODE.MobileTerminal)
 
@@ -43,9 +43,10 @@ unit ScancodeMT;
 interface
 
 uses
-  Classes, SysUtils, CustomTimer, xmlobject,
-  ScancodeMT_API, protocol1C, GetUsers, scancode_characteristics_api, scancode_document_api,
-  scancode_stock_api, scancode_tsd_order_api
+  Classes, SysUtils, CustomTimer, xmlobject, ScancodeMT_API, protocol1C,
+
+  GetUsers, GetStock, GetData, GetProd_1, GetProd_1_answer,
+  GetDocum, PutDocum
   {$if FPC_FULLVERSION<30006}
   , dynlibs
   {$endif}
@@ -108,13 +109,13 @@ type
   end;
 
   TMTUserListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const UserInfo:TInformation) of object;
-  TMTDictionaryListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Dictionary:TDictionary) of object;
+  TMTDictionaryListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Dictionary:TDocument) of object;
   TMTDocumentsListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Documents:TDocuments) of object;
   TMTStocksListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Stocks:TStocks) of object;
   TMTOrdersListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Orders:TOrders) of object;
   TMTStatusEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord) of object;
   //TMTGetProd0Event = procedure(Sender:TScancodeMT; const AQuery:TQueryGoods0; const AMessage:TMTQueueRecord) of object;
-  TMTGetProd1Event = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const AQuery:TQueryGoods1; const AAnswer:TGetProdAnswer) of object;
+  TMTGetProd1Event = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const AQuery:GetProd_1.TTable; const AAnswer:GetProd_1_answer.TTable) of object;
 
   TScancodeMT = class(TComponent)
   private
@@ -154,7 +155,7 @@ type
     procedure StartServer;
     procedure StopServer;
     procedure ProcessMTQueue;
-    procedure SendConfirmOrder(const Rec: TMTQueueRecord; ABlock:string);
+    //procedure SendConfirmOrder(const Rec: TMTQueueRecord; ABlock:string);
 
     property MTLibrary:TScancodeMTLibrary read FMTLibrary;
     property Active:boolean read FActive write SetActive;
@@ -346,9 +347,9 @@ end;
 
 procedure TScancodeMT.InternalSendGetData(const Rec: TMTQueueRecord);
 var
-  Dic: TDictionary;
+  Dic: TDocument;
 begin
-  Dic:=TDictionary.Create;
+  Dic:=TDocument.Create;
   if Assigned(FOnDictionaryList) then
     FOnDictionaryList(Self, Rec, Dic);
   SendAnswer('GetData', Rec, Dic);
@@ -381,8 +382,8 @@ end;
 
 procedure TScancodeMT.InternalSendGetProd(const Rec: TMTQueueRecord);
 var
-  FQuery1: TQueryGoods1;
-  FAnswer1: TGetProdAnswer;
+  FQuery1: GetProd_1.TTable;
+  FAnswer1: GetProd_1_answer.TTable;
 begin
 
   if Rec.DocType = '0' then
@@ -396,8 +397,8 @@ begin
   end
   else
   begin
-    FQuery1:=TQueryGoods1.Create;
-    FAnswer1:=TGetProdAnswer.Create;
+    FQuery1:=GetProd_1.TTable.Create;
+    FAnswer1:=GetProd_1_answer.TTable.Create;
 
     if Rec.FileName <> '' then;
       FQuery1.LoadFromFile(Rec.FileName);
@@ -506,7 +507,7 @@ begin
     Rec.Free;
   end;
 end;
-
+(*
 procedure TScancodeMT.SendConfirmOrder(const Rec: TMTQueueRecord; ABlock: string
   );
 var
@@ -518,7 +519,7 @@ begin
   SendAnswer('PutDocum', Rec, C);
   C.Free;
 end;
-
+*)
 { TScancodeMTLibrary }
 
 function TScancodeMTLibrary.GetLoaded: boolean;

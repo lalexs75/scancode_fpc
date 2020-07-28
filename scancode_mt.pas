@@ -8,11 +8,9 @@ unit scancode_mt;
 interface
 
 uses
-  scancode_user_api, scancode_stock_api, scancode_document_api, 
-  scancode_characteristics_api, scancode_tsd_order_api, ScancodeMT, 
-  ScancodeMT_API, ScancodeMT_utils, GetUsers, GetStock, GetDocum, GetData, 
-  PutDocum, GetProd_0, GetProd_1, GetProd_1_answer, GetProd_2_answer, 
-  protocol1C, LazarusPackageIntf;
+  ScancodeMT, ScancodeMT_API, ScancodeMT_utils, GetUsers, GetStock, GetDocum, 
+  GetData, PutDocum, GetProd_0, GetProd_1, GetProd_1_answer, GetProd_2_answer, 
+  protocol1C, tsd_api_utils, LazarusPackageIntf;
 
 implementation
 
