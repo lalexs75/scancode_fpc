@@ -159,6 +159,7 @@ type
     Fid_nabor_pack:String;
     Fimg:String;
     Fbitmap:String;
+    Fmarked:Int64;
     procedure Setid_goods( AValue:String);
     procedure Setname( AValue:String);
     procedure Setid_measure( AValue:String);
@@ -168,6 +169,7 @@ type
     procedure Setid_nabor_pack( AValue:String);
     procedure Setimg( AValue:String);
     procedure Setbitmap( AValue:String);
+    procedure Setmarked( AValue:Int64);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -193,6 +195,8 @@ type
     property img:String read Fimg write Setimg;
     //бинарный блок данных — файл изображения товара в кодировке Base64
     property bitmap:String read Fbitmap write Setbitmap;
+    //признак маркируемого товара (значение: 1 или 0)
+    property marked:Int64 read Fmarked write Setmarked;
   end;
 
   {  TDocument_characteristics  }
@@ -691,6 +695,12 @@ begin
   ModifiedProperty('bitmap');
 end;
 
+procedure TDocument_table_record.Setmarked(AValue: Int64);
+begin
+  Fmarked:=AValue;
+  ModifiedProperty('marked');
+end;
+
 procedure TDocument_table_record.InternalRegisterPropertys;
 var
   P: TPropertyDef;
@@ -705,6 +715,7 @@ begin
   P:=RegisterProperty('id_nabor_pack', 'id_nabor_pack', [], '', -1, -1);
   P:=RegisterProperty('img', 'img', [], '', -1, -1);
   P:=RegisterProperty('bitmap', 'bitmap', [], '', -1, -1);
+  P:=RegisterProperty('marked', 'marked', [], '', -1, -1);
 end;
 
 procedure TDocument_table_record.InternalInitChilds;
@@ -952,7 +963,7 @@ var
 begin
   inherited InternalRegisterPropertys;
   P:=RegisterProperty('id_owner', 'id_owner', [xsaRequared], '', -1, -1);
-  P:=RegisterProperty('relation', 'relation', [], '', -1, -1);
+  P:=RegisterProperty('relation', 'relation', [xsaRequared], '', -1, -1);
   P:=RegisterProperty('name', 'name', [xsaRequared], '', -1, -1);
   P:=RegisterProperty('id_serial', 'id_serial', [xsaRequared], '', -1, -1);
   P:=RegisterProperty('num', 'num', [], '', -1, -1);
