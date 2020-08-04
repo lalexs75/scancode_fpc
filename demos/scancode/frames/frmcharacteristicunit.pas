@@ -6,8 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, ExtCtrls, ComCtrls, DB, rxmemds,
-  rxdbgrid, RxIniPropStorage, scancode_characteristics_api,
-  AbstractSerializationObjects;
+  rxdbgrid, RxIniPropStorage,
+  AbstractSerializationObjects, GetData;
 
 type
 
@@ -82,11 +82,11 @@ type
 
   public
     procedure GenerateData;
-    function CreateDictionarys(DI:TDictionary):TDictionary;
+    function CreateDictionarys(DI:TDocument):TDocument;
   end;
 
 implementation
-uses scGlobal, ScancodeMT_utils, GetData;
+uses tsd_api_utils, scGlobal, ScancodeMT_utils;
 
 {$R *.lfm}
 
@@ -94,7 +94,7 @@ uses scGlobal, ScancodeMT_utils, GetData;
 
 procedure TfrmCharacteristicFrame.Button1Click(Sender: TObject);
 var
-  DD: TDictionary;
+  DD: TDocument;
 begin
   DD:=CreateDictionarys(nil);
   DD.SaveToFile(ExportFolder + 'Dictionary.xml');
@@ -210,35 +210,22 @@ begin
   rxPriceList.First;
 end;
 
-function TfrmCharacteristicFrame.CreateDictionarys(DI: TDictionary
-  ): TDictionary;
+function TfrmCharacteristicFrame.CreateDictionarys(DI: TDocument): TDocument;
 var
-  G: TSprGood;
-  Ch: TCharacteristic;
-  Pk: TPack;
-  SR: TSerial;
-  BR: TBarcode;
-  MS: TMeasure;
-  PR: TPrice;
-  NT: TNomenclatureType;
-  Skld: TSclad;
+  G:TDocument_table_record;
+  BR:TDocument_barcodes_record;
+  MS:TDocument_measures_record;
+  PR:TDocument_prices_record;
+  NT:TDocument_vidnomencls_record;
+  Skld:TDocument_sclads_record;
   ID: Integer;
   S: String;
-  St: TStringStream;
-  DD: TDocument;
-  G1: TDocument_table_record;
-  BR1: TDocument_barcodes_record;
-  MS1: TDocument_measures_record;
-  PR1: TDocument_prices_record;
-  NT1: TDocument_vidnomencls_record;
-  Skld1: TDocument_sclads_record;
 begin
   if Assigned(DI) then
     Result:=DI
   else
-    Result:=TDictionary.Create;
+    Result:=TDocument.Create;
 
-  DD:=TDocument.Create;
   rxBarcode.Filtered:=false;
   rxGoods.Filtered:=false;
   rxGoods.AfterScroll:=nil;
@@ -249,13 +236,13 @@ begin
   rxGoods.First;
   while not rxGoods.EOF do
   begin
-    G:=Result.SprGoods.SprGoodLists.AddItem;
-    G.IdGoods:=rxGoodsGOODS_ID.AsString;
+    G:=Result.table.record1.AddItem;
+    G.id_goods:=rxGoodsGOODS_ID.AsString;
     G.Name:=rxGoodsGOODS_NAME.AsString;
-    G.IdMeasure:=rxGoodsMeasure_ID.AsString;
+    G.id_measure:=rxGoodsMeasure_ID.AsString;
     G.Art:=rxGoodsGOODS_ATRTICLE.AsString;
-    G.Alco:=BoolToStr(rxGoodsGOODS_IsAlco.AsBoolean, '1', '0');
-    G.IdVidnomencl:=rxGoodsIdNomenclatureType.AsString;
+    G.Alco:=Ord(rxGoodsGOODS_IsAlco.AsBoolean);
+    G.id_vidnomencl:=rxGoodsIdNomenclatureType.AsString;
     //G.IdNaborPack:='';
     //G.Img:='';
     //G.Bitmap:='';
@@ -264,22 +251,6 @@ begin
     S:=ExtractFileDir(ParamStr(0))+PathDelim + 'goods_images' + PathDelim + IntToStr(id)+'.jpg';
     if FileExists(S) then
       G.LoadImage(S);
-
-    G1:=DD.table.record1.AddItem;
-    G1.id_goods:=rxGoodsGOODS_ID.AsString;
-    G1.name:=rxGoodsGOODS_NAME.AsString;
-    G1.id_measure:=rxGoodsMeasure_ID.AsString;
-    G1.art:=rxGoodsGOODS_ATRTICLE.AsString;
-    G1.alco:=Ord(rxGoodsGOODS_IsAlco.AsBoolean);
-    G1.id_vidnomencl:=rxGoodsIdNomenclatureType.AsString;
-    //G.IdNaborPack:='';
-    //G.Img:='';
-    //G.Bitmap:='';
-
-    //ID:=GUIDToGoodsID(rxGoodsGOODS_ID.AsString);
-    //S:=ExtractFileDir(ParamStr(0))+PathDelim + 'goods_images' + PathDelim + IntToStr(id)+'.jpg';
-    //if FileExists(S) then
-    //  G1.LoadImage(S);
     rxGoods.Next;
   end;
 (*
@@ -311,18 +282,11 @@ begin
   rxBarcode.First;
   while not rxBarcode.EOF do
   begin
-    BR:=Result.Barcodes.BarcodeList.AddItem;
-    BR.IdGoods:=rxBarcodeGOODS_ID.AsString;
+    BR:=Result.Barcodes.record1.AddItem;
+    BR.id_goods:=rxBarcodeGOODS_ID.AsString;
     //BR.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
     //BR.IdPack:='';
     BR.Barcode:=rxBarcodeBARCODE.AsString;
-
-    BR1:=DD.barcodes.record1.AddItem;
-    BR1.id_goods:=rxBarcodeGOODS_ID.AsString;
-    //BR.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
-    //BR.IdPack:='';
-    BR1.barcode:=rxBarcodeBARCODE.AsString;
-
     rxBarcode.Next;
   end;
 
@@ -331,13 +295,10 @@ begin
   rxMeasureList.First;
   while not rxMeasureList.EOF do
   begin
-    MS:=Result.Measures.MeasureList.AddItem;
-    MS.IdMeasure:=rxMeasureListMeasure_ID.AsString;
+    MS:=Result.Measures.record1.AddItem;
+    MS.id_measure:=rxMeasureListMeasure_ID.AsString;
     MS.Name:=rxMeasureListMeasure_NAME.AsString;
 
-    MS1:=DD.measures.record1.AddItem;
-    MS1.id_measure:=rxMeasureListMeasure_ID.AsString;
-    MS1.Name:=rxMeasureListMeasure_NAME.AsString;
     rxMeasureList.Next;
   end;
 
@@ -345,16 +306,10 @@ begin
   rxPriceList.First;
   while not rxPriceList.EOF do
   begin
-    PR:=Result.Prices.PriceList.AddItem;
-    PR.IdGoods:=rxPriceListGOODS_ID.AsString;
+    PR:=Result.Prices.record1.AddItem;
+    PR.id_goods:=rxPriceListGOODS_ID.AsString;
     PR.Price:=FloatToStr(rxPriceListPRICE.AsCurrency);
     PR.Currency:=rxPriceListCurrency_Name.AsString;
-    //PR.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
-    //PR.IdPack:='dff7f708-7a0b-11df-b33a-0011955cba6b';
-    PR1:=DD.prices.record1.AddItem;
-    PR1.id_goods:=rxPriceListGOODS_ID.AsString;
-    PR1.price:=FloatToStr(rxPriceListPRICE.AsCurrency);
-    PR1.currency:=rxPriceListCurrency_Name.AsString;
     //PR.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
     //PR.IdPack:='dff7f708-7a0b-11df-b33a-0011955cba6b';
 
@@ -365,21 +320,14 @@ begin
   rxNomenclatureTypes.First;
   while not rxNomenclatureTypes.EOF do
   begin
-    NT:=Result.NomenclatureTypes.NomenclatureTypeList.AddItem;
-    NT.IdNomenclatureType:=rxNomenclatureTypesIdNomenclatureType.AsString;
+    NT:=Result.vidnomencls.record1.AddItem;
+    NT.id_vidnomencl:=rxNomenclatureTypesIdNomenclatureType.AsString;
     NT.Name:=rxNomenclatureTypesName.AsString;
-    NT.IsChar:=BoolToStr(rxNomenclatureTypesIsChar.AsBoolean, '1', '0');
-    NT.IsSerial:=BoolToStr(rxNomenclatureTypesIsSerial.AsBoolean, '1', '0');
-    NT.IsNomerSerial:=BoolToStr(rxNomenclatureTypesIsNomerSerial.AsBoolean, '1', '0');
-    NT.IsDateSerial:=BoolToStr(rxNomenclatureTypesIsDateSerial.AsBoolean, '1', '0');
+    NT.is_char:=Ord(rxNomenclatureTypesIsChar.AsBoolean);
+    NT.is_serial:=Ord(rxNomenclatureTypesIsSerial.AsBoolean);
+    NT.is_nomer_serial:=Ord(rxNomenclatureTypesIsNomerSerial.AsBoolean);
+    NT.is_date_serial:=Ord(rxNomenclatureTypesIsDateSerial.AsBoolean);
 
-    NT1:=DD.vidnomencls.record1.AddItem;
-    NT1.id_vidnomencl:=rxNomenclatureTypesIdNomenclatureType.AsString;
-    NT1.name:=rxNomenclatureTypesName.AsString;
-    NT1.is_char:=Ord(rxNomenclatureTypesIsChar.AsBoolean);
-    NT1.is_serial:=Ord(rxNomenclatureTypesIsSerial.AsBoolean);
-    NT1.is_nomer_serial:=Ord(rxNomenclatureTypesIsNomerSerial.AsBoolean);
-    NT1.is_date_serial:=Ord(rxNomenclatureTypesIsDateSerial.AsBoolean);
     rxNomenclatureTypes.Next;
   end;
 
@@ -387,17 +335,12 @@ begin
   rxSklad.First;
   while not rxSklad.EOF do
   begin
-    Skld:=Result.Sclads.ScladList.AddItem;
-    Skld.IdSclad:=rxSkladSKLAD_ID.AsString;
+    Skld:=Result.Sclads.record1.AddItem;
+    Skld.id_sclad:=rxSkladSKLAD_ID.AsString;
     Skld.Name:=rxSkladSKLAD_NAME.AsString;
-    Skld.IsAdress:=BoolToStr(rxSkladIsAdressExists.AsBoolean, '0', '1');
-    Skld.IsOrder:=BoolToStr(rxSkladIsOrder.AsBoolean, '0', '1');
+    Skld.is_adress:=Ord(rxSkladIsAdressExists.AsBoolean);
+    Skld.is_order:=Ord(rxSkladIsOrder.AsBoolean);
 
-    Skld1:=DD.sclads.record1.AddItem;
-    Skld1.id_sclad:=rxSkladSKLAD_ID.AsString;
-    Skld1.name:=rxSkladSKLAD_NAME.AsString;
-    Skld1.is_adress:=Ord(rxSkladIsAdressExists.AsBoolean);
-    Skld1.is_order:=Ord(rxSkladIsOrder.AsBoolean);
     rxSklad.Next;
   end;
 
@@ -413,9 +356,6 @@ begin
   rxPriceList.Filtered:=true;
   rxGoods.Filtered:=true;
   rxBarcode.Filtered:=true;
-
-  DD.SaveToFile(ExportFolder + 'Dictionary_1.xml');
-  DD.Free;
 end;
 
 end.

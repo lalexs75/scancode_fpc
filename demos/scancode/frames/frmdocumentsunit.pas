@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, ExtCtrls, DB,
-  scancode_document_api, AbstractSerializationObjects, rxmemds, rxdbgrid,
+  GetDocum, AbstractSerializationObjects, rxmemds, rxdbgrid,
   Graphics;
 
 type
@@ -51,11 +51,11 @@ type
 //    procedure DisableTaskScroll;
 //    procedure DisableTaskScroll;
     procedure GenerateData;
-    function CreateDocsList(Docs: scancode_document_api.TDocuments; AUserName:string; ACountDoc:Integer): scancode_document_api.TDocuments;
+    function CreateDocsList(Docs: TDocuments; AUserName:string; ACountDoc:Integer): TDocuments;
   end;
 
 implementation
-uses scGlobal, ScancodeMT_utils, GetDocum;
+uses scGlobal, ScancodeMT_utils;
 
 {$R *.lfm}
 
@@ -63,7 +63,7 @@ uses scGlobal, ScancodeMT_utils, GetDocum;
 
 procedure TfrmDocumentsFrame.Button1Click(Sender: TObject);
 var
-  Docs: scancode_document_api.TDocuments;
+  Docs: TDocuments;
 begin
   Docs:=CreateDocsList(nil, '', 0);
   Docs.SaveToFile(ExportFolder + 'Documents.xml');
@@ -122,23 +122,17 @@ begin
   rxGoods.First;
 end;
 
-function TfrmDocumentsFrame.CreateDocsList(Docs: scancode_document_api.TDocuments; AUserName: string;
-  ACountDoc: Integer): scancode_document_api.TDocuments;
+function TfrmDocumentsFrame.CreateDocsList(Docs: TDocuments; AUserName: string;
+  ACountDoc: Integer): TDocuments;
 var
-  D: TDocument;
-  G: TGood;
-  GC: TGoodCell;
-
-  DD:GetDocum.TDocuments;
-  D1: TDocuments_Task;
-  G1: TDocuments_Task_record;
+  D: TDocuments_Task;
+  G: TDocuments_Task_record;
 begin
   if Assigned(Docs) then
     Result:=Docs
   else
-    Result:=scancode_document_api.TDocuments.Create;
+    Result:=TDocuments.Create;
 
-  DD:=GetDocum.TDocuments.Create;
   //Загрузим документы
   rxTasks.First;
   while not rxTasks.EOF do
@@ -148,42 +142,27 @@ begin
       rxTasks.Edit;
       rxTasksUSER_NAME.AsString:=AUserName;
       rxTasks.Post;
-      D:=Result.Documents.AddItem;
-      D.Task.Barcode:=rxTasksBarcode.AsString;
-      D.Task.Date:=rxTasksDate.AsString;
-      D.Task.UseAdress:=BoolToStr(rxTasksUseAdress.AsBoolean, '1', '0');
-      D.Task.Control:=BoolToStr(rxTasksControl.AsBoolean, '1','0');
-      D.Task.TypeDoc:=rxTasksTypeDoc.AsString;
-      D.Task.Nomer:=rxTasksNomer.AsString;
-      D.Task.IdDoc:=rxTasksIdDoc.AsString;
-      D.Task.IdZone:=rxTasksIdZone.AsString;
-      D.Task.IdRoom:=rxTasksIdRoom.AsString;
-      D.Task.IdStock:=rxTasksIdStock.AsString;
+      D:=Result.Task.AddItem;
+      D.barcode:=rxTasksBarcode.AsString;
+      D.Date:=rxTasksDate.AsString;
+      D.as_:=Ord(rxTasksUseAdress.AsBoolean);
+      D.Control:=Ord(rxTasksControl.AsBoolean);
+      D.type1:=rxTasksTypeDoc.AsString;
+      D.Nomer:=rxTasksNomer.AsString;
+      D.id_doc:=rxTasksIdDoc.AsString;
+      D.id_zone:=rxTasksIdZone.AsString;
+      D.id_room:=rxTasksIdRoom.AsString;
+      D.id_sclad:=rxTasksIdStock.AsString;
 
-      D1:=DD.Task.AddItem;
-      D1.barcode:=rxTasksBarcode.AsString;
-      D1.Date:=rxTasksDate.AsString;
-      D1.as_:=Ord(rxTasksUseAdress.AsBoolean);
-      D1.Control:=Ord(rxTasksControl.AsBoolean);
-      D1.type1:=rxTasksTypeDoc.AsString;
-      D1.Nomer:=rxTasksNomer.AsString;
-      D1.id_doc:=rxTasksIdDoc.AsString;
-      D1.id_zone:=rxTasksIdZone.AsString;
-      D1.id_room:=rxTasksIdRoom.AsString;
-      D1.id_sclad:=rxTasksIdStock.AsString;
 
       rxGoods.First;
       while not rxGoods.EOF do
       begin
-        G:=D.Task.Goods.AddItem;
+        G:=D.record1.AddItem;
         //G.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
-        G.IdGoods:=rxGoodsID_GOODS.AsString;
+        G.id_goods:=rxGoodsID_GOODS.AsString;
         G.Quantity:=rxGoodsQuantity.AsString;
 
-        G1:=D1.record1.AddItem;
-        //G.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
-        G1.id_goods:=rxGoodsID_GOODS.AsString;
-        G1.quantity:=rxGoodsQuantity.AsString;
 
         //G.GoodProperty.Quantity:='1';
         //G.GoodProperty.IdPack:='dff7f708-7a0b-11df-b33a-0011955cba6b';
@@ -196,9 +175,6 @@ begin
         rxGoods.Next;
       end;
 
-      if ACountDoc > 0 then
-        if Result.Documents.Count = ACountDoc then
-          Break;
     end;
     rxTasks.Next;
   end;
@@ -206,8 +182,6 @@ begin
 
 
   rxTasks.First;
-  DD.SaveToFile(ExportFolder + 'Documents_1.xml');
-  DD.Free;
 end;
 
 end.

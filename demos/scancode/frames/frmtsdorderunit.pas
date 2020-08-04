@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, DBCtrls, ComCtrls, ExtCtrls, DB,
-  rxdbgrid, rxmemds;
+  rxdbgrid, rxmemds, PutDocum;
 
 type
 
@@ -68,7 +68,7 @@ type
   end;
 
 implementation
-uses scancode_tsd_order_api, scGlobal, base64;
+uses scGlobal, base64;
 
 {$R *.lfm}
 
@@ -76,76 +76,76 @@ uses scancode_tsd_order_api, scGlobal, base64;
 
 procedure TfrmTSDOrderFrame.Button1Click(Sender: TObject);
 var
-  T: TTask;
-  TG: TTaskGood;
-  CL: TTaskGoodPropertySerialCell;
-  NL: TNomenclature;
+  T: TOrders_Task;
+  TG: TOrders_Task_record;
+  CL: TOrders_Task_record_property_serial_cells;
+  NL: TOrders_handbooks_nomencls_record;
   TSDO: TOrders;
   //Handbooks: THandbooks;
-  CH: TCharacteristic;
-  BR: TTSDBarcode;
+  CH: TOrders_handbooks_characteristics_record;
+  BR: TOrders_handbooks_barcodes_record;
 begin
   TSDO:=TOrders.Create;
 
   //Создадим документ обработки
-  T:=TSDO.Tasks.AddItem;
-  T.IdDoc:='70b9a737-c224-11e8-ba50-50465d72dd18';
+  T:=TSDO.Task.AddItem;
+  T.id_doc:='70b9a737-c224-11e8-ba50-50465d72dd18';
   T.Date:='08.10.2018 0:00:00';
-  T.TaskType:='202';
-  T.DateOrder:='11.10.2018 17:18:48';
+  T.type1:='202';
+  T.date_order:='11.10.2018 17:18:48';
   T.FC:='0';
-  T.IdSclad:='';
+  T.id_sclad:='';
 
-  TG:=T.Goods.AddItem;
-  TG.IdChar:='b02e2816-720f-11df-b436-0015e92f2802';
-  TG.IdGoods:='dee6e1d0-55bc-11d9-848a-00112f43529a';
-  TG.GoodProperty.IdPack:=' ';
-  TG.GoodProperty.Serial.Quantity:='1';
-  TG.GoodProperty.Serial.IdSerial:=' ';
-  TG.GoodProperty.Serial.Date:=' ';
-  TG.GoodProperty.Serial.Value:=' ';
-  CL:=TG.GoodProperty.Serial.Cells.AddItem;
-  CL.IdCell:='322718363789694194929610170602799020651';
+  TG:=T.record1.AddItem;
+  TG.id_char:='b02e2816-720f-11df-b436-0015e92f2802';
+  TG.id_goods:='dee6e1d0-55bc-11d9-848a-00112f43529a';
+  TG.property1.id_pack:=' ';
+  TG.property1.Serial.Quantity:='1';
+  TG.property1.Serial.id_serial:=' ';
+  TG.property1.Serial.Date:=' ';
+  TG.property1.Serial.Value:=' ';
+  CL:=TG.property1.serial.cells.AddItem;
+  CL.id_cell:='322718363789694194929610170602799020651';
   CL.CellAddress:='БТ-СТ5-4';
 
-  TG:=T.Goods.AddItem;
-  TG.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
-  TG.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
-  TG.GoodProperty.IdPack:=' ';
-  TG.GoodProperty.Serial.Quantity:='1';
-  TG.GoodProperty.Serial.IdSerial:=' ';
-  TG.GoodProperty.Serial.Date:=' ';
-  TG.GoodProperty.Serial.Value:=' ';
+  TG:=T.record1.AddItem;
+  TG.id_char:='b02e2809-720f-11df-b436-0015e92f2802';
+  TG.id_goods:='bd72d913-55bc-11d9-848a-00112f43529a';
+  TG.property1.id_pack:=' ';
+  TG.property1.Serial.Quantity:='1';
+  TG.property1.Serial.id_serial:=' ';
+  TG.property1.Serial.Date:=' ';
+  TG.property1.Serial.Value:=' ';
 
-  TG:=T.Goods.AddItem;
-  TG.IdChar:='b02e280c-720f-11df-b436-0015e92f2802';
-  TG.IdGoods:='bd72d913-55bc-11d9-848a-00112f43529a';
-  TG.GoodProperty.IdPack:=' ';
-  TG.GoodMarking.DATAMATRIX:=' ';
-  TG.GoodMarking.PDF417:='123456789012345678901234567890';
-  TG.GoodProperty.Serial.Quantity:='2';
-  TG.GoodProperty.Serial.IdSerial:=' ';
-  TG.GoodProperty.Serial.Date:=' ';
-  TG.GoodProperty.Serial.Value:=' ';
+  TG:=T.record1.AddItem;
+  TG.id_char:='b02e280c-720f-11df-b436-0015e92f2802';
+  TG.id_goods:='bd72d913-55bc-11d9-848a-00112f43529a';
+  TG.property1.id_pack:=' ';
+//  TG.property1.DATAMATRIX:=' ';
+//  TG.property1.PDF417:='123456789012345678901234567890';
+  TG.property1.Serial.Quantity:='2';
+  TG.property1.Serial.id_serial:=' ';
+  TG.property1.Serial.Date:=' ';
+  TG.property1.Serial.Value:=' ';
 
 //  Handbooks:=THandbooks.Create;
-  NL:=TSDO.Handbooks.Nomenclatures.NomenclatureList.AddItem;
-  NL.IdGoods:='1';
+  NL:=TSDO.Handbooks.nomencls.record1.AddItem;
+  NL.id_goods:='1';
   NL.Name:='1';
-  NL.IdMeasure:='1';
-  NL.IdVidnomencl:='1';
+  NL.id_measure:='1';
+  NL.id_vidnomencl:='1';
   NL.Img:='1';
   NL.Bitmap:='1';
 
-  CH:=TSDO.Handbooks.Characteristics.CharacteristicList.AddItem;
-  CH.IdGoods:='1';
-  CH.IdChar:='1';
+  CH:=TSDO.Handbooks.Characteristics.record1.AddItem;
+  CH.id_goods:='1';
+  CH.id_char:='1';
   CH.Name:='1';
 
-  BR:=TSDO.Handbooks.Barcodes.BarcodeList.AddItem;
-  BR.IdGoods:='1';
-  BR.IdChar:='1';
-  BR.IdPack:='1';
+  BR:=TSDO.Handbooks.Barcodes.record1.AddItem;
+  BR.id_goods:='1';
+  BR.id_char:='1';
+  BR.id_pack:='1';
   BR.Barcode:='1';
 
   TSDO.SaveToFile(ExportFolder + 'Order.xml');
@@ -157,7 +157,7 @@ begin
 end;
 
 procedure TfrmTSDOrderFrame.Button2Click(Sender: TObject);
-var
+{var
   O: TOrders;
   NM: TNomenclature;
   St1: TStringStream;
@@ -165,9 +165,9 @@ var
   St2: TMemoryStream;
   T:TTask;
   G:TTaskGood;
-  M:TMarkedCode;
+  M:TMarkedCode; }
 begin
-  rxGoods.CloseOpen;
+{  rxGoods.CloseOpen;
   rxOrders.CloseOpen;
   rxMarcCodes.CloseOpen;
 
@@ -236,7 +236,7 @@ begin
   rxGoods.First;
   rxTaskGoods.Filtered:=true;
   rxMarcCodes.Filtered:=true;
-  rxOrders.First;
+  rxOrders.First;   }
 end;
 
 procedure TfrmTSDOrderFrame.rxMarcCodesFilterRecord(DataSet: TDataSet;

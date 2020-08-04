@@ -6,7 +6,8 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, StdCtrls, ExtCtrls, DB, rxdbgrid, rxmemds,
-  scancode_user_api, AbstractSerializationObjects;
+  AbstractSerializationObjects,
+  GetUsers;
 
 type
 
@@ -44,12 +45,12 @@ type
 
   public
     procedure GenerateData;
-    function CreateUserInfo(UI:TUserInformation):TUserInformation;
+    function CreateUserInfo(UI:TInformation):TInformation;
     function GetUserName(AUserGUID:string):string;
   end;
 
 implementation
-uses scGlobal, ScancodeMT_utils, GetUsers;
+uses scGlobal, ScancodeMT_utils, protocol1C;
 
 {$R *.lfm}
 
@@ -57,15 +58,15 @@ uses scGlobal, ScancodeMT_utils, GetUsers;
 
 procedure TfrmUsersAndRightFrame.Button1Click(Sender: TObject);
 var
-  U: TUserInformation;
-  E: TExtendedInformation;
+  U: TInformation;
+  E: Tprotocol1C;
 begin
   U:=CreateUserInfo(nil);
 
   U.SaveToFile(ExportFolder + 'sc_ui.xml');
   U.Free;
 
-  E:=TExtendedInformation.Create;
+  E:=Tprotocol1C.Create;
   E.Confirm:='confimed';
   E.DocType:='order';
   E.fileName:='tst.txt';
@@ -95,31 +96,30 @@ begin
   rxRight.First;
 end;
 
-function TfrmUsersAndRightFrame.CreateUserInfo(UI: TUserInformation
-  ): TUserInformation;
+function TfrmUsersAndRightFrame.CreateUserInfo(UI: TInformation): TInformation;
 var
-  L: TUserLogin;
+  L: TInformation_Login_Record;
   S: String;
   i: Integer;
-  R: TUserRight;
+  R: TInformation_Rights_Record;
   LUI: TInformation;
   L1: TInformation_Login_Record;
 begin
   if Assigned(UI) then
     Result:=UI
   else
-    Result:=TUserInformation.Create;
+    Result:=TInformation.Create;
 
   LUI:=TInformation.Create;
   rxUsers.First;
   while not rxUsers.EOF do
   begin
-    L:=Result.Logins.Records.AddItem;
+    L:=Result.Login.Record1.AddItem;
     L1:=LUI.Login.Record1.AddItem;
 
     L.Id:=rxUsersID.AsString;
     L.Login:=rxUsersLogin.AsString;
-    L.SetPassword(rxUsersPassword.AsString);
+    L.Pass:=EncodePassword(rxUsersPassword.AsString);
 
     L1.Id:=rxUsersID.AsString;
     L1.Login:=rxUsersLogin.AsString;
@@ -136,7 +136,7 @@ begin
     L.Rights:=S; //rxUsersRights.AsString;
     L.CreateProd:=rxUsersCreateProd.AsString;
     L.AddProd:=rxUsersAddProd.AsString;
-    L.CreateFreeCollect:=rxUsersCreateFreeCollect.AsString;
+    L.create_free_collect:=rxUsersCreateFreeCollect.AsString;
 
     L1.Rights:=S;
     L1.createprod:=rxUsersCreateProd.AsString;
@@ -150,10 +150,10 @@ begin
   rxRight.First;
   while not rxRight.EOF do
   begin
-    R:=Result.Rights.Records.AddItem;
+    R:=Result.Rights.Record1.AddItem;
     R.Name:=rxRightName.AsString;
-    R.Id:=rxRightID.AsString;
-    R.groupId:=rxRightGroupId.AsString;
+    R.Id:=rxRightID.AsInteger;
+    R.groupId:=rxRightGroupId.AsInteger;
     rxRight.Next;
   end;
   rxRight.First;

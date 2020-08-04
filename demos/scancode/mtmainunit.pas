@@ -7,10 +7,9 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, Graphics, Dialogs, StdCtrls, ComCtrls,
   ExtCtrls, EditBtn, DB, rxdbgrid, rxmemds, RxIniPropStorage, ScancodeMT,
-  scancode_user_api, frmUsersAndRightUnit, frmStocksUnit, frmDocumentsUnit,
-  frmCharacteristicUnit, frmTSDOrderUnit, scancode_stock_api,
-  scancode_characteristics_api, scancode_document_api, scancode_tsd_order_api,
-  DividerBevel;
+  frmUsersAndRightUnit, frmStocksUnit, frmDocumentsUnit,
+  frmCharacteristicUnit, frmTSDOrderUnit,  DividerBevel, GetData, GetDocum,
+  GetProd_1_answer, GetProd_1, PutDocum, GetStock, GetUsers;
 
 type
 
@@ -42,12 +41,12 @@ type
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure ScancodeMT1DictionaryList(Sender: TScancodeMT;
-      const AMessage: TMTQueueRecord; const Dictionary: TDictionary);
+      const AMessage: TMTQueueRecord; const Dictionary: TDocument);
     procedure ScancodeMT1DocumentsList(Sender: TScancodeMT;
       const AMessage: TMTQueueRecord; const Documents: TDocuments);
     procedure ScancodeMT1GetProd1(Sender: TScancodeMT;
-      const AMessage: TMTQueueRecord; const AQuery: TQueryGoods1;
-      const AAnswer: TGetProdAnswer);
+      const AMessage: TMTQueueRecord; const AQuery: GetProd_1.TTable;
+      const AAnswer: GetProd_1_answer.TTable);
     procedure ScancodeMT1OrdersList(Sender: TScancodeMT;
       const AMessage: TMTQueueRecord; const Orders: TOrders);
     procedure ScancodeMT1Status(Sender: TScancodeMT;
@@ -55,7 +54,7 @@ type
     procedure ScancodeMT1StocksList(Sender: TScancodeMT;
       const AMessage: TMTQueueRecord; const Stocks: TStocks);
     procedure ScancodeMT1UserList(Sender: TScancodeMT;
-      const AMessage: TMTQueueRecord; const UserInfo: TUserInformation);
+      const AMessage: TMTQueueRecord; const UserInfo: TInformation);
   private
     FUsersAndRight: TfrmUsersAndRightFrame;
     FStocksFrame: TfrmStocksFrame;
@@ -121,7 +120,7 @@ begin
 end;
 
 procedure TmtMainForm.ScancodeMT1DictionaryList(Sender: TScancodeMT;
-  const AMessage: TMTQueueRecord; const Dictionary: TDictionary);
+  const AMessage: TMTQueueRecord; const Dictionary: TDocument);
 begin
   FCharacteristicFrame.CreateDictionarys(Dictionary);
 end;
@@ -137,10 +136,10 @@ begin
 end;
 
 procedure TmtMainForm.ScancodeMT1GetProd1(Sender: TScancodeMT;
-  const AMessage: TMTQueueRecord; const AQuery: TQueryGoods1;
-  const AAnswer: TGetProdAnswer);
+  const AMessage: TMTQueueRecord; const AQuery: GetProd_1.TTable;
+  const AAnswer: GetProd_1_answer.TTable);
 begin
-  if AQuery.GoodList.Count>0 then
+(*  if AQuery.Record1.Count>0 then
   begin
     FCharacteristicFrame.rxGoods.Filtered:=false;
     AAnswer.GoodQuantity.IdGoods:=AQuery.GoodList[0].IdGoods;
@@ -150,16 +149,16 @@ begin
     else
       AAnswer.GoodQuantity.Quantity:='0';
     FCharacteristicFrame.rxGoods.Filtered:=true;
-  end;
+  end; *)
 end;
 
 procedure TmtMainForm.ScancodeMT1OrdersList(Sender: TScancodeMT;
   const AMessage: TMTQueueRecord; const Orders: TOrders);
-var
+{var
   T: TTask;
-  G: TTaskGood;
+  G: TTaskGood;}
 begin
-  for T in Orders.Tasks do
+{  for T in Orders.Tasks do
   begin
     if FDocumentsFrame.rxTasks.Locate('IdDoc', T.IdDoc, []) then
     begin
@@ -179,7 +178,7 @@ begin
       end;
     end;
   end;
-  AMessage.Confirm:='1';
+  AMessage.Confirm:='1'; }
 end;
 
 procedure TmtMainForm.Button1Click(Sender: TObject);
@@ -211,7 +210,7 @@ begin
 end;
 
 procedure TmtMainForm.ScancodeMT1UserList(Sender: TScancodeMT;
-  const AMessage: TMTQueueRecord; const UserInfo: TUserInformation);
+  const AMessage: TMTQueueRecord; const UserInfo: TInformation);
 begin
   FUsersAndRight.CreateUserInfo(UserInfo);
 end;
