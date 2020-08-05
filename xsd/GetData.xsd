@@ -38,7 +38,7 @@
                   <xs:attribute name="bitmap" type="xs:string">
                     <xs:annotation><xs:documentation>бинарный блок данных — файл изображения товара в кодировке Base64</xs:documentation></xs:annotation>
                   </xs:attribute>
-                  <xs:attribute name="marked" type="xs:integer">
+                  <xs:attribute name="marked" type="xs:integer" use="required">
                     <xs:annotation><xs:documentation>признак маркируемого товара (значение: 1 или 0)</xs:documentation></xs:annotation>
                   </xs:attribute>
                 </xs:complexType>

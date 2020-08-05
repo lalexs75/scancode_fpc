@@ -98,7 +98,7 @@ type
     Ftype1:String;
     Fcontrol:Int64;
     Fas_:Int64;
-    Fdate:String;
+    Fdate:TDateTime;
     Fbarcode:String;
     procedure Setid_doc( AValue:String);
     procedure Setid_zone( AValue:String);
@@ -108,7 +108,7 @@ type
     procedure Settype1( AValue:String);
     procedure Setcontrol( AValue:Int64);
     procedure Setas_( AValue:Int64);
-    procedure Setdate( AValue:String);
+    procedure Setdate( AValue:TDateTime);
     procedure Setbarcode( AValue:String);
   protected
     procedure InternalRegisterPropertys; override;
@@ -139,7 +139,7 @@ type
     //признак использования адресного хранения
     property as_:Int64 read Fas_ write Setas_;
     //дата создания документа
-    property date:String read Fdate write Setdate;
+    property date:TDateTime read Fdate write Setdate;
     //ШК документа (может быть использован для быстрого поиска в списке документов на ТСД при помощи сканера штрих кодов).
     property barcode:String read Fbarcode write Setbarcode;
   end;
@@ -354,7 +354,7 @@ begin
   ModifiedProperty('as_');
 end;
 
-procedure TDocuments_Task.Setdate(AValue: String);
+procedure TDocuments_Task.Setdate(AValue: TDateTime);
 begin
   Fdate:=AValue;
   ModifiedProperty('date');

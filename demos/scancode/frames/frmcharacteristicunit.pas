@@ -251,6 +251,7 @@ begin
     S:=ExtractFileDir(ParamStr(0))+PathDelim + 'goods_images' + PathDelim + IntToStr(id)+'.jpg';
     if FileExists(S) then
       G.LoadImage(S);
+    G.marked:=0;
     rxGoods.Next;
   end;
 (*

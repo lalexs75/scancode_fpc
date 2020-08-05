@@ -715,7 +715,7 @@ begin
   P:=RegisterProperty('id_nabor_pack', 'id_nabor_pack', [], '', -1, -1);
   P:=RegisterProperty('img', 'img', [], '', -1, -1);
   P:=RegisterProperty('bitmap', 'bitmap', [], '', -1, -1);
-  P:=RegisterProperty('marked', 'marked', [], '', -1, -1);
+  P:=RegisterProperty('marked', 'marked', [xsaRequared], '', -1, -1);
 end;
 
 procedure TDocument_table_record.InternalInitChilds;

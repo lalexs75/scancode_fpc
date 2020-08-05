@@ -132,6 +132,7 @@ type
     FTimer:TCustomTimer;
     FMTQueue:TFpList;
     FCriticalSection : TRTLCriticalSection;
+    function GetVersion: string;
     function IsSetPortStored: Boolean;
     procedure SetActive(AValue: boolean);
     procedure SetPort(AValue: Integer);
@@ -159,6 +160,7 @@ type
 
     property MTLibrary:TScancodeMTLibrary read FMTLibrary;
     property Active:boolean read FActive write SetActive;
+    property Version:string read GetVersion;
   published
     property Port:Integer read FPort write SetPort stored IsSetPortStored;
     property OnUserList:TMTUserListEvent read FOnUserList write FOnUserList;
@@ -389,6 +391,7 @@ begin
   if Rec.DocType = '0' then
   begin
     FQuery1:=nil;
+    AbstractError;
 (*  Orders:=TOrders.Create;
 {  if Assigned(FOnOrdersList) then
     FOnOrdersList(Self, Rec, Orders);
@@ -414,6 +417,14 @@ end;
 function TScancodeMT.IsSetPortStored: Boolean;
 begin
   Result:=FPort = mtDefaultPort;
+end;
+
+function TScancodeMT.GetVersion: string;
+var
+  Major, Minor, Patch, Build: TMTLong;
+begin
+  FMTLibrary.GetVersion(Major, Minor, Patch, Build);
+  Result:=Format('%d.%d.%d.%d', [Major, Minor, Patch, Build]);
 end;
 
 procedure TScancodeMT.SetActive(AValue: boolean);
@@ -565,9 +576,11 @@ begin
   if not Assigned(Result) then
     raise EScancodeMTLibrary.CreateFmt(sCantLoadProc, [Name]);
 end;
+var
+  S: String;
 begin
   FMTLib := LoadLibrary(PChar(FLibraryName));
-
+  S:=GetLoadErrorStr;
   if Loaded then
   begin
     FMT_GetProtocolVersion := TMT_GetProtocolVersion(DoGetProcAddress(FMTLib, 'MT_GetProtocolVersion'));

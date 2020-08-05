@@ -102,7 +102,7 @@
             <xs:attribute name="as_" type="xs:integer">
               <xs:annotation><xs:documentation>признак использования адресного хранения</xs:documentation></xs:annotation>
             </xs:attribute>
-            <xs:attribute name="date" type="xs:string">
+            <xs:attribute name="date" type="xs:dateTime">
               <xs:annotation><xs:documentation>дата создания документа</xs:documentation></xs:annotation>
             </xs:attribute>
             <xs:attribute name="barcode" type="xs:string">

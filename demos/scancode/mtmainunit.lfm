@@ -28,9 +28,9 @@ object mtMainForm: TmtMainForm
         Height = 744
         Top = 0
         Width = 1180
-        ActivePage = TabSheet7
+        ActivePage = TabSheet6
         Align = alClient
-        TabIndex = 4
+        TabIndex = 2
         TabOrder = 0
         object TabSheet3: TTabSheet
           Caption = 'Список пользователей и их прав'
