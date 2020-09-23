@@ -44,33 +44,43 @@ type
 
 function UserIDToGUID(AId:Integer):string;
 function GUIDToUserID(AGUID:string):Integer;
+function IsUserIDGUID(AGUID:string):Boolean; inline;
 
 function StockIDToGUID(AId:Integer):string;
 function GUIDToStockID(AGUID:string):Integer;
+function IsStockIDGUID(AGUID:string):Boolean; inline;
 
 function RoomIDToGUID(AId:Integer):string;
 function GUIDToRoomID(AGUID:string):Integer;
+function IsRoomIDGUID(AGUID:string):Boolean; inline;
 
 function CellIDToGUID(AId:Integer):string;
 function GUIDToCellID(AGUID:string):Integer;
+function IsCellIDGUID(AGUID:string):Boolean; inline;
 
 function DocIDToGUID(AId:Integer):string;
 function GUIDToDocID(AGUID:string):Integer;
+function IsDocIDGUID(AGUID:string):Boolean; inline;
 
 function DocFirstMarksIDToGUID(AId:Integer):string;
 function GUIDToDocFirstMarksID(AGUID:string):Integer;
+function IsDocFirstMarksIDGUID(AGUID:string):Boolean; inline;
 
 function GoodsIDToGUID(AId:Integer):string;
 function GUIDToGoodsID(AGUID:string):Integer;
+function IsGoodsIDGUID(AGUID:string):Boolean; inline;
 
 function MeasureIDToGUID(AId:Integer):string;
 function GUIDToMeasureID(AGUID:string):Integer;
+function IsMeasureIDGUID(AGUID:string):Boolean; inline;
 
 function NomenclatureIDToGUID(AId:Integer):string;
 function GUIDToNomenclatureID(AGUID:string):Integer;
+function IsNomenclatureIDGUID(AGUID:string):Boolean; inline;
 
 function PackIDToGUID(AId:Integer):string;
 function GUIDToPackID(AGUID:string):Integer;
+function IsPackIDGUID(AGUID:string):Boolean; inline;
 
 function NormalaizeGUID(AGUID:string):string;
 
@@ -109,10 +119,15 @@ end;
 
 function GUIDToUserID(AGUID: string): Integer;
 begin
-  if Copy(AGUID, 1, Length(sUserGUIDBase)) = sUserGUIDBase then
+  if IsUserIDGUID(AGUID) then
     Result:=StrToInt(Copy(AGUID, Length(sUserGUIDBase)+1, Length(AGUID)))
   else
     raise Exception.CreateFmt(sIsNotUserGUID, [AGUID]);
+end;
+
+function IsUserIDGUID(AGUID: string): Boolean;
+begin
+  Result:=Copy(AGUID, 1, Length(sUserGUIDBase)) = sUserGUIDBase;
 end;
 
 function StockIDToGUID(AId: Integer): string;
@@ -122,10 +137,15 @@ end;
 
 function GUIDToStockID(AGUID: string): Integer;
 begin
-  if Copy(AGUID, 1, Length(sStockGUIDBase)) = sStockGUIDBase then
+  if IsStockIDGUID(AGUID) then
     Result:=StrToInt(Copy(AGUID, Length(sStockGUIDBase)+1, Length(AGUID)))
   else
     raise Exception.CreateFmt(sIsNotStockGUID, [AGUID]);
+end;
+
+function IsStockIDGUID(AGUID: string): Boolean;
+begin
+  Result:=Copy(AGUID, 1, Length(sStockGUIDBase)) = sStockGUIDBase;
 end;
 
 function RoomIDToGUID(AId: Integer): string;
@@ -135,10 +155,15 @@ end;
 
 function GUIDToRoomID(AGUID: string): Integer;
 begin
-  if Copy(AGUID, 1, Length(sRoomGUIDBase)) = sRoomGUIDBase then
+  if IsRoomIDGUID(AGUID) then
     Result:=StrToInt(Copy(AGUID, Length(sRoomGUIDBase)+1, Length(AGUID)))
   else
     raise Exception.CreateFmt(sIsNotRoomGUID, [AGUID]);
+end;
+
+function IsRoomIDGUID(AGUID: string): Boolean;
+begin
+  Result:=Copy(AGUID, 1, Length(sRoomGUIDBase)) = sRoomGUIDBase;
 end;
 
 function CellIDToGUID(AId: Integer): string;
@@ -148,10 +173,15 @@ end;
 
 function GUIDToCellID(AGUID: string): Integer;
 begin
-  if Copy(AGUID, 1, Length(sCellGUIDBase)) = sCellGUIDBase then
+  if IsCellIDGUID(AGUID) then
     Result:=StrToInt(Copy(AGUID, Length(sCellGUIDBase)+1, Length(AGUID)))
   else
     raise Exception.CreateFmt(sIsNotCellGUID, [AGUID]);
+end;
+
+function IsCellIDGUID(AGUID: string): Boolean;
+begin
+  Result:=Copy(AGUID, 1, Length(sCellGUIDBase)) = sCellGUIDBase;
 end;
 
 function DocIDToGUID(AId: Integer): string;
@@ -161,10 +191,15 @@ end;
 
 function GUIDToDocID(AGUID: string): Integer;
 begin
-  if Copy(AGUID, 1, Length(sDocGUIDBase)) = sDocGUIDBase then
+  if IsDocIDGUID(AGUID) then
     Result:=StrToInt(Copy(AGUID, Length(sDocGUIDBase)+1, Length(AGUID)))
   else
     raise Exception.CreateFmt(sIsNotDocumentGUID, [AGUID]);
+end;
+
+function IsDocIDGUID(AGUID: string): Boolean;
+begin
+  Result:=Copy(AGUID, 1, Length(sDocGUIDBase)) = sDocGUIDBase;
 end;
 
 function DocFirstMarksIDToGUID(AId: Integer): string;
@@ -174,10 +209,15 @@ end;
 
 function GUIDToDocFirstMarksID(AGUID: string): Integer;
 begin
-  if Copy(AGUID, 1, Length(sDocFirstMarksGUIDBase)) = sDocFirstMarksGUIDBase then
+  if IsDocFirstMarksIDGUID(AGUID) then
     Result:=StrToInt(Copy(AGUID, Length(sDocFirstMarksGUIDBase)+1, Length(AGUID)))
   else
     raise Exception.CreateFmt(sIsNotDocumentInitialMarksGUID, [AGUID]);
+end;
+
+function IsDocFirstMarksIDGUID(AGUID: string): Boolean;
+begin
+  Result:=Copy(AGUID, 1, Length(sDocFirstMarksGUIDBase)) = sDocFirstMarksGUIDBase;
 end;
 
 function GoodsIDToGUID(AId: Integer): string;
@@ -187,10 +227,15 @@ end;
 
 function GUIDToGoodsID(AGUID: string): Integer;
 begin
-  if Copy(AGUID, 1, Length(sGoodsGUIDBase)) = sGoodsGUIDBase then
+  if IsGoodsIDGUID(AGUID) then
     Result:=StrToInt(Copy(AGUID, Length(sGoodsGUIDBase)+1, Length(AGUID)))
   else
     raise Exception.CreateFmt(sIsNotGoodsGUID, [AGUID]);
+end;
+
+function IsGoodsIDGUID(AGUID: string): Boolean;
+begin
+  Result:=Copy(AGUID, 1, Length(sGoodsGUIDBase)) = sGoodsGUIDBase;
 end;
 
 function MeasureIDToGUID(AId: Integer): string;
@@ -200,10 +245,15 @@ end;
 
 function GUIDToMeasureID(AGUID: string): Integer;
 begin
-  if Copy(AGUID, 1, Length(sMeasureGUIDBase)) = sMeasureGUIDBase then
+  if IsMeasureIDGUID(AGUID) then
     Result:=StrToInt(Copy(AGUID, Length(sMeasureGUIDBase)+1, Length(AGUID)))
   else
     raise Exception.CreateFmt(sIsNotmeasureGUID, [AGUID]);
+end;
+
+function IsMeasureIDGUID(AGUID: string): Boolean;
+begin
+  Result:=Copy(AGUID, 1, Length(sMeasureGUIDBase)) = sMeasureGUIDBase;
 end;
 
 function NomenclatureIDToGUID(AId: Integer): string;
@@ -213,10 +263,15 @@ end;
 
 function GUIDToNomenclatureID(AGUID: string): Integer;
 begin
-  if Copy(AGUID, 1, Length(sNomenclatureGUIDBase)) = sNomenclatureGUIDBase then
+  if IsNomenclatureIDGUID(AGUID) then
     Result:=StrToInt(Copy(AGUID, Length(sNomenclatureGUIDBase)+1, Length(AGUID)))
   else
     raise Exception.CreateFmt(sIsNotNomenclatureGUID, [AGUID]);
+end;
+
+function IsNomenclatureIDGUID(AGUID: string): Boolean;
+begin
+  Result:=Copy(AGUID, 1, Length(sNomenclatureGUIDBase)) = sNomenclatureGUIDBase;
 end;
 
 function PackIDToGUID(AId: Integer): string;
@@ -226,10 +281,15 @@ end;
 
 function GUIDToPackID(AGUID: string): Integer;
 begin
-  if Copy(AGUID, 1, Length(sPackGUIDBase)) = sPackGUIDBase then
+  if IsPackIDGUID(AGUID) then
     Result:=StrToInt(Copy(AGUID, Length(sPackGUIDBase)+1, Length(AGUID)))
   else
     raise Exception.CreateFmt(sIsNotPackGUID, [AGUID]);
+end;
+
+function IsPackIDGUID(AGUID: string): Boolean;
+begin
+  Result:=Copy(AGUID, 1, Length(sPackGUIDBase)) = sPackGUIDBase;
 end;
 
 function NormalaizeGUID(AGUID: string): string;
