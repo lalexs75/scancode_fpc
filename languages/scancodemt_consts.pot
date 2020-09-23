@@ -1,0 +1,62 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: scancodemt_consts.scantloadproc
+#, object-pascal-format
+msgid "Can't load procedure \"%s\""
+msgstr ""
+
+#: scancodemt_consts.sisnotcellguid
+#, object-pascal-format
+msgid "%s is not cell GUID"
+msgstr ""
+
+#: scancodemt_consts.sisnotdocumentguid
+#, object-pascal-format
+msgid "%s is not document GUID"
+msgstr ""
+
+#: scancodemt_consts.sisnotdocumentinitialmarksguid
+#, object-pascal-format
+msgid "%s is not document initial marks GUID"
+msgstr ""
+
+#: scancodemt_consts.sisnotgoodsguid
+#, object-pascal-format
+msgid "%s is not goods GUID"
+msgstr ""
+
+#: scancodemt_consts.sisnotmeasureguid
+#, object-pascal-format
+msgid "%s is not measure GUID"
+msgstr ""
+
+#: scancodemt_consts.sisnotnomenclatureguid
+#, object-pascal-format
+msgid "%s is not nomenclature GUID"
+msgstr ""
+
+#: scancodemt_consts.sisnotpackguid
+#, object-pascal-format
+msgid "%s is not pack GUID"
+msgstr ""
+
+#: scancodemt_consts.sisnotroomguid
+#, object-pascal-format
+msgid "%s is not room GUID"
+msgstr ""
+
+#: scancodemt_consts.sisnotstockguid
+#, object-pascal-format
+msgid "%s is not stock GUID"
+msgstr ""
+
+#: scancodemt_consts.sisnotuserguid
+#, object-pascal-format
+msgid "%s is not user GUID"
+msgstr ""
+
+#: scancodemt_consts.sonlyoneinstanse
+msgid "Only one instanse of TScancodeMT allowed"
+msgstr ""
+

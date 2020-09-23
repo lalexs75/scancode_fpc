@@ -45,7 +45,7 @@ interface
 uses
   Classes, SysUtils, CustomTimer, xmlobject, ScancodeMT_API, protocol1C,
 
-  GetUsers, GetStock, GetData, GetProd_1, GetProd_1_answer,
+  GetUsers, GetStock, GetData, GetProd_0, {GetProd_0_answer,} GetProd_1, GetProd_1_answer,
   GetDocum, PutDocum
   {$if FPC_FULLVERSION<30006}
   , dynlibs
@@ -114,7 +114,7 @@ type
   TMTStocksListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Stocks:TStocks) of object;
   TMTOrdersListEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const Orders:TOrders) of object;
   TMTStatusEvent = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord) of object;
-  //TMTGetProd0Event = procedure(Sender:TScancodeMT; const AQuery:TQueryGoods0; const AMessage:TMTQueueRecord) of object;
+  TMTGetProd0Event = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const AQuery:GetProd_0.TTable; const AAnswer:GetProd_1_answer.TTable) of object;
   TMTGetProd1Event = procedure(Sender:TScancodeMT; const AMessage:TMTQueueRecord; const AQuery:GetProd_1.TTable; const AAnswer:GetProd_1_answer.TTable) of object;
 
   TScancodeMT = class(TComponent)
@@ -123,6 +123,7 @@ type
     FMTLibrary: TScancodeMTLibrary;
     FOnDictionaryList: TMTDictionaryListEvent;
     FOnDocumentsList: TMTDocumentsListEvent;
+    FOnGetProd0: TMTGetProd0Event;
     FOnGetProd1: TMTGetProd1Event;
     FOnOrdersList: TMTOrdersListEvent;
     FOnStatus: TMTStatusEvent;
@@ -168,18 +169,15 @@ type
     property OnDocumentsList:TMTDocumentsListEvent read FOnDocumentsList write FOnDocumentsList;
     property OnStocksList:TMTStocksListEvent read FOnStocksList write FOnStocksList;
     property OnOrdersList:TMTOrdersListEvent read FOnOrdersList write FOnOrdersList;
-    //property OnGetProd0:TMTGetProd0Event read FOnGetProd0 write FOnGetProd0;
+    property OnGetProd0:TMTGetProd0Event read FOnGetProd0 write FOnGetProd0;
     property OnGetProd1:TMTGetProd1Event read FOnGetProd1 write FOnGetProd1;
     property OnStatus:TMTStatusEvent read FOnStatus write FOnStatus;
   end;
 
 procedure Register;
 
-resourcestring
-  sCantLoadProc = 'Can''t load procedure "%s"';
-  sOnlyOneInstanse = 'Only one instanse of TScancodeMT allowed';
-
 implementation
+uses ScancodeMT_consts;
 
 {$R *.res}
 procedure Register;
@@ -386,17 +384,20 @@ procedure TScancodeMT.InternalSendGetProd(const Rec: TMTQueueRecord);
 var
   FQuery1: GetProd_1.TTable;
   FAnswer1: GetProd_1_answer.TTable;
+  FQuery0: GetProd_0.TTable;
 begin
 
   if Rec.DocType = '0' then
   begin
-    FQuery1:=nil;
-    AbstractError;
-(*  Orders:=TOrders.Create;
-{  if Assigned(FOnOrdersList) then
-    FOnOrdersList(Self, Rec, Orders);
-  SendAnswer('PutDocum', Rec, nil);}
-  Orders.Free; *)
+    FQuery0:=GetProd_0.TTable.Create;
+    if Rec.FileName <> '' then;
+      FQuery0.LoadFromFile(Rec.FileName);
+    if Assigned(OnGetProd0) then
+      OnGetProd0(Self, Rec, FQuery0, FAnswer1);
+    SendAnswer('GetProd', Rec, FAnswer1);
+
+    FQuery0.Free;
+    FAnswer1.Free;
   end
   else
   begin
