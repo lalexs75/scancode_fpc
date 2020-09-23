@@ -1,0 +1,62 @@
+msgid ""
+msgstr "Content-Type: text/plain; charset=UTF-8"
+
+#: scancodemt_consts.scantloadproc
+#, object-pascal-format
+msgid "Can't load procedure \"%s\""
+msgstr "Ошибка загрузки процедуры \"%s\""
+
+#: scancodemt_consts.sisnotcellguid
+#, object-pascal-format
+msgid "%s is not cell GUID"
+msgstr "%s не является идентификатором ячейки"
+
+#: scancodemt_consts.sisnotdocumentguid
+#, object-pascal-format
+msgid "%s is not document GUID"
+msgstr "%s не является идентификатором документа"
+
+#: scancodemt_consts.sisnotdocumentinitialmarksguid
+#, object-pascal-format
+msgid "%s is not document initial marks GUID"
+msgstr "%s не является идентификатором первичной маркировки"
+
+#: scancodemt_consts.sisnotgoodsguid
+#, object-pascal-format
+msgid "%s is not goods GUID"
+msgstr "%s не является идентификатором товара"
+
+#: scancodemt_consts.sisnotmeasureguid
+#, object-pascal-format
+msgid "%s is not measure GUID"
+msgstr "%s не является идентификатором единицы измерения"
+
+#: scancodemt_consts.sisnotnomenclatureguid
+#, object-pascal-format
+msgid "%s is not nomenclature GUID"
+msgstr "%s не является идентификатором номенклатуры"
+
+#: scancodemt_consts.sisnotpackguid
+#, object-pascal-format
+msgid "%s is not pack GUID"
+msgstr "%s не является идентификатором упаковки"
+
+#: scancodemt_consts.sisnotroomguid
+#, object-pascal-format
+msgid "%s is not room GUID"
+msgstr "%s не является идентификатором помещения"
+
+#: scancodemt_consts.sisnotstockguid
+#, object-pascal-format
+msgid "%s is not stock GUID"
+msgstr "%s не является идентификатором склада"
+
+#: scancodemt_consts.sisnotuserguid
+#, object-pascal-format
+msgid "%s is not user GUID"
+msgstr "%s не является идентификатором пользователя"
+
+#: scancodemt_consts.sonlyoneinstanse
+msgid "Only one instanse of TScancodeMT allowed"
+msgstr "Разрешён только один экземпляр компоненты TScancodeMT"
+
