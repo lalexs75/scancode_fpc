@@ -43,7 +43,7 @@ unit ScancodeMT;
 interface
 
 uses
-  Classes, SysUtils, CustomTimer, xmlobject, ScancodeMT_API, protocol1C,
+  Classes, SysUtils, {CustomTimer, }xmlobject, ScancodeMT_API, protocol1C,
 
   GetUsers, GetStock, GetData, GetProd_0, {GetProd_0_answer,} GetProd_1, GetProd_1_answer,
   GetDocum, PutDocum
@@ -130,7 +130,7 @@ type
     FOnStocksList: TMTStocksListEvent;
     FOnUserList: TMTUserListEvent;
     FPort: Integer;
-    FTimer:TCustomTimer;
+    //FTimer:TCustomTimer;
     FMTQueue:TFpList;
     FCriticalSection : TRTLCriticalSection;
     function GetVersion: string;
@@ -447,19 +447,19 @@ begin
   FPort:=mtDefaultPort;
   FScancodeMT:=Self;
   FMTLibrary:=TScancodeMTLibrary.Create;
-  FTimer:=TCustomTimer.Create(nil);
-  FTimer.Enabled:=false;
-  FTimer.Interval:=300;
-  FTimer.OnTimer:=@MTTimerQueueTick;
+  //FTimer:=TCustomTimer.Create(nil);
+  //FTimer.Enabled:=false;
+  //FTimer.Interval:=300;
+  //FTimer.OnTimer:=@MTTimerQueueTick;
   FMTQueue:=TFpList.Create;
 end;
 
 destructor TScancodeMT.Destroy;
 begin
   Active:=false;
-  FTimer.Enabled:=false;
+//  FTimer.Enabled:=false;
   ClearMTQueue;
-  FreeAndNil(FTimer);
+//  FreeAndNil(FTimer);
   FreeAndNil(FMTLibrary);
   FreeAndNil(FMTQueue);
   FScancodeMT:=nil;
@@ -481,7 +481,7 @@ begin
   else
     V:=FMTLibrary.StartServer(FPort);
   FActive:=V = 1;
-  if V = 1 then
+(*  if V = 1 then
   begin
     try
       FTimer.Enabled:=true;
@@ -491,14 +491,14 @@ begin
 
       end;
     end;
-  end;
+  end; *)
 end;
 
 procedure TScancodeMT.StopServer;
 var
   V: LongInt;
 begin
-  FTimer.Enabled:=false;
+//  FTimer.Enabled:=false;
   V:=FMTLibrary.StopServer;
   ClearMTQueue;
   if FActive and (V=1) then
