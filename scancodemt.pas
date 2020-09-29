@@ -139,7 +139,7 @@ type
     procedure SetPort(AValue: Integer);
     procedure AddMTMessage(const ACommand, AInfo:PChar);
     procedure ClearMTQueue;
-    procedure MTTimerQueueTick(Sender: TObject);
+    //procedure MTTimerQueueTick(Sender: TObject);
     procedure SendAnswer(const Command:string; const Rec: TMTQueueRecord; const Data:TXmlSerializationObject);
   protected
     procedure InternalSendUserInfo;
@@ -240,12 +240,12 @@ begin
   FMTQueue.Clear;
   LeaveCriticalSection(FCriticalSection);
 end;
-
+(*
 procedure TScancodeMT.MTTimerQueueTick(Sender: TObject);
 begin
   ProcessMTQueue;
 end;
-
+*)
 procedure TScancodeMT.SendAnswer(const Command: string;
   const Rec: TMTQueueRecord; const Data: TXmlSerializationObject);
 var
