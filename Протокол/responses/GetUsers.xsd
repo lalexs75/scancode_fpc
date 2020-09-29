@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Information">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Rights"/>
+        <xs:element ref="Login"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Rights">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="Record"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Login">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="Record"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Record">
+    <xs:complexType>
+      <xs:attribute name="Id" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="Login"/>
+      <xs:attribute name="Name"/>
+      <xs:attribute name="Pass"/>
+      <xs:attribute name="Rights"/>
+      <xs:attribute name="addprod"/>
+      <xs:attribute name="create_free_collect"/>
+      <xs:attribute name="createprod"/>
+      <xs:attribute name="full_name_user1c"/>
+      <xs:attribute name="groupId" type="xs:integer"/>
+      <xs:attribute name="needToken" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

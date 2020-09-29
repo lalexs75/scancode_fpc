@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Documents">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Document"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Document">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Task"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Task">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="record"/>
+      </xs:sequence>
+      <xs:attribute name="as_" use="required" type="xs:integer"/>
+      <xs:attribute name="barcode" use="required" type="xs:NCName"/>
+      <xs:attribute name="control" use="required" type="xs:integer"/>
+      <xs:attribute name="date" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="id_doc" use="required"/>
+      <xs:attribute name="id_stock" use="required"/>
+      <xs:attribute name="nomer" use="required" type="xs:integer"/>
+      <xs:attribute name="type" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="record">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="marked_codes"/>
+      </xs:sequence>
+      <xs:attribute name="id_goods" use="required"/>
+      <xs:attribute name="quantity" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="marked_codes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="token"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="token">
+    <xs:complexType>
+      <xs:attribute name="GS1_DATAMATRIX" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

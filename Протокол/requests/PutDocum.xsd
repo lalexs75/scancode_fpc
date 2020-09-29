@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Orders">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="handbooks"/>
+        <xs:element ref="Task"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="handbooks">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="nomencls"/>
+        <xs:element ref="characteristics"/>
+        <xs:element ref="barcodes"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="nomencls">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="record"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="characteristics">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="record"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="barcodes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="record"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Task">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="record"/>
+      </xs:sequence>
+      <xs:attribute name="date" use="required"/>
+      <xs:attribute name="date_order" use="required"/>
+      <xs:attribute name="fc" use="required" type="xs:integer"/>
+      <xs:attribute name="id_doc" use="required"/>
+      <xs:attribute name="id_sсlad" use="required"/>
+      <xs:attribute name="type" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="record">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="property"/>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="alco"/>
+          <xs:element ref="marked_codes"/>
+        </xs:sequence>
+      </xs:sequence>
+      <xs:attribute name="barcode"/>
+      <xs:attribute name="bitmap"/>
+      <xs:attribute name="id_char"/>
+      <xs:attribute name="id_goods" use="required"/>
+      <xs:attribute name="id_measure"/>
+      <xs:attribute name="id_pack"/>
+      <xs:attribute name="id_vidnomencl"/>
+      <xs:attribute name="img"/>
+      <xs:attribute name="name"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="property">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="serial"/>
+      </xs:sequence>
+      <xs:attribute name="id_pack" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="serial">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="cells"/>
+      </xs:sequence>
+      <xs:attribute name="date" use="required"/>
+      <xs:attribute name="id_serial" use="required"/>
+      <xs:attribute name="quantity" use="required" type="xs:integer"/>
+      <xs:attribute name="value" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cells">
+    <xs:complexType>
+      <xs:attribute name="celladdress" use="required" type="xs:NCName"/>
+      <xs:attribute name="id_cell" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="alco">
+    <xs:complexType>
+      <xs:attribute name="DATAMATRIX" use="required"/>
+      <xs:attribute name="PDF417" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="marked_codes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="token"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="token">
+    <xs:complexType>
+      <xs:attribute name="GS1_DATAMATRIX" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

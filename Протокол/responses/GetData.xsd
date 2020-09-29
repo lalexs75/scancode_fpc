@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="document">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="table"/>
+        <xs:element ref="characteristics"/>
+        <xs:element ref="packs"/>
+        <xs:element ref="serials"/>
+        <xs:element ref="barcodes"/>
+        <xs:element ref="measures"/>
+        <xs:element ref="prices"/>
+        <xs:element ref="vidnomencls"/>
+        <xs:element ref="sclads"/>
+        <xs:element ref="images"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="table">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="record"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="characteristics">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="record"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="packs">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="record"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="serials">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="record"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="barcodes">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="record"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="measures">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="record"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="prices">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="vidnomencls">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="record"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="sclads">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="record"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="images">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="record"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="record">
+    <xs:complexType>
+      <xs:attribute name="alco" type="xs:integer"/>
+      <xs:attribute name="art"/>
+      <xs:attribute name="barcode" type="xs:integer"/>
+      <xs:attribute name="bitmap" type="xs:base64Binary"/>
+      <xs:attribute name="date" type="xs:NMTOKEN"/>
+      <xs:attribute name="id_char"/>
+      <xs:attribute name="id_goods"/>
+      <xs:attribute name="id_measure"/>
+      <xs:attribute name="id_naborpack"/>
+      <xs:attribute name="id_owner"/>
+      <xs:attribute name="id_pack"/>
+      <xs:attribute name="id_parent"/>
+      <xs:attribute name="id_sclad"/>
+      <xs:attribute name="id_serial"/>
+      <xs:attribute name="id_vidnomencl"/>
+      <xs:attribute name="img_id"/>
+      <xs:attribute name="img_name"/>
+      <xs:attribute name="is_adress" type="xs:integer"/>
+      <xs:attribute name="is_char" type="xs:integer"/>
+      <xs:attribute name="is_date_serial" type="xs:integer"/>
+      <xs:attribute name="is_group" type="xs:integer"/>
+      <xs:attribute name="is_nomer_serial" type="xs:integer"/>
+      <xs:attribute name="is_order" type="xs:integer"/>
+      <xs:attribute name="is_serial" type="xs:integer"/>
+      <xs:attribute name="koeff" type="xs:integer"/>
+      <xs:attribute name="marked" type="xs:integer"/>
+      <xs:attribute name="name"/>
+      <xs:attribute name="num"/>
+      <xs:attribute name="relation" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

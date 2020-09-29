@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="Table">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Record"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Record">
+    <xs:complexType>
+      <xs:attribute name="id_char" use="required"/>
+      <xs:attribute name="id_goods" use="required"/>
+      <xs:attribute name="id_sklad" use="required"/>
+      <xs:attribute name="quantity" use="required"/>
+      <xs:attribute name="sklad_name" use="required"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
