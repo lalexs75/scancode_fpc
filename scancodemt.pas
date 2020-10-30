@@ -43,9 +43,8 @@ unit ScancodeMT;
 interface
 
 uses
-  Classes, SysUtils, {CustomTimer, }xmlobject, ScancodeMT_API, protocol1C,
-
-  GetUsers, GetStock, GetData, GetProd_0, {GetProd_0_answer,} GetProd_1, GetProd_1_answer,
+  Classes, SysUtils, xmlobject, ScancodeMT_API, protocol1C,
+  GetUsers, GetStock, GetData, GetProd_0, GetProd_1, GetProd_1_answer,
   GetDocum, PutDocum
   {$if FPC_FULLVERSION<30006}
   , dynlibs
@@ -133,13 +132,13 @@ type
     //FTimer:TCustomTimer;
     FMTQueue:TFpList;
     FCriticalSection : TRTLCriticalSection;
+    FUpdatePath: string;
     function GetVersion: string;
     function IsSetPortStored: Boolean;
     procedure SetActive(AValue: boolean);
     procedure SetPort(AValue: Integer);
     procedure AddMTMessage(const ACommand, AInfo:PChar);
     procedure ClearMTQueue;
-    //procedure MTTimerQueueTick(Sender: TObject);
     procedure SendAnswer(const Command:string; const Rec: TMTQueueRecord; const Data:TXmlSerializationObject);
   protected
     procedure InternalSendUserInfo;
@@ -157,13 +156,13 @@ type
     procedure StartServer;
     procedure StopServer;
     procedure ProcessMTQueue;
-    //procedure SendConfirmOrder(const Rec: TMTQueueRecord; ABlock:string);
 
     property MTLibrary:TScancodeMTLibrary read FMTLibrary;
     property Active:boolean read FActive write SetActive;
     property Version:string read GetVersion;
   published
     property Port:Integer read FPort write SetPort stored IsSetPortStored;
+    property UpdatePath:string read FUpdatePath write FUpdatePath;
     property OnUserList:TMTUserListEvent read FOnUserList write FOnUserList;
     property OnDictionaryList:TMTDictionaryListEvent read FOnDictionaryList write FOnDictionaryList;
     property OnDocumentsList:TMTDocumentsListEvent read FOnDocumentsList write FOnDocumentsList;
@@ -177,7 +176,8 @@ type
 procedure Register;
 
 implementation
-uses ScancodeMT_consts;
+uses ScancodeMT_consts, LazFileUtils,
+  rxlogging;
 
 {$R *.res}
 procedure Register;
@@ -190,9 +190,11 @@ var
 
 function F_RequestCallback(const Param1:PChar; const Param2:PChar):TMTLong; cdecl;
 begin
+  RxWriteLog(etDebug, 'RequestCallback.Start : '+Param1);
   Result:=0;
   if Assigned(FScancodeMT) then
     FScancodeMT.AddMTMessage(Param1, Param2);
+  RxWriteLog(etDebug, 'RequestCallback.End : '+Param1);
 end;
 
 { TScancodeMT }
@@ -475,6 +477,9 @@ begin
     FMTLibrary.LoadMTLibrary;
 
 
+  if (FUpdatePath <> '') and DirectoryExists(FUpdatePath) then
+    FMTLibrary.SetUpdatePath(PChar(FUpdatePath));
+
   FMTLibrary.SetRequestCallback(@F_RequestCallback);
   if FPort = mtDefaultPort then
     V:=FMTLibrary.StartServerDefault
@@ -581,7 +586,6 @@ var
   S: String;
 begin
   FMTLib := LoadLibrary(PChar(FLibraryName));
-  S:=GetLoadErrorStr;
   if Loaded then
   begin
     FMT_GetProtocolVersion := TMT_GetProtocolVersion(DoGetProcAddress(FMTLib, 'MT_GetProtocolVersion'));
@@ -593,6 +597,11 @@ begin
     FMT_StartServerDefault:=TMT_StartServerDefault(DoGetProcAddress(FMTLib, 'MT_StartServerDefault'));
     FMT_StopServer:=TMT_StopServer(DoGetProcAddress(FMTLib, 'MT_StopServer'));
     FMT_SendAnswer:=TMT_SendAnswer(DoGetProcAddress(FMTLib, 'MT_SendAnswer'));
+  end
+  else
+  begin
+    S:=GetLoadErrorStr;
+    raise Exception.CreateFmt('Error load TSD library: %s', [S]);
   end;
 end;
 

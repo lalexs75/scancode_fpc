@@ -10,7 +10,7 @@ interface
 uses
   ScancodeMT, ScancodeMT_API, ScancodeMT_utils, GetUsers, GetStock, GetDocum, 
   GetData, PutDocum, GetProd_0, GetProd_1, GetProd_1_answer, GetProd_2_answer, 
-  protocol1C, tsd_api_utils, ScancodeMT_consts, LazarusPackageIntf;
+  protocol1C, tsd_api_utils, ScancodeMT_consts, confirm, LazarusPackageIntf;
 
 implementation
 

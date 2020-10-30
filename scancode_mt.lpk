@@ -13,7 +13,7 @@
     </CompilerOptions>
     <Description Value="Интерфейс библиотеки взаимодействия с ПО СКАНКОД.Мобильный Терминал (SCANCODE.MobileTerminal)"/>
     <License Value="LGPL"/>
-    <Version Major="1" Minor="1" Release="1" Build="24"/>
+    <Version Major="1" Minor="2" Release="1" Build="26"/>
     <Files>
       <Item>
         <Filename Value="scancodemt.pas"/>
@@ -76,6 +76,10 @@
         <Filename Value="scancodemt_consts.pas"/>
         <UnitName Value="ScancodeMT_consts"/>
       </Item>
+      <Item>
+        <Filename Value="api/confirm.pas"/>
+        <UnitName Value="confirm"/>
+      </Item>
     </Files>
     <LazDoc Paths="docs"/>
     <i18n>
@@ -84,6 +88,9 @@
       <EnableI18NForLFM Value="True"/>
     </i18n>
     <RequiredPkgs>
+      <Item>
+        <PackageName Value="rxtools"/>
+      </Item>
       <Item>
         <PackageName Value="LCLBase"/>
       </Item>

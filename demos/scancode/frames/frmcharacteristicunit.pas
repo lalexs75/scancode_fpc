@@ -212,12 +212,12 @@ end;
 
 function TfrmCharacteristicFrame.CreateDictionarys(DI: TDocument): TDocument;
 var
-  G:TDocument_table_record;
+(*  G:TDocument_table_record;
   BR:TDocument_barcodes_record;
   MS:TDocument_measures_record;
   PR:TDocument_prices_record;
   NT:TDocument_vidnomencls_record;
-  Skld:TDocument_sclads_record;
+  Skld:TDocument_sclads_record; *)
   ID: Integer;
   S: String;
 begin
@@ -225,7 +225,7 @@ begin
     Result:=DI
   else
     Result:=TDocument.Create;
-
+(*
   rxBarcode.Filtered:=false;
   rxGoods.Filtered:=false;
   rxGoods.AfterScroll:=nil;
@@ -357,6 +357,7 @@ begin
   rxPriceList.Filtered:=true;
   rxGoods.Filtered:=true;
   rxBarcode.Filtered:=true;
+*)
 end;
 
 end.

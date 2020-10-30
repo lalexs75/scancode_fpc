@@ -75,7 +75,7 @@ uses scGlobal, base64;
 { TfrmTSDOrderFrame }
 
 procedure TfrmTSDOrderFrame.Button1Click(Sender: TObject);
-var
+(*var
   T: TOrders_Task;
   TG: TOrders_Task_record;
   CL: TOrders_Task_record_property_serial_cells;
@@ -84,8 +84,9 @@ var
   //Handbooks: THandbooks;
   CH: TOrders_handbooks_characteristics_record;
   BR: TOrders_handbooks_barcodes_record;
+*)
 begin
-  TSDO:=TOrders.Create;
+(*  TSDO:=TOrders.Create;
 
   //Создадим документ обработки
   T:=TSDO.Task.AddItem;
@@ -154,6 +155,7 @@ begin
 
 //  Handbooks.SaveToFile(ExportFolder + 'Handbooks.xml');
 //  Handbooks.Free;
+*)
 end;
 
 procedure TfrmTSDOrderFrame.Button2Click(Sender: TObject);

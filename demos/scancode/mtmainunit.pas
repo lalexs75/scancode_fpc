@@ -122,7 +122,7 @@ end;
 procedure TmtMainForm.ScancodeMT1DictionaryList(Sender: TScancodeMT;
   const AMessage: TMTQueueRecord; const Dictionary: TDocument);
 begin
-  FCharacteristicFrame.CreateDictionarys(Dictionary);
+//  FCharacteristicFrame.CreateDictionarys(Dictionary);
 end;
 
 procedure TmtMainForm.ScancodeMT1DocumentsList(Sender: TScancodeMT;

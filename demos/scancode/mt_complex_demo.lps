@@ -8,9 +8,9 @@
         <Filename Value="mt_complex_demo.lpr"/>
         <IsPartOfProject Value="True"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="10"/>
+        <TopLine Value="14"/>
         <CursorPos Y="42"/>
-        <UsageCount Value="84"/>
+        <UsageCount Value="90"/>
       </Unit>
       <Unit>
         <Filename Value="mtmainunit.pas"/>
@@ -19,9 +19,9 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="mtMainUnit"/>
-        <TopLine Value="85"/>
-        <CursorPos X="3" Y="90"/>
-        <UsageCount Value="84"/>
+        <TopLine Value="62"/>
+        <CursorPos Y="81"/>
+        <UsageCount Value="90"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -33,9 +33,9 @@
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmUsersAndRightUnit"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="143"/>
-        <CursorPos X="33" Y="159"/>
-        <UsageCount Value="84"/>
+        <TopLine Value="144"/>
+        <CursorPos X="5" Y="163"/>
+        <UsageCount Value="90"/>
       </Unit>
       <Unit>
         <Filename Value="scglobal.pas"/>
@@ -43,7 +43,7 @@
         <UnitName Value="scGlobal"/>
         <EditorIndex Value="-1"/>
         <CursorPos Y="20"/>
-        <UsageCount Value="84"/>
+        <UsageCount Value="90"/>
       </Unit>
       <Unit>
         <Filename Value="frames/frmstocksunit.pas"/>
@@ -53,9 +53,9 @@
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmStocksUnit"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="149"/>
-        <CursorPos Y="174"/>
-        <UsageCount Value="84"/>
+        <TopLine Value="154"/>
+        <CursorPos X="5" Y="182"/>
+        <UsageCount Value="90"/>
       </Unit>
       <Unit>
         <Filename Value="frames/frmdocumentsunit.pas"/>
@@ -64,10 +64,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmDocumentsUnit"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="157"/>
-        <CursorPos Y="178"/>
-        <UsageCount Value="84"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="84"/>
+        <CursorPos Y="93"/>
+        <UsageCount Value="90"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="frames/frmcharacteristicunit.pas"/>
@@ -76,13 +79,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmCharacteristicUnit"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="1"/>
-        <TopLine Value="229"/>
-        <CursorPos X="16" Y="254"/>
-        <UsageCount Value="82"/>
-        <Loaded Value="True"/>
-        <LoadedDesigner Value="True"/>
+        <EditorIndex Value="-1"/>
+        <TopLine Value="205"/>
+        <CursorPos X="3" Y="215"/>
+        <UsageCount Value="88"/>
       </Unit>
       <Unit>
         <Filename Value="frames/frmtsdorderunit.pas"/>
@@ -92,9 +92,9 @@
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmTSDOrderUnit"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="147"/>
-        <CursorPos X="2" Y="160"/>
-        <UsageCount Value="73"/>
+        <TopLine Value="140"/>
+        <CursorPos X="3" Y="158"/>
+        <UsageCount Value="79"/>
       </Unit>
       <Unit>
         <Filename Value="../../scancode_document_api.pas"/>
@@ -260,10 +260,11 @@
       </Unit>
       <Unit>
         <Filename Value="/home/alexs/install/source/fpcsrc/packages/fcl-base/src/base64.pp"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="61"/>
-        <CursorPos X="10" Y="90"/>
-        <UsageCount Value="9"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="79"/>
+        <CursorPos X="28" Y="90"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../GetUsers.pas"/>
@@ -286,18 +287,19 @@
       </Unit>
       <Unit>
         <Filename Value="../../api/GetDocum.pas"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="107"/>
-        <CursorPos X="14" Y="121"/>
-        <UsageCount Value="13"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="255"/>
+        <CursorPos X="14" Y="270"/>
+        <UsageCount Value="15"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../../protobuf-fpc/xmlobject/abstractserializationobjects.pas"/>
         <UnitName Value="AbstractSerializationObjects"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="180"/>
-        <CursorPos X="15" Y="195"/>
-        <UsageCount Value="10"/>
+        <TopLine Value="291"/>
+        <CursorPos Y="307"/>
+        <UsageCount Value="11"/>
       </Unit>
       <Unit>
         <Filename Value="../../api/GetData.pas"/>
@@ -334,123 +336,135 @@
         <CursorPos X="14" Y="334"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="../../../rxnew/rxtools/rxlogging.pas"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="58"/>
+        <CursorPos Y="74"/>
+        <UsageCount Value="11"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="28">
+    <JumpHistory HistoryIndex="29">
       <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="49" TopLine="32"/>
+        <Filename Value="../../api/GetDocum.pas"/>
+        <Caret Line="80" Column="28" TopLine="73"/>
       </Position>
       <Position>
         <Filename Value="mtmainunit.pas"/>
-        <Caret Line="152" TopLine="136"/>
+        <Caret Line="125" Column="3" TopLine="148"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="132" Column="15" TopLine="116"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="185" TopLine="164"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="150" Column="35" TopLine="136"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="145" Column="54" TopLine="135"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="152" Column="54" TopLine="142"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="88" Column="37" TopLine="68"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="77" Column="3" TopLine="68"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="82" Column="12" TopLine="66"/>
+      </Position>
+      <Position>
+        <Filename Value="../../api/GetDocum.pas"/>
+        <Caret Line="86" Column="14" TopLine="70"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="86" Column="14" TopLine="70"/>
+      </Position>
+      <Position>
+        <Filename Value="../../api/GetDocum.pas"/>
+        <Caret Line="121" Column="14" TopLine="106"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="60" Column="43" TopLine="76"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="89" Column="11" TopLine="77"/>
+      </Position>
+      <Position>
+        <Filename Value="../../api/GetDocum.pas"/>
+        <Caret Line="241" Column="41" TopLine="226"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="89" Column="36" TopLine="77"/>
+      </Position>
+      <Position>
+        <Filename Value="../../api/GetDocum.pas"/>
+        <Caret Line="252" Column="14" TopLine="237"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="92" TopLine="77"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../rxnew/rxtools/rxlogging.pas"/>
+        <Caret Line="56" TopLine="40"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../rxnew/rxtools/rxlogging.pas"/>
+        <Caret Line="57" TopLine="40"/>
+      </Position>
+      <Position>
+        <Filename Value="../../../rxnew/rxtools/rxlogging.pas"/>
+        <Caret Line="58" TopLine="40"/>
       </Position>
       <Position>
         <Filename Value="mtmainunit.pas"/>
-        <Caret Line="46" Column="15" TopLine="32"/>
+        <Caret Line="78" TopLine="62"/>
       </Position>
       <Position>
         <Filename Value="mtmainunit.pas"/>
-        <Caret Line="12" Column="3"/>
+        <Caret Line="79" TopLine="62"/>
       </Position>
       <Position>
         <Filename Value="mtmainunit.pas"/>
-        <Caret Line="225" TopLine="193"/>
+        <Caret Line="80" TopLine="62"/>
       </Position>
       <Position>
         <Filename Value="mtmainunit.pas"/>
-        <Caret Line="12" Column="30"/>
+        <Caret Line="81" TopLine="62"/>
       </Position>
       <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="51" Column="53" TopLine="35"/>
+        <Filename Value="../../../rxnew/rxtools/rxlogging.pas"/>
+        <Caret Line="74" TopLine="58"/>
       </Position>
       <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="155" TopLine="154"/>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="92" Column="9" TopLine="70"/>
       </Position>
       <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="50" TopLine="36"/>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="60" Column="51" TopLine="30"/>
       </Position>
       <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="53" Column="53" TopLine="37"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="57" Column="55" TopLine="39"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="183" TopLine="154"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="54" Column="53" TopLine="40"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="206" TopLine="187"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="54" TopLine="40"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="57" Column="55" TopLine="39"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="210" TopLine="193"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="56" Column="55" TopLine="42"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="212" TopLine="187"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="58" TopLine="42"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="216" TopLine="193"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="142" Column="20" TopLine="126"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="152" Column="10" TopLine="129"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="166" Column="10" TopLine="152"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="42" Column="15" TopLine="35"/>
-      </Position>
-      <Position>
-        <Filename Value="mtmainunit.pas"/>
-        <Caret Line="90" Column="3" TopLine="85"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="16" Column="3"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="99" Column="3" TopLine="95"/>
-      </Position>
-      <Position>
-        <Filename Value="frames/frmcharacteristicunit.pas"/>
-        <Caret Line="85" Column="14" TopLine="70"/>
+        <Filename Value="frames/frmdocumentsunit.pas"/>
+        <Caret Line="93" TopLine="84"/>
       </Position>
     </JumpHistory>
     <RunParams>

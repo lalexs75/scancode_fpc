@@ -97,19 +97,19 @@ begin
 end;
 
 function TfrmUsersAndRightFrame.CreateUserInfo(UI: TInformation): TInformation;
-var
+(*var
   L: TInformation_Login_Record;
   S: String;
   i: Integer;
   R: TInformation_Rights_Record;
   LUI: TInformation;
-  L1: TInformation_Login_Record;
+  L1: TInformation_Login_Record;*)
 begin
   if Assigned(UI) then
     Result:=UI
   else
     Result:=TInformation.Create;
-
+(*
   LUI:=TInformation.Create;
   rxUsers.First;
   while not rxUsers.EOF do
@@ -160,6 +160,7 @@ begin
 
   LUI.SaveToFile(ExportFolder + 'sc_ui_11.xml');
   LUI.Free;
+  *)
 end;
 
 function TfrmUsersAndRightFrame.GetUserName(AUserGUID: string): string;

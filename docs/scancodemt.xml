@@ -86,6 +86,8 @@
       </element><element name="TMTOrdersListEvent"><short>Событие результат обработки документов на ТСД</short><descr>Возникает при отправке результута с ТСД в товаро-учётную систему
 </descr>
       </element>
+    <element name="TScancodeMT.Version"><short>Версия библиотеки, используемая для обмена с ТСД</short>
+      </element>
     </module>
   </package>
 </fpdoc-descriptions>

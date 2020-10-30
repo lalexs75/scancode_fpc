@@ -15,6 +15,7 @@ type
 
   TfrmDocumentsFrame = class(TFrame)
     Button1: TButton;
+    Button2: TButton;
     dsGoods: TDataSource;
     dsTasks: TDataSource;
     Panel1: TPanel;
@@ -41,6 +42,7 @@ type
     rxTasksUSER_NAME: TStringField;
     Splitter1: TSplitter;
     procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
     procedure RxDBGrid1GetCellProps(Sender: TObject; Field: TField;
       AFont: TFont; var Background: TColor);
     procedure rxGoodsFilterRecord(DataSet: TDataSet; var Accept: Boolean);
@@ -55,7 +57,7 @@ type
   end;
 
 implementation
-uses scGlobal, ScancodeMT_utils;
+uses scGlobal, ScancodeMT_utils, rxlogging, base64;
 
 {$R *.lfm}
 
@@ -67,6 +69,33 @@ var
 begin
   Docs:=CreateDocsList(nil, '', 0);
   Docs.SaveToFile(ExportFolder + 'Documents.xml');
+  Docs.Free;
+end;
+
+procedure TfrmDocumentsFrame.Button2Click(Sender: TObject);
+var
+  Docs: TDocuments;
+
+  T:TDocuments_Task;
+  R:TDocuments_Task_record;
+  M:TDocuments_Task_record_marked_codes_token;
+  S: String;
+begin
+  Docs:=TDocuments.Create;
+  Docs.LoadFromFile('/home/alexs/work/4/TDocuments.xml');
+
+  for T in Docs.Task do
+  begin
+    for R in T.record1 do
+    begin
+      for M in R.marked_codes.token do
+      begin
+        S:=DecodeStringBase64(M.GS1_DATAMATRIX);
+        RxWriteLog(etDebug, '%s :: %s', [M.GS1_DATAMATRIX, S]);
+      end;
+
+    end;
+  end;
   Docs.Free;
 end;
 
@@ -127,6 +156,9 @@ function TfrmDocumentsFrame.CreateDocsList(Docs: TDocuments; AUserName: string;
 var
   D: TDocuments_Task;
   G: TDocuments_Task_record;
+(*var
+  D: TTask;
+  G:Trecord;*)
 begin
   if Assigned(Docs) then
     Result:=Docs
@@ -144,7 +176,7 @@ begin
       rxTasks.Post;
       D:=Result.Task.AddItem;
       D.barcode:=rxTasksBarcode.AsString;
-      D.Date:=rxTasksDate.AsString;
+//      D.Date:=rxTasksDate.AsString;
       D.as_:=Ord(rxTasksUseAdress.AsBoolean);
       D.Control:=Ord(rxTasksControl.AsBoolean);
       D.type1:=rxTasksTypeDoc.AsString;
@@ -180,7 +212,55 @@ begin
   end;
 
 
+(*
 
+
+  //Загрузим документы
+  rxTasks.First;
+  while not rxTasks.EOF do
+  begin
+    if not rxTasksCOMPLETED.AsBoolean then
+    begin
+      rxTasks.Edit;
+      rxTasksUSER_NAME.AsString:=AUserName;
+      rxTasks.Post;
+      D:=Result.Document.Task;
+      D.barcode:=rxTasksBarcode.AsString;
+      D.Date:=rxTasksDate.AsString;
+      D.as_:=Ord(rxTasksUseAdress.AsBoolean);
+      D.Control:=Ord(rxTasksControl.AsBoolean);
+      D.type1:=1; //rxTasksTypeDoc.AsString;
+      D.nomer:=123; // rxTasksNomer.AsString;
+      D.id_doc:=rxTasksIdDoc.AsString;
+      //D.id_zone:=rxTasksIdZone.AsString;
+      //D.id_room:=rxTasksIdRoom.AsString;
+      D.id_stock:=rxTasksIdStock.AsString;
+
+
+      rxGoods.First;
+      while not rxGoods.EOF do
+      begin
+        G:=D.record1.AddItem;
+        //G.IdChar:='b02e2809-720f-11df-b436-0015e92f2802';
+        G.id_goods:=rxGoodsID_GOODS.AsString;
+        G.Quantity:=123; //rxGoodsQuantity.AsString;
+
+
+        //G.GoodProperty.Quantity:='1';
+        //G.GoodProperty.IdPack:='dff7f708-7a0b-11df-b33a-0011955cba6b';
+        //G.GoodProperty.GoodSerial.IdSerial:='934F6882-9D0A-4F05-82C2-2A131C452107';
+        //G.GoodProperty.GoodSerial.Quantity:='1';
+
+        //GC:=G.GoodProperty.GoodSerial.GoodCells.CreateChild;
+        //GC.Cell:='305982541796071806599496327226965408363';
+        //GC.CellAddress:='ОСТ3-2-1';
+        rxGoods.Next;
+      end;
+
+    end;
+    rxTasks.Next;
+  end;
+*)
   rxTasks.First;
 end;
 

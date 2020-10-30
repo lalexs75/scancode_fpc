@@ -433,6 +433,21 @@ object frmDocumentsFrame: TfrmDocumentsFrame
       ResizeAnchor = akTop
     end
   end
+  object Button2: TButton
+    AnchorSideRight.Control = Button1
+    AnchorSideBottom.Control = Owner
+    AnchorSideBottom.Side = asrBottom
+    Left = 163
+    Height = 33
+    Top = 337
+    Width = 78
+    Anchors = [akRight, akBottom]
+    AutoSize = True
+    BorderSpacing.Around = 6
+    Caption = 'Загрузить'
+    OnClick = Button2Click
+    TabOrder = 2
+  end
   object rxTasks: TRxMemoryData
     FieldDefs = <    
       item

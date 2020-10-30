@@ -139,16 +139,16 @@ begin
 end;
 
 function TfrmStocksFrame.CreateStocksInfo(SI: TStocks): TStocks;
-var
+(*var
   S: TStocks_Stock;
   R: TStocks_Stock_Room;
-  C: TStocks_Stock_Room_Cell;
+  C: TStocks_Stock_Room_Cell;*)
 begin
   if Assigned(SI) then
     Result:=SI
   else
     Result:=TStocks.Create;
-  rxStocks.First;
+(*  rxStocks.First;
   while not rxStocks.EOF do
   begin
     S:=Result.Stock.AddItem;
@@ -179,6 +179,7 @@ begin
     rxStocks.Next;
   end;
   rxStocks.First;
+  *)
 end;
 
 end.
