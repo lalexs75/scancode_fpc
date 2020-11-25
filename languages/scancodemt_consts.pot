@@ -21,6 +21,11 @@ msgstr ""
 msgid "%s is not document initial marks GUID"
 msgstr ""
 
+#: scancodemt_consts.sisnotdocumentintmoveguid
+#, object-pascal-format
+msgid "%s is not document internal move GUID"
+msgstr ""
+
 #: scancodemt_consts.sisnotgoodsguid
 #, object-pascal-format
 msgid "%s is not goods GUID"

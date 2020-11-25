@@ -66,6 +66,10 @@ function DocFirstMarksIDToGUID(AId:Integer):string;
 function GUIDToDocFirstMarksID(AGUID:string):Integer;
 function IsDocFirstMarksIDGUID(AGUID:string):Boolean; inline;
 
+function DocIntMoveIDToGUID(AId:Integer):string;
+function GUIDToDocIntMoveID(AGUID:string):Integer;
+function IsDocIntMoveIDGUID(AGUID:string):Boolean; inline;
+
 function GoodsIDToGUID(AId:Integer):string;
 function GUIDToGoodsID(AGUID:string):Integer;
 function IsGoodsIDGUID(AGUID:string):Boolean; inline;
@@ -101,6 +105,7 @@ const
   sNomenclatureGUIDBase   = 'FFFFFFFF-FFFF-FFFF-FFF8-';
   sPackGUIDBase           = 'FFFFFFFF-FFFF-FFFF-FFF7-';
   sDocFirstMarksGUIDBase  = 'FFFFFFFF-FFFF-FFFF-FFF6-';
+  sDocIntMoveGUIDBase     = 'FFFFFFFF-FFFF-FFFF-FFF5-';
   //sUserGUIDBase          = 'FFFFFFFFFFFFFFFFFFFF';
   //sStockGUIDBase         = 'FFFFFFFFFFFFFFFFFFFE';
   //sRoomGUIDBase          = 'FFFFFFFFFFFFFFFFFFFD';
@@ -218,6 +223,24 @@ end;
 function IsDocFirstMarksIDGUID(AGUID: string): Boolean;
 begin
   Result:=Copy(AGUID, 1, Length(sDocFirstMarksGUIDBase)) = sDocFirstMarksGUIDBase;
+end;
+
+function DocIntMoveIDToGUID(AId: Integer): string;
+begin
+  Result:=Format(sGUIDMask, [sDocIntMoveGUIDBase, AId]);
+end;
+
+function GUIDToDocIntMoveID(AGUID: string): Integer;
+begin
+  if IsDocIntMoveIDGUID(AGUID) then
+    Result:=StrToInt(Copy(AGUID, Length(sDocIntMoveGUIDBase)+1, Length(AGUID)))
+  else
+    raise Exception.CreateFmt(sIsNotDocumentIntMoveGUID, [AGUID]);
+end;
+
+function IsDocIntMoveIDGUID(AGUID: string): Boolean;
+begin
+  Result:=Copy(AGUID, 1, Length(sDocIntMoveGUIDBase)) = sDocIntMoveGUIDBase;
 end;
 
 function GoodsIDToGUID(AId: Integer): string;

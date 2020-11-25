@@ -49,6 +49,7 @@ resourcestring
   sIsNotCellGUID                        = '%s is not cell GUID';
   sIsNotDocumentGUID                    = '%s is not document GUID';
   sIsNotDocumentInitialMarksGUID        = '%s is not document initial marks GUID';
+  sIsNotDocumentIntMoveGUID             = '%s is not document internal move GUID';
   sIsNotGoodsGUID                       = '%s is not goods GUID';
   sIsNotmeasureGUID                     = '%s is not measure GUID';
   sIsNotNomenclatureGUID                = '%s is not nomenclature GUID';
