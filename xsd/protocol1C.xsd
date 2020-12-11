@@ -1,7 +1,25 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
   <xs:element name="protocol1C">
+    <xs:annotation><xs:documentation>Протокол обмена в формате 1С</xs:documentation></xs:annotation>
     <xs:complexType>
+      <xs:sequence >
+        <xs:element name="fileNameTSD"  minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation><xs:documentation>Протокол обмена в формате 1С</xs:documentation></xs:annotation>
+          <xs:complexType>
+            <xs:attribute name="fileXML" type="xs:string">
+              <xs:annotation><xs:documentation>Данные, отправляемые в ТСД</xs:documentation></xs:annotation>
+            </xs:attribute>
+
+            <xs:attribute name="stringXML" type="xs:string">
+              <xs:annotation><xs:documentation>Данные, отправляемые в ТСД</xs:documentation></xs:annotation>
+            </xs:attribute>
+
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+      
+    
       <xs:attribute name="confirm" type="xs:string">
         <xs:annotation><xs:documentation>Статус подтверждения ордера</xs:documentation></xs:annotation>
       </xs:attribute>
@@ -26,6 +44,7 @@
       <xs:attribute name="version" type="xs:string">
         <xs:annotation><xs:documentation>Версия протокола</xs:documentation></xs:annotation>
       </xs:attribute>
+
     </xs:complexType>
   </xs:element>
 </xs:schema>

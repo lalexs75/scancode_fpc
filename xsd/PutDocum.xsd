@@ -193,6 +193,9 @@
             <xs:attribute name="last_order" type="xs:integer">
               <xs:annotation><xs:documentation>признак «завершающий ордер» (значение: 1 или 0, по умолчанию 0). Используется при типе документа «Инвентаризация», последним является ордер, которых завершает процесс инвентаризации на складе. При получении такого ордера ТУП, проводит документ «Инвентаризация» и более не принимает движений (ордеров) по нему.</xs:documentation></xs:annotation>
             </xs:attribute>
+            <xs:attribute name="orders" type="xs:string">
+              <xs:annotation><xs:documentation>содержит номер(а) ордеров, которые выгружаются, значение этого атрибута записывается в коментарии к документу</xs:documentation></xs:annotation>
+            </xs:attribute>
           </xs:complexType>
         </xs:element>
       </xs:sequence>

@@ -254,6 +254,7 @@ type
     Ffc:String;
     Fid_sclad:String;
     Flast_order:Int64;
+    Forders:String;
     procedure Setid_doc( AValue:String);
     procedure Setdate( AValue:String);
     procedure Settype1( AValue:String);
@@ -261,6 +262,7 @@ type
     procedure Setfc( AValue:String);
     procedure Setid_sclad( AValue:String);
     procedure Setlast_order( AValue:Int64);
+    procedure Setorders( AValue:String);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
@@ -284,6 +286,8 @@ type
     property id_sclad:String read Fid_sclad write Setid_sclad;
     //признак «завершающий ордер» (значение: 1 или 0, по умолчанию 0). Используется при типе документа «Инвентаризация», последним является ордер, которых завершает процесс инвентаризации на складе. При получении такого ордера ТУП, проводит документ «Инвентаризация» и более не принимает движений (ордеров) по нему.
     property last_order:Int64 read Flast_order write Setlast_order;
+    //содержит номер(а) ордеров, которые выгружаются, значение этого атрибута записывается в коментарии к документу
+    property orders:String read Forders write Setorders;
   end;
 
   {  TOrders_Task_record  }
@@ -783,6 +787,12 @@ begin
   ModifiedProperty('last_order');
 end;
 
+procedure TOrders_Task.Setorders(AValue: String);
+begin
+  Forders:=AValue;
+  ModifiedProperty('orders');
+end;
+
 procedure TOrders_Task.InternalRegisterPropertys;
 var
   P: TPropertyDef;
@@ -796,6 +806,7 @@ begin
   P:=RegisterProperty('fc', 'fc', [], '', -1, -1);
   P:=RegisterProperty('id_sclad', 'id_sclad', [], '', -1, -1);
   P:=RegisterProperty('last_order', 'last_order', [], '', -1, -1);
+  P:=RegisterProperty('orders', 'orders', [], '', -1, -1);
 end;
 
 procedure TOrders_Task.InternalInitChilds;

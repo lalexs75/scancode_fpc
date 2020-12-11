@@ -52,39 +52,19 @@ type
 
   {  Forward declarations  }
   Tprotocol1C = class;
-  TfileNameTSD = class;
+  Tprotocol1C_fileNameTSD = class;
 
   {  Generic classes for collections  }
   Tprotocol1CList = specialize GXMLSerializationObjectList<Tprotocol1C>;
-  TfileNameTSDList = specialize GXMLSerializationObjectList<TfileNameTSD>;
-
-
-  { TfileNameTSD }
-
-  TfileNameTSD = class(TXmlSerializationObject)
-  private
-    FfileXML: string;
-    FstringXML: string;
-    procedure SetfileXML(AValue: string);
-    procedure SetstringXML(AValue: string);
-  protected
-    procedure InternalRegisterPropertys; override;
-    procedure InternalInitChilds; override;
-  public
-    constructor Create;
-    destructor Destroy; override;
-  published
-    property fileXML:string read FfileXML write SetfileXML;
-    property stringXML:string read FstringXML write SetstringXML;
-  end;
+  Tprotocol1C_fileNameTSDList = specialize GXMLSerializationObjectList<Tprotocol1C_fileNameTSD>;
 
   {  Tprotocol1C  }
   Tprotocol1C = class(TXmlSerializationObject)
   private
+    FfileNameTSD:Tprotocol1C_fileNameTSDList;
     Fconfirm:String;
     FdocType:String;
     FfileName:String;
-    FfileNameTSD: TfileNameTSDList;
     FpackgeNumber:String;
     Fserial:String;
     FuserID:String;
@@ -106,6 +86,8 @@ type
     constructor Create;
     destructor Destroy; override;
   published
+    //Протокол обмена в формате 1С
+    property fileNameTSD:Tprotocol1C_fileNameTSDList read FfileNameTSD;
     //Статус подтверждения ордера
     property confirm:String read Fconfirm write Setconfirm;
     //Тип документа
@@ -122,48 +104,29 @@ type
     property userIP:String read FuserIP write SetuserIP;
     //Версия протокола
     property version:String read Fversion write Setversion;
-    property fileNameTSD:TfileNameTSDList read FfileNameTSD;
+  end;
+
+  {  Tprotocol1C_fileNameTSD  }
+  Tprotocol1C_fileNameTSD = class(TXmlSerializationObject)
+  private
+    FfileXML:String;
+    FstringXML:String;
+    procedure SetfileXML( AValue:String);
+    procedure SetstringXML( AValue:String);
+  protected
+    procedure InternalRegisterPropertys; override;
+    procedure InternalInitChilds; override;
+  public
+    constructor Create;
+    destructor Destroy; override;
+  published
+    //Данные, отправляемые в ТСД
+    property fileXML:String read FfileXML write SetfileXML;
+    //Данные, отправляемые в ТСД
+    property stringXML:String read FstringXML write SetstringXML;
   end;
 
 implementation
-
-{ TfileNameTSD }
-
-procedure TfileNameTSD.SetfileXML(AValue: string);
-begin
-  if FfileXML=AValue then Exit;
-  FfileXML:=AValue;
-  ModifiedProperty('fileXML');
-end;
-
-procedure TfileNameTSD.SetstringXML(AValue: string);
-begin
-  if FstringXML=AValue then Exit;
-  FstringXML:=AValue;
-  ModifiedProperty('stringXML');
-end;
-
-procedure TfileNameTSD.InternalRegisterPropertys;
-begin
-  inherited InternalRegisterPropertys;
-  RegisterProperty('fileXML', 'fileXML', [], '', -1, -1);
-  RegisterProperty('stringXML', 'stringXML', [], '', -1, -1);
-end;
-
-procedure TfileNameTSD.InternalInitChilds;
-begin
-  inherited InternalInitChilds;
-end;
-
-constructor TfileNameTSD.Create;
-begin
-  inherited Create;
-end;
-
-destructor TfileNameTSD.Destroy;
-begin
-  inherited Destroy;
-end;
 
   {  Tprotocol1C  }
 procedure Tprotocol1C.Setconfirm(AValue: String);
@@ -219,6 +182,7 @@ var
   P: TPropertyDef;
 begin
   inherited InternalRegisterPropertys;
+  P:=RegisterProperty('fileNameTSD', 'fileNameTSD', [], '', -1, -1);
   P:=RegisterProperty('confirm', 'confirm', [], '', -1, -1);
   P:=RegisterProperty('docType', 'docType', [], '', -1, -1);
   P:=RegisterProperty('fileName', 'fileName', [], '', -1, -1);
@@ -227,18 +191,17 @@ begin
   P:=RegisterProperty('userID', 'userID', [], '', -1, -1);
   P:=RegisterProperty('userIP', 'userIP', [], '', -1, -1);
   P:=RegisterProperty('version', 'version', [], '', -1, -1);
-  RegisterProperty('fileNameTSD', 'fileNameTSD', [], '', -1, -1);
 end;
 
 procedure Tprotocol1C.InternalInitChilds;
 begin
   inherited InternalInitChilds;
-  FfileNameTSD:=TfileNameTSDList.Create;
+  FfileNameTSD:=Tprotocol1C_fileNameTSDList.Create;
 end;
 
 destructor Tprotocol1C.Destroy;
 begin
-  FreeAndNil(FfileNameTSD);
+  FfileNameTSD.Free;
   inherited Destroy;
 end;
 
@@ -248,6 +211,43 @@ begin
 end;
 
 constructor Tprotocol1C.Create;
+begin
+  inherited Create;
+end;
+
+  {  Tprotocol1C_fileNameTSD  }
+procedure Tprotocol1C_fileNameTSD.SetfileXML(AValue: String);
+begin
+  FfileXML:=AValue;
+  ModifiedProperty('fileXML');
+end;
+
+procedure Tprotocol1C_fileNameTSD.SetstringXML(AValue: String);
+begin
+  FstringXML:=AValue;
+  ModifiedProperty('stringXML');
+end;
+
+procedure Tprotocol1C_fileNameTSD.InternalRegisterPropertys;
+var
+  P: TPropertyDef;
+begin
+  inherited InternalRegisterPropertys;
+  P:=RegisterProperty('fileXML', 'fileXML', [], '', -1, -1);
+  P:=RegisterProperty('stringXML', 'stringXML', [], '', -1, -1);
+end;
+
+procedure Tprotocol1C_fileNameTSD.InternalInitChilds;
+begin
+  inherited InternalInitChilds;
+end;
+
+destructor Tprotocol1C_fileNameTSD.Destroy;
+begin
+  inherited Destroy;
+end;
+
+constructor Tprotocol1C_fileNameTSD.Create;
 begin
   inherited Create;
 end;
