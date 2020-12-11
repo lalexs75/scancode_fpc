@@ -114,7 +114,7 @@ var
   S: String;
 begin
   Docs:=TDocuments.Create;
-  Docs.LoadFromFile('/home/alexs/work/4/TDocuments.xml');
+  Docs.LoadFromFile(DemoDataFolder + 'TDocuments.xml');
 
   for T in Docs.Task do
   begin
