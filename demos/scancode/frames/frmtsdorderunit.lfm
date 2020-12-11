@@ -766,8 +766,7 @@ object frmTSDOrderFrame: TfrmTSDOrderFrame
       end    
       item
         Name = 'LastOrder'
-        DataType = ftString
-        Size = 100
+        DataType = ftInteger
       end>
     AfterOpen = rxOrdersAfterOpen
     AfterClose = rxOrdersAfterOpen
@@ -832,7 +831,7 @@ object frmTSDOrderFrame: TfrmTSDOrderFrame
       Required = False
       Size = 100
     end
-    object rxOrdersLastOrder: TStringField
+    object rxOrdersLastOrder: TLongintField
       FieldKind = fkData
       FieldName = 'LastOrder'
       Index = 6
@@ -840,7 +839,6 @@ object frmTSDOrderFrame: TfrmTSDOrderFrame
       ProviderFlags = [pfInUpdate, pfInWhere]
       ReadOnly = False
       Required = False
-      Size = 100
     end
   end
   object dsOrders: TDataSource

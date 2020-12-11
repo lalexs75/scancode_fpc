@@ -31,6 +31,7 @@ type
     RxIniPropStorage1: TRxIniPropStorage;
     ScancodeMT1: TScancodeMT;
     TabSheet1: TTabSheet;
+    TabSheet2: TTabSheet;
     TabSheet3: TTabSheet;
     TabSheet4: TTabSheet;
     TabSheet5: TTabSheet;
@@ -70,7 +71,7 @@ var
 
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
 implementation
-uses rxlogging, ScancodeMT_API, ScancodeMT_utils;
+uses rxlogging, ScancodeMT_API, ScancodeMT_utils, frmProtocol1CUnit;
 
 {$R *.lfm}
 
@@ -115,6 +116,11 @@ begin
   F.Parent:=TabSheet7;
   F.Align:=alClient;
   TfrmTSDOrderFrame(F).GenerateData;
+
+
+  F:=TfrmProtocol1CFrame.Create(Self);
+  F.Parent:=TabSheet2;
+  F.Align:=alClient;
 
   UpdateBtnStates1;
 end;

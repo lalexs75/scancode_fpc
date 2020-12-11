@@ -37,6 +37,7 @@ type
     rxGoodsName: TStringField;
     rxMarcCodesGS1_DATAMATRIX: TStringField;
     rxMarcCodesOinID: TLongintField;
+    rxOrdersLastOrder: TLongintField;
     rxTaskGoods: TRxMemoryData;
     rxMarcCodes: TRxMemoryData;
     rxOrders: TRxMemoryData;
@@ -45,7 +46,6 @@ type
     rxOrdersFC: TStringField;
     rxOrdersIdDoc: TStringField;
     rxOrdersIdSclad: TStringField;
-    rxOrdersLastOrder: TStringField;
     rxOrdersTaskType: TStringField;
     rxTaskGoodsIdChar: TStringField;
     rxTaskGoodsIdDoc: TStringField;
@@ -159,17 +159,17 @@ begin
 end;
 
 procedure TfrmTSDOrderFrame.Button2Click(Sender: TObject);
-{var
+var
   O: TOrders;
-  NM: TNomenclature;
+  NM: TOrders_handbooks_nomencls_record;
   St1: TStringStream;
   Decoder: TBase64DecodingStream;
   St2: TMemoryStream;
-  T:TTask;
-  G:TTaskGood;
-  M:TMarkedCode; }
+  T:TOrders_Task;
+  G:TOrders_Task_record;
+  M:TOrders_Task_record_marked_codes_token;
 begin
-{  rxGoods.CloseOpen;
+   rxGoods.CloseOpen;
   rxOrders.CloseOpen;
   rxMarcCodes.CloseOpen;
 
@@ -178,13 +178,13 @@ begin
 
   O:=TOrders.Create;
   O.LoadFromFile(DemoDataFolder + 'orders.xml');
-  for NM in O.Handbooks.Nomenclatures.NomenclatureList do
+  for NM in O.handbooks.nomencls.record1 do
   begin
     rxGoods.Append;
-    rxGoodsIdGoods.AsString:=NM.IdGoods;
-    rxGoodsName.AsString:=NM.Name;
-    rxGoodsIdMeasure.AsString:=NM.IdMeasure;
-    rxGoodsIdVidnomencl.AsString:=NM.IdVidnomencl;
+    rxGoodsIdGoods.AsString:=NM.id_goods;
+    rxGoodsName.AsString:=NM.name;
+    rxGoodsIdMeasure.AsString:=NM.id_measure;
+    rxGoodsIdVidnomencl.AsString:=NM.id_vidnomencl;
     rxGoodsImg.AsString:=NM.Img;
 
     if NM.Bitmap<>'' then
@@ -203,42 +203,43 @@ begin
     rxGoods.Post;
   end;
 
-  for T in O.Tasks do
+  for T in O.Task do
   begin
     rxOrders.Append;
-    rxOrdersIdDoc.AsString:=T.IdDoc;
-    rxOrdersDate.AsDateTime:=StrToDateTime(T.Date);
-    rxOrdersTaskType.AsString:=T.TaskType;
-    rxOrdersDateOrder.AsDateTime:=StrToDateTime(T.DateOrder);
+    rxOrdersIdDoc.AsString:=T.id_doc;
+    //rxOrdersDate.AsDateTime:=StrToDateTime(T.Date);
+    rxOrdersTaskType.AsString:=T.type1;
+    rxOrdersDateOrder.AsDateTime:=StrToDateTime(T.date_order);
     rxOrdersFC.AsString:=T.FC;
-    rxOrdersIdSclad.AsString:=T.IdSclad;
+    rxOrdersIdSclad.AsString:=T.id_sclad;
     //rxOrdersIdDoc.AsString:=T.Goods:TTaskGoods read FGoods;
-    rxOrdersLastOrder.AsString:=T.LastOrder;
+    rxOrdersLastOrder.AsInteger:=T.last_order;
     rxOrders.Post;
 
-    for G in T.Goods do
+    for G in T.record1 do
     begin
       rxTaskGoods.Append;
-      rxTaskGoodsIdDoc.AsString:=T.IdDoc;
-      rxTaskGoodsIdChar.AsString:=G.IdChar;
-      rxTaskGoodsIdGoods.AsString:=G.IdGoods;
-      rxTaskGoodsQuantity.AsString:=G.GoodProperty.Serial.Quantity;
+      rxTaskGoodsIdDoc.AsString:=T.id_doc;
+      rxTaskGoodsIdChar.AsString:=G.id_char;
+      rxTaskGoodsIdGoods.AsString:=G.id_goods;
+      rxTaskGoodsQuantity.AsString:=G.property1.serial.quantity;
       rxTaskGoods.Post;
 
-      for M in G.MarkedCodes.Tokens do
+      for M in G.marked_codes.token do
       begin
         rxMarcCodes.Append;
         rxMarcCodesOinID.AsInteger:=rxTaskGoodsintID.AsInteger;
         rxMarcCodesGS1_DATAMATRIX.AsString:=DecodeStringBase64(M.GS1_DATAMATRIX);
         rxMarcCodes.Post;
       end;
+
     end;
   end;
   O.Free;
   rxGoods.First;
   rxTaskGoods.Filtered:=true;
   rxMarcCodes.Filtered:=true;
-  rxOrders.First;   }
+  rxOrders.First;
 end;
 
 procedure TfrmTSDOrderFrame.rxMarcCodesFilterRecord(DataSet: TDataSet;

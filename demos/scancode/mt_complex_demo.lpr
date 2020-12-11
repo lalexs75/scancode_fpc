@@ -14,7 +14,7 @@ uses
   mtMainUnit,
   frmUsersAndRightUnit,
   scGlobal,
-  frmStocksUnit;
+  frmStocksUnit, frmProtocol1CUnit;
 
 {$R *.res}
 

@@ -17,7 +17,7 @@
       <UseVersionInfo Value="True"/>
       <MinorVersionNr Value="1"/>
       <RevisionNr Value="1"/>
-      <BuildNr Value="1"/>
+      <BuildNr Value="2"/>
     </VersionInfo>
     <BuildModes>
       <Item Name="Default" Default="True"/>
@@ -30,6 +30,9 @@
       <FormatVersion Value="2"/>
     </RunParams>
     <RequiredPackages>
+      <Item>
+        <PackageName Value="SynEdit"/>
+      </Item>
       <Item>
         <PackageName Value="LazControls"/>
       </Item>
@@ -103,6 +106,14 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmTSDOrderUnit"/>
+      </Unit>
+      <Unit>
+        <Filename Value="frames/frmprotocol1cunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmProtocol1CFrame"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Frame"/>
+        <UnitName Value="frmProtocol1CUnit"/>
       </Unit>
     </Units>
   </ProjectOptions>
