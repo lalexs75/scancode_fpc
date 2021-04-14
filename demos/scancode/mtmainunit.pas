@@ -70,6 +70,7 @@ type
     TabSheet6: TTabSheet;
     TabSheet7: TTabSheet;
     TabSheet8: TTabSheet;
+    TabSheet9: TTabSheet;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -103,7 +104,8 @@ var
 
 procedure MDefaultWriteLog( ALogType:TEventType; const ALogMessage:string);
 implementation
-uses rxlogging, ScancodeMT_API, ScancodeMT_utils, frmProtocol1CUnit;
+uses rxlogging, ScancodeMT_API, ScancodeMT_utils, frmProtocol1CUnit,
+  frmErrorMessageUnit;
 
 {$R *.lfm}
 
@@ -152,6 +154,10 @@ begin
 
   F:=TfrmProtocol1CFrame.Create(Self);
   F.Parent:=TabSheet2;
+  F.Align:=alClient;
+
+  F:=TfrmErrorMessageFrame.Create(Self);
+  F.Parent:=TabSheet9;
   F.Align:=alClient;
 
   UpdateBtnStates1;

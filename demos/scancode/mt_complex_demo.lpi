@@ -115,6 +115,13 @@
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmProtocol1CUnit"/>
       </Unit>
+      <Unit>
+        <Filename Value="frames/frmerrormessageunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmErrorMessageFrame"/>
+        <ResourceBaseClass Value="Frame"/>
+        <UnitName Value="frmErrorMessageUnit"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

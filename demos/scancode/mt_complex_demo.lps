@@ -20,8 +20,8 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="mtMainUnit"/>
         <IsVisibleTab Value="True"/>
-        <TopLine Value="232"/>
-        <CursorPos Y="33"/>
+        <TopLine Value="144"/>
+        <CursorPos X="27" Y="159"/>
         <UsageCount Value="95"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -33,10 +33,12 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmUsersAndRightUnit"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="176"/>
+        <EditorIndex Value="2"/>
+        <TopLine Value="5"/>
         <CursorPos Y="33"/>
         <UsageCount Value="95"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="scglobal.pas"/>
@@ -89,10 +91,11 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmTSDOrderUnit"/>
-        <EditorIndex Value="-1"/>
-        <TopLine Value="274"/>
-        <CursorPos X="36" Y="212"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="45"/>
+        <CursorPos X="15" Y="61"/>
         <UsageCount Value="84"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="frames/frmprotocol1cunit.pas"/>
@@ -358,14 +361,51 @@
         <CursorPos X="104" Y="750"/>
         <UsageCount Value="10"/>
       </Unit>
+      <Unit>
+        <Filename Value="frames/frmerrormessageunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="frmErrorMessageFrame"/>
+        <ResourceBaseClass Value="Frame"/>
+        <UnitName Value="frmErrorMessageUnit"/>
+        <EditorIndex Value="1"/>
+        <TopLine Value="13"/>
+        <CursorPos X="25" Y="33"/>
+        <UsageCount Value="20"/>
+        <Loaded Value="True"/>
+        <LoadedDesigner Value="True"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="1">
+    <JumpHistory HistoryIndex="7">
       <Position>
         <Filename Value="mtmainunit.pas"/>
         <Caret Line="129" Column="18" TopLine="99"/>
       </Position>
       <Position>
         <Filename Value="mtmainunit.pas"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmtsdorderunit.pas"/>
+        <Caret Line="228" Column="82" TopLine="213"/>
+      </Position>
+      <Position>
+        <Filename Value="mtmainunit.pas"/>
+        <Caret Line="48" Column="8" TopLine="33"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmusersandrightunit.pas"/>
+        <Caret Line="33" TopLine="33"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmerrormessageunit.pas"/>
+        <Caret Line="33" TopLine="3"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmerrormessageunit.pas"/>
+        <Caret Line="2" Column="26"/>
+      </Position>
+      <Position>
+        <Filename Value="mtmainunit.pas"/>
+        <Caret Line="164" Column="22" TopLine="135"/>
       </Position>
     </JumpHistory>
     <RunParams>

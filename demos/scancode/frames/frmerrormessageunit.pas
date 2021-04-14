@@ -1,5 +1,5 @@
 { interface library for FPC and Lazarus
-  Copyright (C) 2019-2020 Lagunov Aleksey alexs75@yandex.ru
+  Copyright (C) 2019-2021 Lagunov Aleksey alexs75@yandex.ru
 
   Комплексный пример
 
@@ -30,50 +30,26 @@
   Inc., 59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
 }
 
-program mt_complex_demo;
+unit frmErrorMessageUnit;
 
-{$mode objfpc}{$H+}
+{$mode ObjFPC}{$H+}
+
+interface
 
 uses
-  {$IFDEF UNIX}
-  cthreads,
-  {$ENDIF}
-  Interfaces, // this includes the LCL widgetset
-  Forms,
-  sysutils,
-  rxlogging, lazcontrols,
+  Classes, SysUtils, Forms, Controls;
 
-  mtMainUnit,
-  frmUsersAndRightUnit,
-  scGlobal,
-  frmStocksUnit, frmProtocol1CUnit, frmErrorMessageUnit;
+type
+  TfrmErrorMessageFrame = class(TFrame)
+  private
 
-{$R *.res}
+  public
 
-procedure InitLocale;
-begin
-  //
-  DefaultFormatSettings.LongDateFormat:='dd.mm.yyyy';
-  DefaultFormatSettings.ShortDateFormat:=DefaultFormatSettings.LongDateFormat;
-  DefaultFormatSettings.DateSeparator:='.';
-  DefaultFormatSettings.TimeSeparator:=':';
-  //ConvetToUTF8LocalConst;
-  DefaultFormatSettings.ThousandSeparator:=' ';
-  DefaultFormatSettings.CurrencyString:='р.';
-end;
+  end;
 
-begin
-  RequireDerivedFormResource:=True;
+implementation
 
-  OnRxLoggerEvent:=@MDefaultWriteLog;
+{$R *.lfm}
 
-  Application.Title:='MT complex demo';
-  Application.Scaled:=True;
-  Application.Initialize;
-  Application.{%H-}UpdateFormatSettings:=false;
-  InitDemoFolders;
-  InitLocale;
-  Application.CreateForm(TmtMainForm, mtMainForm);
-  Application.Run;
 end.
 
