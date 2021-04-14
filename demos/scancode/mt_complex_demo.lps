@@ -33,8 +33,8 @@
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmUsersAndRightUnit"/>
         <EditorIndex Value="2"/>
-        <TopLine Value="5"/>
-        <CursorPos Y="33"/>
+        <TopLine Value="177"/>
+        <CursorPos X="20" Y="193"/>
         <UsageCount Value="96"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
@@ -43,10 +43,11 @@
         <Filename Value="scglobal.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="scGlobal"/>
-        <EditorIndex Value="-1"/>
+        <EditorIndex Value="3"/>
         <TopLine Value="26"/>
-        <CursorPos Y="33"/>
+        <CursorPos X="14" Y="33"/>
         <UsageCount Value="96"/>
+        <Loaded Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="frames/frmstocksunit.pas"/>
@@ -90,7 +91,7 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmTSDOrderUnit"/>
-        <EditorIndex Value="4"/>
+        <EditorIndex Value="5"/>
         <TopLine Value="45"/>
         <CursorPos X="15" Y="61"/>
         <UsageCount Value="85"/>
@@ -366,24 +367,24 @@
         <ComponentName Value="frmErrorMessageFrame"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmErrorMessageUnit"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="21"/>
-        <CursorPos X="62" Y="40"/>
+        <TopLine Value="62"/>
+        <CursorPos Y="90"/>
         <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
       <Unit>
         <Filename Value="../../api/tsd_error_msg.pas"/>
-        <IsVisibleTab Value="True"/>
-        <EditorIndex Value="3"/>
-        <TopLine Value="54"/>
-        <CursorPos X="25" Y="73"/>
-        <UsageCount Value="10"/>
+        <EditorIndex Value="4"/>
+        <TopLine Value="51"/>
+        <CursorPos X="9" Y="60"/>
+        <UsageCount Value="11"/>
         <Loaded Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="11">
+    <JumpHistory HistoryIndex="20">
       <Position>
         <Filename Value="mtmainunit.pas"/>
         <Caret Line="129" Column="18" TopLine="99"/>
@@ -430,6 +431,42 @@
       <Position>
         <Filename Value="../../api/tsd_error_msg.pas"/>
         <Caret Line="57" TopLine="54"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmerrormessageunit.pas"/>
+        <Caret Line="40" Column="62" TopLine="21"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmerrormessageunit.pas"/>
+        <Caret Line="71" Column="5" TopLine="44"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmusersandrightunit.pas"/>
+        <Caret Line="200" Column="22" TopLine="177"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmusersandrightunit.pas"/>
+        <Caret Line="79" Column="14" TopLine="67"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmerrormessageunit.pas"/>
+        <Caret Line="74" Column="41" TopLine="45"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmusersandrightunit.pas"/>
+        <Caret Line="193" Column="20" TopLine="177"/>
+      </Position>
+      <Position>
+        <Filename Value="scglobal.pas"/>
+        <Caret Line="33" Column="14" TopLine="26"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmerrormessageunit.pas"/>
+        <Caret Line="77" TopLine="51"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmerrormessageunit.pas"/>
+        <Caret Line="84" Column="5" TopLine="59"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -37,7 +37,7 @@ unit frmErrorMessageUnit;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, StdCtrls, tsd_error_msg;
+  Classes, SysUtils, Forms, Controls, StdCtrls;
 
 type
 
@@ -52,6 +52,8 @@ type
     Label2: TLabel;
     Label3: TLabel;
     Memo1: TMemo;
+    procedure Button1Click(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
   private
 
   public
@@ -59,8 +61,34 @@ type
   end;
 
 implementation
-
+uses tsd_error_msg, scGlobal;
 {$R *.lfm}
+
+{ TfrmErrorMessageFrame }
+
+procedure TfrmErrorMessageFrame.Button1Click(Sender: TObject);
+var
+  E: Terror;
+begin
+  E:=Terror.Create;
+  E.event:=Edit1.Text;
+  E.type1:=Edit2.Text;
+  E.description:=Memo1.Text;
+  E.SaveToFile(ExportFolder + 'error_msg.xml');
+  E.Free;
+end;
+
+procedure TfrmErrorMessageFrame.Button2Click(Sender: TObject);
+var
+  E: Terror;
+begin
+  E:=Terror.Create;
+  E.LoadFromFile(ExportFolder + 'error_msg.xml');
+  Edit1.Text := E.event;
+  Edit2.Text := E.type1;
+  Memo1.Text := E.description;
+  E.Free;
+end;
 
 end.
 

@@ -98,6 +98,7 @@ object frmErrorMessageFrame: TfrmErrorMessageFrame
     Top = 294
     Width = 75
     Caption = 'Экспорт'
+    OnClick = Button1Click
     TabOrder = 3
   end
   object Button2: TButton
@@ -106,6 +107,7 @@ object frmErrorMessageFrame: TfrmErrorMessageFrame
     Top = 294
     Width = 75
     Caption = 'Импорт'
+    OnClick = Button2Click
     TabOrder = 4
   end
 end
