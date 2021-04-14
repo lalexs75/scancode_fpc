@@ -37,7 +37,7 @@ unit frmErrorMessageUnit;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, StdCtrls;
+  Classes, SysUtils, Forms, Controls, StdCtrls, tsd_error_msg;
 
 type
 

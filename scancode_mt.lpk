@@ -80,6 +80,10 @@
         <Filename Value="api/confirm.pas"/>
         <UnitName Value="confirm"/>
       </Item>
+      <Item>
+        <Filename Value="api/tsd_error_msg.pas"/>
+        <UnitName Value="tsd_error_msg"/>
+      </Item>
     </Files>
     <LazDoc Paths="docs"/>
     <i18n>

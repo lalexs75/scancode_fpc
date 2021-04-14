@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="error">
+    <xs:annotation><xs:documentation>сообщение об ошибке в ТСД</xs:documentation></xs:annotation>
+    <xs:complexType>
+        <xs:attribute name="event" type="xs:string">
+          <xs:annotation><xs:documentation>событие при, котором произошла проблема (не используется)</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="type" type="xs:string">
+          <xs:annotation><xs:documentation>тип ошибки (не используется)</xs:documentation></xs:annotation>
+        </xs:attribute>
+        <xs:attribute name="description" type="xs:string">
+          <xs:annotation><xs:documentation>текстовое описание ошибки</xs:documentation></xs:annotation>
+        </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -10,7 +10,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="48"/>
         <CursorPos Y="33"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="96"/>
       </Unit>
       <Unit>
         <Filename Value="mtmainunit.pas"/>
@@ -21,7 +21,7 @@
         <UnitName Value="mtMainUnit"/>
         <TopLine Value="144"/>
         <CursorPos X="27" Y="159"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="96"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -35,7 +35,7 @@
         <EditorIndex Value="2"/>
         <TopLine Value="5"/>
         <CursorPos Y="33"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="96"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
@@ -46,7 +46,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="26"/>
         <CursorPos Y="33"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="96"/>
       </Unit>
       <Unit>
         <Filename Value="frames/frmstocksunit.pas"/>
@@ -58,7 +58,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="70"/>
         <CursorPos Y="33"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="96"/>
       </Unit>
       <Unit>
         <Filename Value="frames/frmdocumentsunit.pas"/>
@@ -70,7 +70,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="260"/>
         <CursorPos X="39" Y="117"/>
-        <UsageCount Value="95"/>
+        <UsageCount Value="96"/>
       </Unit>
       <Unit>
         <Filename Value="frames/frmcharacteristicunit.pas"/>
@@ -81,7 +81,7 @@
         <UnitName Value="frmCharacteristicUnit"/>
         <EditorIndex Value="-1"/>
         <TopLine Value="365"/>
-        <UsageCount Value="93"/>
+        <UsageCount Value="94"/>
       </Unit>
       <Unit>
         <Filename Value="frames/frmtsdorderunit.pas"/>
@@ -90,10 +90,10 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmTSDOrderUnit"/>
-        <EditorIndex Value="3"/>
+        <EditorIndex Value="4"/>
         <TopLine Value="45"/>
         <CursorPos X="15" Y="61"/>
-        <UsageCount Value="84"/>
+        <UsageCount Value="85"/>
         <Loaded Value="True"/>
       </Unit>
       <Unit>
@@ -106,7 +106,7 @@
         <EditorIndex Value="-1"/>
         <TopLine Value="45"/>
         <CursorPos Y="33"/>
-        <UsageCount Value="25"/>
+        <UsageCount Value="26"/>
       </Unit>
       <Unit>
         <Filename Value="../../scancode_document_api.pas"/>
@@ -125,8 +125,8 @@
       <Unit>
         <Filename Value="../../../protobuf-fpc/xmlobject/xmlobject.pas"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="390"/>
-        <CursorPos Y="407"/>
+        <TopLine Value="53"/>
+        <CursorPos X="3" Y="45"/>
         <UsageCount Value="14"/>
       </Unit>
       <Unit>
@@ -307,8 +307,8 @@
         <Filename Value="../../../protobuf-fpc/xmlobject/abstractserializationobjects.pas"/>
         <UnitName Value="AbstractSerializationObjects"/>
         <EditorIndex Value="-1"/>
-        <TopLine Value="291"/>
-        <CursorPos Y="307"/>
+        <TopLine Value="168"/>
+        <CursorPos X="32" Y="191"/>
         <UsageCount Value="11"/>
       </Unit>
       <Unit>
@@ -366,16 +366,24 @@
         <ComponentName Value="frmErrorMessageFrame"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmErrorMessageUnit"/>
-        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="34"/>
-        <CursorPos X="12" Y="27"/>
-        <UsageCount Value="20"/>
+        <TopLine Value="21"/>
+        <CursorPos X="62" Y="40"/>
+        <UsageCount Value="21"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
+      <Unit>
+        <Filename Value="../../api/tsd_error_msg.pas"/>
+        <IsVisibleTab Value="True"/>
+        <EditorIndex Value="3"/>
+        <TopLine Value="54"/>
+        <CursorPos X="25" Y="73"/>
+        <UsageCount Value="10"/>
+        <Loaded Value="True"/>
+      </Unit>
     </Units>
-    <JumpHistory HistoryIndex="9">
+    <JumpHistory HistoryIndex="11">
       <Position>
         <Filename Value="mtmainunit.pas"/>
         <Caret Line="129" Column="18" TopLine="99"/>
@@ -414,6 +422,14 @@
       <Position>
         <Filename Value="frames/frmerrormessageunit.pas"/>
         <Caret Line="27" Column="12" TopLine="34"/>
+      </Position>
+      <Position>
+        <Filename Value="../../api/tsd_error_msg.pas"/>
+        <Caret Line="37" Column="31" TopLine="29"/>
+      </Position>
+      <Position>
+        <Filename Value="../../api/tsd_error_msg.pas"/>
+        <Caret Line="57" TopLine="54"/>
       </Position>
     </JumpHistory>
     <RunParams>
