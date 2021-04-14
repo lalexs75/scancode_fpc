@@ -19,7 +19,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="mtMainUnit"/>
-        <IsVisibleTab Value="True"/>
         <TopLine Value="144"/>
         <CursorPos X="27" Y="159"/>
         <UsageCount Value="95"/>
@@ -367,15 +366,16 @@
         <ComponentName Value="frmErrorMessageFrame"/>
         <ResourceBaseClass Value="Frame"/>
         <UnitName Value="frmErrorMessageUnit"/>
+        <IsVisibleTab Value="True"/>
         <EditorIndex Value="1"/>
-        <TopLine Value="13"/>
-        <CursorPos X="25" Y="33"/>
+        <TopLine Value="34"/>
+        <CursorPos X="12" Y="27"/>
         <UsageCount Value="20"/>
         <Loaded Value="True"/>
         <LoadedDesigner Value="True"/>
       </Unit>
     </Units>
-    <JumpHistory HistoryIndex="7">
+    <JumpHistory HistoryIndex="9">
       <Position>
         <Filename Value="mtmainunit.pas"/>
         <Caret Line="129" Column="18" TopLine="99"/>
@@ -406,6 +406,14 @@
       <Position>
         <Filename Value="mtmainunit.pas"/>
         <Caret Line="164" Column="22" TopLine="135"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmerrormessageunit.pas"/>
+        <Caret Line="33" Column="25" TopLine="13"/>
+      </Position>
+      <Position>
+        <Filename Value="frames/frmerrormessageunit.pas"/>
+        <Caret Line="27" Column="12" TopLine="34"/>
       </Position>
     </JumpHistory>
     <RunParams>

@@ -1,9 +1,111 @@
 object frmErrorMessageFrame: TfrmErrorMessageFrame
   Left = 0
-  Height = 240
+  Height = 336
   Top = 0
   Width = 320
+  ClientHeight = 336
+  ClientWidth = 320
   TabOrder = 0
   DesignLeft = 631
   DesignTop = 351
+  object Label1: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Owner
+    Left = 6
+    Height = 17
+    Top = 6
+    Width = 34
+    BorderSpacing.Around = 6
+    Caption = 'Event'
+    ParentColor = False
+  end
+  object Label2: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Edit1
+    AnchorSideTop.Side = asrBottom
+    Left = 6
+    Height = 17
+    Top = 68
+    Width = 29
+    BorderSpacing.Around = 6
+    Caption = 'Type'
+    ParentColor = False
+  end
+  object Label3: TLabel
+    AnchorSideLeft.Control = Owner
+    AnchorSideTop.Control = Edit2
+    AnchorSideTop.Side = asrBottom
+    Left = 6
+    Height = 17
+    Top = 130
+    Width = 68
+    BorderSpacing.Around = 6
+    Caption = 'Description'
+    ParentColor = False
+  end
+  object Edit1: TEdit
+    AnchorSideLeft.Control = Label1
+    AnchorSideTop.Control = Label1
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 12
+    Height = 33
+    Top = 29
+    Width = 302
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Around = 6
+    TabOrder = 0
+    Text = 'GetDocum'
+  end
+  object Edit2: TEdit
+    AnchorSideLeft.Control = Label2
+    AnchorSideTop.Control = Label2
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 12
+    Height = 33
+    Top = 91
+    Width = 302
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Around = 6
+    TabOrder = 1
+    Text = 'отсутствут права пользователя'
+  end
+  object Memo1: TMemo
+    AnchorSideLeft.Control = Label3
+    AnchorSideTop.Control = Label3
+    AnchorSideTop.Side = asrBottom
+    AnchorSideRight.Control = Owner
+    AnchorSideRight.Side = asrBottom
+    Left = 12
+    Height = 90
+    Top = 153
+    Width = 302
+    Anchors = [akTop, akLeft, akRight]
+    BorderSpacing.Around = 6
+    Lines.Strings = (
+      'Пользователь'
+      'не имеет доступа!, user=Афонин Геннадий Александрович, sn=19068B5395, событие'
+      '"GetDocum" не может быть обработано!'
+    )
+    TabOrder = 2
+  end
+  object Button1: TButton
+    Left = 59
+    Height = 25
+    Top = 294
+    Width = 75
+    Caption = 'Экспорт'
+    TabOrder = 3
+  end
+  object Button2: TButton
+    Left = 144
+    Height = 25
+    Top = 294
+    Width = 75
+    Caption = 'Импорт'
+    TabOrder = 4
+  end
 end

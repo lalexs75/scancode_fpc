@@ -37,10 +37,21 @@ unit frmErrorMessageUnit;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls;
+  Classes, SysUtils, Forms, Controls, StdCtrls;
 
 type
+
+  { TfrmErrorMessageFrame }
+
   TfrmErrorMessageFrame = class(TFrame)
+    Button1: TButton;
+    Button2: TButton;
+    Edit1: TEdit;
+    Edit2: TEdit;
+    Label1: TLabel;
+    Label2: TLabel;
+    Label3: TLabel;
+    Memo1: TMemo;
   private
 
   public
