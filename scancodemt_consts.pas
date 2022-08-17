@@ -54,6 +54,7 @@ resourcestring
   sIsNotmeasureGUID                     = '%s is not measure GUID';
   sIsNotNomenclatureGUID                = '%s is not nomenclature GUID';
   sIsNotPackGUID                        = '%s is not pack GUID';
+  sIsNotSerialsGUID                     = '%s is not serials GUID';
 
 implementation
 

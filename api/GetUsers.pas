@@ -1,5 +1,5 @@
 { interface library for FPC and Lazarus
-  Copyright (C) 2019-2020 Lagunov Aleksey alexs75@yandex.ru
+  Copyright (C) 2019-2022 Lagunov Aleksey alexs75@yandex.ru
 
   Генерация xml файлов в формате обеман данными для СКАНКОД.Мобильный Терминал (SCANCODE.MobileTerminal)
 
@@ -76,7 +76,7 @@ type
     procedure InternalInitChilds; override;
     function RootNodeName:string; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //Описание набора доступных прав пользователя
@@ -93,7 +93,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     property Record1:TInformation_Rights_RecordList read FRecord1;
@@ -112,7 +112,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //Псевдоним типа документа
@@ -131,7 +131,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     property Record1:TInformation_Login_RecordList read FRecord1;
@@ -158,7 +158,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //Строковой идентификатор пользователя (имя)

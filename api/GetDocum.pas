@@ -1,5 +1,5 @@
 { interface library for FPC and Lazarus
-  Copyright (C) 2019-2020 Lagunov Aleksey alexs75@yandex.ru
+  Copyright (C) 2019-2022 Lagunov Aleksey alexs75@yandex.ru
 
   Генерация xml файлов в формате обеман данными для СКАНКОД.Мобильный Терминал (SCANCODE.MobileTerminal)
 
@@ -79,7 +79,7 @@ type
     procedure InternalInitChilds; override;
     function RootNodeName:string; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //отдельный документ (задание) в списке (может быть несколько)
@@ -114,7 +114,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //список товаров документа (табличная часть документа)
@@ -159,7 +159,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //свойства товара (может быть один или несколько, описывает в каких упаковках может быть собран товар)
@@ -186,7 +186,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //информация о серии товара (может быть несколько, может быть пустым или отсутствовать, если не используется учет по сериям)
@@ -209,7 +209,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     property cells:TDocuments_Task_record_property_serial_cellsList read Fcells;
@@ -230,7 +230,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     property cell:String read Fcell write Setcell;
@@ -245,7 +245,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //уникальный код маркировки
@@ -263,7 +263,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //значение кода маркировки отдельного товара

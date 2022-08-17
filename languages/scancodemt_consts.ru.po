@@ -51,6 +51,11 @@ msgstr "%s не является идентификатором упаковки
 msgid "%s is not room GUID"
 msgstr "%s не является идентификатором помещения"
 
+#: scancodemt_consts.sisnotserialsguid
+#, object-pascal-format
+msgid "%s is not serials GUID"
+msgstr ""
+
 #: scancodemt_consts.sisnotstockguid
 #, object-pascal-format
 msgid "%s is not stock GUID"

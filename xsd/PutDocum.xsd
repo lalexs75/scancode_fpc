@@ -111,6 +111,9 @@
                                     <xs:attribute name="celladdress" type="xs:string">
                                       <xs:annotation><xs:documentation>наименование ячейки</xs:documentation></xs:annotation>
                                     </xs:attribute>
+                                    <xs:attribute name="quantity" type="xs:string">
+                                      <xs:annotation><xs:documentation>количество собранного товара из данной ячейки</xs:documentation></xs:annotation>
+                                    </xs:attribute>
                                   </xs:complexType>
                                 </xs:element>
                               </xs:sequence>

@@ -86,6 +86,10 @@ function PackIDToGUID(AId:Integer):string;
 function GUIDToPackID(AGUID:string):Integer;
 function IsPackIDGUID(AGUID:string):Boolean; inline;
 
+function SerialsIDToGUID(AId:Integer):string;
+function GUIDToSerialsID(AGUID:string):Integer;
+function IsSerialsIDGUID(AGUID:string):Boolean; inline;
+
 function NormalaizeGUID(AGUID:string):string;
 
 function EncodePassword(APasswordStr:string):string;
@@ -106,6 +110,7 @@ const
   sPackGUIDBase           = 'FFFFFFFF-FFFF-FFFF-FFF7-';
   sDocFirstMarksGUIDBase  = 'FFFFFFFF-FFFF-FFFF-FFF6-';
   sDocIntMoveGUIDBase     = 'FFFFFFFF-FFFF-FFFF-FFF5-';
+  sSerialsGUIDBase        = 'FFFFFFFF-FFFF-FFFF-FFF4-'; //сериия в терминах ТСД
   //sUserGUIDBase          = 'FFFFFFFFFFFFFFFFFFFF';
   //sStockGUIDBase         = 'FFFFFFFFFFFFFFFFFFFE';
   //sRoomGUIDBase          = 'FFFFFFFFFFFFFFFFFFFD';
@@ -313,6 +318,24 @@ end;
 function IsPackIDGUID(AGUID: string): Boolean;
 begin
   Result:=Copy(AGUID, 1, Length(sPackGUIDBase)) = sPackGUIDBase;
+end;
+
+function SerialsIDToGUID(AId: Integer): string;
+begin
+  Result:=Format(sGUIDMask, [sSerialsGUIDBase, AId]);
+end;
+
+function GUIDToSerialsID(AGUID: string): Integer;
+begin
+  if IsSerialsIDGUID(AGUID) then
+    Result:=StrToInt(Copy(AGUID, Length(sSerialsGUIDBase)+1, Length(AGUID)))
+  else
+    raise Exception.CreateFmt(sIsNotSerialsGUID, [AGUID]);
+end;
+
+function IsSerialsIDGUID(AGUID: string): Boolean;
+begin
+  Result:=Copy(AGUID, 1, Length(sSerialsGUIDBase)) = sSerialsGUIDBase;
 end;
 
 function NormalaizeGUID(AGUID: string): string;

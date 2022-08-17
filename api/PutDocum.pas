@@ -1,5 +1,5 @@
 { interface library for FPC and Lazarus
-  Copyright (C) 2019-2020 Lagunov Aleksey alexs75@yandex.ru
+  Copyright (C) 2019-2022 Lagunov Aleksey alexs75@yandex.ru
 
   Генерация xml файлов в формате обеман данными для СКАНКОД.Мобильный Терминал (SCANCODE.MobileTerminal)
 
@@ -96,7 +96,7 @@ type
     procedure InternalInitChilds; override;
     function RootNodeName:string; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //– справочник товаров и сопутствующих списков для новых (созданных пользователем и/или добавленных пользователем в ордер/документ)
@@ -115,7 +115,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //список товаров, созданных пользователем на ТСД или загруженных отдельно (по запросу) из ТУП.
@@ -133,7 +133,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     property record1:TOrders_handbooks_nomencls_recordList read Frecord1;
@@ -158,7 +158,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     property id_goods:String read Fid_goods write Setid_goods;
@@ -177,7 +177,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //список характеристик
@@ -197,7 +197,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     property id_goods:String read Fid_goods write Setid_goods;
@@ -213,7 +213,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     property record1:TOrders_handbooks_barcodes_recordList read Frecord1;
@@ -234,7 +234,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     property id_goods:String read Fid_goods write Setid_goods;
@@ -267,7 +267,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //товар
@@ -304,7 +304,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //описание свойств
@@ -329,7 +329,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //серии товаров
@@ -354,7 +354,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //информация о ячейках товара (может отсутствовать, если не используется адресное хранение)
@@ -374,19 +374,23 @@ type
   private
     Fid_cell:String;
     Fcelladdress:String;
+    Fquantity:String;
     procedure Setid_cell( AValue:String);
     procedure Setcelladdress( AValue:String);
+    procedure Setquantity( AValue:String);
   protected
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //УИ ячейки
     property id_cell:String read Fid_cell write Setid_cell;
     //наименование ячейки
     property celladdress:String read Fcelladdress write Setcelladdress;
+    //количество собранного товара из данной ячейки
+    property quantity:String read Fquantity write Setquantity;
   end;
 
   {  TOrders_Task_record_alco  }
@@ -400,7 +404,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     property PDF417:String read FPDF417 write SetPDF417;
@@ -415,7 +419,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //код маркировки
@@ -431,7 +435,7 @@ type
     procedure InternalRegisterPropertys; override;
     procedure InternalInitChilds; override;
   public
-    constructor Create;
+    constructor Create; override;
     destructor Destroy; override;
   published
     //значение кода марки, считанный с этикетки сканером
@@ -972,6 +976,12 @@ begin
   ModifiedProperty('celladdress');
 end;
 
+procedure TOrders_Task_record_property_serial_cells.Setquantity(AValue: String);
+begin
+  Fquantity:=AValue;
+  ModifiedProperty('quantity');
+end;
+
 procedure TOrders_Task_record_property_serial_cells.InternalRegisterPropertys;
 var
   P: TPropertyDef;
@@ -979,6 +989,7 @@ begin
   inherited InternalRegisterPropertys;
   P:=RegisterProperty('id_cell', 'id_cell', [], '', -1, -1);
   P:=RegisterProperty('celladdress', 'celladdress', [], '', -1, -1);
+  P:=RegisterProperty('quantity', 'quantity', [], '', -1, -1);
 end;
 
 procedure TOrders_Task_record_property_serial_cells.InternalInitChilds;
